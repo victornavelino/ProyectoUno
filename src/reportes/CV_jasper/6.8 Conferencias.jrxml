@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="4.1 Libros" language="groovy" pageWidth="555" pageHeight="805" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CCCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="modoParticipacion" uuid="8b75c900-9239-473f-bb2e-d31bc1864779">
+		<queryString language="xPath">
+			<![CDATA[/datos/otrosAntecedentes/participacionEnEventos/participacionEvento/modoParticipacion/modosParticipacion]]>
+		</queryString>
+		<field name="modosParticipacion" class="java.lang.String">
+			<fieldDescription><![CDATA[child::text()]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="premios" uuid="d65ec774-72d1-4785-bcd7-a0b66cb5c2ec">
+		<queryString language="xPath">
+			<![CDATA[/datos/otrosAntecedentes/premios/premio]]>
+		</queryString>
+		<field name="denominacion" class="java.lang.String">
+			<fieldDescription><![CDATA[denominacion]]></fieldDescription>
+		</field>
+		<field name="tipoPremio" class="java.lang.String">
+			<fieldDescription><![CDATA[tipoPremio]]></fieldDescription>
+		</field>
+		<field name="alcanceNacional" class="java.lang.String">
+			<fieldDescription><![CDATA[alcanceNacional]]></fieldDescription>
+		</field>
+		<field name="alcanceInternacional" class="java.lang.String">
+			<fieldDescription><![CDATA[alcanceInternacional]]></fieldDescription>
+		</field>
+		<field name="anio" class="java.lang.String">
+			<fieldDescription><![CDATA[anio]]></fieldDescription>
+		</field>
+		<field name="rutaCompleta" class="java.lang.String">
+			<fieldDescription><![CDATA[institucionOtorgante/rutaCompleta]]></fieldDescription>
+		</field>
+		<field name="area" class="java.lang.String">
+			<fieldDescription><![CDATA[areaDelConocimiento/area]]></fieldDescription>
+		</field>
+		<field name="subArea" class="java.lang.String">
+			<fieldDescription><![CDATA[areaDelConocimiento/subArea]]></fieldDescription>
+		</field>
+		<field name="informacionAdicional" class="java.lang.String">
+			<fieldDescription><![CDATA[informacionAdicional]]></fieldDescription>
+		</field>
+		<field name="categoria" class="java.lang.String">
+			<fieldDescription><![CDATA[categoria]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="participacion" uuid="77f1b430-acec-4295-a802-05262ea928ef">
+		<queryString language="xPath">
+			<![CDATA[/datos/otrosAntecedentes/participacionEnEventos/participacionEvento]]>
+		</queryString>
+		<field name="evento" class="java.lang.String">
+			<fieldDescription><![CDATA[evento]]></fieldDescription>
+		</field>
+		<field name="tipoEvento" class="java.lang.String">
+			<fieldDescription><![CDATA[tipoEvento]]></fieldDescription>
+		</field>
+		<field name="otroTipoReunion" class="java.lang.String">
+			<fieldDescription><![CDATA[otroTipoReunion]]></fieldDescription>
+		</field>
+		<field name="alcanceNacional" class="java.lang.String">
+			<fieldDescription><![CDATA[alcanceNacional]]></fieldDescription>
+		</field>
+		<field name="alcanceInternacional" class="java.lang.String">
+			<fieldDescription><![CDATA[alcanceInternacional]]></fieldDescription>
+		</field>
+		<field name="pais" class="java.lang.String">
+			<fieldDescription><![CDATA[pais/pais]]></fieldDescription>
+		</field>
+		<field name="ciudad" class="java.lang.String">
+			<fieldDescription><![CDATA[ciudad]]></fieldDescription>
+		</field>
+		<field name="anio" class="java.lang.String">
+			<fieldDescription><![CDATA[anio]]></fieldDescription>
+		</field>
+		<field name="otroModoParticipacion" class="java.lang.String">
+			<fieldDescription><![CDATA[otroModoParticipacion]]></fieldDescription>
+		</field>
+		<field name="informacionAdicional" class="java.lang.String">
+			<fieldDescription><![CDATA[informacionAdicional]]></fieldDescription>
+		</field>
+		<variable name="tipoEvento" class="java.lang.String">
+			<variableExpression><![CDATA[( $F{tipoEvento}.toLowerCase()=="otro" ?
+    $F{tipoEvento} + ": " + $F{otroTipoReunion} :
+    $F{tipoEvento} )]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="institucion" uuid="f0335b5a-cf15-4807-9ebf-3be0fee21dba">
+		<queryString language="xPath">
+			<![CDATA[/datos/otrosAntecedentes/participacionEnEventos/participacionEvento/instituciones/institucion]]>
+		</queryString>
+		<field name="rutaCompleta" class="java.lang.String">
+			<fieldDescription><![CDATA[rutaCompleta]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/otrosAntecedentes]]>
+	</queryString>
+	<field name="evento" class="java.lang.String">
+		<fieldDescription><![CDATA[participacionEnEventos/participacionEvento/evento]]></fieldDescription>
+	</field>
+	<field name="denominacion" class="java.lang.String">
+		<fieldDescription><![CDATA[premios/premio/denominacion]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="31">
+			<printWhenExpression><![CDATA[!$F{evento}.isEmpty() && !$F{denominacion}.isEmpty()]]></printWhenExpression>
+			<staticText>
+				<reportElement uuid="a6fe42f3-a5b5-44c3-97d6-ba0808c61238" x="-15" y="1" width="540" height="30" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[6.8. Conferencias por invitación en reuniones científicas y tecnológicas de nivel internacional y otras distinciones.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="227">
+			<printWhenExpression><![CDATA[!$F{evento}.isEmpty()]]></printWhenExpression>
+			<componentElement>
+				<reportElement uuid="3b6c0a2b-d885-4e98-bcef-145abfdb61f3" x="0" y="0" width="525" height="227" isRemoveLineWhenBlank="true"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="participacion" uuid="2e596d17-4694-448c-aa0a-bbc341ceb892">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/otrosAntecedentes/participacionEnEventos/participacionEvento")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="227" width="525">
+						<componentElement>
+							<reportElement uuid="562c9e84-f4d4-4090-b149-b33b4604bfc1" x="187" y="140" width="338" height="20" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="modoParticipacion" uuid="6a6394e4-703e-4b32-bdcc-e549fac841a2">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento/modoParticipacion/modosParticipacion")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="338">
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="42efa820-95cf-46f8-b9bb-24d81aadb111" positionType="Float" x="0" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{modosParticipacion}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="adf7bb8a-8d42-42c5-8503-2d67eb09afcc" x="0" y="20" width="525" height="40" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="participacion" uuid="9c889db5-ab5b-4e67-81e4-e4598dab7bf7">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="40" width="525">
+									<staticText>
+										<reportElement uuid="35d184f9-e39f-4fdc-b064-fabef3d85fb8" x="0" y="0" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Nombre del evento:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="1ccb54fb-f304-4bfb-bca0-252d84483dc0" positionType="Float" x="187" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{evento}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="f040d260-0aa5-40fe-9c3a-1b59bece22cc" positionType="Float" x="0" y="160" width="525" height="20" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="participacion" uuid="eb88a827-06a9-420c-ae03-ca05f7e198fd">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="525">
+									<staticText>
+										<reportElement uuid="08aa1c36-1b99-4070-ab58-552ada2800d2" x="0" y="0" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Otro modo de participación:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="107f8156-f32a-4db3-a94e-b6eb60ef0e54" positionType="Float" x="187" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{otroModoParticipacion}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="b5439633-b34f-4296-b754-5001526872f0" positionType="Float" x="0" y="180" width="525" height="20" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="institucion" uuid="ddad98e0-1f17-48e2-a5d8-fbb138f86e9a">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento/instituciones/institucion")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="525">
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="548bb788-74df-435a-8857-ad534a70448a" positionType="Float" x="187" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{rutaCompleta}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="09a46eb9-8194-4dc1-a438-107141e89d7b" positionType="Float" x="0" y="200" width="525" height="20" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="participacion" uuid="66d1e1cd-71c9-43a9-9f87-427b88d06428">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="525">
+									<staticText>
+										<reportElement uuid="e5de05f2-9804-4a69-add3-54d349830434" x="0" y="0" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Informaciones adicionales:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="18d4ed47-ab12-41e3-8792-7af40f130ac7" positionType="Float" x="187" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{informacionAdicional}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="90c26739-904e-4ee0-b5a6-52c161c1d575" positionType="Float" x="0" y="220" width="525" height="5" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="participacion" uuid="eb99385e-19fe-4ea4-98ad-75d1f2ef3ce3">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="5" width="525">
+									<line>
+										<reportElement uuid="5f47e5e1-37c2-4f3b-95ae-e588b38185a9" x="0" y="2" width="525" height="1"/>
+									</line>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<staticText>
+							<reportElement uuid="a3a486d5-60fd-4a4d-a113-85228a60982b" x="0" y="0" width="525" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+							</textElement>
+							<text><![CDATA[Participación u organización de eventos cientifico-tecnológicos]]></text>
+						</staticText>
+						<componentElement>
+							<reportElement uuid="2e6f620b-a68f-4740-ba1b-ca9c4a222ef8" positionType="Float" x="0" y="180" width="187" height="20" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="participacion" uuid="6b29b760-6557-4b49-8b42-705a2e5b6633">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="187">
+									<staticText>
+										<reportElement uuid="1cd6cb09-5616-4678-b21e-a9b9dddacaf1" x="0" y="0" width="187" height="20" isPrintInFirstWholeBand="true"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Institución organizadora:]]></text>
+									</staticText>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="426842f9-8833-444d-919a-77801cc3accc" x="0" y="80" width="525" height="80" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="participacion" uuid="cf3c30b2-7818-4ef1-9c9c-a120fc6bf349">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="80" width="525">
+									<staticText>
+										<reportElement uuid="d38d0621-5e27-4848-8e2d-d907e251dc5d" x="0" y="0" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[País:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="6dd28b7a-d009-4005-9726-a6b25c39c719" positionType="Float" x="187" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="4f81f67a-b27c-49be-a8e2-73f1f59aa65a" x="0" y="20" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Ciudad:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="f8872ba5-b359-4ef2-94e1-cfc330d724a6" positionType="Float" x="187" y="20" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{ciudad}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="c1114fe5-3ff7-4d8b-97f8-15fb1805f4a1" x="0" y="40" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Año:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="97c5494c-7525-45c0-804d-eddbd36d5135" positionType="Float" x="187" y="40" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="9aa56414-2042-4157-adf4-5f75a7c92fd7" x="0" y="60" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Modo de participación:]]></text>
+									</staticText>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="6a934596-f10b-4f5c-ab76-79f7fafb7341" x="0" y="60" width="525" height="20" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="participacion" uuid="fe903e05-3e83-45fe-bdce-acacb0a9b6fd">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="525">
+									<staticText>
+										<reportElement uuid="f4f92080-cdbf-42d2-8d4a-c57c4401221c" x="0" y="0" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Alcance geográfico:]]></text>
+									</staticText>
+									<staticText>
+										<reportElement uuid="0038e844-4a27-47ce-b0c9-45172db3a126" x="350" y="0" width="100" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<text><![CDATA[Internacional
+]]></text>
+									</staticText>
+									<staticText>
+										<reportElement uuid="256ea9f3-f7db-4fa6-956d-a9bc459f824b" x="217" y="0" width="50" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<text><![CDATA[Nacional]]></text>
+									</staticText>
+									<image>
+										<reportElement uuid="d6ce58b2-6ea9-4d3b-aebd-f186190a3d68" x="191" y="4" width="12" height="12">
+											<printWhenExpression><![CDATA[$F{alcanceNacional}=='true']]></printWhenExpression>
+										</reportElement>
+										<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+									</image>
+									<image>
+										<reportElement uuid="f336a5db-3b81-4906-8da3-76189cd90a3f" x="326" y="4" width="12" height="12">
+											<printWhenExpression><![CDATA[$F{alcanceInternacional}=='true']]></printWhenExpression>
+										</reportElement>
+										<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+									</image>
+									<staticText>
+										<reportElement uuid="8cf1fc0f-818c-452d-94b9-8ba15fdd778a" x="324" y="2" width="15" height="15"/>
+										<box>
+											<topPen lineWidth="1.0"/>
+											<leftPen lineWidth="1.0"/>
+											<bottomPen lineWidth="1.0"/>
+											<rightPen lineWidth="1.0"/>
+										</box>
+										<textElement verticalAlignment="Middle"/>
+										<text><![CDATA[]]></text>
+									</staticText>
+									<staticText>
+										<reportElement uuid="524228c5-934c-4cc6-857e-5a76e4a55bcf" x="189" y="2" width="15" height="15"/>
+										<box>
+											<topPen lineWidth="1.0"/>
+											<leftPen lineWidth="1.0"/>
+											<bottomPen lineWidth="1.0"/>
+											<rightPen lineWidth="1.0"/>
+										</box>
+										<textElement verticalAlignment="Middle"/>
+										<text><![CDATA[]]></text>
+									</staticText>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="2e068656-8f51-4cf0-af6f-95837512ce07" x="0" y="40" width="525" height="20" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="participacion" uuid="92e53a34-c8aa-44e1-af7f-c6da4405bf07">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/participacionEvento")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="525">
+									<staticText>
+										<reportElement uuid="58626900-6f1c-49e2-9077-968b7c96d617" x="0" y="0" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Tipo de evento:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="193da04b-45bc-4d38-98ff-e06816de2928" positionType="Float" x="187" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$V{tipoEvento}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+		<band height="205">
+			<printWhenExpression><![CDATA[!$F{denominacion}.isEmpty()]]></printWhenExpression>
+			<componentElement>
+				<reportElement uuid="5d3fedd1-68a4-4edf-bd49-1ddc8d2f1a04" x="0" y="0" width="525" height="205" isRemoveLineWhenBlank="true"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="premios" uuid="368503d5-6ba9-4c90-858a-6e6404499903">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/otrosAntecedentes/premios/premio")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="205" width="525">
+						<componentElement>
+							<reportElement uuid="4f32bb49-2311-452b-ae01-70001cbc2151" x="0" y="21" width="525" height="160" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="premios" uuid="2d6f3ae0-37db-4fa5-b3f5-18bf8dc4866b">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/premio")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="160" width="525">
+									<staticText>
+										<reportElement uuid="0b2e2d1d-c37a-4699-a254-c33295a3388d" x="0" y="0" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Denominación del premio:	]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="70527795-4335-4874-b354-85060f27cc50" positionType="Float" x="187" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{denominacion}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="4a7fe1ea-d436-4723-9f9f-9b86353e58b1" x="0" y="20" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Categoría:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="3823f7b3-18e5-4a68-9256-9ff0e9854155" positionType="Float" x="187" y="20" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+									</textField>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="5d60c42f-3de6-472c-b315-658d139b6c61" positionType="Float" x="187" y="40" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{tipoPremio}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="66bb2154-9d66-44d5-9c76-e1f8999ab6e8" x="0" y="40" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Tipo de premio o distinción:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="5d60c42f-3de6-472c-b315-658d139b6c61" positionType="Float" x="187" y="120" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="4610d217-4452-4b40-ba3d-210fcde3bf0d" x="0" y="60" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Alcance geográfico:]]></text>
+									</staticText>
+									<staticText>
+										<reportElement uuid="3b434e2a-fd74-4964-9943-3b1d1fc03e3a" x="350" y="60" width="100" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<text><![CDATA[Internacional
+]]></text>
+									</staticText>
+									<staticText>
+										<reportElement uuid="3bc40220-85fa-4a1b-b877-55654d1bf489" x="217" y="60" width="50" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<text><![CDATA[Nacional]]></text>
+									</staticText>
+									<image>
+										<reportElement uuid="93918673-67a8-4bab-8a48-ee819fe3b408" x="191" y="64" width="12" height="12">
+											<printWhenExpression><![CDATA[$F{alcanceNacional}=='true']]></printWhenExpression>
+										</reportElement>
+										<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+									</image>
+									<image>
+										<reportElement uuid="157394d1-7a57-4dae-abd1-b1fb1fed4eb3" x="326" y="64" width="12" height="12">
+											<printWhenExpression><![CDATA[$F{alcanceInternacional}=='true']]></printWhenExpression>
+										</reportElement>
+										<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+									</image>
+									<staticText>
+										<reportElement uuid="6df4b21e-a123-4755-bdea-2a6da6e6ba6d" x="324" y="62" width="15" height="15"/>
+										<box>
+											<topPen lineWidth="1.0"/>
+											<leftPen lineWidth="1.0"/>
+											<bottomPen lineWidth="1.0"/>
+											<rightPen lineWidth="1.0"/>
+										</box>
+										<textElement verticalAlignment="Middle"/>
+										<text><![CDATA[]]></text>
+									</staticText>
+									<staticText>
+										<reportElement uuid="12ad89ca-5b2c-4570-86a0-b76779998b12" x="189" y="62" width="15" height="15"/>
+										<box>
+											<topPen lineWidth="1.0"/>
+											<leftPen lineWidth="1.0"/>
+											<bottomPen lineWidth="1.0"/>
+											<rightPen lineWidth="1.0"/>
+										</box>
+										<textElement verticalAlignment="Middle"/>
+										<text><![CDATA[]]></text>
+									</staticText>
+									<staticText>
+										<reportElement uuid="66bb2154-9d66-44d5-9c76-e1f8999ab6e8" x="0" y="120" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Área del conocimiento:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="5d60c42f-3de6-472c-b315-658d139b6c61" positionType="Float" x="187" y="80" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="66bb2154-9d66-44d5-9c76-e1f8999ab6e8" x="0" y="80" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Año:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="5d60c42f-3de6-472c-b315-658d139b6c61" positionType="Float" x="187" y="100" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{rutaCompleta}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="66bb2154-9d66-44d5-9c76-e1f8999ab6e8" x="0" y="100" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Institución otorgante:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="5d60c42f-3de6-472c-b315-658d139b6c61" positionType="Float" x="187" y="140" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{subArea}]]></textFieldExpression>
+									</textField>
+									<staticText>
+										<reportElement uuid="66bb2154-9d66-44d5-9c76-e1f8999ab6e8" x="0" y="140" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Sub-Área del conocimiento:]]></text>
+									</staticText>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="557c145d-a6ca-4ae5-9f33-8ddcb89243f6" x="0" y="181" width="525" height="20" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="premios" uuid="6391fda1-f8d4-4c0f-99c2-cc45c54a43b0">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/premio")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="20" width="525">
+									<staticText>
+										<reportElement uuid="08c77e68-2d7b-4b68-a600-2100b37fb3e9" x="0" y="0" width="187" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Informaciones adicionales:]]></text>
+									</staticText>
+									<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+										<reportElement uuid="c427bada-33f2-4075-a1b7-dfd94a01a583" positionType="Float" x="187" y="0" width="338" height="20"/>
+										<textElement verticalAlignment="Middle">
+											<font size="11"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$F{informacionAdicional}]]></textFieldExpression>
+									</textField>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<componentElement>
+							<reportElement uuid="340324b0-6239-49b6-b03b-62807668b2a1" x="0" y="201" width="525" height="3" isRemoveLineWhenBlank="true"/>
+							<jr:list printOrder="Vertical">
+								<datasetRun subDataset="premios" uuid="ee38457d-d334-4bb9-b2f6-821e061a8ef3">
+									<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/premio")]]></dataSourceExpression>
+								</datasetRun>
+								<jr:listContents height="3" width="525">
+									<line>
+										<reportElement uuid="91342287-69da-49b1-8cd5-9dcdcb404c63" x="0" y="2" width="525" height="1"/>
+									</line>
+								</jr:listContents>
+							</jr:list>
+						</componentElement>
+						<staticText>
+							<reportElement uuid="1c3f306a-a395-4ef9-a568-f048116567f9" x="0" y="0" width="525" height="20" isPrintWhenDetailOverflows="true"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+							</textElement>
+							<text><![CDATA[Premios y/o distinciones]]></text>
+						</staticText>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

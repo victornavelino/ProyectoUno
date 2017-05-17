@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="4.3c CapitulosLibrosPublicados" language="groovy" pageWidth="555" pageHeight="802" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#999999"/>
+			<topPen lineWidth="0.5" lineColor="#999999"/>
+			<leftPen lineWidth="0.0" lineColor="#999999"/>
+			<bottomPen lineColor="#999999"/>
+			<rightPen lineWidth="0.0" lineColor="#999999"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CCCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="autor" uuid="c77c223c-6aa3-4ad1-857c-9317d5b39a79">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/cientifica/trabajosEnEventosNoPublicados/trabajoEventoCT/autores/autor]]>
+		</queryString>
+		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[nombre]]></fieldDescription>
+		</field>
+		<field name="institucion" class="java.lang.String">
+			<fieldDescription><![CDATA[institucion]]></fieldDescription>
+		</field>
+		<variable name="institucion" class="java.lang.String">
+			<variableExpression><![CDATA[$F{institucion}.replace( "[", "" ).replace( "]", "" )]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="coordinacionAreas" uuid="fce87586-5bde-442e-b60e-c56a09498937">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/cientifica/trabajosEnEventosNoPublicados/trabajoEventoCT/areasDelConocimiento/areaDelConocimiento]]>
+		</queryString>
+		<field name="area" class="java.lang.String">
+			<fieldDescription><![CDATA[area]]></fieldDescription>
+		</field>
+		<field name="subArea" class="java.lang.String">
+			<fieldDescription><![CDATA[subArea]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/produccion/cientifica/trabajosEnEventosNoPublicados/trabajoEventoCT]]>
+	</queryString>
+	<field name="tipoTrabajo" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoTrabajo]]></fieldDescription>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="nombreEvento" class="java.lang.String">
+		<fieldDescription><![CDATA[nombreEvento]]></fieldDescription>
+	</field>
+	<field name="tipoEvento" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoEvento]]></fieldDescription>
+	</field>
+	<field name="alcanceNacional" class="java.lang.String">
+		<fieldDescription><![CDATA[alcanceNacional]]></fieldDescription>
+	</field>
+	<field name="alcanceInternacional" class="java.lang.String">
+		<fieldDescription><![CDATA[alcanceInternacional]]></fieldDescription>
+	</field>
+	<field name="institucionOrganizadora" class="java.lang.String">
+		<fieldDescription><![CDATA[institucionOrganizadora]]></fieldDescription>
+	</field>
+	<field name="paisEvento" class="java.lang.String">
+		<fieldDescription><![CDATA[paisEvento]]></fieldDescription>
+	</field>
+	<field name="anioEvento" class="java.lang.String">
+		<fieldDescription><![CDATA[anioEvento]]></fieldDescription>
+	</field>
+	<field name="idioma" class="java.lang.String">
+		<fieldDescription><![CDATA[idioma]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="fdbee21f-6a06-41f9-9ed0-cc682541a8bb" x="-15" y="0" width="385" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[4.3. Innovación pedagógica.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="cc10cdec-a6e4-450a-90a2-cff0e619bbc2" x="0" y="0" width="526" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[c) Presentaciones a congresos y otros eventos. No publicados]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="1b2e86f0-28d8-4e70-926f-72c7478641ef" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título de trabajo:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d5feafbc-0310-4a78-b16e-1dae27ed6d4d" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="2c7e9752-7d48-4e87-9537-6aa144111c6e" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Idioma:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="1fe6ec45-2b2e-4685-80b9-a38ae75b0646" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idioma}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="4f596973-2dd3-4fd5-9922-1250e77d3296" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del evento:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c545fa8f-3e6c-4bf7-8a52-e36992d5035f" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreEvento}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="2fb4da33-f93c-4f7e-98bf-949bab1ea007" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoEvento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e8cbb9c2-228c-4511-abd7-e87c557c5e8c" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de evento:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="4610d217-4452-4b40-ba3d-210fcde3bf0d" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alcance geográfico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3b434e2a-fd74-4964-9943-3b1d1fc03e3a" x="350" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Internacional
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3bc40220-85fa-4a1b-b877-55654d1bf489" x="217" y="0" width="50" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Nacional]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="93918673-67a8-4bab-8a48-ee819fe3b408" x="191" y="3" width="12" height="12">
+					<printWhenExpression><![CDATA[$F{alcanceNacional}=='true']]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="157394d1-7a57-4dae-abd1-b1fb1fed4eb3" x="326" y="3" width="12" height="12">
+					<printWhenExpression><![CDATA[$F{alcanceInternacional}=='true']]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="6df4b21e-a123-4755-bdea-2a6da6e6ba6d" x="324" y="2" width="15" height="15"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="12ad89ca-5b2c-4570-86a0-b76779998b12" x="189" y="2" width="15" height="15"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="2b1f0a98-172e-4015-9049-a87754e5c267" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucionOrganizadora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a21695ec-b13f-496f-bae4-7652087ea307" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institución organizadora:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="18b3614d-415e-4fe2-a7ed-954e1a95800d" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[País del evento:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f9a5ee8e-242b-4e48-8811-a99111c3856a" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paisEvento}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="ef38463e-ea02-41d5-9804-a38bc56a8e9a" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año del evento:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="088c78ca-1648-4bc9-9192-dbfe30aa8037" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anioEvento}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="ac744362-f9b1-4d5f-af65-eb3e0922e9d5" key="table" x="1" y="0" width="525" height="20" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="autor" uuid="beae3566-0fdd-4271-92bb-f3f2784e9201">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/trabajoEventoCT/autores/autor")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="526" uuid="279b4299-567e-4e8c-a1c3-72947a07657f">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="4e2d44c1-ded9-4afe-adcb-a4627665e1f5" x="0" y="0" width="285" height="18"/>
+								<textElement verticalAlignment="Bottom">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Autores:]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement uuid="dab01f68-6cfd-41fb-b3a6-eb3695416b7b" x="15" y="0" width="81" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font size="11" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Nombre]]></text>
+							</staticText>
+							<staticText>
+								<reportElement uuid="c1046efe-148e-4026-bdf4-b28e63f0b0a6" x="15" y="16" width="81" height="16"/>
+								<box>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+								</box>
+								<textElement>
+									<font size="11" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Institución]]></text>
+							</staticText>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="59cec10c-0386-4507-bf1f-fb4455052be7" x="96" y="16" width="430" height="16"/>
+								<box>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+								</box>
+								<textElement>
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{institucion}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="6c57688e-07b7-4595-8314-ac6f32b8adde" x="96" y="0" width="430" height="16"/>
+								<box>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="0b73a9f0-3ae2-472f-abf2-f9694f5907b7" key="table 1" x="2" y="0" width="524" height="20" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="coordinacionAreas" uuid="a23014ec-d182-4a84-9ecd-41a9eaca41a8">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/trabajoEventoCT/areasDelConocimiento/areaDelConocimiento")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="523" uuid="db064b6f-8e87-4acb-b4cd-79941f4aa2aa">
+						<jr:columnHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="167d1646-fbe6-4da8-9df7-e87eba55253d" x="0" y="0" width="523" height="18"/>
+								<textElement verticalAlignment="Bottom">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Área y sub-área del conocimiento:]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TH" height="32" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="0d218a16-922b-4d68-a2f6-00efa66a57df" x="17" y="0" width="506" height="16" isPrintWhenDetailOverflows="true"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="fdad087f-f82b-43fa-847c-59c427e9302f" x="17" y="16" width="506" height="16" isPrintWhenDetailOverflows="true"/>
+								<box>
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement verticalAlignment="Top"/>
+								<textFieldExpression><![CDATA[$F{subArea}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="4">
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="3" width="525" height="1"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteAnexo1Convenio2" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="33c1c997-f2bf-491e-a9ed-83077b80bad1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="34"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<field name="mesInicio" class="java.lang.Integer"/>
+	<field name="mesFin" class="java.lang.Integer"/>
+	<field name="montoMincyt" class="java.lang.Float"/>
+	<field name="montoContra" class="java.lang.Float"/>
+	<field name="nroEtapa" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="feed8bb1-2f70-4666-af1f-650837335ddf" x="30" y="59" width="138" height="20"/>
+				<textElement/>
+				<text><![CDATA[TITULO DEL PROYECTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="da43500f-8c04-4cf0-9497-0364278850f4" x="168" y="59" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2967072f-9025-4136-b382-da26c5c43524" x="240" y="0" width="315" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANEXO 2 CONVENIO CRONOGRAMA DE EJECUCION]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="73765f0c-7c29-4396-812e-4ea6da2f7005" mode="Opaque" x="68" y="21" width="100" height="40" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ETAPAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1778a47c-c222-4bb8-91c1-813eb7fd880a" mode="Opaque" x="168" y="41" width="100" height="20" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[INICIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aad046f8-1b67-473f-a0b0-e528b3f5e4ff" mode="Opaque" x="268" y="41" width="100" height="20" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[FIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e8954bce-a0fb-4ebc-90c7-f15cb6f0d4a7" mode="Opaque" x="368" y="21" width="100" height="40" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[MONTO SOLICITADO A MINCYT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fa48a189-cb5d-46b9-bdae-2cc320912f63" mode="Opaque" x="468" y="21" width="100" height="40" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[MONTO SOLICITADO A CONTRAPARTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4e9a014d-1336-4faa-8c6d-020be6254f60" mode="Opaque" x="168" y="21" width="200" height="20" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[N° DE MES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ef38caf1-ef35-4bd2-bcdd-40aae5ae2cf5" x="68" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nroEtapa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8023ac70-b2f5-4672-bd82-782de48588bb" x="168" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{mesInicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="dfa2bd5a-649a-4da5-900e-188b96903741" x="268" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{mesFin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7d7ee7e4-657d-45c3-a70d-bfb961e4e548" x="468" y="0" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{montoContra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="32021870-d3a1-40a2-875d-036cd08ec4b6" x="379" y="0" width="89" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{montoMincyt}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="27495f89-784e-48a9-8830-bca5e6235964" x="368" y="0" width="11" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

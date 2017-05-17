@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="4.Libros" language="groovy" pageWidth="555" pageHeight="802" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="46"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#999999"/>
+			<topPen lineWidth="0.25" lineColor="#999999"/>
+			<leftPen lineWidth="0.0" lineColor="#999999"/>
+			<bottomPen lineWidth="0.5" lineColor="#999999"/>
+			<rightPen lineWidth="0.0" lineColor="#999999"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CCCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="autor" uuid="c77c223c-6aa3-4ad1-857c-9317d5b39a79">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/cientifica/libros/libro/autores/autor]]>
+		</queryString>
+		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[nombre]]></fieldDescription>
+		</field>
+		<field name="institucion" class="java.lang.String">
+			<fieldDescription><![CDATA[institucion]]></fieldDescription>
+		</field>
+		<variable name="institucion" class="java.lang.String">
+			<variableExpression><![CDATA[$F{institucion}.replace( "[", "" ).replace( "]", "" )]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="soporte" uuid="c12ae7c4-601e-4b8b-b316-7b349ba97845">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/cientifica/libros/libro/tipoSoporte/tipoSoporte]]>
+		</queryString>
+		<field name="tipoSoporte" class="java.lang.String">
+			<fieldDescription><![CDATA[child::text()]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="coordinacionAreas" uuid="fce87586-5bde-442e-b60e-c56a09498937">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/cientifica/libros/libro/areasDelConocimiento/areaDelConocimiento]]>
+		</queryString>
+		<field name="area" class="java.lang.String">
+			<fieldDescription><![CDATA[area]]></fieldDescription>
+		</field>
+		<field name="subArea" class="java.lang.String">
+			<fieldDescription><![CDATA[subArea]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/produccion/cientifica/libros/libro]]>
+	</queryString>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="estadoPublicacion" class="java.lang.String">
+		<fieldDescription><![CDATA[estadoPublicacion]]></fieldDescription>
+	</field>
+	<field name="isbn" class="java.lang.String">
+		<fieldDescription><![CDATA[isbn]]></fieldDescription>
+	</field>
+	<field name="pais" class="java.lang.String">
+		<fieldDescription><![CDATA[pais]]></fieldDescription>
+	</field>
+	<field name="ciudadDeLaEditorial" class="java.lang.String">
+		<fieldDescription><![CDATA[ciudadDeLaEditorial]]></fieldDescription>
+	</field>
+	<field name="idioma" class="java.lang.String">
+		<fieldDescription><![CDATA[idioma]]></fieldDescription>
+	</field>
+	<field name="anioPublicacion" class="java.lang.String">
+		<fieldDescription><![CDATA[anioPublicacion]]></fieldDescription>
+	</field>
+	<field name="cantidadVolumenes" class="java.lang.String">
+		<fieldDescription><![CDATA[cantidadVolumenes]]></fieldDescription>
+	</field>
+	<field name="cantidadPaginas" class="java.lang.String">
+		<fieldDescription><![CDATA[cantidadPaginas]]></fieldDescription>
+	</field>
+	<field name="referato" class="java.lang.String">
+		<fieldDescription><![CDATA[referato]]></fieldDescription>
+	</field>
+	<field name="web" class="java.lang.String">
+		<fieldDescription><![CDATA[web]]></fieldDescription>
+	</field>
+	<field name="isAutor" class="java.lang.String">
+		<fieldDescription><![CDATA[isAutor]]></fieldDescription>
+	</field>
+	<field name="isEditorCompilador" class="java.lang.String">
+		<fieldDescription><![CDATA[isEditorCompilador]]></fieldDescription>
+	</field>
+	<field name="isRevisor" class="java.lang.String">
+		<fieldDescription><![CDATA[isRevisor]]></fieldDescription>
+	</field>
+	<field name="editorial" class="java.lang.String">
+		<fieldDescription><![CDATA[editorial]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="fdbee21f-6a06-41f9-9ed0-cc682541a8bb" x="-15" y="0" width="385" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[4.1. Libros publicados.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33d04978-e415-4885-99cd-56e20cfc204e" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a00fe25-3a62-4519-b0b6-9addc8111921" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="21fe51c9-a780-4235-8962-d49f032a05b0" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado de publicación:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="6d0f108f-f324-4f34-94ef-6990243f2e3a" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estadoPublicacion}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="62d524ca-ef47-4bb9-b9a9-e527ce480483" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISBN/ISSN:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="81afe9e7-2be3-4b0d-9320-fa335fc52ce4" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{isbn}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="2c7e9752-7d48-4e87-9537-6aa144111c6e" x="0" y="0" width="301" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Editorial o entidad responsable de la publicación:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="4fdbe3e8-e21f-4a01-ad97-1b013819e152" positionType="Float" x="277" y="0" width="250" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{editorial}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="004de221-b11e-4cd9-9b87-6470d4696812" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5ade0d4-d7a9-4509-af23-10011df81c40" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[País de edición:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="e62149c4-7885-4f9f-85e4-6e07a3d5f5c7" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ciudadDeLaEditorial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4aca428f-83dc-40c6-b102-0ae0dd931268" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad de la editorial:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="fb315975-7104-4752-acd8-c5b83714894e" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Idioma:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="17c4d245-8845-48d6-af1d-a91c0388e4fc" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idioma}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca2d7988-8a76-45ac-8611-196e1cb13614" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anioPublicacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="84480b4a-38a5-4ecc-9794-b0c28bf83be2" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año de publicación:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="4f596973-2dd3-4fd5-9922-1250e77d3296" x="0" y="0" width="200" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de volúmenes o tomos:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c545fa8f-3e6c-4bf7-8a52-e36992d5035f" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidadVolumenes}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="0c380240-f031-4d44-a775-bd65e02f1ad1" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad de páginas:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="349364a1-aba7-4a6b-a001-b6c2258d4a75" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cantidadPaginas}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a43841d5-7a94-4e53-b8bf-8c4b35eecb46" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comité editorial/referato:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="57187e9c-d63f-4b73-ba6e-ac2ac240a576" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{referato}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="f9831c75-e41f-4a8e-9b05-1d947c8420f8" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Soporte y/o medio de difusion:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="1e6178f3-956a-48b3-b844-24d31edea9aa" x="0" y="0" width="525" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="soporte" uuid="53cb0fbb-2d66-4714-821f-207d1d201dd0">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/libro/tipoSoporte/tipoSoporte")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="525">
+						<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+							<reportElement uuid="1775bdaf-35cc-4948-811c-243d95c04cce" positionType="Float" x="187" y="0" width="338" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{tipoSoporte}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+		<band height="20">
+			<printWhenExpression><![CDATA[!$F{web}.isEmpty()]]></printWhenExpression>
+			<staticText>
+				<reportElement uuid="1e113c8b-fa0f-4c3b-bdd9-689e879f0c87" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Página web (URL):]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b0e3800a-a0e6-4628-816d-9619e7125492" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{web}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="ac744362-f9b1-4d5f-af65-eb3e0922e9d5" key="table" x="0" y="0" width="525" height="20" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="autor" uuid="6306299b-187d-4181-9477-c6da9c21f387">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/libro/autores/autor")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="526" uuid="279b4299-567e-4e8c-a1c3-72947a07657f">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="4e2d44c1-ded9-4afe-adcb-a4627665e1f5" x="0" y="0" width="285" height="18"/>
+								<textElement verticalAlignment="Bottom">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Autores:]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TH" height="36" rowSpan="1">
+							<staticText>
+								<reportElement uuid="dab01f68-6cfd-41fb-b3a6-eb3695416b7b" x="25" y="0" width="60" height="18"/>
+								<textElement verticalAlignment="Middle">
+									<font size="11" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Nombre]]></text>
+							</staticText>
+							<staticText>
+								<reportElement uuid="c1046efe-148e-4026-bdf4-b28e63f0b0a6" x="25" y="18" width="60" height="18"/>
+								<box>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+								</box>
+								<textElement>
+									<font size="11" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Institución]]></text>
+							</staticText>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="056b9f7a-57cc-444d-8f36-0359d3210c25" x="85" y="0" width="441" height="18"/>
+								<textElement verticalAlignment="Middle">
+									<font size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="59cec10c-0386-4507-bf1f-fb4455052be7" x="85" y="18" width="441" height="18"/>
+								<box>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+								</box>
+								<textElement>
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{institucion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="0b73a9f0-3ae2-472f-abf2-f9694f5907b7" key="table 1" x="1" y="0" width="524" height="20" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="coordinacionAreas" uuid="bad4a920-18da-4c77-9b36-3ea94bbdbe62">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/libro/areasDelConocimiento/areaDelConocimiento")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="523" uuid="db064b6f-8e87-4acb-b4cd-79941f4aa2aa">
+						<jr:columnHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="167d1646-fbe6-4da8-9df7-e87eba55253d" x="0" y="0" width="523" height="18"/>
+								<textElement verticalAlignment="Bottom">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Área y sub-área del conocimiento:]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TH" height="34" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="0d218a16-922b-4d68-a2f6-00efa66a57df" isPrintRepeatedValues="false" x="25" y="0" width="498" height="18"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="fdad087f-f82b-43fa-847c-59c427e9302f" isPrintRepeatedValues="false" x="25" y="18" width="498" height="16"/>
+								<box>
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement verticalAlignment="Top"/>
+								<textFieldExpression><![CDATA[$F{subArea}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="25">
+			<staticText>
+				<reportElement uuid="ef38463e-ea02-41d5-9804-a38bc56a8e9a" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rol en la publicación:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="20" width="525" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="3b434e2a-fd74-4964-9943-3b1d1fc03e3a" x="313" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Editor/Compilador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3bc40220-85fa-4a1b-b877-55654d1bf489" x="215" y="1" width="50" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Autor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fa7dbeb6-9aaa-497c-87c9-e5c700e675fe" x="441" y="0" width="50" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Revisor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="12ad89ca-5b2c-4570-86a0-b76779998b12" x="187" y="2" width="15" height="15"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="93918673-67a8-4bab-8a48-ee819fe3b408" x="189" y="3" width="12" height="12">
+					<printWhenExpression><![CDATA[$F{isAutor}=='true']]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="6df4b21e-a123-4755-bdea-2a6da6e6ba6d" x="287" y="2" width="15" height="15"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="157394d1-7a57-4dae-abd1-b1fb1fed4eb3" x="289" y="3" width="12" height="12">
+					<printWhenExpression><![CDATA[$F{isEditorCompilador}=='true']]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="fbab52bd-d9d3-4855-a702-17f486887586" x="413" y="2" width="15" height="15"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="f77fc4d9-3f4b-4467-86ff-e3a6304f4251" x="415" y="3" width="12" height="12">
+					<printWhenExpression><![CDATA[$F{isRevisor}=='true']]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

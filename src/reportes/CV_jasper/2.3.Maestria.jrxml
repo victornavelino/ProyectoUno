@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="2.3.Maestria" language="groovy" pageWidth="555" pageHeight="802" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="549a8490-9c5b-440f-80c6-959075070c14">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[/datos/formacionAcademica/maestrias/formacionAcademicaMaestria]]>
+	</queryString>
+	<field name="situacionDeNivel" class="java.lang.String">
+		<fieldDescription><![CDATA[situacionDeNivel]]></fieldDescription>
+	</field>
+	<field name="fechaEgreso" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaEgreso]]></fieldDescription>
+	</field>
+	<field name="fechaInicio" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+	</field>
+	<field name="institucionOtorgantes" class="java.lang.String">
+		<fieldDescription><![CDATA[institucionesOtorgantes/institucionOtorgantes]]></fieldDescription>
+	</field>
+	<field name="area" class="java.lang.String">
+		<fieldDescription><![CDATA[areaDelConocimiento/area]]></fieldDescription>
+	</field>
+	<field name="numeroResolucionCONEAU" class="java.lang.String">
+		<fieldDescription><![CDATA[numeroResolucionCONEAU]]></fieldDescription>
+	</field>
+	<field name="apellidoDirectorTutor" class="java.lang.String">
+		<fieldDescription><![CDATA[trabajoFinal/apellidoDirectorTutor]]></fieldDescription>
+	</field>
+	<field name="nombreDirectorTutor" class="java.lang.String">
+		<fieldDescription><![CDATA[trabajoFinal/nombreDirectorTutor]]></fieldDescription>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="titulo2" class="java.lang.String">
+		<fieldDescription><![CDATA[trabajoFinal/titulo]]></fieldDescription>
+	</field>
+	<field name="denominacionCarrera" class="java.lang.String">
+		<fieldDescription><![CDATA[denominacionCarrera]]></fieldDescription>
+	</field>
+	<field name="subArea" class="java.lang.String">
+		<fieldDescription><![CDATA[areaDelConocimiento/subArea]]></fieldDescription>
+	</field>
+	<sortField name="fechaInicio" order="Descending"/>
+	<variable name="fechaInicio" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaInicio}.substring( 8, 10 ) + "/" +
+$F{fechaInicio}.substring( 5, 7 ) + "/" +
+$F{fechaInicio}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="fechaEgreso" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaEgreso}.substring( 8, 10 ) + "/" +
+$F{fechaEgreso}.substring( 5, 7 ) + "/" +
+$F{fechaEgreso}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="tesinaDirector" class="java.lang.String">
+		<variableExpression><![CDATA[$F{apellidoDirectorTutor} + ", " +
+$F{nombreDirectorTutor}]]></variableExpression>
+	</variable>
+	<filterExpression><![CDATA[$F{situacionDeNivel}=="Completo"]]></filterExpression>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="9a0479c8-0962-479d-a609-a796f3649f2d" x="-16" y="0" width="385" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[2.3 Maestrías.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7fc7f0b8-afec-494e-b9fc-86f61be23c37" x="0" y="2" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Denominación de la carrera:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="73837dd7-b7d4-4721-a37a-5044cae4ed5f" positionType="Float" x="187" y="2" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denominacionCarrera}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="47e2b61d-3a52-4178-bc0f-074bebf53aba" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b9049bcc-9cd7-4c7e-912e-134a686efff3" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="79afae42-a0ee-4559-9e1c-c7c9fbe2fa03" x="0" y="0" width="271" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Universidad / Unidad Académica:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="21838cd6-a4c8-4176-ac13-73cee3fe28b0" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucionOtorgantes}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="f14f1ef2-3471-4323-bc31-8976335c994e" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Ingreso:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4a5b390c-d7a1-4fc0-955a-ffa24f22e8f7" x="285" y="0" width="142" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Egreso:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="0c46ebfb-c4e5-4ef6-beb6-7597cb5944a8" positionType="Float" x="187" y="0" width="98" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaInicio}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b442a775-55b9-41a7-a757-ea4708583bba" positionType="Float" x="427" y="0" width="98" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaEgreso}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="17d8e845-59c2-4bc4-a2de-c5c141238e03" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Área del conocimiento:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="9815a580-4ebb-4288-a134-02cf02d13c7a" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{area}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="1d0637fb-efad-4814-b7a0-8f7e38aed924" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sub-área del conocimiento:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="805b11f8-e65b-4f46-a641-58f9148444f1" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subArea}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="1a3157df-e1a1-4b48-b535-31d8e508f19f" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tesina:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="a1af2c73-a6e5-4a2c-b9b4-6508d9ec6d34" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo2}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ac840a10-cf48-4935-bb43-144d854d7f90" positionType="Float" x="187" y="0" width="338" height="20">
+					<printWhenExpression><![CDATA[!$F{apellidoDirectorTutor}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tesinaDirector}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="82f41e21-b651-4759-8795-6a1355dbe062" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Director Tesina:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<line>
+				<reportElement uuid="e90edef7-a3b4-4e1c-8fe5-a58e7e9b7eee" x="0" y="19" width="525" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="b9b1a53a-891d-493e-9c59-1ff582121b36" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Acreditación en la CONEAU:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c31f96f9-eb34-469a-b5e1-4f4949cafe85" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroResolucionCONEAU}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

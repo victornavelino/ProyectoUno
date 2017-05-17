@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteCronogramaDesembolsos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a4fd376e-fcf9-47aa-917e-376b2528f619">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_FINANCIACION" class="java.lang.Long" isForPrompting="false"/>
+	<parameter name="TITULO_PROYECTO" class="java.lang.String"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="etapaDeCronograma" class="java.lang.String"/>
+	<field name="desembolso" class="java.lang.Float"/>
+	<field name="etapaAEjecutar" class="java.lang.Object">
+		<fieldDescription><![CDATA[etapaAEjecutar.nroEtapa]]></fieldDescription>
+	</field>
+	<field name="costoEjecucion" class="java.lang.Float"/>
+	<field name="saldo" class="java.lang.String"/>
+	<field name="control" class="java.lang.String"/>
+	<variable name="desembolso_1" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{desembolso}]]></variableExpression>
+	</variable>
+	<variable name="costoEjecucion_1" class="java.lang.Float" calculation="Sum">
+		<variableExpression><![CDATA[$F{costoEjecucion}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="449a64c1-362d-4b33-86b2-238dabc3b7dd" x="227" y="16" width="315" height="40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRONOGRAMA DE DESEMBOLSOS POR PROYECTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d5a2caf2-2860-49ce-8780-1bdbd533236c" x="22" y="69" width="138" height="20"/>
+				<textElement/>
+				<text><![CDATA[TITULO DEL PROYECTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a1f2fa57-bbd2-4e5f-90f3-ebcba0de958b" x="161" y="69" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{TITULO_PROYECTO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f50580ed-720d-4b6e-aa8a-6c81ad744f5e" mode="Opaque" x="82" y="0" width="78" height="20" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Etapa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67db157d-3c48-44db-b6b9-c6acd751633b" mode="Opaque" x="160" y="0" width="101" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Desembolso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="276ce0fb-f07d-414a-a129-df80ecd37da9" mode="Opaque" x="261" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Etapa a ejecutar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99e5de59-c85f-40f0-82a9-a77b9d265ce9" mode="Opaque" x="361" y="0" width="120" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Costo de ejecución]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="54dbb589-f24f-493e-bfa8-ab6490b61873" mode="Opaque" x="481" y="0" width="82" height="20" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="09d7b92a-42b4-44ec-84f4-c232a4bb3b8f" mode="Opaque" x="563" y="0" width="152" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Campo de control financiero]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d0ddb7e6-2ec7-4080-86ee-767b40fed703" x="82" y="0" width="78" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{etapaDeCronograma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e0f0481a-048f-4907-aea0-cc7b1d1df8db" x="170" y="0" width="91" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{desembolso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8ae9d9a7-1dc8-4372-99d1-e7e765365523" x="160" y="0" width="10" height="20"/>
+				<textElement/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="c492fb91-b895-4932-945b-bfc66bc2570e" x="261" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[""+$F{etapaAEjecutar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b0f4613c-f239-4288-ada7-a393bba0380e" x="371" y="0" width="110" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{costoEjecucion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f832e5ed-039e-442b-9a14-9c0f4d288cac" x="491" y="0" width="72" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{saldo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="57b5ff04-127b-4081-bbf1-00ef34e2680a" x="361" y="0" width="10" height="20"/>
+				<textElement/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3c0863a7-e828-44e4-bc08-4cceb992fac9" x="481" y="0" width="10" height="20"/>
+				<textElement/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement uuid="6458c835-6504-4b68-b2b8-8458892e60e4" x="172" y="12" width="89" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{desembolso_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d79d6250-f5ad-4c6a-a7eb-eaa55d8ba34f" x="22" y="12" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7d18175a-066e-4da0-921e-b072e7e18ca2" x="161" y="12" width="10" height="20"/>
+				<textElement/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="74d03494-8d30-4ae1-877e-e14a7608f1dd" x="371" y="12" width="110" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{costoEjecucion_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="587370ac-f096-4333-87d7-ef49d93b0c51" x="361" y="12" width="10" height="20"/>
+				<textElement/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

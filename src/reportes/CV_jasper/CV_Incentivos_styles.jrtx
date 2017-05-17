@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperTemplate PUBLIC "-//JasperReports//DTD Template//EN" "http://jasperreports.sourceforge.net/dtds/jaspertemplate.dtd">
+
+<jasperTemplate>
+	<style name="EtiquetaNegrita" fontSize="11" isBold="true" isItalic="false"/>
+	<style name="EtiquetaSinNegrita" isBlankWhenNull="true" fontSize="11" isBold="false" isItalic="false"/>
+	<style name="Titulo" fontSize="14" isBold="true" isItalic="false"/>
+	<style name="SubTitulo" fontSize="14" isBold="false" isItalic="false"/>
+</jasperTemplate>

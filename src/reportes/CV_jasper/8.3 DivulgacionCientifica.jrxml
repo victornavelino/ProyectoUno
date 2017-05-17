@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="8.3 DivulgacionCientifica" language="groovy" pageWidth="555" pageHeight="805" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="065c36b5-9898-4ca0-88a9-f9c5721be4d6">
+		<queryString language="xPath">
+			<![CDATA[/datos/antecedentes/extension/divulgacionCT/divulgacionCT/mediosDivulgacion/medioDivulgacion]]>
+		</queryString>
+		<field name="tipoMedioDivulgacion" class="java.lang.String">
+			<fieldDescription><![CDATA[tipoMedioDivulgacion]]></fieldDescription>
+		</field>
+		<field name="medioDivulgacion" class="java.lang.String">
+			<fieldDescription><![CDATA[medioDivulgacion]]></fieldDescription>
+		</field>
+		<field name="lugarRealizacion" class="java.lang.String">
+			<fieldDescription><![CDATA[lugarRealizacion]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="dataset2" uuid="fd7db0da-c096-41f0-9b86-298a0625e258">
+		<queryString language="xPath">
+			<![CDATA[/datos/antecedentes/extension/divulgacionCT/divulgacionCT/tipoDestinatario/tipoDestinatario]]>
+		</queryString>
+		<field name="tipoDestinatario" class="java.lang.String">
+			<fieldDescription><![CDATA[tipoDestinatario]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/antecedentes/extension/divulgacionCT/divulgacionCT]]>
+	</queryString>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="fechaInicio" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+	</field>
+	<field name="fechaFin" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaFin]]></fieldDescription>
+	</field>
+	<field name="tipoFuncion" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoFuncion]]></fieldDescription>
+	</field>
+	<field name="otraFuncion" class="java.lang.String">
+		<fieldDescription><![CDATA[otraFuncion]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+	</field>
+	<field name="mediosDivulgacion" class="java.lang.String">
+		<fieldDescription><![CDATA[mediosDivulgacion]]></fieldDescription>
+	</field>
+	<field name="tipoDestinatario" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoDestinatario]]></fieldDescription>
+	</field>
+	<variable name="fechaInicio" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaInicio}.substring( 5, 7 ) + "/" +
+$F{fechaInicio}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="fechaFin" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaFin}.substring( 5, 7 ) + "/" +
+$F{fechaFin}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="tipoFuncion" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{tipoFuncion}=="Otro" ?
+    $F{tipoFuncion} + ": " + $F{otraFuncion} :
+    $F{tipoFuncion} )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a6fe42f3-a5b5-44c3-97d6-ba0808c61238" x="-14" y="0" width="385" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[8.3. Divulgación científica o pedagógica.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33d04978-e415-4885-99cd-56e20cfc204e" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a00fe25-3a62-4519-b0b6-9addc8111921" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Denominación de la actividad:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="21fe51c9-a780-4235-8962-d49f032a05b0" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha inicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8577db6c-0bd2-4a24-869f-d6f5dececc3b" positionType="Float" x="190" y="0" width="90" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaInicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="62d524ca-ef47-4bb9-b9a9-e527ce480483" x="295" y="0" width="125" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Fin:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="81afe9e7-2be3-4b0d-9320-fa335fc52ce4" positionType="Float" x="420" y="0" width="77" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaFin}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="34920c44-b8b2-454c-98c2-cf8a3fd7066d" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Función desempeñada:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="25e93b78-3a86-41d4-82f2-95ba40911aaa" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tipoFuncion}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="004de221-b11e-4cd9-9b87-6470d4696812" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5ade0d4-d7a9-4509-af23-10011df81c40" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción de la actividad:]]></text>
+			</staticText>
+		</band>
+		<band height="60">
+			<componentElement>
+				<reportElement uuid="109145ce-50f1-4894-a006-aeca4b217dd3" positionType="Float" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="525" height="60"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="774a503e-93b4-4c8e-96bb-1220e269f217">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/divulgacionCT/mediosDivulgacion/medioDivulgacion")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="60" width="525">
+						<textField isBlankWhenNull="true">
+							<reportElement uuid="006cdd74-7eff-47ba-a2a3-6aaa1c2f7551" x="187" y="0" width="338" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{tipoMedioDivulgacion}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement uuid="1595c3f3-a9d7-4340-abbe-dc8a9a288896" x="0" y="0" width="187" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Tipo de medio de divulgación:]]></text>
+						</staticText>
+						<staticText>
+							<reportElement uuid="16ffdcf3-e485-4dfc-8e58-b461b1d02da0" x="0" y="20" width="212" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Nombre del medio de divulgación:]]></text>
+						</staticText>
+						<staticText>
+							<reportElement uuid="20b184bd-3f23-47b6-a11c-be238ae0763c" x="0" y="40" width="187" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Lugar de realización:]]></text>
+						</staticText>
+						<textField isBlankWhenNull="true">
+							<reportElement uuid="0620c449-8389-4777-848d-62e43b2d722d" x="187" y="20" width="338" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{medioDivulgacion}]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement uuid="f8f23f68-ade7-4c28-a286-b4e53b9c4139" x="187" y="40" width="338" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{lugarRealizacion}]]></textFieldExpression>
+						</textField>
+						<line>
+							<reportElement uuid="0898433b-2796-42fd-a528-9397d6056290" x="0" y="0" width="525" height="1"/>
+							<graphicElement>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+							</graphicElement>
+						</line>
+						<line>
+							<reportElement uuid="9c679424-182d-4c66-83a7-875e809a3afe" x="0" y="59" width="525" height="1"/>
+							<graphicElement>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+							</graphicElement>
+						</line>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="5db21740-76ad-4357-b788-cd4c750eeac6" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo destinatario:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="e0cd685b-cc78-4fd5-bfa8-2676af8c0857" positionType="Float" stretchType="RelativeToBandHeight" mode="Opaque" x="187" y="0" width="348" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset2" uuid="f3867fea-f8d2-49a1-98d3-ba1fe05cc7e6">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/divulgacionCT/tipoDestinatario/tipoDestinatario")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="348">
+						<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+							<reportElement uuid="0574c28b-1326-4687-b7c0-2826bf9aa9e1" x="0" y="0" width="338" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{tipoDestinatario}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+		<band height="2">
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="1" width="525" height="1"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

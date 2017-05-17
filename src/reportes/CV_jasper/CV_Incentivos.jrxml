@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CV_Incentivos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="10" uuid="6cee1528-ee55-4b6e-a10b-dc129facacfe">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="250"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[$P{SUBREPORT_DIR}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/]]>
+	</queryString>
+	<field name="apellido" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/identificacion/apellido]]></fieldDescription>
+	</field>
+	<field name="cuil" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/identificacion/cuil]]></fieldDescription>
+	</field>
+	<field name="fechaNacimiento" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/identificacion/fechaNacimiento]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/identificacion/nombre]]></fieldDescription>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/identificacion/sexo]]></fieldDescription>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/calle]]></fieldDescription>
+	</field>
+	<field name="codigoPostal" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/codigoPostal]]></fieldDescription>
+	</field>
+	<field name="dpto" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/dpto]]></fieldDescription>
+	</field>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/email]]></fieldDescription>
+	</field>
+	<field name="telefono" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/telefono]]></fieldDescription>
+	</field>
+	<field name="localidad" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/localidad/localidad]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/numero]]></fieldDescription>
+	</field>
+	<field name="piso" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/piso]]></fieldDescription>
+	</field>
+	<field name="provincia" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/direccion/provincia/provincia]]></fieldDescription>
+	</field>
+	<field name="categoriaIncentivos" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/cargos/cargosID/categorizacionesIncentivos/cargoIDIncentivos/claseCargo]]></fieldDescription>
+	</field>
+	<field name="anioCategorizacion" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/cargos/cargosID/categorizacionesIncentivos/cargoIDIncentivos/anioCategorizacionIncentivos]]></fieldDescription>
+	</field>
+	<field name="tipoDocumento" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/identificacion/tipoDocumento]]></fieldDescription>
+	</field>
+	<field name="numeroDocumento" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/datosPersonales/identificacion/numeroDocumento]]></fieldDescription>
+	</field>
+	<field name="ultimoAcceso" class="java.lang.String">
+		<fieldDescription><![CDATA[/datos/ultimoAcceso]]></fieldDescription>
+	</field>
+	<variable name="ApellidoNombre" class="java.lang.String">
+		<variableExpression><![CDATA[$F{apellido} + " " + $F{nombre}]]></variableExpression>
+	</variable>
+	<variable name="fechaNacimiento" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaNacimiento}.substring( 8, 10 ) + "/" +
+$F{fechaNacimiento}.substring( 5, 7 ) + "/" +
+$F{fechaNacimiento}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="CuilLargo" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{cuil}.length()]]></variableExpression>
+	</variable>
+	<variable name="Cuil" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{cuil}.length()==11
+    ?  $F{cuil}.substring( 0, 2 ) + "-" + $F{cuil}.substring( 2, 10 ) + "-" + $F{cuil}.substring( 10,11 )
+    : ($F{cuil}.length()==10
+        ? $F{cuil}.substring( 0, 2 ) + "-" + $F{cuil}.substring( 2, 9 ) + "-" + $F{cuil}.substring( 9,10 )
+        : $F{cuil})
+)]]></variableExpression>
+	</variable>
+	<variable name="documento" class="java.lang.String">
+		<variableExpression><![CDATA[$F{tipoDocumento} + " " + $F{numeroDocumento}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="0" width="371" height="23" uuid="cbaf9517-86a6-4f53-b2fd-f5789dd67550"/>
+				<textElement>
+					<font fontName="SansSerif" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CURRÍCULUM DEL DOCENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="371" height="20" uuid="0a559239-8750-41d9-b0fc-2ecd45fd55c7"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Programa de Incentivos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="41" height="18" uuid="3ab816f2-1a2c-4b11-ba1a-4d9c406a5940"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[C.C.I.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="415" y="0" width="140" height="18" uuid="2eb127d3-4d21-44aa-8444-732e9558618b"/>
+				<box leftPadding="3" rightPadding="3">
+					<pen lineWidth="1.5"/>
+					<topPen lineWidth="1.5"/>
+					<leftPen lineWidth="1.5"/>
+					<bottomPen lineWidth="1.5"/>
+					<rightPen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ultimoAcceso}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="43" width="555" height="1" uuid="1aa6f7f6-e2dd-4a38-be59-64c095891adc"/>
+			</line>
+		</band>
+		<band height="225">
+			<staticText>
+				<reportElement x="0" y="0" width="371" height="20" uuid="664ac969-e5b1-447d-a561-0b8402be9bb5"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1. Datos personales]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="7d7f86fb-3c31-4b91-9855-2f26671e238f"/>
+			</line>
+			<staticText>
+				<reportElement x="18" y="25" width="70" height="20" uuid="3f69f291-6db8-43fe-8d91-23e6f53c7bb9"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="91" y="25" width="464" height="20" uuid="bb8b633b-8d32-43b1-b69a-94f446467bc0"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="65" width="70" height="20" uuid="83fa1016-568f-457b-8dbb-02460af83144"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUIL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="105" width="70" height="20" uuid="544abbab-ec10-45be-897f-b342c2d6b088"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Calle:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="91" y="105" width="464" height="20" uuid="3f864296-50eb-41a1-b669-0040cc23c398"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{calle}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="145" width="70" height="20" uuid="a21517ec-a83f-4c23-949e-3889d9ecc192"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Localidad:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="91" y="145" width="175" height="20" uuid="49e52262-f650-4c40-a6cf-791ad462ffee"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{localidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="185" width="70" height="20" uuid="99b1be84-2482-4ef5-bcde-cf123b33cde5"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="91" y="185" width="464" height="20" uuid="9f93f47d-51b3-4c07-af74-117d29cd5591"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="45" width="70" height="20" uuid="8d49e294-e829-41da-b488-27a9f606e10b"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="91" y="45" width="464" height="20" uuid="2af1725d-5e0a-443f-8c4e-c67f5a60ddbf"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="272" y="65" width="135" height="20" uuid="09fdb9a4-8590-4b32-8734-cc29e524b0a6"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de nacimiento: ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="405" y="65" width="150" height="20" uuid="f8458017-0eb4-4499-a006-cb50c07ff5ce"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaNacimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="125" width="70" height="20" uuid="daed5714-17d8-49c4-981d-c4a36cd880ad"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="91" y="125" width="67" height="20" uuid="2267944e-abdd-4c2c-bd31-bc4515143872"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="272" y="145" width="93" height="20" uuid="b8a6f206-b71f-4ec0-bd9e-a8faeeb2b559"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código Postal:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="405" y="145" width="132" height="20" uuid="ce388687-ecf3-4d6f-a983-aa5730253d79"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoPostal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="205" width="125" height="20" uuid="62f4093f-a4cd-4601-a99f-684fe55b0753"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo electrónico:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="143" y="205" width="412" height="20" uuid="78e05a40-89b5-41a3-bc4d-686fb133d85a"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="272" y="85" width="70" height="20" uuid="05e03cad-1c4f-4c6d-8f16-3988018fccea"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="405" y="85" width="150" height="20" uuid="d21a515c-d467-4532-b6ee-98d677a2b95b"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="233" y="125" width="39" height="20" uuid="02aacbcf-aeaf-4878-863b-c76b41bb86e5">
+					<printWhenExpression><![CDATA[!$F{dpto}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dpto.:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="272" y="125" width="46" height="20" uuid="54751b86-5b6a-476d-8b78-e1811417094a"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dpto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="153" y="125" width="35" height="20" uuid="8d76eb64-3a7d-47b7-be8d-2180c0e4dc74">
+					<printWhenExpression><![CDATA[!$F{piso}.isEmpty()]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Piso:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="192" y="125" width="37" height="20" uuid="5c9d99cd-0afa-4d87-8a42-e6fd69c19f0f"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{piso}]]></textFieldExpression>
+			</textField>
+			<elementGroup/>
+			<staticText>
+				<reportElement x="18" y="165" width="70" height="20" uuid="a85d62ff-ff02-4478-983d-210a61ce986f"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Provincia:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="91" y="165" width="464" height="20" uuid="85cd0702-6334-4c88-bacd-9bbfc560530e"/>
+				<textElement>
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{provincia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="65" width="175" height="20" uuid="f972bb91-8a2d-41be-a86c-3372e4ed61d9"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Cuil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="85" width="175" height="20" uuid="45764287-2517-4a7b-b84a-1635521b530a"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="85" width="70" height="20" uuid="80cc61ee-a58e-4052-92c0-6374ceac5437"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento:]]></text>
+			</staticText>
+		</band>
+		<band height="6">
+			<line>
+				<reportElement x="0" y="3" width="555" height="1" uuid="274f57a9-0d1f-41a6-bac0-711b9ecc50e6"/>
+			</line>
+		</band>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="6" width="385" height="20" uuid="6b21e538-65be-4d9c-ae9c-f16e14504f0e"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2. Formación académica]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="26" width="555" height="1" uuid="944ae608-be0c-4e56-ab44-c7d5ebe5c17c"/>
+			</line>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="-1" width="555" height="20" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="e4f99c7c-86d2-41df-ad51-3082baa2f174"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/datos/formacionAcademica/grados/formacionAcademicaGrado")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"2.1.Grado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="f85168d0-4253-4791-bd93-7d5ff8d11388"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/datos/formacionAcademica/doctorados/formacionAcademicaDoctorado")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"2.2.Doctorado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="19c27976-88b0-4958-b0b2-753f8e731ed8"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/datos/formacionAcademica/maestrias/formacionAcademicaMaestria")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"2.3.Maestria.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="7121a137-eb36-4869-806a-b95b75457380"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/datos/formacionAcademica/especializaciones/formacionAcademicaEspecializacion")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"2.4.Especializacion.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="a3a19c5f-057d-4c99-a3b3-70e26881bf57"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/datos/formacionComplementaria/cursosPostgradoEspecializaciones/cursosPostgradoEspecializaciones")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"2.5.CursoPosgrado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="7" width="385" height="20" uuid="466e2b49-43bb-40be-ab35-c558e09d9926"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3. Docencia]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="27" width="555" height="1" uuid="2e094837-ab57-4f12-a02e-121ba6bb63c3"/>
+			</line>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="d0851aa1-e6cf-4953-8d00-7b698c14fedb"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/cargos/cargosDocencia/superiorPosgrado/cargoDocenteSuperior")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"3.Docencia.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="9" width="385" height="20" uuid="7f14b787-7234-463a-8304-9aa4f553cf7b"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4. Actividad y producción en docencia]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="29" width="555" height="1" uuid="be1e01c7-4c3d-4438-9b3d-4675a8c4a6c9"/>
+			</line>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="81f6424a-3d3a-4eb8-afe1-627aaf413b3d"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/cientifica/libros/libro")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.1 LibrosPublicados.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="37c7eea5-3c92-4075-8f89-7cb0b4d525be"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/cientifica/partesDeLibros/parteLibro")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.2 CapitulosLibros.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="0be4bbc9-04fe-4c7e-ab59-a43fc9374524"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/cientifica/articulos/articulo")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.3 Publicaciones.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="4715ce40-6157-4998-80aa-17711a54cef5"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/cientifica/articulos/articulo")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.3b Publicaciones.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="b88a9a0f-0333-4059-938c-3078894e429d"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/cientifica/trabajosEnEventosPublicados/trabajoEventoCTPublicado")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.3c CapitulosLibrosPublicados.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="41ed53fa-2407-438f-826c-fabe78afb388"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/cientifica/trabajosEnEventosNoPublicados/trabajoEventoCT")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.3c CapitulosLibrosNoPublicados.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" isPrintWhenDetailOverflows="true" uuid="b0b7f31f-8268-4c41-bbd1-828e4e4014e7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[4.3 d) Otra actividad de innovación pedagógica con aprobación institucional.
+Falta Producción científica - Demás tipos de producción C-T publicada filtro "Tipo de producción"]]></text>
+			</staticText>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" isPrintWhenDetailOverflows="true" uuid="46c10e75-1dcc-4930-9c34-ddfd8a993e93"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[4.4. Material didáctico sistematizado.
+Falta Producción científica - Demás tipos de producción C-T publicada filtro "Tipo de producción"]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="fb60961b-5ea7-43c6-904b-ec61e2a2f005"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/cargos/cargosDocencia/superiorPosgrado/cargoDocenteSuperior")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.5 DocenciaPosgrado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="1f42011b-0f78-4cc5-b00f-e72352ea9a27"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/evaluacion/personalPremiosConcursos/evaluacionPersonalCyT")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.7 IntegranteTribunales.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="d8bf7e40-f7fb-4761-8492-b886bd0b955b"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/evaluacion/personalPremiosConcursos/evaluacionPersonalCyT")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.8 IntegranteTribunalesTesis.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="bb33ffa8-83f0-45e5-a5fd-68bed79bbef5"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/formacionRRHH/tesistas/formacionTesista")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.9 DireccionTesis.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="5f326617-e652-497b-91f9-aaecca06ffa7"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/formacionRRHH/pasantes/formacionPasante")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.10 DireccionPasantes.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="53c11436-6c26-47c9-b81e-14d37d859412"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/evaluacion/institucional/evaluacionInstitucional")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"4.11 ComisionEvaluadora.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="8" width="555" height="20" uuid="255fccea-9d1c-4d0f-86e7-a5d55c56d401"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[5. Investigación científica o artística o desarrollo tecnológico acreditado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="28" width="555" height="1" uuid="152b3971-8235-4868-8370-e913efec3dc6"/>
+			</line>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="ae565265-ddab-4e59-b69b-5874ce2ce09d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[5.1. Programas dirigidos o codirigidos.
+Falta parámetro para distinguir Programa de Proyecto.]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="92071275-2f8f-4306-9942-4ad24f62aa76"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/financiamientos/financiamiento")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"5.2 ProyectosDirigidos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="ff1457e0-6d4d-477b-a5ea-c4cc839c69a8"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/financiamientos/financiamiento")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"5.3 ProyectosCodirigidos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" uuid="03225dae-752b-4f47-bebe-c172a669ea0f"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/financiamientos/financiamiento")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"5.5 IntegranteProyecto.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="666132c3-b271-4d2b-aacb-982c50ba9581"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/becas/beca")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"5.6 Becario.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20"/>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="8" width="555" height="20" uuid="ecf985ea-cbc5-4ecd-9ea2-6616c8eebe12"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[6. Producción]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="28" width="555" height="1" uuid="2257fd2c-c737-4125-bb90-61bf6a70954a"/>
+			</line>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="c154d06b-2831-4505-a6a1-01be2437b64d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[6.1. Libros publicados.
+Falta parámetro para distinguir "DOCENCIA" de "INVESTIGACION"]]></text>
+			</staticText>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="677c31a6-8c1e-4a80-abe2-78d47cfe26d6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[6.2. Capítulos de libros.
+Falta parámetro para distinguir "DOCENCIA" de "INVESTIGACION"]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="3cbaddb7-9003-41c0-893f-490a433a6575"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/tecnologica/conPropiedadIntelectual/registroPropiedad")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"6.3 Patentes.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="c154d06b-2831-4505-a6a1-01be2437b64d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[6.4 y 6.5. Publicaciones con referato / sin referato.
+Falta parámetro para distinguir "DOCENCIA" de "INVESTIGACION"]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="1020ff8f-9156-49bd-b3c5-cc86dc5bf8ad"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/tecnologica/sinPropiedadIntelectual/sinRegistroPropiedad")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"6.6 InnovacionTecnologica.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="a8c744f8-4991-4b1a-9127-feff92e303df"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[6.7. Presentaciones en reuniones científicas.
+Falta parámetro para distinguir "DOCENCIA" de "INVESTIGACION"]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="871a8938-2086-4f3e-8d56-2451cea08570"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/otrosAntecedentes")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"6.8 Conferencias.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="5216968a-849e-4a9d-b7e4-70ef4ee97ece"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[6.9. Evaluación de actividades científicas y tecnológicas.]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="351e78cb-b4bb-41ad-82f4-873529c01521"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/evaluacion/personalPremiosConcursos/evaluacionPersonalCyT")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"6.9 EvaluacionActividadesCyT_01.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="227bb273-aa9d-4fce-9b53-a087a2ccfa9f"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/evaluacion/programasProyectos/evaluacionProgramasProyectosID")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"6.9 EvaluacionActividadesCyT_02.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="8d7c5563-06ca-42aa-92c9-44a343b6893d"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/evaluacion/trabajosEnRevistas/evaluacionTrabajosRevistas")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"6.9 EvaluacionActividadesCyT_03.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="fdeccfd4-4ba3-497e-8760-95b5aa3f68d6"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/evaluacion/institucional/evaluacionInstitucional")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"6.9 EvaluacionActividadesCyT_04.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="8" width="555" height="20" uuid="ecf985ea-cbc5-4ecd-9ea2-6616c8eebe12"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[7. Producción artística]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="28" width="555" height="1" uuid="2257fd2c-c737-4125-bb90-61bf6a70954a"/>
+			</line>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="cec8753d-9017-48fc-9370-37dc91ba556d"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/musical/artisticaMusical")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 MusicalSonora.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="00441d0a-b868-4530-9571-87ac765c9d6b"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/visual/artisticaVisual")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 Visual.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="d5441bdb-7fcb-489b-873e-f022319ef735"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/audioVisual/artisticaAudioVisual")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 Audiovisual.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="fc3c8f51-cc22-4752-ae3b-a152e11651d2"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/teatral/artisticaTeatral")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 Teatral.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="bfc62cb9-e412-473c-9093-b170f0c86870"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/narrativa/artisticaLiteraria")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 Narativo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="63ee838e-067e-4b5b-b26c-cc04decb7319"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/dramaPoesiaEnsayo/artisticaLiteraria")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 Dramatico.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="e3785d7a-e9d6-4824-887e-2c7b314611c4"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/guion/artisticaLiteraria")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 Guion.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="259f5172-54ab-4bfc-94ec-b8f4df78af56"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/otraLiteraria/artisticaLiteraria")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 OtrosLiterarios.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="ed18070d-5726-4c47-936e-027fa849f969"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/artistica/otra/artisticaOtra")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"7 OtraArtistica.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="8" width="555" height="20" uuid="ecf985ea-cbc5-4ecd-9ea2-6616c8eebe12"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[8. Transferencias]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="28" width="555" height="1" uuid="2257fd2c-c737-4125-bb90-61bf6a70954a"/>
+			</line>
+		</band>
+		<band height="30">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="30" uuid="97395ec8-e6a1-4928-a734-75076436c456"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[8.1. Transferencia de patentes y/u otra propiedad intelectual registrada.
+Falta parámetro para distinguir "TRANSFERIDO" de "NO TRANSFERIDO"]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="c5344a24-7e32-4fd6-b79f-57e9f0a42707"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/tecnologica/sinPropiedadIntelectual/sinRegistroPropiedad")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"8.2 TranferenciaInvestigacion.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="4b24dab2-81e8-447f-936b-44ebb9fb391e"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/extension/divulgacionCT/divulgacionCT")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"8.3 DivulgacionCientifica.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="7fc3dc8a-df30-424f-8065-156a06555d2d"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/produccion/tecnologica/serviciosCT/servicioCientificoTecnologico")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"8.4 ServiciosEspeciales.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="06a22bd4-7a92-493b-8c65-3618cbb72c3e"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/extension/extensionRuralIndustrial/extensionismoRuralIndustrial")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"8.5 CapacitacionExtencionista.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="53">
+			<staticText>
+				<reportElement x="0" y="8" width="555" height="39" isPrintWhenDetailOverflows="true" uuid="ecf985ea-cbc5-4ecd-9ea2-6616c8eebe12"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[9. Formación y dirección de recursos humanos para la investigación, el desarrollo tecnológico y la creación artística]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="46" width="555" height="1" uuid="2257fd2c-c737-4125-bb90-61bf6a70954a"/>
+			</line>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="19d833d0-0556-40de-8b5f-948ba8be0bb0"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/formacionRRHH/tesistas/formacionTesista")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"9.1 TesisDoctorado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="5f128117-8e64-4719-b304-cfab41215078"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/formacionRRHH/investigadores/formacionInvestigador")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"9.2 InvestigadoresFormados.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="997290a9-d0fd-4ed4-837c-61b7677940e4"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/formacionRRHH/tesistas/formacionTesista")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"9.3 TesisDoctorado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="2a0d9b61-0d2d-48e9-a1bf-a87aee15d23b"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/formacionRRHH/tesistas/formacionTesista")]]></dataSourceExpression>
+				<subreportExpression><![CDATA["9.4 TesisDoctorado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="e4598253-736a-4f0c-8359-71f0b9415f6f"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/antecedentes/formacionRRHH/becarios/formacionBecario")]]></dataSourceExpression>
+				<subreportExpression><![CDATA["9.5 BecariosPosgrado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="8" width="555" height="20" isPrintWhenDetailOverflows="true" uuid="ecf985ea-cbc5-4ecd-9ea2-6616c8eebe12"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[10. Gestión en la universidad]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="28" width="555" height="1" uuid="2257fd2c-c737-4125-bb90-61bf6a70954a"/>
+			</line>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="7a8e5dc5-b532-447a-9f68-d9d783ece701"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/cargos/cargosGestionInstitucional/cargoGestionInstitucional")]]></dataSourceExpression>
+				<subreportExpression><![CDATA["10 GestionUniversidad.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="36">
+			<staticText>
+				<reportElement x="0" y="8" width="555" height="20" isPrintWhenDetailOverflows="true" uuid="ecf985ea-cbc5-4ecd-9ea2-6616c8eebe12"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[12. Carrera del investigador]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="28" width="555" height="1" uuid="2257fd2c-c737-4125-bb90-61bf6a70954a"/>
+			</line>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="20" isRemoveLineWhenBlank="true" uuid="dea825b5-2b5b-4d18-b085-4756bb5e9258"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).dataSource("/datos/cargos/cargosID/cargosOrganismosCyT/cargoIDOrganismoCyT")]]></dataSourceExpression>
+				<subreportExpression><![CDATA["12 CarreraInvestigador.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="110">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="110" uuid="292bbe6e-6ec2-4972-ac7f-8d08b998b07c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="80" width="217" height="20" isPrintWhenDetailOverflows="true" uuid="57ab41cd-4137-4b7a-9cdf-d9a926b55331"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Firma del docente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="328" y="80" width="217" height="20" isPrintWhenDetailOverflows="true" uuid="39cdc952-1ae4-4f8e-aae0-d09b41053084"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="11" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Aclaración]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="217" height="18" uuid="3f93f6dc-5492-4157-8090-b140cea3f461"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{ApellidoNombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="395" y="2" width="35" height="18" uuid="04dd50b5-d21b-4891-b2ba-517adb084307"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<text><![CDATA[C.C.I.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="433" y="6" width="122" height="14" uuid="c4da7b5c-2c29-4725-9f26-b694e7e60c30"/>
+				<box leftPadding="3" rightPadding="3">
+					<pen lineWidth="1.5"/>
+					<topPen lineWidth="1.5"/>
+					<leftPen lineWidth="1.5"/>
+					<bottomPen lineWidth="1.5"/>
+					<rightPen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ultimoAcceso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="2" width="80" height="18" uuid="350580bd-5d32-4f6e-9393-5d1030744c09"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="297" y="2" width="40" height="18" uuid="9dec5136-ddd2-44c9-8f65-f6bbd2aa7caa"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

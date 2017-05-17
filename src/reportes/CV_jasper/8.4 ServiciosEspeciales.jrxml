@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="8.2 TranferenciaInvestigacion" language="groovy" pageWidth="555" pageHeight="802" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="11"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#999999"/>
+			<topPen lineWidth="0.5" lineColor="#999999"/>
+			<leftPen lineWidth="0.0" lineColor="#999999"/>
+			<bottomPen lineColor="#999999"/>
+			<rightPen lineWidth="0.0" lineColor="#999999"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#CCCCCC">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="participante" uuid="c94f628b-092e-43b3-990a-9d21795880c9">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/tecnologica/serviciosCT/servicioCientificoTecnologico/participantes/participante]]>
+		</queryString>
+		<field name="nombre" class="java.lang.String">
+			<fieldDescription><![CDATA[nombre]]></fieldDescription>
+		</field>
+		<field name="institucion" class="java.lang.String">
+			<fieldDescription><![CDATA[institucion]]></fieldDescription>
+		</field>
+		<variable name="institucion" class="java.lang.String">
+			<variableExpression><![CDATA[$F{institucion}.replace( "[", "" ).replace( "]", "" )]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="instituciones" uuid="28ebf304-e5b3-412b-9fad-32b71a48887a">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/tecnologica/serviciosCT/servicioCientificoTecnologico/institucionesIntervinientes/institucionInterviniente]]>
+		</queryString>
+		<field name="rutaCompleta" class="java.lang.String">
+			<fieldDescription><![CDATA[institucion/rutaCompleta]]></fieldDescription>
+		</field>
+		<field name="ejecuta" class="java.lang.String">
+			<fieldDescription><![CDATA[ejecuta]]></fieldDescription>
+		</field>
+		<field name="porcentajeFinancia" class="java.lang.String">
+			<fieldDescription><![CDATA[porcentajeFinancia]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="destinatario" uuid="202f0569-b7db-4613-9990-ba964c79ac2f">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/tecnologica/serviciosCT/servicioCientificoTecnologico/destinatarios/destinatario]]>
+		</queryString>
+		<field name="destinatario" class="java.lang.String">
+			<fieldDescription><![CDATA[destinatario]]></fieldDescription>
+		</field>
+		<field name="pais" class="java.lang.String">
+			<fieldDescription><![CDATA[pais/pais]]></fieldDescription>
+		</field>
+		<field name="tipoDestinatario" class="java.lang.String">
+			<fieldDescription><![CDATA[tipoDestinatario]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="certificados" uuid="4c1cc217-3295-49b0-b004-fc36ba4f9339">
+		<queryString language="xPath">
+			<![CDATA[/datos/produccion/tecnologica/serviciosCT/servicioCientificoTecnologico/certificadosDeCalidad/certificadoCalidad]]>
+		</queryString>
+		<field name="denominacion" class="java.lang.String">
+			<fieldDescription><![CDATA[denominacion]]></fieldDescription>
+		</field>
+		<field name="fecha" class="java.lang.String">
+			<fieldDescription><![CDATA[fecha]]></fieldDescription>
+		</field>
+		<variable name="fecha" class="java.lang.String">
+			<variableExpression><![CDATA[$F{fecha}.substring( 0, 4 )]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/produccion/tecnologica/serviciosCT/servicioCientificoTecnologico]]>
+	</queryString>
+	<field name="modalidad" class="java.lang.String">
+		<fieldDescription><![CDATA[modalidad]]></fieldDescription>
+	</field>
+	<field name="tipoServicio" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoServicio]]></fieldDescription>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+	</field>
+	<field name="tipoFinalidad" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoFinalidad]]></fieldDescription>
+	</field>
+	<field name="funcionDesempeniada" class="java.lang.String">
+		<fieldDescription><![CDATA[funcionDesempeniada]]></fieldDescription>
+	</field>
+	<field name="modalidadVinculacion" class="java.lang.String">
+		<fieldDescription><![CDATA[modalidadVinculacion]]></fieldDescription>
+	</field>
+	<field name="porcentajeParticipacionAutoria" class="java.lang.String">
+		<fieldDescription><![CDATA[porcentajeParticipacionAutoria]]></fieldDescription>
+	</field>
+	<field name="fechaInicio" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+	</field>
+	<field name="fechaFin" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaFin]]></fieldDescription>
+	</field>
+	<field name="campoAplicacion" class="java.lang.String">
+		<fieldDescription><![CDATA[campoAplicacion]]></fieldDescription>
+	</field>
+	<field name="otroTipoServicio" class="java.lang.String">
+		<fieldDescription><![CDATA[otroTipoServicio]]></fieldDescription>
+	</field>
+	<variable name="fechaInicio" class="java.util.Date">
+		<variableExpression><![CDATA[(new SimpleDateFormat("yyyy-MM-dd")).parse($F{fechaInicio}.substring( 0,10 ))]]></variableExpression>
+	</variable>
+	<variable name="fechaFin" class="java.util.Date">
+		<variableExpression><![CDATA[(new SimpleDateFormat("yyyy-MM-dd")).parse($F{fechaFin}.substring( 0,10 ))]]></variableExpression>
+	</variable>
+	<variable name="tipoServicio" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{tipoServicio}.toString()=="null" ?
+    $F{otroTipoServicio} :
+    $F{tipoServicio} )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="22">
+			<staticText>
+				<reportElement uuid="fdbee21f-6a06-41f9-9ed0-cc682541a8bb" x="-15" y="0" width="541" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[8.4. Servicios especiales y asistencia técnica acreditadas formalmente.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33d04978-e415-4885-99cd-56e20cfc204e" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{modalidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a00fe25-3a62-4519-b0b6-9addc8111921" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modalidad del servicio:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="1b2e86f0-28d8-4e70-926f-72c7478641ef" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de inicio del servicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="MM-yyyy" isBlankWhenNull="true">
+				<reportElement uuid="d5feafbc-0310-4a78-b16e-1dae27ed6d4d" positionType="Float" x="187" y="0" width="90" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaInicio}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="MM-yyyy" isBlankWhenNull="true">
+				<reportElement uuid="20377498-8f7e-4d5d-9e11-9b8313f22473" positionType="Float" x="365" y="0" width="90" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaInicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8b8d2e57-c406-477e-9bb5-643df8337a80" x="274" y="0" width="84" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha fin:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="21fe51c9-a780-4235-8962-d49f032a05b0" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Denominación del servicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement uuid="6d0f108f-f324-4f34-94ef-6990243f2e3a" positionType="Float" x="188" y="0" width="337" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="62d524ca-ef47-4bb9-b9a9-e527ce480483" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de servicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="81afe9e7-2be3-4b0d-9320-fa335fc52ce4" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tipoServicio}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a43841d5-7a94-4e53-b8bf-8c4b35eecb46" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Finalidad principal del servicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="57187e9c-d63f-4b73-ba6e-ac2ac240a576" positionType="Float" x="187" y="0" width="338" height="20" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoFinalidad}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="17d8e845-59c2-4bc4-a2de-c5c141238e03" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción del servicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="9815a580-4ebb-4288-a134-02cf02d13c7a" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="80b25535-8397-46d7-a7b4-50dd6a7f6813" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Función desempeñada:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="b39e17f3-e4ec-4eef-af48-07b78c39e4bd" positionType="Float" x="187" y="0" width="338" height="20" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{funcionDesempeniada}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="004de221-b11e-4cd9-9b87-6470d4696812" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{campoAplicacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5ade0d4-d7a9-4509-af23-10011df81c40" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Campos de aplicación:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="ac744362-f9b1-4d5f-af65-eb3e0922e9d5" key="table" x="0" y="0" width="525" height="20" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="participante" uuid="7e1eb022-3c66-4dbb-a9c1-053b977acba2">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/servicioCientificoTecnologico/participantes/participante")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="526" uuid="279b4299-567e-4e8c-a1c3-72947a07657f">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="4e2d44c1-ded9-4afe-adcb-a4627665e1f5" x="0" y="0" width="285" height="18"/>
+								<textElement verticalAlignment="Bottom">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Participantes:]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table_TH" height="36" rowSpan="1">
+							<staticText>
+								<reportElement uuid="dab01f68-6cfd-41fb-b3a6-eb3695416b7b" x="15" y="0" width="81" height="18"/>
+								<textElement verticalAlignment="Middle">
+									<font size="11" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Nombre]]></text>
+							</staticText>
+							<staticText>
+								<reportElement uuid="c1046efe-148e-4026-bdf4-b28e63f0b0a6" x="15" y="18" width="81" height="18"/>
+								<box>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+								</box>
+								<textElement>
+									<font size="11" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Institución]]></text>
+							</staticText>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="59cec10c-0386-4507-bf1f-fb4455052be7" x="96" y="18" width="430" height="18"/>
+								<box>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+								</box>
+								<textElement>
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{institucion}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="6c57688e-07b7-4595-8314-ac6f32b8adde" x="96" y="0" width="430" height="18"/>
+								<box>
+									<bottomPen lineWidth="0.0" lineColor="#999999"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="e62149c4-7885-4f9f-85e4-6e07a3d5f5c7" positionType="Float" x="240" y="0" width="285" height="20" isRemoveLineWhenBlank="true"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{porcentajeParticipacionAutoria} + "%"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4aca428f-83dc-40c6-b102-0ae0dd931268" x="0" y="0" width="250" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Porcentaje de participación en el servicio:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8fc4b9d2-6baf-484d-bcf0-ff495ac64db4" positionType="Float" x="188" y="0" width="338" height="20" isPrintWhenDetailOverflows="true"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{modalidadVinculacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b2d2054c-c257-4c23-8338-e37c15ba3740" x="1" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modalidad de vinculación:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="ac744362-f9b1-4d5f-af65-eb3e0922e9d5" key="table" x="0" y="0" width="525" height="20" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="instituciones" uuid="a517480b-5180-4878-ba47-0e19982c2e76">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("servicioCientificoTecnologico/institucionesIntervinientes/institucionInterviniente")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="385" uuid="279b4299-567e-4e8c-a1c3-72947a07657f">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="029c545b-d81b-4699-8187-685190e461a7" x="0" y="0" width="385" height="18"/>
+								<textElement verticalAlignment="Bottom">
+									<font size="11" isBold="false" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Instituciones financiadoras]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table_CH" height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="4e2d44c1-ded9-4afe-adcb-a4627665e1f5" x="0" y="0" width="385" height="18"/>
+								<textElement verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Instituciones]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="18" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="59cec10c-0386-4507-bf1f-fb4455052be7" x="10" y="0" width="375" height="18"/>
+								<box>
+									<bottomPen lineWidth="0.5" lineColor="#999999"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{rutaCompleta}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="cd454881-3d32-4fbd-93b4-81329c1d305f">
+						<jr:tableHeader height="18" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="88543661-f435-4a93-b1e9-cc5fb32b2f7a" x="0" y="0" width="50" height="18"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Ejecuta]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="18" rowSpan="1">
+							<image>
+								<reportElement uuid="bc7f183a-2c68-4e77-be0f-9f06d3f73b62" x="15" y="4" width="12" height="12">
+									<printWhenExpression><![CDATA[$F{ejecuta}=="1"]]></printWhenExpression>
+								</reportElement>
+								<imageExpression><![CDATA["check.jpg"]]></imageExpression>
+							</image>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="745ac551-96b6-43a2-ba66-1809b1d850b1">
+						<jr:tableHeader height="18" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="03122258-e797-47fc-89bd-526aa8062b6d" x="0" y="0" width="90" height="18"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[% financiación]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="18" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="6c57688e-07b7-4595-8314-ac6f32b8adde" x="0" y="0" width="90" height="18"/>
+								<box>
+									<bottomPen lineWidth="0.5" lineColor="#999999"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{porcentajeFinancia}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="59fd7906-4288-4a1a-b6fe-d214d7b56279" key="table" x="1" y="0" width="525" height="20" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="destinatario" uuid="73c12054-25e2-42be-8720-3cbf84b5469c">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/servicioCientificoTecnologico/destinatarios/destinatario")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="200" uuid="27c8e9e7-2969-414c-8fa2-f0d55b573467">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="fe466483-9239-4fb9-b4a6-9244db45358b" x="0" y="0" width="200" height="18"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement verticalAlignment="Bottom">
+									<font size="11" isBold="false" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Destinatarios]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table_CH" height="18" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<staticText>
+								<reportElement uuid="6edee3de-8695-4d86-a718-d77ff7e9f8b6" x="0" y="0" width="200" height="18"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Tipo de destinatario]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="18" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="01a2962d-59df-45f4-8cbd-d48595daff18" positionType="Float" x="0" y="0" width="200" height="18" isPrintWhenDetailOverflows="true"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{tipoDestinatario}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="130" uuid="3c9df89a-24c5-4031-bef3-de9fd2cd5a4b">
+						<jr:columnHeader style="table_CH" height="18" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<staticText>
+								<reportElement uuid="07812e4d-49aa-433f-98d4-8e5ff57c39bb" x="0" y="0" width="130" height="18"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Pais]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="18" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="01cc1b20-0f66-4166-b162-09d65d626805" positionType="Float" x="0" y="0" width="130" height="18" isPrintWhenDetailOverflows="true"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="194" uuid="e155f023-aa40-4be0-861d-b66c974f7e38">
+						<jr:columnHeader style="table_CH" height="18" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<staticText>
+								<reportElement uuid="557915cd-f6cf-4dff-b1d7-07c083ba8568" x="0" y="0" width="194" height="18"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Destinatario]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="18" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="6266168b-46b1-41f8-87c6-66793a5550de" positionType="Float" x="0" y="0" width="194" height="18" isPrintWhenDetailOverflows="true"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{destinatario}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="8020e4d7-08a3-4c37-ad72-f928e9112a02" key="table" x="0" y="0" width="525" height="20" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="certificados" uuid="736a82f4-2164-48e9-8361-316216966a08">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/servicioCientificoTecnologico/certificadosDeCalidad/certificadoCalidad")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="324" uuid="abb0fc94-f06a-44f2-8c65-fec072e10bc5">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement uuid="2685f649-416e-425c-b966-433f21c6a378" x="0" y="0" width="200" height="18"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement verticalAlignment="Bottom">
+									<font size="11" isBold="false" isItalic="true"/>
+								</textElement>
+								<text><![CDATA[Certificado de calidad]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader style="table_CH" height="18" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<staticText>
+								<reportElement uuid="3dc16558-d31a-46b4-8734-4383bfa577a2" x="0" y="0" width="324" height="18"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Denominación de la certificación]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="18" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textField>
+								<reportElement uuid="6dde5ebd-0fd7-4519-b397-3e949da20208" x="0" y="0" width="324" height="18" isPrintWhenDetailOverflows="true"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{denominacion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="200" uuid="46b8b132-cbfc-4563-a1d8-c08aeb342b85">
+						<jr:columnHeader style="table_CH" height="18" rowSpan="1">
+							<box>
+								<pen lineWidth="0.25"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<staticText>
+								<reportElement uuid="1392c546-3da3-4a29-b7e8-7dd65ee9a24a" x="0" y="0" width="200" height="18"/>
+								<box>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Año de autorización u otorgamiento]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="18" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textField>
+								<reportElement uuid="5327dd74-536b-46f2-b6af-75174d9b723b" x="0" y="0" width="200" height="18" isPrintWhenDetailOverflows="true"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{fecha}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="8">
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="7" width="525" height="1"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

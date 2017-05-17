@@ -1,0 +1,2338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProyectoVistaPrevia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="887a5882-3858-410f-865e-6a29b177be35">
+	<property name="ireport.zoom" value="1.3310000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="contenedores" mode="Opaque" fill="Solid" scaleImage="RetainShape" fontSize="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+	<subDataset name="New Dataset 1" uuid="f49c0fb1-341d-4a46-8d85-d40b3c37caec">
+		<field name="investigador" class="java.lang.String">
+			<fieldDescription><![CDATA[investigador]]></fieldDescription>
+		</field>
+		<field name="rol" class="java.lang.String">
+			<fieldDescription><![CDATA[rol.descripcion]]></fieldDescription>
+		</field>
+		<field name="cuil" class="java.lang.String">
+			<fieldDescription><![CDATA[investigador.persona.cuil]]></fieldDescription>
+		</field>
+		<field name="formacionesAcademicasGrado" class="java.util.List">
+			<fieldDescription><![CDATA[investigador.formacionesAcademicasGrado]]></fieldDescription>
+		</field>
+		<field name="formacionesAcademicasPosgrado" class="java.util.List">
+			<fieldDescription><![CDATA[investigador.formacionesAcademicasPosgrado]]></fieldDescription>
+		</field>
+		<field name="categorizaciones" class="java.util.List">
+			<fieldDescription><![CDATA[investigador.categorizaciones]]></fieldDescription>
+		</field>
+		<field name="dedicacionSemanal" class="java.lang.String">
+			<fieldDescription><![CDATA[dedicacionSemanal]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="DataSetAnioUno" uuid="b9d9f970-671d-4013-ad3a-52df23f07f05">
+		<queryString language="SQL">
+			<![CDATA[]]>
+		</queryString>
+		<field name="descripcion" class="java.lang.String">
+			<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+		</field>
+		<field name="valor" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[valor]]></fieldDescription>
+		</field>
+		<variable name="total1" class="java.math.BigDecimal" resetType="None" incrementType="Report" calculation="Sum">
+			<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="DatasetRROtrasInst" uuid="21b5e566-13bc-481b-8679-aba2b964e405">
+		<field name="anio" class="java.lang.String">
+			<fieldDescription><![CDATA[anio]]></fieldDescription>
+		</field>
+		<field name="nombreApellido" class="java.lang.String">
+			<fieldDescription><![CDATA[nombreApellido]]></fieldDescription>
+		</field>
+		<field name="entidadSubsidio" class="java.lang.String">
+			<fieldDescription><![CDATA[entidadSubsidio.descripcion]]></fieldDescription>
+		</field>
+		<field name="monto" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[monto]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="DataSetAnioDos" uuid="63b7b4be-1845-4d3b-b0b4-d73beed7d5d6">
+		<field name="descripcion" class="java.lang.String">
+			<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+		</field>
+		<field name="valor" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[valor]]></fieldDescription>
+		</field>
+		<variable name="total1" class="java.math.BigDecimal" resetType="None" incrementType="Report" calculation="Sum">
+			<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+			<initialValueExpression><![CDATA[]]></initialValueExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="New Dataset 2_2" uuid="745fd910-ecee-4a53-b163-683c81a40ea9">
+		<field name="descripcion" class="java.lang.String">
+			<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+		</field>
+		<field name="valor" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[valor]]></fieldDescription>
+		</field>
+		<variable name="total1" class="java.math.BigDecimal" resetType="None" calculation="Sum">
+			<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<subDataset name="New Dataset 2_3" uuid="5cb25999-3ebf-438c-a39e-c2adf47f3c56">
+		<field name="descripcion" class="java.lang.String">
+			<fieldDescription><![CDATA[descripcion]]></fieldDescription>
+		</field>
+		<field name="valor" class="java.math.BigDecimal">
+			<fieldDescription><![CDATA[valor]]></fieldDescription>
+		</field>
+		<variable name="total1" class="java.math.BigDecimal" resetType="None" calculation="Sum">
+			<variableExpression><![CDATA[$F{valor}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="proyecto" class="entidades.proyectoWeb.ProyectoWeb"/>
+	<parameter name="IMAGEN" class="java.lang.String"/>
+	<queryString language="ejbql">
+		<![CDATA[Select p from ProyectoWeb p  WHERE p = $P{proyecto}]]>
+	</queryString>
+	<field name="antecedentes" class="java.lang.String"/>
+	<field name="aprobado" class="java.lang.Boolean"/>
+	<field name="camposAplicacion" class="java.util.List"/>
+	<field name="capacitacionFormacionRH" class="java.lang.String"/>
+	<field name="class" class="java.lang.Class"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="convocatoria" class="entidades.proyectoWeb.Convocatoria"/>
+	<field name="cronogramaTrabajo" class="java.lang.String"/>
+	<field name="fechaFinalizacion" class="java.util.Date"/>
+	<field name="fechaInicio" class="java.util.Date"/>
+	<field name="finalizado" class="java.lang.Boolean"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="keywords" class="java.util.List"/>
+	<field name="lineaInvestigacion" class="java.lang.String">
+		<fieldDescription><![CDATA[lineaInvestigacion.descripcion]]></fieldDescription>
+	</field>
+	<field name="localizacionOtra" class="java.lang.String"/>
+	<field name="localizaciones" class="java.util.List"/>
+	<field name="lstArchivoWeb" class="java.util.List"/>
+	<field name="metodologia" class="java.lang.String"/>
+	<field name="objetivoEspecificoHipotesis" class="java.lang.String"/>
+	<field name="objetivoGral" class="java.lang.String"/>
+	<field name="objetivoSocioeconomico" class="java.lang.String">
+		<fieldDescription><![CDATA[objetivoSocioeconomico.descripcion]]></fieldDescription>
+	</field>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="palabrasClaves" class="java.util.List"/>
+	<field name="participacionesWeb" class="java.util.List"/>
+	<field name="presupuestoWeb" class="java.lang.String">
+		<fieldDescription><![CDATA[presupuestoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioCuatro" class="entidades.proyectoWeb.PresupuestoWebDetalladoCuatro"/>
+	<field name="presupuestoWebAnioDos" class="entidades.proyectoWeb.PresupuestoWebDetalladoDos"/>
+	<field name="presupuestoWebAnioTres" class="entidades.proyectoWeb.PresupuestoWebDetalladoTres"/>
+	<field name="presupuestoWebAnioUno" class="entidades.proyectoWeb.PresupuestoWebDetallado"/>
+	<field name="proyectoIniciacion" class="java.lang.Boolean"/>
+	<field name="proyectoOrientado" class="java.lang.Boolean"/>
+	<field name="recursosSubsidios" class="java.util.List"/>
+	<field name="relevanciaProblema" class="java.lang.String"/>
+	<field name="resumen" class="java.lang.String"/>
+	<field name="subDisciplinaCientificaOtra" class="java.lang.String"/>
+	<field name="subDisciplinasCientificas" class="java.util.List"/>
+	<field name="summary" class="java.lang.String"/>
+	<field name="tipoProyecto" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoProyecto.descripcion]]></fieldDescription>
+	</field>
+	<field name="title" class="java.lang.String"/>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="unidadEjecutora" class="java.lang.String">
+		<fieldDescription><![CDATA[unidadEjecutora.descripcion]]></fieldDescription>
+	</field>
+	<field name="unidadEjecutoraOtra" class="java.lang.String"/>
+	<field name="unidadAcademica" class="java.lang.String">
+		<fieldDescription><![CDATA[unidadAcademica.descripcion]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioUno.bienConsumoWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioUno.bienConsumoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioUno.bienNoPersonalWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioUno.bienNoPersonalWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioUno.bienUsoWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioUno.bienUsoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioUno.gastosViajeWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioUno.gastosViajeWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioDos.bienConsumoWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioDos.bienConsumoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioDos.bienNoPersonalWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioDos.bienNoPersonalWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioDos.bienUsoWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioDos.bienUsoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioDos.gastosViajeWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioDos.gastosViajeWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioTres.bienConsumoWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioTres.bienConsumoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioTres.bienNoPersonalWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioTres.bienNoPersonalWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioTres.bienUsoWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioTres.bienUsoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioTres.gastosViajeWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioTres.gastosViajeWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioCuatro.bienConsumoWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioCuatro.bienConsumoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioCuatro.bienNoPersonalWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioCuatro.bienNoPersonalWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioCuatro.bienUsoWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioCuatro.bienUsoWeb]]></fieldDescription>
+	</field>
+	<field name="presupuestoWebAnioCuatro.gastosViajeWeb" class="java.util.List">
+		<fieldDescription><![CDATA[presupuestoWebAnioCuatro.gastosViajeWeb]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="515" y="0" width="40" height="20" uuid="89956aba-ffbc-4276-8b5f-7c87207e8d87"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="415" y="0" width="100" height="20" uuid="23341e0b-894a-46f4-9bba-73662d1fe844"/>
+				<text><![CDATA[PID - UNCa   Pág.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="513" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="98" width="186" height="20" uuid="e77dc592-5b9b-446b-bc0d-0bc11e56a24c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[I. Identificación del proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="118" width="130" height="20" uuid="38470cb5-67df-4e31-89e6-a5a5d1cbf232"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[1. Nombre del Proyecto:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="131" y="118" width="424" height="20" uuid="b344ecc7-2f31-4a17-b69c-90060d805a36"/>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="65" width="537" height="20" uuid="18336abd-f433-438c-bb19-b35960c26436"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROGRAMA DE DESARROLLO CIENTÍFICO Y TECNOLÓGICO 2014]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="78" width="555" height="20" uuid="17b1cd7c-94fd-4091-88b0-dd753558bc84"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Formulario para la presentación de Proyectos de Investigación y Desarrollo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="373" height="20" uuid="8cb09b4f-dd9b-44a1-9624-2c267b6d280a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDAD NACIONAL DE CATAMARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="20" width="304" height="20" uuid="8a52a7dc-3b65-439f-9d5b-705121f54450"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECRETARÍA DE CIENCIA Y TECNOLOGÍA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="112" y="40" width="315" height="20" uuid="6ce84ac6-55b0-4997-952e-891881421ae6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CONSEJO DE INVESTIGACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="140" width="130" height="20" uuid="957459e3-674f-49c0-9488-0295c162dce7"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[2. Duración del Proyecto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="271" y="140" width="111" height="14" uuid="5de3728d-5c43-4b26-a6d8-cd36a124b92d"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[3. Código de Carga:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yy">
+				<reportElement positionType="Float" x="131" y="140" width="55" height="20" uuid="7bbdb28d-08d1-4c62-9853-08b06b2ffff4"/>
+				<textFieldExpression><![CDATA[$F{fechaInicio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="186" y="140" width="18" height="20" uuid="ac1b78ed-efac-4e4f-a994-f2c01569d733"/>
+				<text><![CDATA[al]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yy">
+				<reportElement positionType="Float" x="204" y="140" width="60" height="20" uuid="bacee885-f6fc-449d-9c07-f3f0b7df1876"/>
+				<textFieldExpression><![CDATA[$F{fechaFinalizacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="385" y="140" width="139" height="14" uuid="90dc6be1-bea7-4aa4-a337-4e535e15c0f7"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="170" width="72" height="20" uuid="ad3e9bfe-e05d-465a-909f-002d06003f31"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[4. Director:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="72" y="170" width="480" height="20" uuid="747d7db4-11f5-45eb-8148-84c9c579e6c6"/>
+				<textFieldExpression><![CDATA[""+$F{participacionesWeb}.get(0).toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="190" width="72" height="20" uuid="478294fa-2fe9-4f1a-ae80-414ee5c3b16a"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[5. Unidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="4" y="210" width="100" height="20" uuid="2fe78327-2c42-4fc2-976f-6b4979dfccf5"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Unidad Académica:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="4" y="230" width="100" height="20" uuid="762544b4-8789-4218-8d41-61ca342e651e"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Unidad  Ejecutora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="4" y="267" width="145" height="20" uuid="9a3196a2-23f4-4c03-ab11-015dfc467b51"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Localización del Proyecto:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="112" y="230" width="443" height="20" isRemoveLineWhenBlank="true" uuid="a0ef67f0-be3d-4c9f-a74c-74b020ad7e8a"/>
+				<textFieldExpression><![CDATA[""+$F{unidadEjecutora}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="112" y="250" width="443" height="20" isRemoveLineWhenBlank="true" uuid="4296fe0f-c236-4f36-83ad-49e922f8947b"/>
+				<textFieldExpression><![CDATA[$F{unidadEjecutoraOtra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="141" y="267" width="414" height="20" uuid="beb856fb-599e-425e-9581-41836cb7dd94"/>
+				<textFieldExpression><![CDATA[$F{localizaciones}.size()>0? $F{localizaciones}.get(0).toString() : ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="141" y="287" width="414" height="20" isRemoveLineWhenBlank="true" uuid="73ce050a-8fc3-4a46-87d6-1b5ba534c07d"/>
+				<textFieldExpression><![CDATA[$F{localizacionOtra}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="113" y="210" width="442" height="20" uuid="8b96b78b-0cbb-4b8b-8820-0da3c6004b9a"/>
+				<textFieldExpression><![CDATA[$F{unidadAcademica}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="307" width="100" height="20" uuid="7a30c340-7ffc-4bde-8cb8-5bd9e964ed62"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[6. Linea Prioritaria:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="104" y="307" width="451" height="20" uuid="312d4ae6-3e57-4783-8cdd-89dde65ec0e4"/>
+				<textFieldExpression><![CDATA[$F{lineaInvestigacion}.toString()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="337" width="100" height="20" uuid="90c0ed0b-0a4c-4b8c-9b98-1c4759024951"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[7. Características:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="4" y="353" width="100" height="20" uuid="54420f00-54dc-4df5-9f5c-8f5a3f99629e"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Área temática: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="4" y="387" width="131" height="20" uuid="f8a045b7-6489-460d-b5af-b5cf9f94ba5d"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Campo de Aplicación: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="4" y="370" width="131" height="20" uuid="04d49786-2c5d-4a4f-87c5-cbbd342bde7c"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Disciplina Científica:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="4" y="423" width="131" height="20" uuid="7f6af922-ccff-4466-81d7-019d71edffd1"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Objetivo Socioeconómico: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="118" y="387" width="437" height="20" uuid="aa70706b-f3e3-454f-8396-bb9814f32c07"/>
+				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).toString() : ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="118" y="403" width="437" height="20" uuid="e9b51375-c892-4e43-936d-876d0c3f917b"/>
+				<textFieldExpression><![CDATA[$F{subDisciplinaCientificaOtra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="118" y="370" width="437" height="20" uuid="4de09cce-10c3-4c96-b5b0-00fe2ed462d6"/>
+				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).getDisciplinaCientifica().toString() : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="118" y="353" width="437" height="20" uuid="252add36-75bf-481a-8a93-c88b5c7d9f2a"/>
+				<textFieldExpression><![CDATA[$F{subDisciplinasCientificas}.size()>0? $F{subDisciplinasCientificas}.get(0).getDisciplinaCientifica().getAreaTematica().toString() : ""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="157" y="423" width="398" height="20" uuid="9b6b8084-845b-4328-b786-254bd20d9ee5"/>
+				<textFieldExpression><![CDATA[""+$F{objetivoSocioeconomico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="443" width="100" height="20" uuid="8554e0e3-4904-4da1-ab73-44e6020ae856"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[8. Categoría:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="486" width="118" height="20" uuid="f3f8822b-739c-4837-8ed5-adeaf28bd7d6"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[9. Tipo de Actividades:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="118" y="487" width="375" height="20" uuid="c93e7d0a-7fd8-4c49-994d-fd03cd906cfd"/>
+				<textFieldExpression><![CDATA[$F{tipoProyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="101" y="443" width="253" height="20" uuid="af5ce9cb-9ad8-4bdf-bbbf-4a812fd8bf4d"/>
+				<textFieldExpression><![CDATA[$F{proyectoOrientado}?"Proyecto Orientado":""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="101" y="463" width="281" height="20" uuid="50e60938-3304-4a1b-9741-d20a22e4db01"/>
+				<textFieldExpression><![CDATA[$F{proyectoIniciacion}?"Proyecto de Iniciación":""]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="72" height="67" uuid="d6b6131e-378f-4cc2-8502-d6d41b8696b3"/>
+				<imageExpression><![CDATA[$P{IMAGEN}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement positionType="Float" x="271" y="154" width="111" height="14" uuid="d5be26fe-ea4c-4a20-a53d-d1fec07cc6c4"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Código SECYT:]]></text>
+			</staticText>
+		</band>
+		<band height="257">
+			<staticText>
+				<reportElement x="1" y="2" width="186" height="20" uuid="f0ec3297-2a41-415a-be4a-74cf9c9fb4fd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[II. Resumen del Proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="99" width="131" height="20" isRemoveLineWhenBlank="true" uuid="0cef775d-9006-4ba8-b116-0222ed4f7025"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Palabras Claves:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="18" width="117" height="20" isRemoveLineWhenBlank="true" uuid="8218c627-438e-411f-99a8-8cc5265e7055"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del Proyecto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="50" width="131" height="20" isRemoveLineWhenBlank="true" uuid="5592f558-3d34-43ff-9681-0260908b32ae"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RESUMEN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="119" y="18" width="424" height="32" isRemoveLineWhenBlank="true" uuid="c73d9863-11af-4f73-8dca-da34227d4080"/>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="70" width="553" height="24" isRemoveLineWhenBlank="true" uuid="5f1811b1-df45-4457-b227-00ecb7e3fd5a"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{resumen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="86" y="99" width="465" height="20" isRemoveLineWhenBlank="true" uuid="84e160e2-4c47-40b4-b4bc-a9ab34747c47"/>
+				<textFieldExpression><![CDATA[$F{palabrasClaves}.join(",")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="160" width="131" height="20" isRemoveLineWhenBlank="true" uuid="75b1997e-eba7-4149-b6e7-82feb57628c0"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SUMMARY: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="4" y="128" width="83" height="20" isRemoveLineWhenBlank="true" uuid="853dcd40-5b47-4492-a524-ea8b6e54e6a8"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Project title:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="205" width="55" height="20" isRemoveLineWhenBlank="true" uuid="0ba14949-7a93-4487-9649-c375c60b62d1"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Keywords:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="69" y="205" width="482" height="20" isRemoveLineWhenBlank="true" uuid="13d3cfcb-59d8-4be6-b51b-e8a1f116e10b"/>
+				<textFieldExpression><![CDATA[$F{keywords}.join(",")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="89" y="128" width="456" height="32" isRemoveLineWhenBlank="true" uuid="da5d3e47-7c95-450e-b721-9f53187fb46e"/>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="180" width="553" height="24" isRemoveLineWhenBlank="true" uuid="9eed03e3-05de-492f-b21a-f8a83624323e"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{summary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="234" width="218" height="20" uuid="083f8c1a-9e60-44d1-97c7-33baaedb2652"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[III. Formulación General del Proyecto]]></text>
+			</staticText>
+		</band>
+		<band height="111">
+			<staticText>
+				<reportElement positionType="Float" x="1" y="0" width="100" height="20" uuid="8750ad0d-c16d-4f54-a09f-64cc5865e4cd"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ANTECEDENTES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="55" width="100" height="20" uuid="5dd93d0a-e1e5-49d2-8ff9-2134637933d8"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[OBJETIVO GENERAL]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="20" width="553" height="32" uuid="728b808e-ec5b-4920-8f15-e921992c01c9"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{antecedentes}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="75" width="553" height="31" uuid="223dd310-1fdf-407f-b477-2779fc77f3da"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{objetivoGral}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="141">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="343" height="20" uuid="0b2ad93f-e139-4c5f-a27d-dbdfbfd49ac5"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[OBJETIVOS ESPECÍFICOS E HIPÓTESIS DE TRABAJO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="46" width="170" height="20" uuid="61a3429d-813b-484b-a13a-9752f670a6f4"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RELEVANCIA DEL PROBLEMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="93" width="271" height="20" uuid="49306588-ada0-4de8-aaae-5cf1b96e9a46"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[METODOLOGÍA, DISEÑO EXPERIMENTAL Y MÉTODOS]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="20" width="553" height="24" uuid="b855efe8-be80-43ce-9b41-077c177cb0b9"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{objetivoEspecificoHipotesis}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="66" width="553" height="24" uuid="098484b3-1906-4e19-9901-67fc48a00b7d"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{relevanciaProblema}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="113" width="553" height="24" isRemoveLineWhenBlank="true" uuid="9c371fd9-ecc5-492e-8c5c-87e19386d58a"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{metodologia}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="47">
+			<staticText>
+				<reportElement positionType="Float" x="2" y="0" width="271" height="20" uuid="e89c1178-e9fc-4621-ba11-f06376fab6e5"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[PLAN Y CRONOGRAMA DE TRABAJO]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="26" width="553" height="20" isRemoveLineWhenBlank="true" uuid="81db5805-35a6-425d-b380-73af0b29f773"/>
+				<textElement textAlignment="Justified" markup="html"/>
+				<textFieldExpression><![CDATA[$F{cronogramaTrabajo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="104">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="334" height="20" uuid="6a650a0f-6e4b-47ee-a3a1-f03a1468cc5d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IV. Datos personales del Personal Afectado al Proyecto]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement positionType="Float" x="0" y="20" width="543" height="83" uuid="8c1f128d-e6ea-4b5c-a18c-3af2151b72f6"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="3370c981-bd5c-4515-8f6b-5b5d54dd8143">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{participacionesWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="104" uuid="e5d76272-765b-4117-88e7-e08dfe0c7a82">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="104" height="32" backcolor="#C0C0C0" uuid="6602a1c2-f6a8-4578-a3d5-79bf644d6021"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Apellido y Nombre]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="104" height="20" uuid="a82bec9b-dd3e-4946-9100-f97faefaa491"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{investigador}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="870729f4-acb3-4cee-ad17-0b9d2d1ce023">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="78" height="32" backcolor="#C0C0C0" uuid="82cb5926-e6fa-42e1-9f83-3a01c92dee89"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[CUIL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="78" height="20" uuid="895ad50d-2926-4162-81bf-ccdebfd51484"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{cuil}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="66" uuid="164a5d33-37c8-4470-9e48-38a2b5b2713c">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="66" height="32" backcolor="#C0C0C0" uuid="d7e8da73-bfdc-4f13-b451-e98e26a0535e"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Rol]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="66" height="20" uuid="e2735b15-58bc-4f3b-b2be-02508d3c6291"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="9"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{rol}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="104" uuid="4fab0edc-b212-49f1-ac4c-45ffdc79e722">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="104" height="32" backcolor="#C0C0C0" uuid="e6367ba1-d3f4-4dec-b633-e64e5f827a52"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Categoría]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="104" height="20" uuid="eb92ed8e-a8ce-4715-beda-a64e394c148b"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textElement>
+									<font size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{categorizaciones}.join("\n")]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="68" uuid="c5e98d48-dae1-40dd-98c8-ce066ec0c17b">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="68" height="32" backcolor="#C0C0C0" uuid="452c0ecc-4b3a-488d-a3a2-c145ec6636fa"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Dedicación Semanal]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="68" height="20" uuid="eacfa8a4-9749-454b-a5ba-07a923d69b7d"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+								<textFieldExpression><![CDATA[$F{dedicacionSemanal}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="136" uuid="8cee80be-b602-4d47-8cf8-de5cf4c195a3">
+						<jr:tableHeader height="30" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="136" height="32" backcolor="#C0C0C0" uuid="83868abd-98c7-4324-a5da-f7b1c8379854"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Firma]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="28" rowSpan="1"/>
+						<jr:detailCell height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="136" height="20" uuid="aefbfe9c-78bf-4a22-9c03-88c07eaf347a"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineStyle="Solid"/>
+									<topPen lineWidth="0.5" lineStyle="Solid"/>
+									<leftPen lineWidth="0.5" lineStyle="Solid"/>
+									<bottomPen lineWidth="0.5" lineStyle="Solid"/>
+									<rightPen lineWidth="0.5" lineStyle="Solid"/>
+								</box>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="434">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="551" height="20" uuid="7a080b0b-a674-4082-950a-3afc03f15456"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[V. Plan de Ejecución Financiera.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="20" width="303" height="20" uuid="df57e83a-133e-47b8-bda7-1792a6c4c537"/>
+				<text><![CDATA[1. Plan de ejecución financiera para los dos y/o cuatro años.]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="279" width="360" height="20" isRemoveLineWhenBlank="true" uuid="2a0ecf21-b4df-4145-b068-2e4f268b45d1">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioUno.bienConsumoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetAnioUno" uuid="1cbbcebb-e5db-4ac7-9d01-b9a688af2513">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioUno.bienConsumoWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="92db584b-531c-4364-a98c-70404886f179">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="7717a7c3-39f1-4d12-a9fd-ebe1bb63e838"/>
+								<text><![CDATA[BIENES DE CONSUMO AÑO 1]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="5514c3f9-c5e9-4cf5-a8ef-a19065b24cac"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="d115a838-a1b0-4b49-bd73-7a706bf2b4c2"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="3ab08ca9-87b9-47fa-80ac-966b9386ef6a">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="a35e26e6-cab1-497d-84b8-11bd256d4244"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="ffd4940b-fa0a-48ad-b016-241bbe77c5b7"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="359" width="360" height="20" isRemoveLineWhenBlank="true" uuid="7c0b2e3d-a2fe-453f-ba63-e453de75dfd9">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioUno.bienNoPersonalWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetAnioUno" uuid="fbdbd183-ae9e-43b5-b4a9-3ecd9bee5573">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioUno.bienNoPersonalWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="6d345765-d67a-44e4-904d-87599898d61b">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="b8ff9fc4-55dd-4a0f-8628-d1ae8bf000ca"/>
+								<text><![CDATA[SERVICIOS NO PERSONALES AÑO 1]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="95f0dfce-30fc-4280-8ce7-87fcf62ac74a"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="1dd561ae-0874-44df-97b1-0a80969b0415"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="192d2511-7427-4678-aa08-50709caea21b">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="4a4b4487-9342-4027-886d-aaa3467dc2e5"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="8cf625aa-4ad2-4655-8a06-0c9be06d3c11"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="239" width="360" height="20" isRemoveLineWhenBlank="true" uuid="08df39af-d10d-4ad6-9d3d-d8bbd730e342">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioUno.bienUsoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetAnioUno" uuid="f909760e-d8b8-4cd4-884f-dc8d5c92813b">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioUno.bienUsoWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="e169af39-d895-4312-bf48-2c1e28fefab4">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="eacc8b02-66a3-4732-9919-08b33ae971bf"/>
+								<text><![CDATA[BIENES DE CAPITAL AÑO 1]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="89e31299-3dcd-41fc-8149-0d4d49e248b5"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="6936ab15-47e0-4558-9a64-96e1e942720d"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="2c4da28d-2e67-4af0-b8b8-19299ae4cff1">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="17ea4b4b-cb9d-404d-851f-176fa0ac511b"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="7285c210-f219-43ec-8f42-8f3456abe8fc"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="319" width="360" height="20" isRemoveLineWhenBlank="true" uuid="6ffdb809-94b0-4315-a7b8-22fb52ef3ad0">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioUno.gastosViajeWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetAnioUno" uuid="b771bb3e-3437-4fa9-8324-2e8aac791c5f">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioUno.gastosViajeWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="ede93b65-f281-4504-825c-b0d6979afde5">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="3113240e-c508-4830-bc02-f4d0ed5ce243"/>
+								<text><![CDATA[GASTOS DE VIAJE AÑO 1]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="012c92fa-bac9-42e6-9964-dc62e8b1f436"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="f2c7091e-9c84-407b-b9e3-cc490c9069a6"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="2ad2b057-876e-42ec-ae46-5e95cd34d6db">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="72489a51-22b1-4d47-b474-5fd40a50eaad"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="d3beea6f-4137-45af-a122-a7c313fe57da"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="215" width="303" height="20" isRemoveLineWhenBlank="true" uuid="22191a60-a489-4916-9bf0-78d40e7537ba"/>
+				<text><![CDATA[2. Plan de ejecución financiera detallado]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="259" width="400" height="20" isRemoveLineWhenBlank="true" uuid="0ff0f1e5-85ec-4f54-987a-fe7ac8bbbb8a">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioUno.bienUsoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Bienes de Capital Año 1: \$ " + $F{presupuestoWebAnioUno.bienUsoWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="4" y="411" width="360" height="20" isRemoveLineWhenBlank="true" uuid="35234dfe-dd49-40be-9399-0332261fe537"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("Total Año 1: \$ " + ($F{presupuestoWebAnioUno.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioUno.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioUno.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioUno.gastosViajeWeb}.valor.sum(0))).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="339" width="400" height="20" isRemoveLineWhenBlank="true" uuid="28e0c880-7b32-42df-9e53-3f7c04d439ee">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioUno.gastosViajeWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Gastos de Viaje Año 1: \$ " + $F{presupuestoWebAnioUno.gastosViajeWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="299" width="400" height="20" isRemoveLineWhenBlank="true" uuid="5720459e-429c-46a9-a951-794ebc0eb2b7">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioUno.bienConsumoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Bienes de Consumo Año 1: \$ " + $F{presupuestoWebAnioUno.bienConsumoWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="379" width="400" height="20" isRemoveLineWhenBlank="true" uuid="10e6a992-df10-404a-9f5d-e4f0175cc5a9">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioUno.bienNoPersonalWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Servicios no Personales Año 1: \$ " + $F{presupuestoWebAnioUno.bienNoPersonalWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="174" y="92" width="60" height="20" isRemoveLineWhenBlank="true" uuid="24435c57-8c35-4e07-94db-6218cef14f19"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.bienConsumoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="174" y="112" width="60" height="20" isRemoveLineWhenBlank="true" uuid="18adb8b0-be4f-4a09-a45c-f071a4ebf78c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="174" y="132" width="60" height="20" isRemoveLineWhenBlank="true" uuid="036cc495-4ba2-4652-a308-7b7e1df0f107"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.bienNoPersonalWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="174" y="152" width="60" height="20" isRemoveLineWhenBlank="true" uuid="9e315256-bf26-499f-9e1c-c4496af59943"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioUno.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioUno.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioUno.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="174" y="72" width="60" height="20" isRemoveLineWhenBlank="true" uuid="52a0b057-7db0-48b6-875a-7110b6014e8b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.bienUsoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="54" y="72" width="120" height="20" uuid="e91bd06a-afa6-428f-b705-03aee8baafaa"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Bienes de Capital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="54" y="92" width="120" height="20" uuid="4e59ef56-9677-4d12-b07d-30a14de29c15"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Bienes de Consumo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="54" y="112" width="120" height="20" uuid="99f94114-a6bc-42d5-ab90-2dae1add0d5b"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Gastos de Viaje]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="54" y="152" width="120" height="20" uuid="a2dc1a12-0bf8-4383-a849-6cf4ef7b7c75"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="54" y="132" width="120" height="20" uuid="c24906ca-6715-4f7f-b652-4f008971745e"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[Servicios No Personales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="54" y="52" width="120" height="20" uuid="a5a054e3-a02f-4db3-bf9f-472cad5ba4aa"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gastos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="174" y="52" width="60" height="20" uuid="1393560f-4de3-47d2-ab8d-dc119a03cd20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año 1]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="234" y="112" width="60" height="20" isRemoveLineWhenBlank="true" uuid="7e2c40ab-c6c8-4166-b445-d044ad714851"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioDos.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="234" y="152" width="60" height="20" isRemoveLineWhenBlank="true" uuid="cd5e1073-d92d-41bb-a45f-7a3665eeb0c0"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioDos.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioDos.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioDos.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="234" y="132" width="60" height="20" isRemoveLineWhenBlank="true" uuid="057df88d-207e-48fb-935a-aa35a5cb2c04"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="234" y="52" width="60" height="20" uuid="14ad9ed2-371c-4eae-a1fd-2c69b6d806e0"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año 2]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="234" y="72" width="60" height="20" isRemoveLineWhenBlank="true" uuid="ec3fd633-2f21-48a0-ad19-581b170a4fa9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioDos.bienUsoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="234" y="92" width="60" height="20" isRemoveLineWhenBlank="true" uuid="6dab5718-045c-4cff-8301-f17f5e3f2ce6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioDos.bienConsumoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="294" y="72" width="60" height="20" isRemoveLineWhenBlank="true" uuid="3158a6ee-8485-4754-a3be-eb9db983061b">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioTres.bienUsoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="294" y="92" width="60" height="20" isRemoveLineWhenBlank="true" uuid="2b189ad9-08e7-4087-a12b-e70bbd4d7019">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioTres.bienConsumoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="294" y="132" width="60" height="20" isRemoveLineWhenBlank="true" uuid="33abba72-a8a1-4bdc-8b33-35c6f1d7157d">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioTres.bienNoPersonalWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="294" y="112" width="60" height="20" isRemoveLineWhenBlank="true" uuid="fe59860d-8016-4760-9394-09eb307700a0">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioTres.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="294" y="52" width="60" height="20" uuid="5b3f2ba7-a00b-4fad-9a9c-9edbad0b1327">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año 3]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="294" y="152" width="60" height="20" isRemoveLineWhenBlank="true" uuid="de37cdcd-0685-423d-a0ac-5fe4aaba3f40">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioTres.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioTres.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioTres.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioTres.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="354" y="92" width="60" height="20" isRemoveLineWhenBlank="true" uuid="f95a9359-d41e-48ec-bfed-13889aa5f0c3">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioCuatro.bienConsumoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="354" y="132" width="60" height="20" isRemoveLineWhenBlank="true" uuid="5cb9c10e-3672-4de7-99ec-3fe3f51430d7">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="354" y="72" width="60" height="20" isRemoveLineWhenBlank="true" uuid="abaee884-f562-4ff4-80b5-c31e3e9db510">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioCuatro.bienUsoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="354" y="112" width="60" height="20" isRemoveLineWhenBlank="true" uuid="de3d47aa-fc63-4229-b4ba-4d8b83014cdd">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioCuatro.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="354" y="52" width="60" height="20" uuid="6a0b96b2-39b2-4b4f-920e-37ef7ad42bba">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año 4]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="354" y="152" width="60" height="20" isRemoveLineWhenBlank="true" uuid="7c3df9a0-560d-4ee4-a77f-a12ddff58b50">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioCuatro.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioCuatro.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioCuatro.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="414" y="112" width="80" height="20" isRemoveLineWhenBlank="true" uuid="aec85974-56ad-497f-b2c7-15c7f01a1bf8"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.gastosViajeWeb}.valor.sum(0) +
+       $F{presupuestoWebAnioDos.gastosViajeWeb}.valor.sum(0)+
+    $F{presupuestoWebAnioTres.gastosViajeWeb}.valor.sum(0)+
+      $F{presupuestoWebAnioCuatro.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="414" y="72" width="80" height="20" isRemoveLineWhenBlank="true" uuid="71c30c4e-bc4d-4d86-b07e-440e37ba82ed"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.bienUsoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioDos.bienUsoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioTres.bienUsoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioCuatro.bienUsoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="414" y="132" width="80" height="20" isRemoveLineWhenBlank="true" uuid="dcf4d8a9-1e5f-451c-bc33-764ce319c67f"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.bienNoPersonalWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioTres.bienNoPersonalWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="414" y="52" width="80" height="20" uuid="44213c54-c0fa-47a3-902d-bf5a2c6ca192"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totales]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="414" y="92" width="80" height="20" isRemoveLineWhenBlank="true" uuid="20509a77-a755-45a2-9cc6-f4dbc58caec9"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.bienConsumoWeb}.valor.sum(0) +
+
+
+          $F{presupuestoWebAnioDos.bienConsumoWeb}.valor.sum(0) +
+
+
+          $F{presupuestoWebAnioTres.bienConsumoWeb}.valor.sum(0) +
+
+
+          $F{presupuestoWebAnioCuatro.bienConsumoWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="414" y="152" width="80" height="20" isRemoveLineWhenBlank="true" uuid="e209e90a-753a-4051-bc87-e2b386c067bb"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{presupuestoWebAnioUno.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioUno.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioUno.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioUno.gastosViajeWeb}.valor.sum(0) +
+          $F{presupuestoWebAnioDos.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioDos.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioDos.gastosViajeWeb}.valor.sum(0)+
+          $F{presupuestoWebAnioTres.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioTres.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioTres.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioTres.gastosViajeWeb}.valor.sum(0)+
+          $F{presupuestoWebAnioCuatro.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioCuatro.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioCuatro.gastosViajeWeb}.valor.sum(0)]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="200">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="6" width="360" height="20" isRemoveLineWhenBlank="true" uuid="6f20becf-92e0-4e32-8cb3-a6469ef7c207">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioDos.bienUsoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetAnioDos" uuid="5b21e77e-bb92-44cd-abbb-40c87e3dc861">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioDos.bienUsoWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="62ff9375-6c04-41ab-bfd0-4ff6e6f04979">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="69586e99-17d4-409e-9043-fa545145f3a2"/>
+								<text><![CDATA[BIENES DE CAPITAL AÑO 2]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="fa63de8d-b791-4004-8526-a2982e17c867"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="5c26c040-95c1-45c1-a908-c722dc6120c2"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="78d86a5b-650f-44f8-89b1-a4a8d0f6fa9f">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="737a8c00-cf0b-4797-992d-5df41d9b86f1"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="94549a4a-5ed3-4dc3-b22f-5e238297e880"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="85" width="360" height="20" isRemoveLineWhenBlank="true" uuid="0b57c860-2847-4ce8-abd8-721e9a4c034c">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioDos.gastosViajeWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetAnioDos" uuid="430ab9a6-551e-4e0b-ab5d-ee748b68a00d">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioDos.gastosViajeWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="c6e0ab29-60c8-459e-8bd8-821218722ac9">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="657b5413-9562-4936-8c31-e265a4b8b5ec"/>
+								<text><![CDATA[GASTOS DE VIAJE AÑO 2]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="b7913096-5713-41ea-8ec4-8b12109ebfb5"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="03747f1a-6111-4331-83dd-f0cab65dbf8f"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="0eb7d1c2-c2ce-4f23-9be3-20612b93633a">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="e4c9171f-08ed-49bb-8a68-407cc81205be"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="4bd9421e-84a8-418c-a5a5-f03c512ec508"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="45" width="360" height="20" isRemoveLineWhenBlank="true" uuid="5cd70693-6257-49af-a501-8e2480e4c79f">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioDos.bienConsumoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetAnioDos" uuid="817ea515-b5df-44aa-8f5a-584602767448">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioDos.bienConsumoWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="04c139df-e5b3-4a97-b787-aeb6cef01573">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="ba39c8dc-c61e-487c-9b8c-298301ff463b"/>
+								<text><![CDATA[BIENES DE CONSUMO AÑO 2]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="49c4e821-1dc6-4583-8e8f-c390f2d8e732"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="fb2604bc-e056-4ded-8d93-4f3d8471ec37"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="f149300d-1164-46d6-afd3-2a861d445002">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="898e3762-78bd-4bcd-8b78-bbb522662005"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="ceddd85e-99e7-4120-8f28-06af14ce78fa"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="126" width="360" height="20" isRemoveLineWhenBlank="true" uuid="38898949-3e96-4cf1-8e0b-5c9cc4da04e3">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioDos.bienNoPersonalWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataSetAnioDos" uuid="e6660802-c97b-4ab6-8cff-8e52a26c06ca">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioDos.bienNoPersonalWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="88741c6d-e5c3-4de2-8af8-f19354df503e">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="002da27d-08b4-4a09-ae93-e374bfa0fb33"/>
+								<text><![CDATA[SERVICIOS NO PERSONALES AÑO 2]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="bc546af4-5f1b-440a-931c-638345bb99b4"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="ce7a0e8d-38dd-4a24-a87c-65e5cd9a9287"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="187810e3-2203-4a4d-aef7-c0a409c9cc74">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="9f923d80-8a93-44dd-bc33-8d9d9c85e07b"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="8713e421-10d1-40c6-8f4b-b3b3fc6d13f7"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="26" width="400" height="20" isRemoveLineWhenBlank="true" uuid="299575ec-289f-462e-9fb7-4f8ed3e3c94b">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioDos.bienUsoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Bienes de Capital Año 2: \$ " + $F{presupuestoWebAnioDos.bienUsoWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="106" width="400" height="20" isRemoveLineWhenBlank="true" uuid="a859e5cd-726b-4569-a169-a0ced0b60e64">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioDos.gastosViajeWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Gastos de Viaje Año 2: \$ " + $F{presupuestoWebAnioDos.gastosViajeWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="4" y="178" width="360" height="20" uuid="a08c5fe2-4842-4aae-aae1-7a7657637aba"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("Total Año 2: \$ " + ($F{presupuestoWebAnioDos.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioDos.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioDos.gastosViajeWeb}.valor.sum(0))).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="146" width="400" height="20" isRemoveLineWhenBlank="true" uuid="cd976cfc-3773-4783-8fcb-1224e310a304">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioDos.bienNoPersonalWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Servicios no Personales Año 2: \$ " + $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="66" width="400" height="20" isRemoveLineWhenBlank="true" uuid="00cf5a12-3c3e-4ae3-b788-1c75d76585d6">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioDos.bienConsumoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Bienes de Consumo Año 2: \$ " + $F{presupuestoWebAnioDos.bienConsumoWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="199">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="45" width="360" height="20" isRemoveLineWhenBlank="true" uuid="d06b4c68-857b-4498-8a41-82209e89a196">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioTres.bienConsumoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2_2" uuid="a3c6efe0-7068-4361-91c8-f8339fff9703">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioTres.bienConsumoWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="e2699b52-5c07-43e8-be20-8ea1b6720848">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="9cf14a94-dc1a-4006-8781-2db59750fd5f"/>
+								<text><![CDATA[BIENES DE CONSUMO AÑO 3]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="2d309aee-ca2b-4bc6-a1e6-31665288e1d3"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="0d32cf8e-8cb7-4950-970b-8be99dbe2679"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="2d646c7d-d14a-4f8f-aa48-1281ae83b1dd">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="e62b8275-4661-4a28-82a1-371a8b836c10"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="144064c6-b107-45ed-9737-df8ffc197d3b"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="131" width="360" height="20" isRemoveLineWhenBlank="true" uuid="35f803bf-6ebf-4231-be0c-6e3b73d08ebe">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioTres.bienNoPersonalWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2_2" uuid="6bbcc731-4f01-4b84-972c-365ca9012bbc">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioTres.bienNoPersonalWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="78ace7fd-a43e-49f4-9698-ca36bbeb301a">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="bb18be44-03e2-4210-8187-84f9fe519ca4"/>
+								<text><![CDATA[SERVICIOS NO PERSONALES AÑO 3]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="bc6615ea-6525-40cb-9d79-cce2f1deeb3f"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="65bf8750-deb0-4fd5-ad93-d6ae24234a1a"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="0dd81955-bd1d-4aea-9704-355822c7962f">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="a88d9a96-fee9-4c26-88fe-4760fe29b70e"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="6822c806-93b8-42c7-9ddf-509df475f204"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="3" width="360" height="20" isRemoveLineWhenBlank="true" uuid="f6ac62be-4cbc-4b64-b675-75876960c799">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioTres.bienUsoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2_2" uuid="097c0602-d890-438c-b64b-eb3af020a87d">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioTres.bienUsoWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="b3d3b6e7-0641-4536-9274-fa07113ffb42">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="22c5c025-0923-4551-885e-50ce7bec330b"/>
+								<text><![CDATA[BIENES DE CAPITAL AÑO 3]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="373e3571-50af-4eec-bd5c-6c5d84f89820"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="ad057d8b-8db7-47a8-b9fd-2899a6368112"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="492cafb2-e671-4a3a-8b26-36d8ae20653f">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="3c3713a8-e52b-46af-89cb-822ee5902a4a"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="a3f655ab-9001-46c3-84bd-c8fc2f783081"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="87" width="360" height="20" isRemoveLineWhenBlank="true" uuid="19c9df9f-898a-4bfc-b07f-30b3485c3c73">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioTres.gastosViajeWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2_2" uuid="6cbc92dc-dac9-4d98-8cb8-e6d2d4c79f5a">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioTres.gastosViajeWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="15e9a2ba-9a9f-4812-9d4b-03b0eb64bf94">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="ed284eb9-6bff-483e-936e-632a977d09d5"/>
+								<text><![CDATA[GASTOS DE VIAJE AÑO 3]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="96b05b45-40eb-41d8-92e8-4809d57af6ac"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="5e0b03f8-56b9-4d29-884e-18f82df3fc54"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="ca76b683-3223-4001-a3a4-aba01cf7e18c">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="b8da3852-47e2-4c62-82e1-5c5e88391c06"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="8ecad67c-5153-40e6-832f-5cfcf8e0b71e"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="152" width="400" height="20" isRemoveLineWhenBlank="true" uuid="d53d18fe-4a09-48ae-9026-f4d08e47d85b">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioTres.bienNoPersonalWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Servicios no Personales Año 3: \$ " + $F{presupuestoWebAnioTres.bienNoPersonalWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="24" width="400" height="20" isRemoveLineWhenBlank="true" uuid="bcd869f5-5c4c-4d15-90b4-5b0f0dc737aa">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioTres.bienUsoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Bienes de Capital Año 3: \$ " + $F{presupuestoWebAnioTres.bienUsoWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="4" y="177" width="360" height="20" uuid="b5220eeb-ceb3-48d1-bd09-cb77c6b4def2">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("Total Año 3: \$ " + ($F{presupuestoWebAnioTres.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioTres.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioTres.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioTres.gastosViajeWeb}.valor.sum(0))).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="66" width="400" height="20" isRemoveLineWhenBlank="true" uuid="2e3765af-c005-46a5-a8d4-d15cdfebbaac">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioTres.bienConsumoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Bienes de Consumo Año 3: \$ " + $F{presupuestoWebAnioTres.bienConsumoWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="110" width="400" height="20" isRemoveLineWhenBlank="true" uuid="ce4838f2-6095-4366-aaca-cdc56abfe4ea">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioTres.gastosViajeWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Gastos de Viaje Año 3: \$ " + $F{presupuestoWebAnioTres.gastosViajeWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="294">
+			<componentElement>
+				<reportElement key="table 2" positionType="Float" x="4" y="223" width="360" height="20" isRemoveLineWhenBlank="true" uuid="779275d0-21ed-4783-aa34-18d3a4fae4ec"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DatasetRROtrasInst" uuid="9cc7d365-6c50-4ad2-8202-387284f90716">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{recursosSubsidios})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:columnGroup width="360" uuid="fb6b41c4-9b15-47fe-9e1e-5d9ce5c5a424">
+						<jr:tableHeader height="22" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="360" height="20" uuid="f852d0f3-8e29-40e8-b42f-2713dc8ae26c"/>
+								<text><![CDATA[3. Recursos provistos por otras Instituciones para el Proyecto.]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="90" uuid="f5512d8c-ff1c-4770-8fa9-caf6992b0319">
+							<jr:tableHeader height="8" rowSpan="1"/>
+							<jr:tableFooter height="4" rowSpan="1"/>
+							<jr:columnHeader height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#C0C0C0" uuid="725cb96c-59c8-4731-a51d-4fe38522895c"/>
+									<textElement textAlignment="Center">
+										<font isBold="true"/>
+									</textElement>
+									<text><![CDATA[Año]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter height="8" rowSpan="1"/>
+							<jr:detailCell height="20" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="90" height="20" uuid="9c4cb33e-5eee-4f8e-89cb-bc10b48e749d"/>
+									<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+										<pen lineWidth="0.5"/>
+										<topPen lineWidth="0.5"/>
+										<leftPen lineWidth="0.5"/>
+										<bottomPen lineWidth="0.5"/>
+										<rightPen lineWidth="0.5"/>
+									</box>
+									<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="90" uuid="7262e532-7d34-478c-a7c4-d178e5235fbd">
+							<jr:tableHeader height="8" rowSpan="1"/>
+							<jr:tableFooter height="4" rowSpan="1"/>
+							<jr:columnHeader height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#C0C0C0" uuid="9f5bf258-379b-4740-9542-415db8dfb9a6"/>
+									<textElement textAlignment="Center">
+										<font isBold="true"/>
+									</textElement>
+									<text><![CDATA[Nombre y Apellido]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter height="8" rowSpan="1"/>
+							<jr:detailCell height="20" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="90" height="20" uuid="a078bcc5-9dbd-434c-96a0-38947e3232c0"/>
+									<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+										<pen lineWidth="0.5"/>
+										<topPen lineWidth="0.5"/>
+										<leftPen lineWidth="0.5"/>
+										<bottomPen lineWidth="0.5"/>
+										<rightPen lineWidth="0.5"/>
+									</box>
+									<textFieldExpression><![CDATA[$F{nombreApellido}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="90" uuid="995fb6bb-7320-4864-9a01-9d42a5ed0bb9">
+							<jr:tableHeader height="8" rowSpan="1"/>
+							<jr:tableFooter height="4" rowSpan="1"/>
+							<jr:columnHeader height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#C0C0C0" uuid="89e3ae5f-ca6f-47e4-81f1-654f4fab227d"/>
+									<textElement textAlignment="Center">
+										<font isBold="true"/>
+									</textElement>
+									<text><![CDATA[Entidad Subsidio]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter height="8" rowSpan="1"/>
+							<jr:detailCell height="20" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="90" height="20" uuid="c9d3f1c7-afef-4c24-8d0c-d8b4466750d2"/>
+									<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+										<pen lineWidth="0.5"/>
+										<topPen lineWidth="0.5"/>
+										<leftPen lineWidth="0.5"/>
+										<bottomPen lineWidth="0.5"/>
+										<rightPen lineWidth="0.5"/>
+									</box>
+									<textFieldExpression><![CDATA[$F{entidadSubsidio}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="90" uuid="2384ee1d-4e6a-46bb-a3ce-c51305c147cb">
+							<jr:tableHeader height="8" rowSpan="1"/>
+							<jr:tableFooter height="4" rowSpan="1"/>
+							<jr:columnHeader height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#C0C0C0" uuid="fa6c5c54-21de-4aca-92e2-8c7b8241ea13"/>
+									<textElement textAlignment="Center">
+										<font isBold="true"/>
+									</textElement>
+									<text><![CDATA[Monto]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter height="8" rowSpan="1"/>
+							<jr:detailCell height="20" rowSpan="1">
+								<textField pattern="¤ #,##0.00">
+									<reportElement x="0" y="0" width="90" height="20" uuid="6acda8b4-3932-4061-a4b8-7bd758c149a3"/>
+									<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+										<pen lineWidth="0.5"/>
+										<topPen lineWidth="0.5"/>
+										<leftPen lineWidth="0.5"/>
+										<bottomPen lineWidth="0.5"/>
+										<rightPen lineWidth="0.5"/>
+									</box>
+									<textFieldExpression><![CDATA[$F{monto}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="48" width="360" height="20" isRemoveLineWhenBlank="true" uuid="8bcfe53f-99bd-4023-8336-a1f1ee54883d">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioCuatro.bienConsumoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2_3" uuid="df260953-9fb0-458f-bc84-ac322733ef2b">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioCuatro.bienConsumoWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="8646a51f-37d0-4239-8a01-de54ad49d3da">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="dd7b43c1-3263-4f0b-80fa-bdf13f4191c9"/>
+								<text><![CDATA[BIENES DE CONSUMO AÑO 4]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="d86d9375-ed49-47fb-9a9d-c24dc9c38540"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="7488bd31-eaef-4cc2-bc40-37b699d50d1b"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="1bcae01c-b134-4afb-8f22-10cc742ac93f">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="75de33d3-a5a3-4b08-b956-34427d0ac0cc"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="8e6b132f-88d6-4a2f-8ec2-4121cebe5aec"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="134" width="360" height="20" isRemoveLineWhenBlank="true" uuid="f5a01353-62e6-4cd9-8b93-ae55b643107b">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2_3" uuid="8a01d6e3-3d46-45a4-874f-87efb98e9984">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioCuatro.bienNoPersonalWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="20113e25-2cb1-4fcb-a410-9c68e1a02034">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="1056eb26-0298-4a7d-a94b-0149fa112d9c"/>
+								<text><![CDATA[SERVICIOS NO PERSONALES AÑO 4]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="9a0403cb-2a12-4ddb-b4f9-e95224108bc9"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="d4fcdcb7-d0a9-48ae-8aad-623eb9a1fb58"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="1e321a85-a2c6-44e3-aadb-b9a00edee244">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="cc645732-2400-4a99-9e3f-151ae5a8320f"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="41b39370-f0f2-45da-9b6e-cf2b4aa64db7"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="5" width="360" height="20" isRemoveLineWhenBlank="true" uuid="80320c2b-4cc6-4f37-a71e-8592f0454665">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioCuatro.bienUsoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2_3" uuid="cc8af718-5ba2-4b8d-b3b1-458b0940dd81">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioCuatro.bienUsoWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="80c9a18b-0cbe-4b87-8828-623c5927ca58">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="224cdb06-e3f4-4a2c-9fce-ea009e4cdb09"/>
+								<text><![CDATA[BIENES DE CAPITAL AÑO 4]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="dd451ee5-466d-46f7-9941-c987d1b5652a"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="692a9788-4f99-4efe-ac35-01def337d4ef"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="c025c7ac-8ee3-4bb9-b0fc-e94da1f90c83">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="836ce2ea-735a-49cb-b66b-bfaae27732c1"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="0f9bfcca-09cc-48f8-b824-03e5265ad127"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 1" style="table 1" positionType="Float" x="4" y="91" width="360" height="20" isRemoveLineWhenBlank="true" uuid="e0e6ef41-5b8e-4860-a5bb-a1c92910ef3b">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioCuatro.gastosViajeWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 2_3" uuid="a71f21af-d950-4b9f-a911-7534be0aebd4">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{presupuestoWebAnioCuatro.gastosViajeWeb})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="283" uuid="9e606344-927d-4c48-b2c2-38db1ca5243f">
+						<jr:tableHeader height="18" rowSpan="1">
+							<staticText>
+								<reportElement x="10" y="0" width="273" height="16" uuid="456ea5ec-22e4-4686-99b2-19d3a1ba4bd7"/>
+								<text><![CDATA[GASTOS DE VIAJE AÑO 4]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="283" height="16" backcolor="#C0C0C0" uuid="bfcb2e39-454a-49dd-94aa-07588edbb09e"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Gasto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="283" height="20" uuid="7b37f3c1-a186-4cbf-b9f0-4feb44d982e9"/>
+								<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="a01b37b5-21e1-4e6d-a575-3b57befd478d">
+						<jr:columnHeader height="16" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="16" backcolor="#C0C0C0" uuid="c8cfae4a-fa71-4cfc-a214-ad499f7a8a43"/>
+								<textElement textAlignment="Center"/>
+								<text><![CDATA[Monto]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 1_TD" height="20" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="¤ #,##0.00" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="96" height="20" uuid="4f85b8c1-f2e4-43e8-b1b8-616170d465e2"/>
+								<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="251" width="551" height="20" uuid="2c356ff1-3e2c-4499-b7ad-03083ddf827b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VI. Programa de capacitación y formación de recursos humanos.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="273" width="553" height="20" isRemoveLineWhenBlank="true" uuid="73dae474-93ac-4cb2-baba-442188824de5"/>
+				<textElement textAlignment="Justified" markup="html"/>
+				<textFieldExpression><![CDATA[$F{capacitacionFormacionRH}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="155" width="400" height="20" isRemoveLineWhenBlank="true" uuid="f9b5a0e8-ffb1-4cb3-9832-3b96cb404735">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Servicios no Personales Año 4: \$ " + $F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="4" y="180" width="360" height="20" uuid="bb46126e-ffd5-496c-8466-4d1db1d5deed">
+					<printWhenExpression><![CDATA[new Boolean(($F{fechaFinalizacion} - $F{fechaInicio})==1460)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("Total Año 4: \$ " + ($F{presupuestoWebAnioCuatro.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioCuatro.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioCuatro.gastosViajeWeb}.valor.sum(0))).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="27" width="400" height="20" isRemoveLineWhenBlank="true" uuid="c939c82a-258b-4169-89a4-c4929feea56f">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioCuatro.bienUsoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Bienes de Capital Año 4: \$ " + $F{presupuestoWebAnioCuatro.bienUsoWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="113" width="400" height="20" isRemoveLineWhenBlank="true" uuid="ba6c6568-3d77-42e7-b5d8-5000f25ffbac">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioCuatro.gastosViajeWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Gastos de Viaje Año 4: \$ " + $F{presupuestoWebAnioCuatro.gastosViajeWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="4" y="69" width="400" height="20" isRemoveLineWhenBlank="true" uuid="eb824c25-2633-442d-8eeb-ff745b1632bc">
+					<printWhenExpression><![CDATA[new Boolean($F{presupuestoWebAnioCuatro.bienConsumoWeb}.size()>0)]]></printWhenExpression>
+				</reportElement>
+				<textFieldExpression><![CDATA[("Total Bienes de Consumo Año 4: \$ " + $F{presupuestoWebAnioCuatro.bienConsumoWeb}.valor.sum(0)).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="4" y="200" width="360" height="20" uuid="1006d88f-0fb9-4f98-b2bf-e779dc06d76b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[("Total Proyecto: \$ " + ($F{presupuestoWebAnioUno.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioUno.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioUno.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioUno.gastosViajeWeb}.valor.sum(0) +
+          $F{presupuestoWebAnioDos.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioDos.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioDos.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioDos.gastosViajeWeb}.valor.sum(0)+
+          $F{presupuestoWebAnioTres.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioTres.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioTres.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioTres.gastosViajeWeb}.valor.sum(0)+
+          $F{presupuestoWebAnioCuatro.bienConsumoWeb}.valor.sum(0) +
+
+        $F{presupuestoWebAnioCuatro.bienUsoWeb}.valor.sum(0) +
+
+          $F{presupuestoWebAnioCuatro.bienNoPersonalWeb}.valor.sum(0) +  $F{presupuestoWebAnioCuatro.gastosViajeWeb}.valor.sum(0))).replace('.',',')]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="245" width="100" height="1" uuid="a1b62a02-b72e-4202-98b7-57cb2d841966"/>
+			</break>
+		</band>
+		<band height="546">
+			<frame>
+				<reportElement x="11" y="16" width="532" height="173" uuid="45b84109-00dc-4e9f-b573-1404a16cb82d"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement x="4" y="31" width="523" height="88" uuid="5e4777d6-f1fd-448b-9b7c-9878a551028e"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Por la presente me responsabilizo de la exactitud de la información suministrada y declaro conocer y aceptar los términos de la convocatoria, la constitución de instancia de seguimiento de la Secretaría de Ciencia y Tecnología, la evaluación académica por Jueces externos e institucional por parte del Consejo de Investigación y toda otra reglamentación sobre Investigación de la Universidad Nacional de Catamarca. La aprobación del proyecto no compromete a la Universidad Nacional de Catamarca ha financiar el mismo, en caso de hacerlo, podrá discontinuarlo o suspenderlo por razones presupuestarias, reglamentarias, administrativas y/o por decisión fundada de las autoridades Universitarias.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="93" y="151" width="127" height="20" uuid="ddace9d5-90f4-4c5a-b556-58a7b18b1663"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Lugar y Fecha]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="323" y="151" width="127" height="20" uuid="038d74e5-4dbd-4923-99bb-ade2016d7d73"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Firma del Director]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement x="10" y="205" width="532" height="270" uuid="9956fd4a-0859-4d1a-b089-655b0835781b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement x="4" y="32" width="523" height="40" uuid="2bda59dd-e020-4872-a44a-f508e23d8492"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Por la presente, en conocimiento de los términos de la convocatoria para Proyectos de Investigación y Desarrollo de la Universidad Nacional de Catamarca, y del contenido del presente proyecto cuyo nombre es:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="3" y="100" width="523" height="20" uuid="5ebaf9ef-ae46-4562-97a1-e5464ffe7bae"/>
+					<textElement textAlignment="Justified"/>
+					<text><![CDATA[Otorgo el Aval Institucional para su desarrollo bajo la Dirección de:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="3" y="120" width="523" height="20" uuid="45a43705-fb73-4792-8d11-b0518b8ed2be"/>
+					<textFieldExpression><![CDATA[""+$F{participacionesWeb}.get(0).getInvestigador().toString()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="324" y="238" width="127" height="20" uuid="d591532c-7f75-472e-8146-86c00f5003fd"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.75" lineStyle="Dashed"/>
+						<leftPen lineWidth="0.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="0.0" lineStyle="Dashed"/>
+						<rightPen lineWidth="0.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Firma y sello del Decano]]></text>
+				</staticText>
+				<line>
+					<reportElement x="5" y="153" width="521" height="1" uuid="1d050b22-254f-4c17-a5f7-074adfdcc881"/>
+				</line>
+				<staticText>
+					<reportElement x="4" y="169" width="100" height="20" uuid="ade74885-65e7-4b17-b2b8-e6a2c55da546"/>
+					<text><![CDATA[Lugar:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="189" width="100" height="20" uuid="b45b10e9-70a2-416d-a2aa-0bd786819917"/>
+					<text><![CDATA[Fecha:]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement x="15" y="27" width="381" height="20" uuid="cbfe1388-f44c-47c4-ab71-82f24529bdfe"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VII. Declaración Jurada - Convocatoria SECyT – UNCa 2014.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="217" width="381" height="20" uuid="7aa87547-165c-4487-a057-56c8989a6193"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VIII. Aval Institucional, Convocatoria - SECyT – UNCa  2014.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="13" y="277" width="525" height="28" uuid="8f9bb0e7-a43d-4652-8375-85f9a2efd9b9"/>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="0" width="100" height="1" uuid="01a7d6ec-8304-4f66-9426-4c2c8f85d597"/>
+			</break>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="20" width="547" height="20" uuid="669c7bdd-d3de-425b-a50f-1d468e6c5e13"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO NO VALIDO - VISTA PREVIA]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

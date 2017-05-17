@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteBecas" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT b FROM Becas b WHERE b.vigente = 1]]>
+	</queryString>
+	<field name="cantidadbeneficiarios" class="java.lang.Integer"/>
+	<field name="cantidadpagos" class="java.lang.Integer"/>
+	<field name="class" class="java.lang.Class"/>
+	<field name="codigobeca" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="duracion" class="java.lang.Integer"/>
+	<field name="fechafinalizacion" class="java.util.Date"/>
+	<field name="fechainicio" class="java.util.Date"/>
+	<field name="id" class="java.lang.Long"/>
+	<field name="montoporpago" class="java.lang.Integer"/>
+	<field name="paraalumnos" class="java.lang.Boolean"/>
+	<field name="paradocentes" class="java.lang.Boolean"/>
+	<field name="tienecarrera" class="java.lang.Boolean"/>
+	<field name="tienedirector" class="java.lang.Boolean"/>
+	<field name="tieneposgrado" class="java.lang.Boolean"/>
+	<field name="tieneproyecto" class="java.lang.Boolean"/>
+	<field name="vigente" class="java.lang.Boolean"/>
+	<variable name="id_1" class="java.lang.Integer" calculation="Count"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="114" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="375" y="41" width="155" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="25" y="10" width="260" height="50"/>
+				<imageExpression class="java.lang.String"><![CDATA[this.getClass().getResource("/imagenes/logo.jpg")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="375" y="21" width="427" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA DE GESTION DE PROYECTOS - BECAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="61" width="427" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BECAS VIGENTES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="374" y="32" width="97" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="101" y="32" width="273" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="25" y="32" width="76" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="471" y="32" width="65" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DURACION (MESES)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="536" y="32" width="53" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CANT. DE PAGOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="589" y="32" width="74" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[MONTO x  PAGO $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="663" y="32" width="76" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD DE BENEFICIARIOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="2" width="76" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{codigobeca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="101" y="2" width="273" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="2" width="97" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fechainicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="471" y="2" width="65" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{duracion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="536" y="2" width="53" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{cantidadpagos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="589" y="2" width="74" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{montoporpago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="663" y="2" width="76" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{cantidadbeneficiarios}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="41" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="614" y="0" width="125" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="739" y="0" width="53" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

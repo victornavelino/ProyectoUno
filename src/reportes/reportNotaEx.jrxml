@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportNotaEx" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff0d3c05-58f2-4061-b266-7f992c2ffe25">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="nronota" class="java.lang.String"/>
+	<field name="motivo" class="java.lang.String"/>
+	<field name="fechaentrada" class="java.util.Date"/>
+	<field name="fechaaprovacion" class="java.util.Date"/>
+	<field name="fechadesembolso" class="java.util.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="137" y="14" width="265" height="33" uuid="be69b367-51d5-44e0-980f-807b6a4a31c4"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seguimiento, Notas Externas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="137" y="59" width="404" height="20" uuid="4e470f0c-090c-461e-affd-08ec099f83a0"/>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="feee1f5a-8dbc-44f6-9aa4-2a78a49a3292"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="52d66313-1329-42c7-b0f6-a8eb47c79e5f"/>
+				<text><![CDATA[Número de Nota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="121" height="20" uuid="c7e2c614-b560-459b-9111-be7144e1dd3f"/>
+				<text><![CDATA[Fecha Mesa de Entrada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="0" width="110" height="20" uuid="33762874-ad8e-4ee6-8564-6dde7c5a3c16"/>
+				<text><![CDATA[Fecha de Aprobación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="0" width="114" height="20" uuid="7bd97317-aca2-4671-b9b0-a47ba93a9d52"/>
+				<text><![CDATA[Fecha  de Desembolso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField pattern="dd/MM/yy">
+				<reportElement x="0" y="0" width="100" height="20" uuid="1d54dc8e-6117-4962-907f-1348b807dbdd"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="ea178ad1-4b74-4aa4-84e3-d0bf304417e9"/>
+				<textFieldExpression><![CDATA[$F{nronota}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy">
+				<reportElement x="200" y="0" width="121" height="20" uuid="1f62dcf7-d420-438f-9f9b-c1721e334846"/>
+				<textFieldExpression><![CDATA[$F{fechaentrada}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy">
+				<reportElement x="321" y="0" width="110" height="20" uuid="f9ef008d-ab47-49dc-b543-997631e974aa"/>
+				<textFieldExpression><![CDATA[$F{fechaaprovacion}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy">
+				<reportElement x="441" y="0" width="100" height="20" uuid="fd83f552-c952-49db-bb39-71a5d05de56f"/>
+				<textFieldExpression><![CDATA[( $F{fechadesembolso} == null ?  "Indefinido" : $F{fechadesembolso} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="68" width="555" height="57" uuid="6d6f8a05-2c12-4547-a948-3bb908bd0ce8"/>
+				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="48" width="100" height="20" uuid="9738876d-6151-4cda-a955-6fc1344db188"/>
+				<text><![CDATA[Motivo:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="521" y="34" width="34" height="20" uuid="15b4c573-82f2-4fb3-9dbd-5149e8211ff9"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="480" y="34" width="41" height="20" uuid="41b07e13-1e20-4e88-9f19-d2a483649d3e"/>
+				<text><![CDATA[Pagina:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

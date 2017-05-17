@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="9.4 TesisDoctorado" language="groovy" pageWidth="555" pageHeight="805" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/antecedentes/formacionRRHH/tesistas/formacionTesista]]>
+	</queryString>
+	<field name="anioDesde" class="java.lang.String">
+		<fieldDescription><![CDATA[anioDesde]]></fieldDescription>
+	</field>
+	<field name="anioHasta" class="java.lang.String">
+		<fieldDescription><![CDATA[anioHasta]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<fieldDescription><![CDATA[apellido]]></fieldDescription>
+	</field>
+	<field name="institucionOtorgante" class="java.lang.String">
+		<fieldDescription><![CDATA[institucionPersonalDirigido/rutaCompleta]]></fieldDescription>
+	</field>
+	<field name="funcionDesempeniada" class="java.lang.String">
+		<fieldDescription><![CDATA[funcionDesempeniada]]></fieldDescription>
+	</field>
+	<field name="tipoTesis" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoTesis]]></fieldDescription>
+	</field>
+	<sortField name="funcionDesempeniada" order="Descending"/>
+	<sortField name="anioHasta" order="Descending"/>
+	<variable name="nombreTesista" class="java.lang.String">
+		<variableExpression><![CDATA[$F{apellido} + ", " + $F{nombre}]]></variableExpression>
+	</variable>
+	<variable name="subTitulo" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{funcionDesempeniada}=="Director o tutor" ?
+    "a) Dirección de tesis de doctorado finalizadas y aprobadas." :
+    "b) Codirección de tesis de doctorado finalizadas y aprobadas." )]]></variableExpression>
+	</variable>
+	<filterExpression><![CDATA[$F{tipoTesis}=="Trabajo final de Especialización"]]></filterExpression>
+	<group name="funcion desempeniada">
+		<groupExpression><![CDATA[$F{funcionDesempeniada}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement uuid="82cc2170-c869-4768-93c4-09059d99b9c9" x="0" y="0" width="371" height="20">
+						<printWhenExpression><![CDATA[$F{funcionDesempeniada}=="Director o tutor"]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[a) Dirección de trabajo final de especialización.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="57cf80ff-bd0b-4bd6-88b8-5aef7654080d" x="0" y="0" width="522" height="20">
+						<printWhenExpression><![CDATA[$F{funcionDesempeniada}=="Co-director o co-tutor"]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[b) Codirección de trabajo final de especialización.]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="10"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a6fe42f3-a5b5-44c3-97d6-ba0808c61238" x="-14" y="0" width="385" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[9.4. Dirección/codirección de trabajo final de especialización.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33d04978-e415-4885-99cd-56e20cfc204e" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoTesis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a00fe25-3a62-4519-b0b6-9addc8111921" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de trabajo dirigido:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="21fe51c9-a780-4235-8962-d49f032a05b0" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año defensa tesis:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="81afe9e7-2be3-4b0d-9320-fa335fc52ce4" positionType="Float" x="187" y="0" width="181" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anioHasta}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="34920c44-b8b2-454c-98c2-cf8a3fd7066d" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre tesista:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="25e93b78-3a86-41d4-82f2-95ba40911aaa" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{nombreTesista}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="406a1a77-875c-4a11-b4a1-2ae6bb7bf0d3" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institución otorgante del título:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c7ad71ed-8c0c-4948-993b-1b83f2c1c747" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucionOtorgante}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="2">
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="1" width="525" height="1"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

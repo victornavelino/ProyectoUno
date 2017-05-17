@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteBecas" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="185"/>
+	<parameter name="inscripto" class="java.lang.Long"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT b FROM PostulacionBeca b  WHERE b.id = $P{inscripto}]]>
+	</queryString>
+	<field name="asesores" class="java.util.List">
+		<fieldDescription><![CDATA[asesores]]></fieldDescription>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<fieldDescription><![CDATA[postulante.persona.apellido]]></fieldDescription>
+	</field>
+	<field name="correosElectronicos" class="java.util.List">
+		<fieldDescription><![CDATA[postulante.persona.correosElectronicos]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[postulante.persona.nombre]]></fieldDescription>
+	</field>
+	<field name="numero" class="java.lang.Long">
+		<fieldDescription><![CDATA[postulante.persona.documentoIdentidad.numero]]></fieldDescription>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[postulante.persona.documentoIdentidad.tipoDocumento.descripcion]]></fieldDescription>
+	</field>
+	<field name="telefonos" class="java.util.List">
+		<fieldDescription><![CDATA[postulante.persona.telefonos]]></fieldDescription>
+	</field>
+	<field name="plandetrabajo" class="java.lang.String">
+		<fieldDescription><![CDATA[plandetrabajo]]></fieldDescription>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[proyecto.titulo]]></fieldDescription>
+	</field>
+	<field name="codigobeca" class="java.lang.String">
+		<fieldDescription><![CDATA[beca.codigobeca]]></fieldDescription>
+	</field>
+	<field name="descripcion_1" class="java.lang.String">
+		<fieldDescription><![CDATA[beca.descripcion]]></fieldDescription>
+	</field>
+	<field name="fechaalta" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaalta]]></fieldDescription>
+	</field>
+	<field name="fechaAdjudicacionPostulante" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaAdjudicacionPostulante]]></fieldDescription>
+	</field>
+	<field name="fechaBecaInformeAvance" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaBecaInformeAvance]]></fieldDescription>
+	</field>
+	<field name="fechaBecaInformeFinal" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaBecaInformeFinal]]></fieldDescription>
+	</field>
+	<field name="descripcion_2" class="java.lang.String">
+		<fieldDescription><![CDATA[informeavance.descripcion]]></fieldDescription>
+	</field>
+	<field name="descripcion_3" class="java.lang.String">
+		<fieldDescription><![CDATA[informefinal.descripcion]]></fieldDescription>
+	</field>
+	<field name="descripcion_4" class="java.lang.String">
+		<fieldDescription><![CDATA[postulanteestado.descripcion]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="127" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="25" y="107" width="155" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="25" y="10" width="260" height="50"/>
+				<imageExpression class="java.lang.String"><![CDATA[this.getClass().getResource("/imagenes/logo.jpg")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="25" y="79" width="427" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA DE GESTION DE PROYECTOS - BECAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="203" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="14" width="115" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[POSTULANTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="123" width="115" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROYECTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="149" width="115" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DIRECTOR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="95" width="115" height="20"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PLAN DE TRABAJO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="149" width="581" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{asesores}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="13" width="125" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="13" width="165" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="95" width="581" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{plandetrabajo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="123" width="609" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="466" y="14" width="83" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="708" y="14" width="71" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="14" width="39" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="552" y="14" width="38" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="644" y="14" width="59" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUMERO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="40" width="115" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONOS:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="40" width="319" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{telefonos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="67" width="115" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMAIL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="67" width="319" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{correosElectronicos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[INSCRIPTO A:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="545" y="32" width="196" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[FECHA DE INSCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="140" y="32" width="405" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="25" y="32" width="115" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="2" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{codigobeca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fechaalta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="36" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="25" y="0" width="135" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Informe de Avance:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="31" width="135" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Informe Final:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="182" y="34" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion_3}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="452" y="11" width="159" height="20"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Situacion del Postulante:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="623" y="11" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion_4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

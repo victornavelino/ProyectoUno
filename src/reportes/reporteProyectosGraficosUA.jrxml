@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProyectos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="223"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT p FROM Proyecto p]]>
+	</queryString>
+	<field name="unidadEjecutora" class="java.lang.String">
+		<fieldDescription><![CDATA[unidadEjecutora.descripcion]]></fieldDescription>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="unidadAcademica" class="java.lang.String">
+		<fieldDescription><![CDATA[unidadAcademica.descripcion]]></fieldDescription>
+	</field>
+	<field name="tipoProyecto" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoProyecto.descripcion]]></fieldDescription>
+	</field>
+	<field name="personalApoyo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[personalApoyo]]></fieldDescription>
+	</field>
+	<field name="lineaInvestigacion" class="java.lang.String">
+		<fieldDescription><![CDATA[lineaInvestigacion.descripcion]]></fieldDescription>
+	</field>
+	<field name="fechaInicio" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+	</field>
+	<field name="fechaFinalizacion" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaFinalizacion]]></fieldDescription>
+	</field>
+	<field name="duracionTeorica" class="java.lang.Integer">
+		<fieldDescription><![CDATA[duracionTeorica]]></fieldDescription>
+	</field>
+	<field name="codigoIncentivos" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoIncentivos]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="entidadEvaluadora" class="java.lang.String">
+		<fieldDescription><![CDATA[entidadEvaluadora.descripcion]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<sortField name="unidadAcademica"/>
+	<filterExpression><![CDATA[$F{unidadAcademica}]]></filterExpression>
+	<group name="unidadAcademica">
+		<groupExpression><![CDATA[$F{unidadAcademica}]]></groupExpression>
+		<groupFooter>
+			<band height="22">
+				<textField>
+					<reportElement x="0" y="2" width="250" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{unidadAcademica}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="256" y="2" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{unidadAcademica_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="291" height="34"/>
+				<imageExpression class="java.lang.String"><![CDATA[this.getClass().getResource("/imagenes/logo.jpg")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="291" y="0" width="264" height="37"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proyectos por Unidad Académica]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="291" y="20" width="182" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="490" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="485"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{unidadAcademica}]]></keyExpression>
+					<valueExpression><![CDATA[$V{unidadAcademica_COUNT}]]></valueExpression>
+					<labelExpression><![CDATA[$F{unidadAcademica} + "-" + $V{unidadAcademica_COUNT}]]></labelExpression>
+					<sectionHyperlink>
+						<hyperlinkTooltipExpression><![CDATA[$V{unidadAcademica_COUNT}]]></hyperlinkTooltipExpression>
+					</sectionHyperlink>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>

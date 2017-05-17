@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteProyectos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="638b12fa-92b9-4c29-b497-10c685d7d358">
+	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.x" value="72"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT p FROM Proyecto p]]>
+	</queryString>
+	<field name="unidadEjecutora" class="java.lang.String">
+		<fieldDescription><![CDATA[unidadEjecutora.descripcion]]></fieldDescription>
+	</field>
+	<field name="titulo" class="java.lang.String">
+		<fieldDescription><![CDATA[titulo]]></fieldDescription>
+	</field>
+	<field name="unidadAcademica" class="java.lang.String">
+		<fieldDescription><![CDATA[unidadAcademica.descripcion]]></fieldDescription>
+	</field>
+	<field name="tipoProyecto" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoProyecto.descripcion]]></fieldDescription>
+	</field>
+	<field name="personalApoyo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[personalApoyo]]></fieldDescription>
+	</field>
+	<field name="lineaInvestigacion" class="java.lang.String">
+		<fieldDescription><![CDATA[lineaInvestigacion.descripcion]]></fieldDescription>
+	</field>
+	<field name="fechaInicio" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+	</field>
+	<field name="fechaFinalizacion" class="java.util.Date">
+		<fieldDescription><![CDATA[fechaFinalizacion]]></fieldDescription>
+	</field>
+	<field name="duracionTeorica" class="java.lang.Integer">
+		<fieldDescription><![CDATA[duracionTeorica]]></fieldDescription>
+	</field>
+	<field name="codigoIncentivos" class="java.lang.String">
+		<fieldDescription><![CDATA[codigoIncentivos]]></fieldDescription>
+	</field>
+	<field name="codigo" class="java.lang.String">
+		<fieldDescription><![CDATA[codigo]]></fieldDescription>
+	</field>
+	<field name="entidadEvaluadora" class="java.lang.String">
+		<fieldDescription><![CDATA[entidadEvaluadora.descripcion]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<variable name="id_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{id}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<image>
+				<reportElement uuid="5d911d3a-668a-49a0-8e5d-27c21e58fb62" x="57" y="3" width="291" height="34"/>
+				<imageExpression><![CDATA[this.getClass().getResource("/imagenes/logo.jpg")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="dba8b4f8-cf2e-4444-af1f-e3852616c5ed" x="374" y="8" width="184" height="26"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado de Proyectos]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="b467bdf9-609b-4d28-b72a-fee37f7f0060" x="563" y="11" width="182" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d3df86a3-4873-4190-9331-8f0b08eeee04" mode="Opaque" x="0" y="0" width="57" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6bc2ca7e-fd8d-402f-b58a-20281214a2e9" mode="Opaque" x="314" y="0" width="105" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Unidad Académica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="09166696-d904-448c-9267-3135e2fe1d59" mode="Opaque" x="419" y="0" width="92" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Unidad Ejecutora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d2bca3e7-d1ba-4d47-8ac8-2114c6591e1b" mode="Opaque" x="511" y="0" width="85" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tipo de Proyecto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="99ec1678-bf64-4581-adac-5687a85125d3" mode="Opaque" x="595" y="0" width="62" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Linea de Investigación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c45e8b5-3fc4-43ab-ab2e-8c4937f2e34f" mode="Opaque" x="657" y="0" width="49" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Entidad Evaluadora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d89f9c8c-95f8-4d67-b834-dc9a041ed60a" mode="Opaque" x="706" y="0" width="39" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Duración Teórica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ba10b57-7316-40a2-bacf-994caceb3a76" mode="Opaque" x="745" y="0" width="25" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0d796c2d-e7e8-4689-b55a-a7eccdb5940f" mode="Opaque" x="770" y="0" width="32" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b00d5d47-ca9f-4b33-bc0a-ad69ced4a8d7" mode="Opaque" x="57" y="0" width="42" height="21" forecolor="#FFFFFF" backcolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Código Incentivos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="04ba4265-97d1-45b4-a6e1-0ad8f42b667d" mode="Opaque" x="99" y="0" width="215" height="21" forecolor="#FFFFFF" backcolor="#333333"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Título]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="0beceb41-a9b4-4c95-87c9-d35a748ed060" x="0" y="0" width="67" height="21"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="c7210a4d-75d8-4563-8a16-826afbb8d702" mode="Opaque" x="314" y="0" width="105" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unidadAcademica}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="76424ffd-849f-4549-b176-257d5072b8bf" mode="Opaque" x="419" y="0" width="92" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unidadEjecutora}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="70a9d391-84d7-48f5-b63a-91c94190e7ed" mode="Opaque" x="511" y="0" width="88" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoProyecto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="a4f798bc-4dc0-4aa1-a5fd-e4995d9382ac" mode="Opaque" x="599" y="0" width="59" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lineaInvestigacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7fd8ed50-2491-45e0-9f2a-89397974a661" mode="Opaque" x="658" y="0" width="59" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entidadEvaluadora}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="33a60282-4b87-4916-abbb-6248dbbc231f" mode="Opaque" x="718" y="0" width="16" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{duracionTeorica}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="aed1b165-537f-4a6a-b524-7e083dde4b44" mode="Opaque" x="736" y="0" width="32" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaInicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy" isBlankWhenNull="true">
+				<reportElement uuid="719be1f6-3696-4330-8ab3-f6360b2c1aa2" mode="Opaque" x="770" y="0" width="32" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechaFinalizacion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8f9b7cbc-c47e-4e43-8d50-1642fadce3fa" mode="Opaque" x="99" y="0" width="215" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="35a72554-83fc-420a-8088-39a591ded1e3" mode="Opaque" x="67" y="0" width="32" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigoIncentivos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="a9d65673-1990-49a6-866c-81aac939c376" x="0" y="22" width="802" height="1" forecolor="#999999"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement uuid="baf38534-0a5f-40ab-b396-461d4dfbb8cc" x="682" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="458626f9-a1e6-4f65-8fd4-8b2c7e1c3f3a" x="762" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d6c13f78-e31b-4a8d-9fba-7f1defefd22c" x="743" y="0" width="57" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{id_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d1c00ded-46a1-4a9c-aefd-33df2e73b0fd" x="656" y="0" width="84" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total de Proyectos]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

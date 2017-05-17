@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="5.6 Becarios" language="groovy" pageWidth="555" pageHeight="805" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/antecedentes/becas/beca]]>
+	</queryString>
+	<field name="fechaDesde" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaDesde]]></fieldDescription>
+	</field>
+	<field name="fechaHasta" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaHasta]]></fieldDescription>
+	</field>
+	<field name="tipoBeca" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoBeca]]></fieldDescription>
+	</field>
+	<field name="denominacionBeca" class="java.lang.String">
+		<fieldDescription><![CDATA[denominacionBeca]]></fieldDescription>
+	</field>
+	<field name="institucionFinanciadora" class="java.lang.String">
+		<fieldDescription><![CDATA[institucionFinanciadora/rutaCompleta]]></fieldDescription>
+	</field>
+	<field name="institucionBecario" class="java.lang.String">
+		<fieldDescription><![CDATA[institucionTrabajoBecario/rutaCompleta]]></fieldDescription>
+	</field>
+	<field name="directorNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[directorNombre]]></fieldDescription>
+	</field>
+	<field name="directorApellido" class="java.lang.String">
+		<fieldDescription><![CDATA[directorApellido]]></fieldDescription>
+	</field>
+	<field name="codirectorNombre" class="java.lang.String">
+		<fieldDescription><![CDATA[codirectorNombre]]></fieldDescription>
+	</field>
+	<field name="codirectorApellido" class="java.lang.String">
+		<fieldDescription><![CDATA[codirectorApellido]]></fieldDescription>
+	</field>
+	<field name="financiaPostgrado" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[financiaPostgrado]]></fieldDescription>
+	</field>
+	<field name="porcentajeFinanciamiento" class="java.lang.String">
+		<fieldDescription><![CDATA[porcentajeFinanciamiento]]></fieldDescription>
+	</field>
+	<field name="tipoTareas" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoTareas]]></fieldDescription>
+	</field>
+	<variable name="fechaDesde" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaDesde}.substring( 5, 7 ) + "/" +
+$F{fechaDesde}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="fechaHasta" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaHasta}.substring( 5, 7 ) + "/" +
+$F{fechaHasta}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="director" class="java.lang.String">
+		<variableExpression><![CDATA[$F{directorApellido} + ", " + $F{directorNombre}]]></variableExpression>
+	</variable>
+	<variable name="codirector" class="java.lang.String">
+		<variableExpression><![CDATA[$F{codirectorApellido} + ", " + $F{codirectorNombre}]]></variableExpression>
+	</variable>
+	<variable name="financiaPostgrado" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{financiaPostgrado} ? "Si" : "No" )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="21">
+			<staticText>
+				<reportElement uuid="a6fe42f3-a5b5-44c3-97d6-ba0808c61238" x="-15" y="1" width="540" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[5.6. Becario de investigación de entidad reconocida.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33d04978-e415-4885-99cd-56e20cfc204e" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denominacionBeca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a00fe25-3a62-4519-b0b6-9addc8111921" x="0" y="0" width="247" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Denominación de la beca:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="3a48f792-a09f-4ab1-a06d-a7987c9382c2" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de beca:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8457a506-a0a2-4764-bf49-92381f3474fd" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoBeca}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="79175290-514d-4c9e-9db4-d9e1ef7a0944" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Director:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ef4983d0-1fbf-4776-9df8-a9dbeb6ac02b" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{director}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8a9b8ba2-2994-46ac-9988-25c345f80c7f" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{codirector}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f477d306-7057-40df-bde3-c100aa558800" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codirector:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="004de221-b11e-4cd9-9b87-6470d4696812" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucionFinanciadora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5ade0d4-d7a9-4509-af23-10011df81c40" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institución financiadora:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="0f9aebe8-1452-4778-a12c-a440d8a86766" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucionBecario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1e2c2d92-544d-4f27-a6c3-f40a9264d080" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institución del becario:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="21fe51c9-a780-4235-8962-d49f032a05b0" x="0" y="0" width="247" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha desde:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8577db6c-0bd2-4a24-869f-d6f5dececc3b" positionType="Float" x="187" y="0" width="77" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaDesde}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="62d524ca-ef47-4bb9-b9a9-e527ce480483" x="292" y="0" width="125" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha hasta:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="81afe9e7-2be3-4b0d-9320-fa335fc52ce4" positionType="Float" x="417" y="0" width="108" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaHasta}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="1fc6e3bb-f32c-41c8-9b4d-85f5bac20218" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de tareas:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="215086a0-f4a0-409d-8395-60bf57fb074f" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoTareas}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="47304044-ae0c-43e7-873c-8ce6cbfc030b" x="0" y="0" width="292" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Financia o financió un posgrado con esta beca?:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="db47b8c3-f3ad-4c4e-898d-a1910bc71aef" positionType="Float" x="282" y="0" width="243" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{financiaPostgrado}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="fc77ee68-9f31-4da5-a093-2aab691d529c" positionType="Float" x="282" y="0" width="243" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{porcentajeFinanciamiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="30e74b32-0bab-49d9-a33a-9f0ebc193ca8" x="0" y="0" width="264" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Porcentaje de finaciamiento:]]></text>
+			</staticText>
+		</band>
+		<band height="2">
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="1" width="525" height="1"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

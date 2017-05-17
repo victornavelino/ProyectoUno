@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="3.Docencia" language="groovy" pageWidth="555" pageHeight="802" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="ca2b74aa-265e-4570-b8d8-ccd76a90caf0">
+		<queryString language="xPath">
+			<![CDATA[/datos/cargos/cargosDocencia/superiorPosgrado/cargoDocenteSuperior/actividadesCurriculares/actividad]]>
+		</queryString>
+		<field name="actividadCurricular" class="java.lang.String">
+			<fieldDescription><![CDATA[actividadCurricular]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/cargos/cargosDocencia/superiorPosgrado/cargoDocenteSuperior]]>
+	</queryString>
+	<field name="fechaInicio" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaInicio]]></fieldDescription>
+	</field>
+	<field name="fechaFin" class="java.lang.String">
+		<fieldDescription><![CDATA[fechaFin]]></fieldDescription>
+	</field>
+	<field name="organizacion" class="java.lang.String">
+		<fieldDescription><![CDATA[institucion/organizacion]]></fieldDescription>
+	</field>
+	<field name="cargo" class="java.lang.String">
+		<fieldDescription><![CDATA[cargo]]></fieldDescription>
+	</field>
+	<field name="dedicacion" class="java.lang.String">
+		<fieldDescription><![CDATA[dedicacion]]></fieldDescription>
+	</field>
+	<field name="tipoCargo" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoCargo]]></fieldDescription>
+	</field>
+	<field name="dedicacionHorariaSemanal" class="java.lang.String">
+		<fieldDescription><![CDATA[dedicacionHorariaSemanal]]></fieldDescription>
+	</field>
+	<field name="condicion" class="java.lang.String">
+		<fieldDescription><![CDATA[condicion]]></fieldDescription>
+	</field>
+	<field name="nivel" class="java.lang.String">
+		<fieldDescription><![CDATA[nivelActividadesCurriculares/nivel]]></fieldDescription>
+	</field>
+	<field name="realizaInvestigacionDesarrollo" class="java.lang.String">
+		<fieldDescription><![CDATA[realizaInvestigacionDesarrollo]]></fieldDescription>
+	</field>
+	<field name="actividad" class="java.lang.String">
+		<fieldDescription><![CDATA[actividadesCurriculares/actividad]]></fieldDescription>
+	</field>
+	<variable name="fechaInicio" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaInicio}.substring( 8, 10 ) + "/" +
+$F{fechaInicio}.substring( 5, 7 ) + "/" +
+$F{fechaInicio}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="fechaFin" class="java.lang.String">
+		<variableExpression><![CDATA[$F{fechaFin}.substring( 8, 10 ) + "/" +
+$F{fechaFin}.substring( 5, 7 ) + "/" +
+$F{fechaFin}.substring( 0, 4 )]]></variableExpression>
+	</variable>
+	<variable name="actInvestigacion" class="java.lang.String">
+		<variableExpression><![CDATA[( $F{realizaInvestigacionDesarrollo}=='true' ? "Si" : "No" )]]></variableExpression>
+	</variable>
+	<filterExpression><![CDATA[$F{nivel}=="Universitario de grado"]]></filterExpression>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="25">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="004de221-b11e-4cd9-9b87-6470d4696812" positionType="Float" x="35" y="4" width="490" height="20"/>
+				<textElement>
+					<font size="11" isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5ade0d4-d7a9-4509-af23-10011df81c40" x="-9" y="5" width="51" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargo:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="77920956-fbbc-44ce-8b5d-2361789c11e3" x="-8" y="23" width="533" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="62d524ca-ef47-4bb9-b9a9-e527ce480483" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de cargo:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="81afe9e7-2be3-4b0d-9320-fa335fc52ce4" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoCargo}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33d04978-e415-4885-99cd-56e20cfc204e" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{organizacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a00fe25-3a62-4519-b0b6-9addc8111921" x="0" y="0" width="247" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Universidad / Unidad Académica:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<componentElement>
+				<reportElement uuid="c281037d-cfe3-442c-841c-28ad3aacf5ae" x="187" y="0" width="338" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="784104ba-075e-4083-876c-9b195c64199c">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/cargoDocenteSuperior/actividadesCurriculares/actividad")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="338">
+						<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+							<reportElement uuid="6d0f108f-f324-4f34-94ef-6990243f2e3a" positionType="Float" x="0" y="0" width="338" height="20"/>
+							<textElement>
+								<font size="11"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{actividadCurricular}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement uuid="21fe51c9-a780-4235-8962-d49f032a05b0" x="0" y="0" width="247" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Actividades curriculares dictadas:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="e62149c4-7885-4f9f-85e4-6e07a3d5f5c7" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{condicion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4aca428f-83dc-40c6-b102-0ae0dd931268" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condición de la designación:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="fb315975-7104-4752-acd8-c5b83714894e" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Ingreso:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c66b893a-c932-4b56-a1ff-3adbae740f5e" positionType="Float" x="427" y="0" width="98" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaFin}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3e791ab1-d693-4f9c-b7a6-5c01d3a7483c" x="326" y="0" width="101" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Fin:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="17c4d245-8845-48d6-af1d-a91c0388e4fc" positionType="Float" x="187" y="0" width="98" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{fechaInicio}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca2d7988-8a76-45ac-8611-196e1cb13614" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dedicacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="84480b4a-38a5-4ecc-9794-b0c28bf83be2" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dedicación al cargo:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="4f596973-2dd3-4fd5-9922-1250e77d3296" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dedicación horaria semanal:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c545fa8f-3e6c-4bf7-8a52-e36992d5035f" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dedicacionHorariaSemanal}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="0c380240-f031-4d44-a775-bd65e02f1ad1" x="0" y="0" width="247" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nivel educativo de las actividades:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="349364a1-aba7-4a6b-a001-b6c2258d4a75" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nivel}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="21">
+			<staticText>
+				<reportElement uuid="a43841d5-7a94-4e53-b8bf-8c4b35eecb46" x="0" y="0" width="427" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[¿Realiza actividades de investigación y desarrollo con este cargo docente?:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="57187e9c-d63f-4b73-ba6e-ac2ac240a576" positionType="Float" x="427" y="0" width="98" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{actInvestigacion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="20" width="525" height="1"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

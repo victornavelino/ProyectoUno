@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="6.9 EvaluacionActividadesCyT_04" language="groovy" pageWidth="555" pageHeight="805" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="065c36b5-9898-4ca0-88a9-f9c5721be4d6">
+		<queryString language="xPath">
+			<![CDATA[/datos/antecedentes/evaluacion/institucional/evaluacionInstitucional/ambitosEvaluados/ambitoEvaluado]]>
+		</queryString>
+		<field name="tipoAmbitoInstitucional" class="java.lang.String">
+			<fieldDescription><![CDATA[tipoAmbitoInstitucional]]></fieldDescription>
+		</field>
+		<field name="otroTipoAmbitoInstitucional" class="java.lang.String">
+			<fieldDescription><![CDATA[otroTipoAmbitoInstitucional]]></fieldDescription>
+		</field>
+		<variable name="tipoAmbitoInstitucional" class="java.lang.String">
+			<variableExpression><![CDATA[( $F{tipoAmbitoInstitucional}=="Otro" ?
+    $F{tipoAmbitoInstitucional} + ": " + $F{otroTipoAmbitoInstitucional} :
+    $F{tipoAmbitoInstitucional} )]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/antecedentes/evaluacion/institucional/evaluacionInstitucional]]>
+	</queryString>
+	<field name="tipoEvaluacionInstitucional" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoEvaluacionInstitucional]]></fieldDescription>
+	</field>
+	<field name="anio" class="java.lang.String">
+		<fieldDescription><![CDATA[anio]]></fieldDescription>
+	</field>
+	<field name="anioFin" class="java.lang.String">
+		<fieldDescription><![CDATA[anioFin]]></fieldDescription>
+	</field>
+	<field name="rolEvaluador" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoRolEvaluador]]></fieldDescription>
+	</field>
+	<field name="pais" class="java.lang.String">
+		<fieldDescription><![CDATA[/pais/descripcion]]></fieldDescription>
+	</field>
+	<field name="institucionEvaluada" class="java.lang.String">
+		<fieldDescription><![CDATA[/institucionEvaluada/rutaCompleta]]></fieldDescription>
+	</field>
+	<field name="ciudad" class="java.lang.String">
+		<fieldDescription><![CDATA[ciudad]]></fieldDescription>
+	</field>
+	<field name="ambitosEvaluados" class="java.lang.String">
+		<fieldDescription><![CDATA[ambitosEvaluados]]></fieldDescription>
+	</field>
+	<field name="institucionConvocante" class="java.lang.String">
+		<fieldDescription><![CDATA[institucionConvocante/rutaCompleta]]></fieldDescription>
+	</field>
+	<filterExpression><![CDATA[$F{tipoEvaluacionInstitucional} == "Evaluación de planes y/o políticas" ||
+$F{tipoEvaluacionInstitucional} == "Proyectos institucionales o evaluación institucional externa"]]></filterExpression>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a6fe42f3-a5b5-44c3-97d6-ba0808c61238" x="-14" y="0" width="385" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Evaluación institucional]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33d04978-e415-4885-99cd-56e20cfc204e" positionType="Float" x="225" y="0" width="300" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucionConvocante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a00fe25-3a62-4519-b0b6-9addc8111921" x="0" y="0" width="247" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institución convocante de la evaluación:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="c2c3db9d-9868-4900-8d4a-e80960d609b4" x="0" y="0" width="247" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Institución evaluada de la evaluación:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="873b039b-ce16-4dc3-b130-a3010016c232" positionType="Float" x="225" y="0" width="300" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{institucionEvaluada}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="34920c44-b8b2-454c-98c2-cf8a3fd7066d" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Actividad evaluada:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="25e93b78-3a86-41d4-82f2-95ba40911aaa" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoEvaluacionInstitucional}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="21fe51c9-a780-4235-8962-d49f032a05b0" x="0" y="0" width="247" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año de inicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8577db6c-0bd2-4a24-869f-d6f5dececc3b" positionType="Float" x="187" y="0" width="90" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="62d524ca-ef47-4bb9-b9a9-e527ce480483" x="292" y="0" width="125" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año de finalización:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="81afe9e7-2be3-4b0d-9320-fa335fc52ce4" positionType="Float" x="417" y="0" width="77" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anioFin}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="004de221-b11e-4cd9-9b87-6470d4696812" positionType="Float" x="187" y="0" width="300" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rolEvaluador}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5ade0d4-d7a9-4509-af23-10011df81c40" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rol evaluador:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a4087f41-69d2-4257-983d-5b7d746caf53" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pais:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="7aaf8660-07c1-435e-9a2f-e5504616157d" positionType="Float" x="187" y="0" width="300" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="a41a0b99-c073-4add-b94e-c7c063e68005" x="0" y="0" width="187" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="e32fa408-9a1f-4b8e-b467-cda66dd18775" positionType="Float" x="187" y="0" width="300" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ciudad}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="5db21740-76ad-4357-b788-cd4c750eeac6" x="0" y="0" width="247" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ámbito del plan o política evaluado:]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement uuid="7fb39fb9-1ab9-40df-94f6-8b1e24678fb7" positionType="Float" stretchType="RelativeToBandHeight" mode="Opaque" x="200" y="0" width="325" height="20"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="97e0edb6-8487-4066-877d-c6bd040691f4">
+						<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("/evaluacionInstitucional/ambitosEvaluados/ambitoEvaluado")]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="20" width="325">
+						<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+							<reportElement uuid="f6783e2e-8a36-4c34-bbfe-5c0425600fd2" x="0" y="0" width="325" height="20"/>
+							<textElement verticalAlignment="Middle">
+								<font size="11"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{tipoAmbitoInstitucional}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+		<band height="2">
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="1" width="525" height="1"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

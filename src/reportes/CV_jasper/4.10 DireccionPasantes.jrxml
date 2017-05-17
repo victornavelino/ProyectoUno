@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="4.10 DireccionPasantes" language="groovy" pageWidth="555" pageHeight="805" columnWidth="525" leftMargin="15" rightMargin="15" topMargin="5" bottomMargin="5" uuid="724595e4-15eb-4e6b-9851-d438c6a13f36">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Facundo\\Google Drive\\SIU - Incentivos\\CVar\\CV_jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[/datos/antecedentes/formacionRRHH/pasantes/formacionPasante]]>
+	</queryString>
+	<field name="anioDesde" class="java.lang.String">
+		<fieldDescription><![CDATA[anioDesde]]></fieldDescription>
+	</field>
+	<field name="anioHasta" class="java.lang.String">
+		<fieldDescription><![CDATA[anioHasta]]></fieldDescription>
+	</field>
+	<field name="organizacion" class="java.lang.String">
+		<fieldDescription><![CDATA[institucionPersonalDirigido/organizacion]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	</field>
+	<field name="apellido" class="java.lang.String">
+		<fieldDescription><![CDATA[apellido]]></fieldDescription>
+	</field>
+	<field name="tipoTarea" class="java.lang.String">
+		<fieldDescription><![CDATA[tipoTarea]]></fieldDescription>
+	</field>
+	<field name="temaPlanTrabajo" class="java.lang.String">
+		<fieldDescription><![CDATA[temaPlanTrabajo]]></fieldDescription>
+	</field>
+	<field name="nivelEducativo" class="java.lang.String">
+		<fieldDescription><![CDATA[nivelEducativo]]></fieldDescription>
+	</field>
+	<field name="funcionDesempeniada" class="java.lang.String">
+		<fieldDescription><![CDATA[funcionDesempeniada]]></fieldDescription>
+	</field>
+	<field name="ambitoInstitucional" class="java.lang.String">
+		<fieldDescription><![CDATA[ambitoInstitucional]]></fieldDescription>
+	</field>
+	<sortField name="anioDesde" order="Descending"/>
+	<variable name="nombrePasante" class="java.lang.String">
+		<variableExpression><![CDATA[$F{apellido} + ", " + $F{nombre}]]></variableExpression>
+	</variable>
+	<filterExpression><![CDATA[$F{funcionDesempeniada} == "Director o tutor"]]></filterExpression>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="21">
+			<staticText>
+				<reportElement uuid="a6fe42f3-a5b5-44c3-97d6-ba0808c61238" x="-15" y="1" width="385" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[4.10. Dirección de pasantes.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="33d04978-e415-4885-99cd-56e20cfc204e" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{organizacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1a00fe25-3a62-4519-b0b6-9addc8111921" x="0" y="0" width="247" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Universidad / Unidad Académica:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="21fe51c9-a780-4235-8962-d49f032a05b0" x="0" y="0" width="247" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año de inicio:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8577db6c-0bd2-4a24-869f-d6f5dececc3b" positionType="Float" x="187" y="0" width="77" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anioDesde}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="62d524ca-ef47-4bb9-b9a9-e527ce480483" x="292" y="0" width="125" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año de finalización:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="81afe9e7-2be3-4b0d-9320-fa335fc52ce4" positionType="Float" x="417" y="0" width="77" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anioHasta}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="004de221-b11e-4cd9-9b87-6470d4696812" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{nombrePasante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5ade0d4-d7a9-4509-af23-10011df81c40" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del Pasante:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="3a48f792-a09f-4ab1-a06d-a7987c9382c2" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ámbito institucional:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8457a506-a0a2-4764-bf49-92381f3474fd" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ambitoInstitucional}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="9c419342-b3f5-40c0-8468-cb9bfdbb4e4d" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{temaPlanTrabajo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="79175290-514d-4c9e-9db4-d9e1ef7a0944" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tema del plan de trabajo:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8a9b8ba2-2994-46ac-9988-25c345f80c7f" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nivelEducativo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f477d306-7057-40df-bde3-c100aa558800" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nivel educativo del pasante:]]></text>
+			</staticText>
+		</band>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="b2478977-8a66-4bb0-b1d8-3afb51bf0e5b" x="0" y="0" width="187" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de tarea:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f4137f6a-8d05-4cea-8b48-64ec41a2fca4" positionType="Float" x="187" y="0" width="338" height="20"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoTarea}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="b71e1632-accf-488d-8bf9-2f9f2598bf4b" x="0" y="19" width="525" height="1"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
