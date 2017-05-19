@@ -751,7 +751,7 @@ public class ProyectoFacade {
             try {
                 if (!p.getProyecto().getSubDisciplinasCientificas().isEmpty()) {
                     for (SubDisciplinaCientifica s : p.getProyecto().getSubDisciplinasCientificas()) {
-                        stringBuider.append(s.getDisciplinaCientifica().getAreaTematica().getDescripcion()).append(" ");
+                        stringBuider.append(s.getDisciplinaCientifica().getAreaTematica().getDescripcion()).append(";");
                     }
                 } else {
                     stringBuider.append(" ");
@@ -764,7 +764,7 @@ public class ProyectoFacade {
             try {
                 if (!p.getProyecto().getSubDisciplinasCientificas().isEmpty()) {
                     for (SubDisciplinaCientifica s : p.getProyecto().getSubDisciplinasCientificas()) {
-                        stringBuider.append(s.getDisciplinaCientifica().getDescripcion()).append(" ");
+                        stringBuider.append(s.getDisciplinaCientifica().getDescripcion()).append(";");
                     }
                 } else {
                     stringBuider.append(" ");
