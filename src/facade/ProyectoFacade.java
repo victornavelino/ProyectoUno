@@ -749,17 +749,27 @@ public class ProyectoFacade {
             }
             stringBuider.append("|");
             try {
-                for (SubDisciplinaCientifica s : p.getProyecto().getSubDisciplinasCientificas()) {
-                    stringBuider.append(s.getDisciplinaCientifica().getAreaTematica().getDescripcion()).append(" ");
+                if (!p.getProyecto().getSubDisciplinasCientificas().isEmpty()) {
+                    for (SubDisciplinaCientifica s : p.getProyecto().getSubDisciplinasCientificas()) {
+                        stringBuider.append(s.getDisciplinaCientifica().getAreaTematica().getDescripcion()).append(" ");
+                    }
+                } else {
+                    stringBuider.append(" ");
                 }
+
             } catch (java.lang.NullPointerException ex) {
                 stringBuider.append(" ");
             }
             stringBuider.append("|");
             try {
-                for (SubDisciplinaCientifica s : p.getProyecto().getSubDisciplinasCientificas()) {
-                    stringBuider.append(s.getDisciplinaCientifica().getDescripcion()).append(" ");
+                if (!p.getProyecto().getSubDisciplinasCientificas().isEmpty()) {
+                    for (SubDisciplinaCientifica s : p.getProyecto().getSubDisciplinasCientificas()) {
+                        stringBuider.append(s.getDisciplinaCientifica().getDescripcion()).append(" ");
+                    }
+                } else {
+                    stringBuider.append(" ");
                 }
+
             } catch (java.lang.NullPointerException ex) {
                 stringBuider.append(" ");
             }
@@ -775,12 +785,24 @@ public class ProyectoFacade {
             try {
                 stringBuider.append(p.getProyecto().getUnidadAcademica().toString());
             } catch (java.lang.NullPointerException ex) {
-                stringBuider.append(" ");
+                stringBuider.append("wWWWWW ");
             }
             stringBuider.append("|");
             try {
                 if (p.getProyecto().getLineaInvestigacion() != null) {
                     stringBuider.append(p.getProyecto().getLineaInvestigacion());
+                } else {
+                    stringBuider.append(" RRRRR");
+                }
+
+            } catch (java.lang.NullPointerException ex) {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            try {
+                //LINEA PRIORITARIA
+                if (p.getProyecto().getTipoProyecto().getId() != null) {
+                    stringBuider.append(p.getProyecto().getTipoProyecto());
                 } else {
                     stringBuider.append(" ");
                 }
@@ -790,21 +812,26 @@ public class ProyectoFacade {
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(p.getProyecto().getTipoProyecto());
-            } catch (java.lang.NullPointerException ex) {
-                stringBuider.append(" ");
-            }
-            stringBuider.append("|");
-            try {
-                for (Especialidad e : p.getProyecto().getEspecialidades()) {
-                    stringBuider.append(e.getDescripcion()).append(" ");
+                //SECTOR PRIORITARIO
+                if (!p.getProyecto().getEspecialidades().isEmpty()) {
+                    for (Especialidad e : p.getProyecto().getEspecialidades()) {
+                        stringBuider.append(e.getDescripcion()).append(" ");
+                    }
+                } else {
+                    stringBuider.append(" EEEE");
                 }
+
             } catch (java.lang.NullPointerException ex) {
                 stringBuider.append(" ");
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(p.getProyecto().getObjetivoSocioeconomico());
+                if (p.getProyecto().getObjetivoSocioeconomico().getId() != null) {
+                    stringBuider.append(p.getProyecto().getObjetivoSocioeconomico());
+                } else {
+                    stringBuider.append("XXX ");
+                }
+
             } catch (java.lang.NullPointerException ex) {
                 stringBuider.append(" ");
             }
