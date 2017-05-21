@@ -12,6 +12,7 @@ import entidades.UnidadAcademica;
 import entidades.UnidadEjecutora;
 import entidades.categorizacion.Categorizacion;
 import entidades.categorizacion.Winsip;
+import entidades.economico.PagoEconomico;
 import entidades.investigador.formacionAcademica.FormacionAcademicaGrado;
 import entidades.investigador.formacionAcademica.FormacionAcademicaOtra;
 import entidades.investigador.formacionAcademica.FormacionAcademicaPosgrado;
@@ -42,12 +43,16 @@ import entidades.proyecto.vinculacion.ParticipacionVinculacion;
 import entidades.proyecto.vinculacion.ProyectoVinculacion;
 import includes.Comunes;
 import includes.ExportarExcel;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -697,7 +702,7 @@ public class ProyectoFacade {
     public void exportarAExcelInvProySubdisc() {
         //Datos a escribir
         List<String> lista = new ArrayList<>();
-        lista.add("CODIGO INCENTIVOS|NOMBRE PROYECTO|FECHA INICIO PROY|FECHA FINAL PROYECTO|ROL|APELLIDO Y NOMBRE|CATEGORIA 2010|AREAS TEMATICAS PROY|DISCIPLINAS CIENTIFICAS PROY|SUBDISCIPLINAS CIENTIFICAS PROY|UNIDAD ACADEMICA|LINEA PRIORITARIA|TIPO DE ACTIVIDADES|SECTORES PRIORITARIOS|OBJETIVO SOCIOECONOMICO|RESUMEN|FA GRADO|FA POSGRADO|FA OTRA|DEDICACION DOCENTE 2015|SEXO|FECHA NACIMIENTO|EDAD");
+        lista.add("CODIGO INCENTIVOS|NOMBRE PROYECTO|FECHA INICIO PROY|FECHA FINAL PROYECTO|ROL|APELLIDO Y NOMBRE|CATEGORIA 2010|AREAS TEMATICAS PROY|DISCIPLINAS CIENTIFICAS PROY|SUBDISCIPLINAS CIENTIFICAS PROY|UNIDAD ACADEMICA|LINEA PRIORITARIA|TIPO DE ACTIVIDADES|SECTORES PRIORITARIOS|OBJETIVO SOCIOECONOMICO|RESUMEN|FA GRADO|FA POSGRADO|FA OTRA|DEDICACION DOCENTE 2015|SEXO|FECHA NACIMIENTO|EDAD|PRESUPUESTO AÑO1|PRESUPUESTO AÑO2|PRESUPUESTO AÑO3|PRESUPUESTO AÑO4|");
         List<Participacion> todos = new ParticipacionFacade().getTodos();
         for (Participacion p : todos) {
             StringBuilder stringBuider = new StringBuilder();
@@ -856,21 +861,35 @@ public class ProyectoFacade {
             }
             stringBuider.append("|");
             try {
-                for (FormacionAcademicaPosgrado s : p.getInvestigador().getFormacionesAcademicasPosgrado()) {
-                    stringBuider.append(s).append("; ");
+                if(!p.getInvestigador().getFormacionesAcademicasPosgrado().isEmpty()){
+                    for (FormacionAcademicaPosgrado s : p.getInvestigador().getFormacionesAcademicasPosgrado()) {
+                        stringBuider.append(s).append("; ");
+                    }
+                }
+                else{
+                    stringBuider.append(" ");
                 }
             } catch (java.lang.NullPointerException ex) {
                 stringBuider.append(" ");
+            }finally{
+                stringBuider.append("|");
             }
-            stringBuider.append("|");
+            
             try {
-                for (FormacionAcademicaOtra s : p.getInvestigador().getFormacionesAcademicasOtras()) {
-                    stringBuider.append(s).append("; ");
+                if(!p.getInvestigador().getFormacionesAcademicasOtras().isEmpty()){
+                    for (FormacionAcademicaOtra s : p.getInvestigador().getFormacionesAcademicasOtras()) {
+                        stringBuider.append(s).append("; ");
+                    }
+                }else{
+                    stringBuider.append(" ");
                 }
             } catch (java.lang.NullPointerException ex) {
+                System.out.println(ex.getMessage());
                 stringBuider.append(" ");
+            } finally{
+                stringBuider.append("|");
             }
-            stringBuider.append("|");
+            
             try {
                 for (Docencia d : p.getInvestigador().getDocencias()) {
                     if (d.getAño() == 2015) {
@@ -904,8 +923,36 @@ public class ProyectoFacade {
                 stringBuider.append(" ");
             }
             stringBuider.append("|");
-            lista.add(stringBuider.toString());
+            //presupuesto
+            try{
+                List<PagoEconomico> listaPagos = p.getProyecto().getPagos();
+                Map<Integer, BigDecimal> map = new HashMap<>();
 
+                for(PagoEconomico pe : listaPagos) {
+                    Integer name = pe.getAnioExpediente();
+                    BigDecimal sum = map.get(name);
+                    if (sum == null) {
+                        sum = new BigDecimal(0);
+                        map.put(name, sum);
+                    }
+
+                    map.put(name, sum.add(pe.getMonto()));
+                }
+                Iterator keys=map.keySet().iterator();
+                while(keys.hasNext()){
+                    if(keys.hasNext()){
+                        Object key = keys.next();
+                        stringBuider.append( String.valueOf(key) + "-$" +
+                                String.valueOf(map.get(key))).append("|");
+                    }
+                 }
+            }catch(java.lang.NullPointerException ex){
+                stringBuider.append(" ");
+            }finally{
+                //stringBuider.append("|");
+            }
+            lista.add(stringBuider.toString());
+            
         }
 
         // Generar el fichero
