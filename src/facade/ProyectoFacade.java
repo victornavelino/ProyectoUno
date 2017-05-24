@@ -12,6 +12,10 @@ import entidades.UnidadAcademica;
 import entidades.UnidadEjecutora;
 import entidades.categorizacion.Categorizacion;
 import entidades.categorizacion.Winsip;
+import entidades.economico.BienConsumo;
+import entidades.economico.BienNoPersonal;
+import entidades.economico.BienUso;
+import entidades.economico.GastoViaje;
 import entidades.economico.PagoEconomico;
 import entidades.investigador.formacionAcademica.FormacionAcademicaGrado;
 import entidades.investigador.formacionAcademica.FormacionAcademicaOtra;
@@ -48,6 +52,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -698,7 +703,33 @@ public class ProyectoFacade {
         new ExportarExcel().crearExcel(lista, "Proyectos prorroga");
 
     }
-
+    
+    Comparator<BienUso> comparadorBU = new Comparator<BienUso>() {
+        public int compare(BienUso a, BienUso b) {
+            return (a.getAnio().compareTo(b.getAnio()));
+            }
+        };
+    
+    Comparator<BienConsumo> comparadorBC = new Comparator<BienConsumo>() {
+        public int compare(BienConsumo a, BienConsumo b) {
+            return (a.getAnio().compareTo(b.getAnio()));
+            }
+        };
+    
+    Comparator<GastoViaje> comparadorGV = new Comparator<GastoViaje>() {
+        public int compare(GastoViaje a, GastoViaje b) {
+            return (a.getAnio().compareTo(b.getAnio()));
+            }
+        };
+    
+    Comparator<BienNoPersonal> comparadorBNP = new Comparator<BienNoPersonal>() {
+        public int compare(BienNoPersonal a, BienNoPersonal b) {
+            return (a.getAnio().compareTo(b.getAnio()));
+            }
+        };
+    
+    
+    
     public void exportarAExcelInvProySubdisc() {
         //Datos a escribir
         List<String> lista = new ArrayList<>();
@@ -925,27 +956,98 @@ public class ProyectoFacade {
             stringBuider.append("|");
             //presupuesto
             try{
-                List<PagoEconomico> listaPagos = p.getProyecto().getPagos();
-                Map<Integer, BigDecimal> map = new HashMap<>();
-
-                for(PagoEconomico pe : listaPagos) {
-                    Integer name = pe.getAnioExpediente();
-                    BigDecimal sum = map.get(name);
-                    if (sum == null) {
-                        sum = new BigDecimal(0);
-                        map.put(name, sum);
-                    }
-
-                    map.put(name, sum.add(pe.getMonto()));
+                
+                List<BienUso> listaBU = p.getProyecto().getPresupuesto().getBienUso();
+                List<BienNoPersonal> listaBNP = p.getProyecto().getPresupuesto().getBienNoPersonal();
+                List<GastoViaje> listaGV = p.getProyecto().getPresupuesto().getGastosViaje();
+                List<BienConsumo> listaBC = p.getProyecto().getPresupuesto().getBienConsumo();
+                
+                double anio1 = 0;
+                double anio2 = 0;
+                double anio3 = 0;
+                double anio4 = 0;
+                
+                if(!listaBU.isEmpty()){
+                    Collections.sort(listaBU,comparadorBU);
                 }
-                Iterator keys=map.keySet().iterator();
-                while(keys.hasNext()){
-                    if(keys.hasNext()){
-                        Object key = keys.next();
-                        stringBuider.append( String.valueOf(key) + "-$" +
-                                String.valueOf(map.get(key))).append("|");
+                if(!listaBNP.isEmpty()){
+                    Collections.sort(listaBNP,comparadorBNP);
+                }
+                if(!listaGV.isEmpty()){
+                    Collections.sort(listaGV,comparadorGV);
+                }
+                if(!listaBC.isEmpty()){
+                    Collections.sort(listaBC,comparadorBC);
+                }
+                
+                for(int i=1; i <= listaBNP.size(); i++){
+                    if(i==1){
+                        anio1 += listaBNP.get(i-1).getValor().doubleValue();
                     }
-                 }
+                    if(i==2){
+                        anio2 += listaBNP.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==3){
+                        anio3 += listaBNP.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==4){
+                        anio4 += listaBNP.get(i-1).getValor().doubleValue();
+                    }
+                }
+                
+                for(int i=1; i <= listaBU.size(); i++){
+                    if(i==1){
+                        anio1 += listaBU.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==2){
+                        anio2 += listaBU.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==3){
+                        anio3 += listaBU.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==4){
+                        anio4 += listaBU.get(i-1).getValor().doubleValue();
+                    }
+                }
+                
+                for(int i=1; i <= listaGV.size(); i++){
+                    if(i==1){
+                        anio1 += listaGV.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==2){
+                        anio2 += listaGV.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==3){
+                        anio3 += listaGV.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==4){
+                        anio4 += listaGV.get(i-1).getValor().doubleValue();
+                    }
+                }
+                
+                for(int i=1; i <= listaBC.size(); i++){
+                    if(i==1){
+                        anio1 += listaBC.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==2){
+                        anio2 += listaBC.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==3){
+                        anio3 += listaBC.get(i-1).getValor().doubleValue();
+                    }
+                    if(i==4){
+                        anio4 += listaBC.get(i-1).getValor().doubleValue();
+                    }
+                }
+                
+                stringBuider.append(String.valueOf(anio1));
+                stringBuider.append("|");
+                stringBuider.append(String.valueOf(anio2));
+                stringBuider.append("|");
+                stringBuider.append(String.valueOf(anio3));
+                stringBuider.append("|");
+                stringBuider.append(String.valueOf(anio4));
+                stringBuider.append("|");
             }catch(java.lang.NullPointerException ex){
                 stringBuider.append(" ");
             }finally{
