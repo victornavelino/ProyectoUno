@@ -600,12 +600,13 @@ public class diagReportesCategorizacion extends javax.swing.JDialog {
         DocumentoFacade documentoFacade = DocumentoFacade.getInstance();
         lista.add("COD. PROYECTO|DIRECTOR|TIPO DE INFORME|AÑO DEL INFORME|FECHA DE EVALUACION|RESULTADO DE LA EVALUACION|LUGAR DE LA EVALUACION|EVALUADORES|PDF DE EVALUACION DEL INFORME|PDF DE EVALUACION DE INTEGRANTES");
 
-        for (Object[] winsip : WinsipFacade.getInstance().getListaReporteWinsip()) {
-
+        for (Object[] winsip : WinsipFacade.getInstance().getListaReporteWinsip2()) {
+            
+            
             StringBuilder stringBuider = new StringBuilder();
             try {
-                stringBuider.append(winsip[0]);
-
+                //stringBuider.append(winsip[0]);
+                  stringBuider.append(((Winsip) winsip[0]).getProyecto().getCodigoIncentivos());
             } catch (Exception ex) {
                 stringBuider.append(" ");
             }
@@ -618,21 +619,22 @@ public class diagReportesCategorizacion extends javax.swing.JDialog {
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(winsip[2]);
+                //stringBuider.append(winsip[2]);
+                stringBuider.append(((Winsip) winsip[0]).getTipoInforme());
             } catch (Exception ex) {
                 stringBuider.append(" ");
 
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(winsip[3]);
+                stringBuider.append(((Winsip) winsip[0]).getAño());
             } catch (Exception ex) {
                 stringBuider.append(" ");
 
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(formato.format(winsip[4]));
+                stringBuider.append(formato.format(((Winsip) winsip[0]).getFechaEvaluacion()));
 
             } catch (Exception ex) {
                 stringBuider.append(" ");
@@ -640,14 +642,14 @@ public class diagReportesCategorizacion extends javax.swing.JDialog {
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(winsip[5]);
+                stringBuider.append(((Winsip) winsip[0]).getEvaluacionWinsip());
             } catch (Exception ex) {
                 stringBuider.append(" ");
 
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(winsip[6]);
+                stringBuider.append(((Winsip) winsip[0]).getLugarEvaluacion());
             } catch (Exception ex) {
                 stringBuider.append(" ");
 
@@ -655,11 +657,13 @@ public class diagReportesCategorizacion extends javax.swing.JDialog {
             stringBuider.append("|");
 
             try {
+                /*
                 for (EvaluacionWinsipIntegrantes evaluacionWinsip : ((Winsip) winsip[7]).getEvaluacionesIntegrantes()) {
                     stringBuider.append(evaluacionWinsip.getInvestigador());
                     stringBuider.append("; ");
-                }
-
+                }*/
+                //con el fetch join no hace falta hacer de esa consulta.
+                stringBuider.append(((Winsip) winsip[0]).getEvaluacionesIntegrantes());
             } catch (Exception ex) {
                 stringBuider.append(" ");
 
@@ -667,14 +671,14 @@ public class diagReportesCategorizacion extends javax.swing.JDialog {
             stringBuider.append("|");
 
             try {
-                stringBuider.append(winsip[8]);
-
+                stringBuider.append(((Winsip) winsip[0]).getEvaluacionProyecto().getDocumento().getNombreArchivo());
+               
             } catch (Exception ex) {
                 stringBuider.append(" ");
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(winsip[9]);
+                stringBuider.append(((Winsip) winsip[0]).getEvaluacionIntegrantes().getDocumento().getNombreArchivo());
 
             } catch (Exception ex) {
                 stringBuider.append(" ");
@@ -682,7 +686,7 @@ public class diagReportesCategorizacion extends javax.swing.JDialog {
             }
             stringBuider.append("|");
             lista.add(stringBuider.toString());
-
+            
         }
 
        

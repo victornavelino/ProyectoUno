@@ -122,6 +122,18 @@ public class WinsipFacade {
             return new ArrayList<>();
         }
     }
+    
+    public List<Object[]> getListaReporteWinsip2() {
+        Query quBuscar = em.createQuery("SELECT DISTINCT w , CONCAT(pa.investigador.persona.apellido ,', ' , pa.investigador.persona.nombre)" +
+ " FROM Winsip w JOIN FETCH w.evaluacionesIntegrantes , IN(w.proyecto.participaciones) pa  WHERE ((pa.fechaHasta IS NULL  OR pa.fechaHasta > CURRENT_DATE )" +
+  " OR pa.proyecto.fechaFinalizacion < CURRENT_DATE ) AND pa.rol.id = 1 ORDER BY  w.proyecto.codigoIncentivos");
+        quBuscar.setHint("eclipselink.read-only", "true");
+        try {
+            return quBuscar.getResultList();
+        } catch (Exception ex) {
+            return new ArrayList<>();
+        }
+    }
 
     public List<Winsip> getWinsipsAnioSeleccionado(int anio) {
         Query quBuscar = em.createQuery("SELECT w FROM Winsip w WHERE w.año=:anio");
