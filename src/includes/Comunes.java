@@ -382,8 +382,10 @@ public class Comunes {
                         cargando.dispose();
                     }
                 } catch (InterruptedException ex) {
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, " 1 Se ha producido un error, disculpe las molestias\n" + ex);
                 } catch (ExecutionException ex) {
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, " 2 Se ha producido un error, disculpe las molestias\n" + ex);
 
                 }
