@@ -671,14 +671,14 @@ public class diagReportesCategorizacion extends javax.swing.JDialog {
             stringBuider.append("|");
 
             try {
-                stringBuider.append(((Winsip) winsip[0]).getEvaluacionProyecto().getDocumento().getNombreArchivo());
+                stringBuider.append(winsip[2]);
                
             } catch (Exception ex) {
                 stringBuider.append(" ");
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(((Winsip) winsip[0]).getEvaluacionIntegrantes().getDocumento().getNombreArchivo());
+                stringBuider.append(winsip[3]);
 
             } catch (Exception ex) {
                 stringBuider.append(" ");

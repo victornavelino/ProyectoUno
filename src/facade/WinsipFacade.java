@@ -125,9 +125,11 @@ public class WinsipFacade {
     
     public List<Object[]> getListaReporteWinsip2() {
         Query quBuscar = em.createQuery("SELECT DISTINCT w , CONCAT(pa.investigador.persona.apellido ,', ' , pa.investigador.persona.nombre)" +
+                " ,w.evaluacionProyecto.documento.nombreArchivo, w.evaluacionIntegrantes.documento.nombreArchivo"+
  " FROM Winsip w JOIN FETCH w.evaluacionesIntegrantes , IN(w.proyecto.participaciones) pa  WHERE ((pa.fechaHasta IS NULL  OR pa.fechaHasta > CURRENT_DATE )" +
   " OR pa.proyecto.fechaFinalizacion < CURRENT_DATE ) AND pa.rol.id = 1 ORDER BY  w.proyecto.codigoIncentivos");
         quBuscar.setHint("eclipselink.read-only", "true");
+        quBuscar.setHint("eclipselink.jdbc.fetch-size", "256");
         try {
             return quBuscar.getResultList();
         } catch (Exception ex) {

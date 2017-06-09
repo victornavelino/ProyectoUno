@@ -371,10 +371,9 @@ public class ProyectoFacade {
 
     public List<Proyecto> ProyectoxDirector(String nombre, String cargo) {
         Query quProyectos = em.createQuery("SELECT p FROM Proyecto p, IN (p.participaciones) par WHERE "
-                + "par.rol.descripcion LIKE :car AND par.investigador.persona.apellido LIKE :nom "
-                + "AND (par.fechaHasta IS NULL OR par.fechaHasta > :fecha )");
-        quProyectos.setParameter("fecha", Comunes.obtenerFechaActualDesdeDB());
-        quProyectos.setParameter("nom", nombre);
+                + "par.rol.descripcion LIKE :car "
+                + "AND CONCAT(par.investigador.persona.apellido,' ',par.investigador.persona.nombre) LIKE :nom");
+        quProyectos.setParameter("nom", "%"+ nombre + "%");
         quProyectos.setParameter("car", cargo);
         return quProyectos.getResultList();
     }
