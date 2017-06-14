@@ -16,6 +16,7 @@ import includes.ModeloTablaNoEditable;
 import java.awt.Color;
 import java.awt.Frame;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -102,6 +103,7 @@ public class diagMensajes extends javax.swing.JDialog {
         btnModificarPlantilla = new javax.swing.JButton();
         btnEliminarPlantilla = new javax.swing.JButton();
         btnUtilizarPlantilla = new javax.swing.JButton();
+        btnCopiarPlantilla = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnVerPapelera = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -230,21 +232,30 @@ public class diagMensajes extends javax.swing.JDialog {
             }
         });
 
+        btnCopiarPlantilla.setText(org.openide.util.NbBundle.getMessage(diagMensajes.class, "diagMensajes.btnCopiarPlantilla.text")); // NOI18N
+        btnCopiarPlantilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCopiarPlantillaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnModificarPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNuevaPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminarPlantilla, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(btnUtilizarPlantilla, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(319, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCopiarPlantilla, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnModificarPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNuevaPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEliminarPlantilla, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(18, 18, 18)
@@ -260,7 +271,9 @@ public class diagMensajes extends javax.swing.JDialog {
                 .addComponent(btnModificarPlantilla)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminarPlantilla)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCopiarPlantilla)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(btnUtilizarPlantilla)
                 .addGap(23, 23, 23))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -624,6 +637,15 @@ public class diagMensajes extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnUtilizarPlantillaActionPerformed
 
+    private void btnCopiarPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopiarPlantillaActionPerformed
+        try {
+            copiarPlantilla();
+            cargarTablaPlantillas(PlantillaMensajeFacade.getInstance().listar());
+        } catch (Exception ex) {
+            Logger.getLogger(diagMensajes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnCopiarPlantillaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -669,6 +691,7 @@ public class diagMensajes extends javax.swing.JDialog {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnBuscarInvestigador;
     private javax.swing.JButton btnCambiarEstadoMensaje;
+    private javax.swing.JButton btnCopiarPlantilla;
     private javax.swing.JButton btnEliminarPlantilla;
     private javax.swing.JButton btnModificarPlantilla;
     private javax.swing.JButton btnNuevaPlantilla;
@@ -1208,10 +1231,25 @@ public class diagMensajes extends javax.swing.JDialog {
     private void utilizarPlantilla() throws Exception {
         if (tblPlantillas.getSelectedRow() != -1) {
             PlantillaMensaje plantilla = PlantillaMensajeFacade.getInstance().buscar((Long) tblPlantillas.getValueAt(tblPlantillas.getSelectedRow(), 0));
-            diagMensajeRespuesta nuevoMensaje = new diagMensajeRespuesta(null, true, "Plantilla",plantilla);
+            diagMensajeRespuesta nuevoMensaje = new diagMensajeRespuesta(null, true, "Plantilla", plantilla);
             nuevoMensaje.setLocation(Comunes.centrarDialog(nuevoMensaje));
             nuevoMensaje.setVisible(true);
-            
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una plantilla");
+        }
+    }
+
+    private void copiarPlantilla() throws Exception {
+        if (tblPlantillas.getSelectedRow() != -1) {
+            PlantillaMensaje plantilla = PlantillaMensajeFacade.getInstance().buscar((Long) tblPlantillas.getValueAt(tblPlantillas.getSelectedRow(), 0));
+            PlantillaMensaje plantillaCopia = new PlantillaMensaje();
+            plantillaCopia.setDescripcion("COPIA - " + plantilla.getDescripcion());
+            plantillaCopia.setMensaje("COPIA - " + plantilla.getMensaje());
+            plantillaCopia.setFecha(new Date());
+            plantillaCopia.setListaInvestigadores(plantilla.getListaInvestigadores());
+            PlantillaMensajeFacade.getInstance().alta(plantillaCopia);
+            JOptionPane.showMessageDialog(null, "Plantilla Copiada con exito!");
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una plantilla");
         }
