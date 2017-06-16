@@ -30,6 +30,7 @@ import entidades.persona.investigador.curso.CursoDictado;
 import entidades.persona.investigador.curso.TipoAsignatura;
 import entidades.persona.investigador.curso.TipoDuracionAsignatura;
 import entidades.proyecto.Participacion;
+import entidades.proyecto.Rol;
 import entidades.titulo.TituloGrado;
 import entidades.titulo.TituloOtro;
 import entidades.titulo.TituloPosgrado;
@@ -825,6 +826,36 @@ public class InvestigadorFacade {
     public List<Investigador> getTodosInvestigadoresVigentesProrrogas(Date prorroga) {
         Query quParticipaciones = em.createQuery("SELECT pa FROM Participacion pa, IN(pa.proyecto.prorrogas) pro WHERE pro.fecha >=:prorroga ");
         quParticipaciones.setParameter("prorroga", prorroga);
+        List<Participacion> participaciones = quParticipaciones.getResultList();
+        List<Investigador> integrantes = new ArrayList<Investigador>();
+        for (Participacion participacion : participaciones) {
+
+            if (!integrantes.contains(participacion.getInvestigador())) {
+                integrantes.add(participacion.getInvestigador());
+
+            }
+        }
+        return integrantes;
+    }
+    
+    public List<Investigador> getTodosInvestigadoresProyectosVigentes() {
+        Query quParticipaciones = em.createQuery("SELECT pa FROM Participacion pa LEFT JOIN pa.proyecto.prorrogas pro ON "
+                +" pro.fecha >= CURRENT_DATE AND pa.proyecto.fechaFinalizacion >= CURRENT_DATE ");
+        List<Participacion> participaciones = quParticipaciones.getResultList();
+        List<Investigador> integrantes = new ArrayList<Investigador>();
+        for (Participacion participacion : participaciones) {
+
+            if (!integrantes.contains(participacion.getInvestigador())) {
+                integrantes.add(participacion.getInvestigador());
+
+            }
+        }
+        return integrantes;
+    }
+    
+    public List<Investigador> getTodosInvestigadoresXRol(Rol rol) {
+        Query quParticipaciones = em.createQuery("SELECT pa FROM Participacion pa WHERE pa.rol =:rol ");
+        quParticipaciones.setParameter("rol", rol);
         List<Participacion> participaciones = quParticipaciones.getResultList();
         List<Investigador> integrantes = new ArrayList<Investigador>();
         for (Participacion participacion : participaciones) {

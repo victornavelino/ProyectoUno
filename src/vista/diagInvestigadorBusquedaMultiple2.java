@@ -11,9 +11,11 @@
 package vista;
 
 import entidades.persona.investigador.Investigador;
+import entidades.proyecto.Rol;
 import facade.InvestigadorFacade;
 import facade.ProrrogaFacade;
 import facade.ProyectoFacade;
+import facade.RolFacade;
 import includes.Comunes;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
     List<Investigador> listaInvestigador = new ArrayList<>();
     List<Investigador> listaInvestigadorNo = new ArrayList<>();
     int[] lista = null;
+    private RolFacade rolFacade = new RolFacade();
 
     public List<Investigador> getListaInvestigador() {
         return listaInvestigador;
@@ -76,6 +79,11 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         btnProrroga = new javax.swing.JButton();
         btnFinalizacion = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jComboRol = new javax.swing.JComboBox<>();
+        jBtnRol = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jBtnVigentes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -126,6 +134,26 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
             }
         });
 
+        jLabel6.setText(org.openide.util.NbBundle.getMessage(diagInvestigadorBusquedaMultiple2.class, "diagInvestigadorBusquedaMultiple2.jLabel6.text")); // NOI18N
+
+        jBtnRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar2.png"))); // NOI18N
+        jBtnRol.setText(org.openide.util.NbBundle.getMessage(diagInvestigadorBusquedaMultiple2.class, "diagInvestigadorBusquedaMultiple2.jBtnRol.text")); // NOI18N
+        jBtnRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRolActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText(org.openide.util.NbBundle.getMessage(diagInvestigadorBusquedaMultiple2.class, "diagInvestigadorBusquedaMultiple2.jLabel7.text")); // NOI18N
+
+        jBtnVigentes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar2.png"))); // NOI18N
+        jBtnVigentes.setText(org.openide.util.NbBundle.getMessage(diagInvestigadorBusquedaMultiple2.class, "diagInvestigadorBusquedaMultiple2.jBtnVigentes.text")); // NOI18N
+        jBtnVigentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnVigentesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -133,23 +161,33 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(32, 32, 32)
                         .addComponent(tfBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(dpFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnFinalizacion))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(dpProrroga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnProrroga)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBtnVigentes)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(dpFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFinalizacion))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jComboRol, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(dpProrroga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnProrroga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBtnRol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,19 +198,28 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(tfBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFinalizacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dpFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dpProrroga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addComponent(btnProrroga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(dpFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnFinalizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(dpProrroga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnProrroga, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jBtnRol, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboRol, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jBtnVigentes))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -351,6 +398,14 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
       buscarPorFechasDeParticipacionProyectosProrroga();
     }//GEN-LAST:event_btnProrrogaActionPerformed
 
+    private void jBtnVigentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnVigentesActionPerformed
+        buscarVigentes();
+    }//GEN-LAST:event_jBtnVigentesActionPerformed
+
+    private void jBtnRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRolActionPerformed
+        buscarXRol();
+    }//GEN-LAST:event_jBtnRolActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -376,14 +431,19 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
     private javax.swing.JButton btnSeleccionarTodos;
     private org.jdesktop.swingx.JXDatePicker dpFinalizacion;
     private org.jdesktop.swingx.JXDatePicker dpProrroga;
+    private javax.swing.JButton jBtnRol;
+    private javax.swing.JButton jBtnVigentes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JList jListInvestigadoresSi;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -438,6 +498,7 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
         jListInvestigadoresSi.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         this.setListaInvestigadorNo(InvestigadorFacade.getInstance().getTodosInvestigador());
         Comunes.cargarJList(jlistInvestigadoresNo, this.getListaInvestigadorNo());
+        Comunes.cargarJCombo(jComboRol, rolFacade.getTodos());
     }
 
     private void seleccionarNingunInvestigador() {
@@ -485,6 +546,23 @@ public class diagInvestigadorBusquedaMultiple2 extends javax.swing.JDialog {
 
     private void buscarPorFechasDeParticipacionProyectosProrroga() {
         this.setListaInvestigadorNo(InvestigadorFacade.getInstance().getTodosInvestigadoresVigentesProrrogas(dpProrroga.getDate()));
+        Comunes.cargarJList(jlistInvestigadoresNo, listaInvestigadorNo);
+        listaInvestigador = new ArrayList<>();
+        Comunes.cargarJList(jListInvestigadoresSi, listaInvestigador);
+
+    }
+    
+    private void buscarVigentes() {
+        this.setListaInvestigadorNo(InvestigadorFacade.getInstance().getTodosInvestigadoresProyectosVigentes());
+        Comunes.cargarJList(jlistInvestigadoresNo, listaInvestigadorNo);
+        listaInvestigador = new ArrayList<>();
+        Comunes.cargarJList(jListInvestigadoresSi, listaInvestigador);
+
+    }
+    
+    private void buscarXRol() {
+        Rol rol = (Rol) jComboRol.getSelectedItem();
+        this.setListaInvestigadorNo(InvestigadorFacade.getInstance().getTodosInvestigadoresXRol(rol));
         Comunes.cargarJList(jlistInvestigadoresNo, listaInvestigadorNo);
         listaInvestigador = new ArrayList<>();
         Comunes.cargarJList(jListInvestigadoresSi, listaInvestigador);
