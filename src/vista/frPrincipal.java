@@ -1483,7 +1483,18 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 jxTaskPnCategorizaciones.setVisible(false);
                 jxTaskPnIncentivos.setVisible(false);
             }
-        } else {
+        } else if (usuario.getGrupo().getNombre().equals("editorialcientifica")) {
+            jXTaskPnProyectosVinculacion.setVisible(false);
+            jXTaskPnProyectos.setVisible(false);
+            jXTaskPnEconomico.setVisible(false);
+            jxTaskPnBecas.setVisible(false);
+            jxTaskPnCategorizaciones.setVisible(false);
+            jxTaskPnIncentivos.setVisible(false);
+            jXTaskPnUsuarios.setVisible(false);
+            jXTaskPnSupervision.setVisible(false);
+            jXTaskPnEntradasSalidas.setVisible(false);
+        }
+    else {
             // redirectSystemStreams();
         }
 
