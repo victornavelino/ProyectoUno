@@ -1421,6 +1421,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 
     private void cargarMenuesSegunPermiso() {
+
         if (!usuario.getGrupo().getNombre().equals("admin")) {
             jXTaskPnUsuarios.setVisible(false);
             jXTaskPnSupervision.setVisible(false);
@@ -1482,8 +1483,10 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 jxTaskPnBecas.setVisible(false);
                 jxTaskPnCategorizaciones.setVisible(false);
                 jxTaskPnIncentivos.setVisible(false);
-            }
-        } else if (usuario.getGrupo().getNombre().equals("editorialcientifica")) {
+            } else if (usuario.getGrupo().getNombre().equals("editorialcientifica")) {
+            System.out.println("USUARIOOO: " + usuario.getNombreUsuario());
+            System.out.println("USUARIOOO: grupo" + usuario.getGrupo().getDescripcion());
+            System.out.println("entro");
             jXTaskPnProyectosVinculacion.setVisible(false);
             jXTaskPnProyectos.setVisible(false);
             jXTaskPnEconomico.setVisible(false);
@@ -1493,13 +1496,12 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             jXTaskPnUsuarios.setVisible(false);
             jXTaskPnSupervision.setVisible(false);
             jXTaskPnEntradasSalidas.setVisible(false);
-        }
-    else {
+        } else {
             // redirectSystemStreams();
         }
 
     }
-
+    }
     private void panelDeControlTitulos() {
         diagEliminarPanelControl diagEliminarPanelControl = new diagEliminarPanelControl(this, true);
         diagEliminarPanelControl.setLocation(Comunes.centrarDialog(diagEliminarPanelControl));
