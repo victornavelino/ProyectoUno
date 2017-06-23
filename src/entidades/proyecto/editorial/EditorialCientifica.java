@@ -25,9 +25,11 @@ public class EditorialCientifica implements Serializable {
     private Long id;
     @Lob
     private String titulo;
+    @Lob
     private String autor;
     private String coautor;
     private String ISBN;
+    @Lob
     private String resumen;
     @Temporal(javax.persistence.TemporalType.DATE)    
     private Date anioPublicacion;
