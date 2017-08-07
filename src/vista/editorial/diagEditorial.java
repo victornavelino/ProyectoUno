@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 import vista.diagProyectoBusquedaSimple;
 import vista.editorial.evaluaciones.diagEvaluacionEditorial;
 import vista.editorial.stock.diagStock;
+import vista.proyectos.resultado.diagProyectoResultado;
 import vistas.evaluaciones.diagEvaluacion;
 
 /**
@@ -46,6 +47,7 @@ public class diagEditorial extends javax.swing.JDialog {
     private Usuario usuario;
     private EditorialCientifica editorialCientifica;
     private Proyecto proyecto;
+    private Proyecto proyectoSele;
     private ExpedienteEditorial expedienteEditorial;
     private EvaluacionEditorial evaluacionEditorial;
     private List<Stock> listaUnidades = new ArrayList<Stock>();
@@ -116,6 +118,7 @@ public class diagEditorial extends javax.swing.JDialog {
         jxDatePub = new org.jdesktop.swingx.JXDatePicker();
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        btnPublicaciones = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListEvaluaciones = new javax.swing.JList();
@@ -207,6 +210,13 @@ public class diagEditorial extends javax.swing.JDialog {
             }
         });
 
+        btnPublicaciones.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnPublicaciones.text")); // NOI18N
+        btnPublicaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPublicacionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -228,7 +238,9 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPublicaciones))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,7 +271,7 @@ public class diagEditorial extends javax.swing.JDialog {
                                         .addGap(18, 18, 18)
                                         .addComponent(jtfCoautor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +315,8 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton4)
-                        .addComponent(jtfProyectoRelacionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtfProyectoRelacionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPublicaciones))
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -521,6 +534,10 @@ public class diagEditorial extends javax.swing.JDialog {
         nuevoTipoDePublicacion();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnPublicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicacionesActionPerformed
+        mostrarPublicaciones();
+    }//GEN-LAST:event_btnPublicacionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -570,6 +587,7 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JButton btnEditarEvaluacion;
     private javax.swing.JButton btnEliminarEvaluacion;
     private javax.swing.JButton btnEliminarEvaluacion1;
+    private javax.swing.JButton btnPublicaciones;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -609,6 +627,7 @@ public class diagEditorial extends javax.swing.JDialog {
 
     private void inicializarComponentes() {
         cargarTipoPublicacion();
+        btnPublicaciones.setEnabled(false);
         
         this.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
 
@@ -847,10 +866,12 @@ public class diagEditorial extends javax.swing.JDialog {
         busquedaSimple.setLocation(Comunes.centrarDialog(busquedaSimple));
 
         if (busquedaSimple.getProyecto() != null) {
-            Proyecto proyecto = busquedaSimple.getProyecto();
+            proyectoSele = busquedaSimple.getProyecto();
 
-            jtfProyectoRelacionado.setText(proyecto.toString());
+            jtfProyectoRelacionado.setText(proyectoSele.toString());
+            btnPublicaciones.setEnabled(true);
         } else {
+            btnPublicaciones.setEnabled(false);
             JOptionPane.showMessageDialog(null, "No seleccionó ningún proyecto");
         }
     }
@@ -955,5 +976,12 @@ public class diagEditorial extends javax.swing.JDialog {
            }
     private void cargarTipos(){
         Comunes.cargarJCombo(jcbTipoPublicacion, TipoPublicacionFacade.getInstance().listarTodos());
+    }
+
+    private void mostrarPublicaciones() {
+        diagProyectoResultado publicaciones = new diagProyectoResultado(null, true, usuario, proyectoSele);
+        publicaciones.setLocation(Comunes.centrarDialog(publicaciones));
+        publicaciones.setVisible(true);
+        
     }
 }
