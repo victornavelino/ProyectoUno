@@ -309,7 +309,7 @@ public class diagAgregarIntegrantes extends SuperDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton9))
                     .addComponent(jScrollPane1))
-                .addGap(55, 55, 55)
+                .addGap(64, 64, 64)
                 .addComponent(pIntegrantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
