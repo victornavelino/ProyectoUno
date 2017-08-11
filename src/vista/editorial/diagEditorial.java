@@ -6,6 +6,7 @@
 package vista.editorial;
 
 import entidades.operaciones.Operacion;
+import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Evaluacion;
 import entidades.proyecto.Proyecto;
 import entidades.proyecto.editorial.EditorialCientifica;
@@ -17,6 +18,7 @@ import entidades.usuario.Usuario;
 import facade.EditorialCientificaFacade;
 import facade.EvaluacionEditorialFacade;
 import facade.EvaluacionFacade;
+import facade.InvestigadorFacade;
 import facade.OperacionFacade;
 import facade.ProyectoVinculacionFacade;
 import facade.editorial.StockFacade;
@@ -42,7 +44,7 @@ import vistas.evaluaciones.diagEvaluacion;
 public class diagEditorial extends javax.swing.JDialog {
 
     private List<EvaluacionEditorial> evaluaciones = new ArrayList<EvaluacionEditorial>();
-
+    private List<Investigador> integrantesDentroLibro = new ArrayList<Investigador>();  
     private String tipoOperacion;
     private Usuario usuario;
     private EditorialCientifica editorialCientifica;
@@ -98,8 +100,6 @@ public class diagEditorial extends javax.swing.JDialog {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -107,8 +107,6 @@ public class diagEditorial extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtfTitulo = new javax.swing.JTextArea();
-        jtfAutor = new javax.swing.JTextField();
-        jtfCoautor = new javax.swing.JTextField();
         jtfIsbn = new javax.swing.JTextField();
         jcbTipoPublicacion = new javax.swing.JComboBox();
         jtfProyectoRelacionado = new javax.swing.JTextField();
@@ -118,6 +116,17 @@ public class diagEditorial extends javax.swing.JDialog {
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnPublicaciones = new javax.swing.JButton();
+        jPanelAsesores = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        lstIntegrantesDentroLibro = new javax.swing.JList();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        lsIntegrantesFueraLibro = new javax.swing.JList();
+        jLabel3 = new javax.swing.JLabel();
+        tfBuscarIntregantesLibro = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListEvaluaciones = new javax.swing.JList();
@@ -135,26 +144,10 @@ public class diagEditorial extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         taResumen = new javax.swing.JTextArea();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        taObservaciones = new javax.swing.JTextArea();
         jScrollPane8 = new javax.swing.JScrollPane();
         taSummary = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jListPalabrasClaves = new javax.swing.JList();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        taTitle = new javax.swing.JTextArea();
-        jLabel26 = new javax.swing.JLabel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jListKeywords = new javax.swing.JList();
-        btAgregarKeyword = new javax.swing.JButton();
-        btQuitarKeyword = new javax.swing.JButton();
-        btQuitarPalabraClave = new javax.swing.JButton();
-        btAgregarPalabraClave = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -169,10 +162,6 @@ public class diagEditorial extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel1.border.title"))); // NOI18N
 
         jLabel1.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel1.text")); // NOI18N
-
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel2.text")); // NOI18N
-
-        jLabel3.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel3.text")); // NOI18N
 
         jLabel4.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel4.text")); // NOI18N
 
@@ -191,15 +180,6 @@ public class diagEditorial extends javax.swing.JDialog {
         jtfTitulo.setColumns(20);
         jtfTitulo.setRows(5);
         jScrollPane2.setViewportView(jtfTitulo);
-
-        jtfAutor.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jtfAutor.text")); // NOI18N
-        jtfAutor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfAutorActionPerformed(evt);
-            }
-        });
-
-        jtfCoautor.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jtfCoautor.text")); // NOI18N
 
         jtfIsbn.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jtfIsbn.text")); // NOI18N
 
@@ -233,6 +213,93 @@ public class diagEditorial extends javax.swing.JDialog {
             }
         });
 
+        jPanelAsesores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanelAsesores.border.title"))); // NOI18N
+
+        jScrollPane10.setViewportView(lstIntegrantesDentroLibro);
+
+        jButton8.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jButton8.text")); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jButton9.text")); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane11.setViewportView(lsIntegrantesFueraLibro);
+
+        jLabel3.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel3.text")); // NOI18N
+
+        tfBuscarIntregantesLibro.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfBuscarIntregantesLibro.text")); // NOI18N
+        tfBuscarIntregantesLibro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfBuscarIntregantesLibroKeyPressed(evt);
+            }
+        });
+
+        jLabel2.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel2.text")); // NOI18N
+
+        jLabel6.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel6.text")); // NOI18N
+
+        javax.swing.GroupLayout jPanelAsesoresLayout = new javax.swing.GroupLayout(jPanelAsesores);
+        jPanelAsesores.setLayout(jPanelAsesoresLayout);
+        jPanelAsesoresLayout.setHorizontalGroup(
+            jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(352, 352, 352)
+                        .addComponent(jLabel6)
+                        .addGap(252, 252, 252))
+                    .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAsesoresLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAsesoresLayout.createSequentialGroup()
+                                .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(52, 52, 52)))
+                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tfBuscarIntregantesLibro)
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55))))
+        );
+        jPanelAsesoresLayout.setVerticalGroup(
+            jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(tfBuscarIntregantesLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                                .addComponent(jButton8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton9))
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -254,74 +321,52 @@ public class diagEditorial extends javax.swing.JDialog {
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(btnPublicaciones))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel4)))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)
-                                .addGap(205, 205, 205))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jtfIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(101, 101, 101)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(jtfAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jtfCoautor, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(153, Short.MAX_VALUE))
+                                .addComponent(jPanelAsesores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jLabel1)
-                        .addGap(172, 172, 172))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jtfAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jtfCoautor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addComponent(jtfIsbn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(79, 79, 79)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtfIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addComponent(jPanelAsesores, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jxDatePub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton4)
@@ -333,7 +378,7 @@ public class diagEditorial extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(jcbTipoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(64, 64, 64))
+                .addGap(111, 111, 111))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
@@ -391,7 +436,7 @@ public class diagEditorial extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btVerDetallesEvaluacionSeleccionada)))
-                .addContainerGap(389, Short.MAX_VALUE))
+                .addContainerGap(728, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,7 +454,7 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addComponent(btnEliminarEvaluacion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btVerDetallesEvaluacionSeleccionada)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
@@ -446,7 +491,7 @@ public class diagEditorial extends javax.swing.JDialog {
                             .addComponent(btAgregarEvaluacion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEliminarEvaluacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel11))
-                .addContainerGap(480, Short.MAX_VALUE))
+                .addContainerGap(819, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -460,7 +505,7 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addComponent(btAgregarEvaluacion1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminarEvaluacion1)))
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
@@ -471,12 +516,6 @@ public class diagEditorial extends javax.swing.JDialog {
         taResumen.setRows(20);
         jScrollPane6.setViewportView(taResumen);
 
-        taObservaciones.setColumns(20);
-        taObservaciones.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        taObservaciones.setLineWrap(true);
-        taObservaciones.setRows(20);
-        jScrollPane7.setViewportView(taObservaciones);
-
         taSummary.setColumns(20);
         taSummary.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         taSummary.setLineWrap(true);
@@ -485,139 +524,35 @@ public class diagEditorial extends javax.swing.JDialog {
 
         jLabel12.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel12.text")); // NOI18N
 
-        jLabel23.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel23.text")); // NOI18N
-
         jLabel25.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel25.text")); // NOI18N
-
-        jScrollPane9.setViewportView(jListPalabrasClaves);
-
-        jLabel13.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel13.text")); // NOI18N
-
-        jLabel24.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel24.text")); // NOI18N
-
-        taTitle.setColumns(20);
-        taTitle.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        taTitle.setLineWrap(true);
-        taTitle.setRows(7);
-        jScrollPane10.setViewportView(taTitle);
-
-        jLabel26.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel26.text")); // NOI18N
-
-        jScrollPane11.setViewportView(jListKeywords);
-
-        btAgregarKeyword.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btAgregarKeyword.text")); // NOI18N
-        btAgregarKeyword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAgregarKeywordActionPerformed(evt);
-            }
-        });
-
-        btQuitarKeyword.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btQuitarKeyword.text")); // NOI18N
-        btQuitarKeyword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btQuitarKeywordActionPerformed(evt);
-            }
-        });
-
-        btQuitarPalabraClave.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btQuitarPalabraClave.text")); // NOI18N
-        btQuitarPalabraClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btQuitarPalabraClaveActionPerformed(evt);
-            }
-        });
-
-        btAgregarPalabraClave.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btAgregarPalabraClave.text")); // NOI18N
-        btAgregarPalabraClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAgregarPalabraClaveActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel25))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane7)
-                    .addComponent(jScrollPane8)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btQuitarPalabraClave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btAgregarPalabraClave)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel26))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane10)
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btAgregarKeyword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btQuitarKeyword, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btAgregarPalabraClave)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btQuitarPalabraClave))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel24)
-                                .addGap(54, 54, 54)
-                                .addComponent(jLabel26)
-                                .addGap(63, 63, 63))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(btAgregarKeyword)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btQuitarKeyword)
-                                        .addGap(33, 33, 33)))))))
-                .addContainerGap(160, Short.MAX_VALUE))
+                    .addComponent(jLabel12)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel25)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(89, 89, 89))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
@@ -634,24 +569,22 @@ public class diagEditorial extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(267, 267, 267)
+                .addGap(459, 459, 459)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -664,22 +597,6 @@ public class diagEditorial extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void btAgregarPalabraClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarPalabraClaveActionPerformed
-        agregarPalabraClave();
-    }//GEN-LAST:event_btAgregarPalabraClaveActionPerformed
-
-    private void btQuitarPalabraClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btQuitarPalabraClaveActionPerformed
-        borrarPalabraClave();
-    }//GEN-LAST:event_btQuitarPalabraClaveActionPerformed
-
-    private void btQuitarKeywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btQuitarKeywordActionPerformed
-        borrarKeyWord();
-    }//GEN-LAST:event_btQuitarKeywordActionPerformed
-
-    private void btAgregarKeywordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarKeywordActionPerformed
-        agregarKeyWords();
-    }//GEN-LAST:event_btAgregarKeywordActionPerformed
 
     private void btnEliminarEvaluacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEvaluacion1ActionPerformed
         // TODO add your handling code here:
@@ -718,9 +635,17 @@ public class diagEditorial extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jtfAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAutorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfAutorActionPerformed
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        agregarIntegrantesLibro();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        quitarIntegrantesLibro();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void tfBuscarIntregantesLibroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarIntregantesLibroKeyPressed
+        buscarIntegrantesLibro();
+    }//GEN-LAST:event_tfBuscarIntregantesLibroKeyPressed
 
     /**
      * @param args the command line arguments
@@ -767,10 +692,6 @@ public class diagEditorial extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarEvaluacion;
     private javax.swing.JButton btAgregarEvaluacion1;
-    private javax.swing.JButton btAgregarKeyword;
-    private javax.swing.JButton btAgregarPalabraClave;
-    private javax.swing.JButton btQuitarKeyword;
-    private javax.swing.JButton btQuitarPalabraClave;
     private javax.swing.JButton btVerDetallesEvaluacionSeleccionada;
     private javax.swing.JButton btnEditarEvaluacion;
     private javax.swing.JButton btnEliminarEvaluacion;
@@ -780,30 +701,28 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListEvaluaciones;
-    private javax.swing.JList jListKeywords;
-    private javax.swing.JList jListPalabrasClaves;
     private javax.swing.JList jListUnidades;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanelAsesores;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
@@ -811,22 +730,19 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox jcbTipoPublicacion;
     private javax.swing.JTextArea jtaMenciones;
-    private javax.swing.JTextField jtfAutor;
-    private javax.swing.JTextField jtfCoautor;
     private javax.swing.JTextField jtfIsbn;
     private javax.swing.JTextField jtfProyectoRelacionado;
     private javax.swing.JTextArea jtfTitulo;
     private org.jdesktop.swingx.JXDatePicker jxDatePub;
-    private javax.swing.JTextArea taObservaciones;
+    private javax.swing.JList lsIntegrantesFueraLibro;
+    private javax.swing.JList lstIntegrantesDentroLibro;
     private javax.swing.JTextArea taResumen;
     private javax.swing.JTextArea taSummary;
-    private javax.swing.JTextArea taTitle;
+    private javax.swing.JTextField tfBuscarIntregantesLibro;
     // End of variables declaration//GEN-END:variables
 
     private void inicializarComponentes() {
@@ -845,28 +761,13 @@ public class diagEditorial extends javax.swing.JDialog {
 
                     }
                 } catch (NullPointerException ex) {
-                }
-                try {
-                    if (editorialCientifica.getAutor() != null) {
-                        jtfAutor.setText(editorialCientifica.getAutor());
-
-                    }
-                } catch (NullPointerException ex) {
-                }
+                }                
                 try {
                     if (!listaUnidades.isEmpty()) {
                         cargarListaUnidades();
                     }
                 } catch (NullPointerException ex) {
-                }
-
-                try {
-                    if (editorialCientifica.getCoautor() != null) {
-                        jtfCoautor.setText(editorialCientifica.getCoautor());
-
-                    }
-                } catch (NullPointerException ex) {
-                }
+                }                
 
                 /*try {
                     if (editorialCientifica.getResumen() != null) {
@@ -931,18 +832,23 @@ public class diagEditorial extends javax.swing.JDialog {
 
     private void asignarDatos() {
         editorialCientifica.setTitulo(jtfTitulo.getText());
-        editorialCientifica.setAutor(jtfAutor.getText());
+        /*editorialCientifica.setAutor(jtfAutor.getText());
         if (!jtfCoautor.getText().equals("")) {
             editorialCientifica.setCoautor(jtfCoautor.getText());
         } else {
             editorialCientifica.setCoautor(null);
-        }
-        editorialCientifica.setTitulo(jtfTitulo.getText());
-        /*if (!jtaResumen.getText().equals("")) {
-            editorialCientifica.setResumen(jtaResumen.getText());
+        }*/
+        editorialCientifica.setTitulo(jtfTitulo.getText());        
+        if (!taResumen.getText().equals("")) {
+            editorialCientifica.setResumen(taResumen.getText());
         } else {
             editorialCientifica.setResumen(null);
-        }*/
+        }
+        if (!taSummary.getText().equals("")) {
+            editorialCientifica.setSummary(taSummary.getText());
+        } else {
+            editorialCientifica.setSummary(null);
+        }       
         editorialCientifica.setAnioPublicacion(jxDatePub.getDate());
         editorialCientifica.setISBN(jtfIsbn.getText());
 
@@ -1029,32 +935,24 @@ public class diagEditorial extends javax.swing.JDialog {
                 expedienteEditorial.setVisible(true);
                 this.dispose();
             } else if (tipoOperacion.equals("Modificación")) {
-
                 asignarDatos();
                 modificarEditorial();
                 this.dispose();
-
             }
         }
     }
 
     private boolean validar() {
         boolean flag = false;
-        if (!jtfTitulo.getText().equals("")) {
-            if (!jtfAutor.getText().equals("")) {
-                if (!jtfIsbn.getText().equals("")) {
+        if (!jtfTitulo.getText().equals("")) {            
+            if (!jtfIsbn.getText().equals("")) {
 
-                    flag = true;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Debe ingresar el ISBN de la publicación", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
+                flag = true;
             } else {
-                JOptionPane.showMessageDialog(null, "Debe ingresar el autor de la publicación", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                JOptionPane.showMessageDialog(null, "Debe ingresar el ISBN de la publicación", "Error", JOptionPane.ERROR_MESSAGE);
+            }            
         } else {
             JOptionPane.showMessageDialog(null, "Debe ingresar el título de la publicación", "Error", JOptionPane.ERROR_MESSAGE);
-
         }
         jtfTitulo.requestFocus();
         return flag;
@@ -1187,29 +1085,41 @@ public class diagEditorial extends javax.swing.JDialog {
         publicaciones.setLocation(Comunes.centrarDialog(publicaciones));
         publicaciones.setVisible(true);
         
-    }
+    }    
 
-    private void agregarKeyWords() {
-        keyWords.add(JOptionPane.showInputDialog("Inserte una palabra clave"));
-        Comunes.cargarJList(jListKeywords, keyWords);
-    }
+    private void agregarIntegrantesLibro() {
+        if (lsIntegrantesFueraLibro.getSelectedIndex() != -1) {
 
-    private void agregarPalabraClave() {
-        palabrasClaves.add(JOptionPane.showInputDialog("Inserte una palabra clave"));
-        Comunes.cargarJList(jListPalabrasClaves, palabrasClaves);
-    }
+            integrantesDentroLibro.add((Investigador) lsIntegrantesFueraLibro.getSelectedValue());
+            List<Investigador> integrantesFuera = InvestigadorFacade.getInstance().getTodosInvestigador();
+            integrantesFuera.removeAll(integrantesDentroLibro);
+            Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);
 
-    private void borrarPalabraClave() {
-        if (jListPalabrasClaves.getSelectedIndex() != -1) {
-            palabrasClaves.remove((String) jListPalabrasClaves.getSelectedValue());
-            Comunes.cargarJList(jListPalabrasClaves, palabrasClaves);
+            Comunes.cargarJList(lstIntegrantesDentroLibro, integrantesDentroLibro);
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Debe escoger un Autor", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void borrarKeyWord() {
-        if (jListKeywords.getSelectedIndex() != -1) {
-            keyWords.remove((String) jListKeywords.getSelectedValue());
-            Comunes.cargarJList(jListKeywords, keyWords);
+    private void quitarIntegrantesLibro() {
+        if (lstIntegrantesDentroLibro.getSelectedIndex() != -1) {
+
+            integrantesDentroLibro.remove((Investigador) lstIntegrantesDentroLibro.getSelectedValue());
+            List<Investigador> integrantesFuera = InvestigadorFacade.getInstance().getTodosInvestigador();
+            integrantesFuera.removeAll(integrantesDentroLibro);
+            Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);
+
+            Comunes.cargarJList(lstIntegrantesDentroLibro, integrantesDentroLibro);
+
+        }
+    }
+
+    private void buscarIntegrantesLibro() {
+        if (!tfBuscarIntregantesLibro.getText().equals("")) {
+            Comunes.cargarJList(lsIntegrantesFueraLibro, InvestigadorFacade.getInstance().buscarPorApellidoNombre(tfBuscarIntregantesLibro.getText()));
+        } else {
+            Comunes.cargarJList(lsIntegrantesFueraLibro, InvestigadorFacade.getInstance().getTodosInvestigador());
         }
     }
 }

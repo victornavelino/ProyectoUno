@@ -4,6 +4,7 @@
  */
 package entidades.proyecto.editorial;
 
+import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Proyecto;
 import entidades.proyecto.vinculacion.ParticipacionVinculacion;
 import java.io.Serializable;
@@ -41,7 +42,26 @@ public class EditorialCientifica implements Serializable {
     private Proyecto proyecto;
     private String menciones;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<EvaluacionEditorial> evaluacionesEditorial;
+    private List<EvaluacionEditorial> evaluacionesEditorial;        
+    private String summary;        
+    @ManyToMany
+    private List<Investigador> investigadores;
+
+    public List<Investigador> getInvestigadores() {
+        return investigadores;
+    }
+
+    public void setInvestigadores(List<Investigador> investigadores) {
+        this.investigadores = investigadores;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
     public List<EvaluacionEditorial> getEvaluacionesEditorial() {
         return evaluacionesEditorial;
