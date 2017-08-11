@@ -44,7 +44,7 @@ import vistas.evaluaciones.diagEvaluacion;
 public class diagEditorial extends javax.swing.JDialog {
 
     private List<EvaluacionEditorial> evaluaciones = new ArrayList<EvaluacionEditorial>();
-    private List<Investigador> integrantesDentroLibro = new ArrayList<Investigador>();  
+    private List<Investigador> autoresDentro = new ArrayList<Investigador>();  
     private String tipoOperacion;
     private Usuario usuario;
     private EditorialCientifica editorialCientifica;
@@ -71,7 +71,6 @@ public class diagEditorial extends javax.swing.JDialog {
         //modeloTabla = new DefaultTableModel();
         initComponents();
         inicializarComponentes();
-
     }
 
     public diagEditorial(java.awt.Frame parent, boolean modal,
@@ -254,44 +253,39 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tfBuscarIntregantesLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanelAsesoresLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(352, 352, 352)
-                        .addComponent(jLabel6)
-                        .addGap(252, 252, 252))
-                    .addGroup(jPanelAsesoresLayout.createSequentialGroup()
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAsesoresLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAsesoresLayout.createSequentialGroup()
-                                .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(52, 52, 52)))
-                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfBuscarIntregantesLibro)
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55))))
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         jPanelAsesoresLayout.setVerticalGroup(
             jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAsesoresLayout.createSequentialGroup()
-                .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelAsesoresLayout.createSequentialGroup()
-                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(tfBuscarIntregantesLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelAsesoresLayout.createSequentialGroup()
-                                .addComponent(jButton8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton9))
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelAsesoresLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfBuscarIntregantesLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanelAsesoresLayout.createSequentialGroup()
+                            .addComponent(jButton8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton9)
+                            .addGap(0, 51, Short.MAX_VALUE))
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,7 +430,7 @@ public class diagEditorial extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btVerDetallesEvaluacionSeleccionada)))
-                .addContainerGap(728, Short.MAX_VALUE))
+                .addContainerGap(739, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,7 +485,7 @@ public class diagEditorial extends javax.swing.JDialog {
                             .addComponent(btAgregarEvaluacion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEliminarEvaluacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel11))
-                .addContainerGap(819, Short.MAX_VALUE))
+                .addContainerGap(830, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -539,7 +533,7 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
                     .addComponent(jScrollPane8))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -574,7 +568,7 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGap(46, 46, 46)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1234, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -746,7 +740,8 @@ public class diagEditorial extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void inicializarComponentes() {
-        cargarTipoPublicacion();
+        cargarTipoPublicacion();  
+        CargarAutores();        
         btnPublicaciones.setEnabled(false);
         
         this.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
@@ -1090,12 +1085,12 @@ public class diagEditorial extends javax.swing.JDialog {
     private void agregarIntegrantesLibro() {
         if (lsIntegrantesFueraLibro.getSelectedIndex() != -1) {
 
-            integrantesDentroLibro.add((Investigador) lsIntegrantesFueraLibro.getSelectedValue());
+            autoresDentro.add((Investigador) lsIntegrantesFueraLibro.getSelectedValue());
             List<Investigador> integrantesFuera = InvestigadorFacade.getInstance().getTodosInvestigador();
-            integrantesFuera.removeAll(integrantesDentroLibro);
+            integrantesFuera.removeAll(autoresDentro);
             Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);
 
-            Comunes.cargarJList(lstIntegrantesDentroLibro, integrantesDentroLibro);
+            Comunes.cargarJList(lstIntegrantesDentroLibro, autoresDentro);
 
         } else {
             JOptionPane.showMessageDialog(rootPane, "Debe escoger un Autor", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1105,12 +1100,12 @@ public class diagEditorial extends javax.swing.JDialog {
     private void quitarIntegrantesLibro() {
         if (lstIntegrantesDentroLibro.getSelectedIndex() != -1) {
 
-            integrantesDentroLibro.remove((Investigador) lstIntegrantesDentroLibro.getSelectedValue());
+            autoresDentro.remove((Investigador) lstIntegrantesDentroLibro.getSelectedValue());
             List<Investigador> integrantesFuera = InvestigadorFacade.getInstance().getTodosInvestigador();
-            integrantesFuera.removeAll(integrantesDentroLibro);
+            integrantesFuera.removeAll(autoresDentro);
             Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);
 
-            Comunes.cargarJList(lstIntegrantesDentroLibro, integrantesDentroLibro);
+            Comunes.cargarJList(lstIntegrantesDentroLibro, autoresDentro);
 
         }
     }
@@ -1121,5 +1116,18 @@ public class diagEditorial extends javax.swing.JDialog {
         } else {
             Comunes.cargarJList(lsIntegrantesFueraLibro, InvestigadorFacade.getInstance().getTodosInvestigador());
         }
+    }
+    
+    private void CargarAutores() {
+        /*if(jtfTitulo.getText().equals("")){
+            
+        }else{
+            
+        }
+        autoresDentro = ProyectoFacade.getInstance().getTodosIntegrantes(proyectoLibro);
+        Comunes.cargarJList(lstIntegrantesDentroLibro, autoresDentro);
+        List<Investigador> integrantesFuera = InvestigadorFacade.getInstance().getTodosInvestigador();
+        integrantesFuera.removeAll(autoresDentro);
+        Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);*/
     }
 }
