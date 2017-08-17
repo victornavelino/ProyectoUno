@@ -1,1 +1,0 @@
-- ALTER TABLE `editorial_editorialCientifica` ADD `summary` TEXT NOT NULL AFTER `RESUMEN`;
