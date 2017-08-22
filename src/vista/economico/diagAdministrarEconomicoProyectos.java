@@ -819,6 +819,10 @@ public class diagAdministrarEconomicoProyectos extends javax.swing.JDialog {
             List<BienNoPersonal> listaBNP = presu.getBienNoPersonal();
             List<BienConsumo> listaBC = presu.getBienConsumo();
             List<GastoViaje> listaGV = presu.getGastosViaje();
+            
+            
+            /// FALTA ORDENAR LA LISTA POR QUE ORDEN MAL Y POR ESO MUESTRA MAL
+            /// DEBE ORDENAR POR AÑO Y NO POR ID
             Collections.sort(listaBC);
             Collections.sort(listaBNP);
             Collections.sort(listaBU);
