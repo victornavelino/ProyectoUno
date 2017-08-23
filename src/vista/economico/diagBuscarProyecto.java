@@ -265,7 +265,7 @@ public class diagBuscarProyecto extends javax.swing.JDialog {
         ButtonGroup grupoDeBotones = new ButtonGroup();
         grupoDeBotones.add(rbtnProyecto);
         grupoDeBotones.add(rbtnDirector);
-        rbtnDirector.setSelected(true); 
+        rbtnProyecto.setSelected(true); 
         tfTexto.requestFocus();
         limpiarComponentes();
     }

@@ -87,18 +87,17 @@ public class BienNoPersonal implements Serializable, Comparable<BienNoPersonal> 
         return "";
     }
  
-         @Override
+    @Override
     public int compareTo(BienNoPersonal gv) {
         int esteAnio = Integer.valueOf(this.anio);
         int elOtroAnio = Integer.valueOf(gv.getAnio());
         if (esteAnio < elOtroAnio) {
             return -1;
-        } else if (esteAnio > elOtroAnio) {
+        } 
+        if (esteAnio > elOtroAnio) {
             return 1;
-        } else {
-            return 0;
-        }
-    }
-  
+        } 
+        return 0;      
+    }  
     
 }
