@@ -27,6 +27,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  *
@@ -223,7 +224,7 @@ public class diagAdministrarEconomicoProyectos extends javax.swing.JDialog {
                                 .addGap(38, 38, 38)
                                 .addComponent(btnVerMasDatos))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
+                        .addGap(462, 462, 462)
                         .addComponent(btnCargarProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -821,16 +822,49 @@ public class diagAdministrarEconomicoProyectos extends javax.swing.JDialog {
             List<BienConsumo> listaBC = presu.getBienConsumo();
             List<GastoViaje> listaGV = presu.getGastosViaje();
             
-            Collections.sort(listaBC);
+            /*Collections.sort(listaBU);
             Collections.sort(listaBNP);
-            Collections.sort(listaBU);
-            Collections.sort(listaGV);
+            Collections.sort(listaBC);
+            Collections.sort(listaGV);*/
+            
+            
+            
+            System.out.println("Desordenado"); 
+            for (int j = 0; j < tamanio; j++){
+                System.out.println(listaBU.get(j).getAnio());
+            }
+               
+            
+            List<BienUso> lBU = new ArrayList<>();;
+            List<BienNoPersonal> lBNP = new ArrayList<>();
+            List<BienConsumo> lBC = new ArrayList<>();
+            List<GastoViaje> lGV = new ArrayList<>();
+            
+            for(int i=0;i<(listaBU.size()-1);i++){
+                for(int j=i+1;j<listaBU.size();j++){
+                    if(listaBU.get(i).getAnio().compareTo(listaBU.get(j).getAnio())>0){
+                        String aux=listaBU.get(i).getAnio();
+                        listaBU.get(i).setAnio(listaBU.get(j).getAnio());
+                        listaBU.get(j).setAnio(aux);
+                        
+                    }
+                    lBU.add(listaBU.get(j));
+                }
+            }
+            
+            System.out.println("Ordenado");
+            for(BienUso temp: listaBU){
+                System.out.println(temp.getAnio());
+            }
+          
+            
+                       
             for (int i = 0; i < tamanio; i++) {                
                 fila[0] = i+1;               
                 fila[1] = listaBC.get(i).getValor();
                 fila[2] = listaBNP.get(i).getValor();                
                 fila[3] = listaGV.get(i).getValor();
-                fila[4] = listaBU.get(i).getValor();
+                fila[4] = lBU.get(i).getValor();
                 fila[5] = presu.getBienUso().get(i).getValor().add(
                         presu.getBienConsumo().get(i).getValor().add(
                         presu.getBienNoPersonal().get(i).getValor().add(
@@ -847,7 +881,7 @@ public class diagAdministrarEconomicoProyectos extends javax.swing.JDialog {
             fila[2] = " $ " + totalBNP;            
             fila[3] = " $ " + totalGV;
             fila[4] = " $ " + totalBU;
-            fila[5] = "Total Gral.: $ " + totalGral;
+            fila[5] = "Total: $ " + totalGral;
             modeloTablaPresupuesto.addRow(fila);
             tblDatosPresupuesto.setModel(modeloTablaPresupuesto);
         }
