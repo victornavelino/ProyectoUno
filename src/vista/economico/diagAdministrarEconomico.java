@@ -329,7 +329,7 @@ public class diagAdministrarEconomico extends javax.swing.JDialog {
                     .addComponent(btnEliminarPago, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(261, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTotalPa)
                 .addGap(37, 37, 37)
                 .addComponent(lblTotalPago)
@@ -1068,10 +1068,10 @@ public class diagAdministrarEconomico extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnVerMasDatos)
                 .addGap(35, 35, 35))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(436, 436, 436)
                 .addComponent(btnCargarProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(333, 333, 333))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1939,10 +1939,57 @@ public class diagAdministrarEconomico extends javax.swing.JDialog {
             List<BienNoPersonal> listaBNP = presu.getBienNoPersonal();
             List<BienConsumo> listaBC = presu.getBienConsumo();
             List<GastoViaje> listaGV = presu.getGastosViaje();
-            Collections.sort(listaBC);
+            
+            /* No me funciono este ordenamiento por defecto que ofrece java, por
+            eso hago el ordenamiento por burbuja*/
+            /*Collections.sort(listaBU);
             Collections.sort(listaBNP);
-            Collections.sort(listaBU);
-            Collections.sort(listaGV);
+            Collections.sort(listaBC);
+            Collections.sort(listaGV);*/
+            
+            /* Ordenamientos por burbuja */
+            for(int i = 0; i < (listaBU.size()-1); i++){
+                for(int j = i+1; j < listaBU.size(); j++){
+                    if(listaBU.get(i).getAnio().compareTo(listaBU.get(j).getAnio()) > 0){                        
+                        String aux = listaBU.get(i).getAnio();
+                        BigDecimal valor = listaBU.get(i).getValor();
+                        listaBU.get(i).setAnio(listaBU.get(j).getAnio());
+                        listaBU.get(i).setValor(listaBU.get(j).getValor());
+                        listaBU.get(j).setAnio(aux);
+                        listaBU.get(j).setValor(valor);                        
+                    }
+                    
+                }
+            }
+            
+            for(int i = 0; i < (listaBNP.size()-1); i++){
+                for(int j = i+1; j < listaBNP.size(); j++){
+                    if(listaBNP.get(i).getAnio().compareTo(listaBNP.get(j).getAnio()) > 0){                        
+                        String aux = listaBNP.get(i).getAnio();
+                        BigDecimal valor = listaBNP.get(i).getValor();
+                        listaBNP.get(i).setAnio(listaBNP.get(j).getAnio());
+                        listaBNP.get(i).setValor(listaBNP.get(j).getValor());
+                        listaBNP.get(j).setAnio(aux);
+                        listaBNP.get(j).setValor(valor);                        
+                    }
+                    
+                }
+            }
+               
+            for(int i = 0; i < (listaBC.size()-1); i++){
+                for(int j = i+1; j < listaBC.size(); j++){
+                    if(listaBC.get(i).getAnio().compareTo(listaBC.get(j).getAnio()) > 0){                        
+                        String aux = listaBC.get(i).getAnio();
+                        BigDecimal valor = listaBC.get(i).getValor();
+                        listaBC.get(i).setAnio(listaBC.get(j).getAnio());
+                        listaBC.get(i).setValor(listaBC.get(j).getValor());
+                        listaBC.get(j).setAnio(aux);
+                        listaBC.get(j).setValor(valor);                        
+                    }
+                    
+                }
+            }
+            
             for (int i = 0; i < tamanio; i++) {
                 fila[0] = i + 1;
                 fila[1] = listaBC.get(i).getValor();
