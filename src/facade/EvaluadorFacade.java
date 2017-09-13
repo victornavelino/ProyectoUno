@@ -179,5 +179,25 @@ public class EvaluadorFacade {
             return false;
         }
     }
+    
+    public List<Evaluador> findEvaluadorLike(String cadena) throws Exception{
+         em.close();
+         em = emf.createEntityManager();
+         Query query = null;
+         if(!cadena.isEmpty()){
+             query = em.createQuery("SELECT e FROM Evaluador e WHERE e.investigador.persona.nombre "
+                     + "LIKE '"+cadena.trim().toLowerCase()+ 
+                     "%' OR e.investigador.persona.apellido LIKE '" +
+                     cadena.trim().toLowerCase() + "%' ORDER BY e.investigador.persona.apellido, "
+                     + "e.investigador.persona.nombre");
+         }else{
+             query = em.createQuery("SELECT e FROM Evaluador e ORDER BY e.investigador.persona.apellido, "
+                     + "e.investigador.persona.nombre");
+         }
+         
+         
+         return query.getResultList();
+
+     }//fin findEvaluadorLike
 
 }

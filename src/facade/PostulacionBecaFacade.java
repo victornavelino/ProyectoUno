@@ -369,4 +369,23 @@ public class PostulacionBecaFacade {
         query.setParameter("investigador", investigador);
         return query.getResultList();
     }
+    
+    public List<PostulacionBeca> findPostulacionBecaLike(String cadena) throws Exception{
+         em.close();
+         em = emf.createEntityManager();
+         Query query = null;
+         if(!cadena.isEmpty()){
+             query = em.createQuery("SELECT l FROM PostulacionBeca l WHERE l.beca.descripcion "
+                     + "LIKE '"+cadena.trim().toLowerCase()+ "%' OR l.postulante.persona.nombre LIKE '%" +
+                     cadena.trim().toLowerCase() + "%' OR l.postulante.persona.apellido LIKE '%" +
+                     cadena.trim().toLowerCase() + "%' ORDER BY "
+                     + "l.beca.descripcion " );
+         }else{
+             query = em.createQuery("SELECT l FROM PostulacionBeca l ORDER BY l.beca.descripcion");
+         }
+         
+         
+         return query.getResultList();
+
+     }//fin findMedicamentoLike
 }
