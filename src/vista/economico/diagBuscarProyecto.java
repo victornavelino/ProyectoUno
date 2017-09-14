@@ -265,7 +265,7 @@ public class diagBuscarProyecto extends javax.swing.JDialog {
         ButtonGroup grupoDeBotones = new ButtonGroup();
         grupoDeBotones.add(rbtnProyecto);
         grupoDeBotones.add(rbtnDirector);
-        rbtnDirector.setSelected(true); 
+        rbtnProyecto.setSelected(true); 
         tfTexto.requestFocus();
         limpiarComponentes();
     }
@@ -275,7 +275,7 @@ public class diagBuscarProyecto extends javax.swing.JDialog {
         if(!tfTexto.getText().isEmpty()){
             if(rbtnProyecto.isSelected()){
                 listaProyecto = facade.ProyectoFacade.getInstance().
-                    proyectoxTexto(tfTexto.getText());
+                    buscar(tfTexto.getText());
             }else{
                 listaProyecto = facade.ProyectoFacade.getInstance().
                     ProyectoxDirector(tfTexto.getText().toUpperCase(),"Director");

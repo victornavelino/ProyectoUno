@@ -29,9 +29,7 @@ import javax.persistence.Query;
  * @author Panchi
  */
 public class EditorialCientificaFacade {
-   
-
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoUnoPU",ConexionFacade.PROPIEDADES);
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoUnoPU",ConexionFacade.PROPIEDADES);
     EntityManager em = emf.createEntityManager();
     EditorialCientificaJpaController editorialJpaController = new EditorialCientificaJpaController(emf);
     private static EditorialCientificaFacade instance = null;

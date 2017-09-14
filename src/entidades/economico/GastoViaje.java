@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -90,14 +91,16 @@ public class GastoViaje implements Serializable, Comparable<GastoViaje> {
 
     @Override
     public int compareTo(GastoViaje gv) {
-        int esteAnio = Integer.valueOf(this.anio);
-        int elOtroAnio = Integer.valueOf(gv.getAnio());
+        int esteAnio = Integer.parseInt(this.anio);
+        int elOtroAnio = Integer.parseInt(gv.getAnio());
+        
         if (esteAnio < elOtroAnio) {
             return -1;
-        } else if (esteAnio > elOtroAnio) {
+        } 
+        if (esteAnio > elOtroAnio) {
             return 1;
-        } else {
-            return 0;
-        }
+        } 
+        return 0;
     }
+    
 }

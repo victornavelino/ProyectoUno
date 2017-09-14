@@ -13,6 +13,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="1"/>
@@ -30,183 +31,196 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblAnio1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAnio2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAnio3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAnio4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAnio5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="lblBienUsoP" min="-2" pref="54" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="lblBienUsoA" min="-2" pref="54" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="tfBienConsumoP5" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="tfBienConsumoP1" alignment="0" pref="61" max="32767" attributes="1"/>
-                                                  <Component id="tfBienConsumoP2" alignment="0" max="32767" attributes="1"/>
-                                                  <Component id="tfBienConsumoP3" alignment="0" max="32767" attributes="1"/>
-                                                  <Component id="tfBienConsumoP4" alignment="0" max="32767" attributes="1"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="tfBienConsumoA1" alignment="0" pref="59" max="32767" attributes="0"/>
-                                                  <Component id="tfBienConsumoA2" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="tfBienConsumoA3" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="tfBienConsumoA4" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="tfBienConsumoA5" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblBienConsumo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblAnio1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAnio2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAnio3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAnio4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAnio5" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="tfBienNoPersonalP1" alignment="0" pref="60" max="32767" attributes="1"/>
-                                              <Component id="tfBienNoPersonalP2" alignment="0" max="32767" attributes="1"/>
-                                              <Component id="tfBienNoPersonalP3" alignment="0" max="32767" attributes="1"/>
-                                              <Component id="tfBienNoPersonalP4" alignment="0" max="32767" attributes="1"/>
-                                          </Group>
-                                          <Component id="lblBienConsumoP" min="-2" pref="54" max="-2" attributes="0"/>
-                                          <Component id="tfBienNoPersonalP5" min="-2" pref="60" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="tfBienNoPersonalA1" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfBienNoPersonalA2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfBienNoPersonalA3" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfBienNoPersonalA4" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lblBienConsumoA" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
-                                          <Component id="tfBienNoPersonalA5" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblBienNoPersonal" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="tfBienConsumoP5" alignment="0" pref="76" max="32767" attributes="0"/>
+                                  <Component id="tfBienConsumoP4" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="tfBienConsumoP1" min="-2" pref="75" max="-2" attributes="1"/>
+                                  <Component id="tfBienConsumoP2" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="tfBienConsumoP3" alignment="0" max="32767" attributes="1"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="lblBienNoPersonalP" min="-2" pref="54" max="-2" attributes="0"/>
-                                          <Component id="tfGastosViajeP1" alignment="0" pref="60" max="32767" attributes="1"/>
-                                          <Component id="tfGastosViajeP2" alignment="0" max="32767" attributes="1"/>
-                                          <Component id="tfGastosViajeP3" alignment="0" max="32767" attributes="1"/>
-                                          <Component id="tfGastosViajeP4" alignment="0" max="32767" attributes="1"/>
-                                          <Component id="tfGastosViajeP5" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="tfGastosViajeA1" alignment="0" pref="62" max="32767" attributes="0"/>
-                                          <Component id="tfGastosViajeA2" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tfGastosViajeA3" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="lblBienNoPersonalA" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
-                                          <Component id="tfGastosViajeA4" max="32767" attributes="0"/>
-                                          <Component id="tfGastosViajeA5" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="tfBienUsoP4" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="tfBienUsoP3" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="tfBienUsoP5" max="32767" attributes="0"/>
-                                                          <Component id="tfBienUsoP2" alignment="0" min="-2" pref="59" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                          <Component id="tfBienUsoA4" alignment="0" pref="59" max="32767" attributes="0"/>
-                                                          <Component id="tfBienUsoA3" max="32767" attributes="0"/>
-                                                          <Component id="tfBienUsoA5" max="32767" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="tfBienUsoA2" alignment="1" min="-2" pref="59" max="-2" attributes="0"/>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="tfBienUsoP1" min="-2" pref="59" max="-2" attributes="0"/>
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Component id="tfBienUsoA1" min="-2" pref="59" max="-2" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblTotalP3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblTotalP1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblTotalP2" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblTotalP4" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblTotalP5" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                                      <Component id="lblGastosViajeP" min="-2" pref="54" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="lblGastosViajeA" min="-2" pref="54" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="lblBienUso" min="-2" pref="113" max="-2" attributes="1"/>
-                                                  </Group>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                              <Component id="lblTotalP" min="-2" pref="54" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblTotalA" min="-2" pref="54" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="lblTotalA2" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblTotalA1" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblTotalA3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblTotalA4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lblTotalA5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                      <Component id="lblGastosViaje" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="tfBienConsumoA4" alignment="0" pref="76" max="32767" attributes="0"/>
+                                  <Component id="tfBienConsumoA5" max="32767" attributes="0"/>
+                                  <Component id="tfBienConsumoA1" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="tfBienConsumoA2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfBienConsumoA3" alignment="0" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblTotal" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblBienConsumo" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblBienUsoP" min="-2" pref="54" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblBienUsoA" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tfBienNoPersonalP1" pref="76" max="32767" attributes="1"/>
+                                      <Component id="tfBienNoPersonalP4" alignment="0" max="32767" attributes="1"/>
+                                      <Component id="tfBienNoPersonalP5" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                      <Component id="lblBienConsumoP" min="-2" pref="54" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="tfBienNoPersonalP2" alignment="1" min="-2" pref="76" max="-2" attributes="1"/>
+                                  <Component id="tfBienNoPersonalP3" alignment="1" min="-2" pref="76" max="-2" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tfBienNoPersonalA2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfBienNoPersonalA3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfBienNoPersonalA4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfBienNoPersonalA5" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="lblBienConsumoA" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfBienNoPersonalA1" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblBienNoPersonal" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tfGastosViajeP4" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="tfGastosViajeP5" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfGastosViajeP1" alignment="1" min="-2" pref="76" max="-2" attributes="1"/>
+                                  <Component id="tfGastosViajeP2" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="tfGastosViajeP3" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="lblBienNoPersonalP" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tfGastosViajeA2" alignment="0" pref="73" max="32767" attributes="0"/>
+                                  <Component id="tfGastosViajeA3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tfGastosViajeA4" max="32767" attributes="0"/>
+                                  <Component id="tfGastosViajeA5" max="32767" attributes="0"/>
+                                  <Component id="lblBienNoPersonalA" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfGastosViajeA1" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="tfBienUsoP3" min="-2" pref="74" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="tfBienUsoP4" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="tfBienUsoP5" alignment="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                      <Component id="tfBienUsoA5" min="-2" pref="74" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="tfBienUsoA3" alignment="0" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="tfBienUsoA4" min="-2" pref="74" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lblGastosViajeP" min="-2" pref="54" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="tfBienUsoP2" max="32767" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="tfBienUsoA2" min="-2" pref="75" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="tfBienUsoP1" min="-2" pref="75" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="tfBienUsoA1" min="-2" pref="75" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblTotalP3" alignment="1" min="-2" pref="74" max="-2" attributes="0"/>
+                                          <Component id="lblTotalP4" min="-2" pref="74" max="-2" attributes="0"/>
+                                          <Component id="lblTotalP5" alignment="1" min="-2" pref="74" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                      <Component id="lblGastosViajeA" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblTotalP" min="-2" pref="54" max="-2" attributes="0"/>
+                                          <Component id="lblTotalP2" min="-2" pref="74" max="-2" attributes="0"/>
+                                          <Component id="lblTotalP1" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="lblGastosViaje" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="lblBienUso" min="-2" pref="132" max="-2" attributes="1"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnGuardar" min="-2" pref="192" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="322" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblTotalA" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="lblTotalA2" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTotalA1" min="-2" pref="71" max="-2" attributes="0"/>
+                              <Component id="lblTotalA3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTotalA4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblTotalA5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblTotal" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -215,73 +229,79 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblBienConsumo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblBienNoPersonal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblGastosViaje" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblBienUso" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblBienUsoA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBienConsumoA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBienNoPersonalA" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBienUsoP" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBienConsumoP" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBienNoPersonalP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblBienUsoA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBienConsumoA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBienUsoP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBienConsumoP" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBienNoPersonalP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblBienNoPersonalA" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblGastosViajeP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="lblAnio4" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfGastosViajeP2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfGastosViajeA2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="tfGastosViajeP2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfGastosViajeA2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBienNoPersonalA2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBienNoPersonalP2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBienConsumoA2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBienConsumoP2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="tfGastosViajeP3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfGastosViajeA3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfGastosViajeP3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfGastosViajeA3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                          <Component id="tfGastosViajeP1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tfGastosViajeA1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfGastosViajeP4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfGastosViajeA4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="tfGastosViajeP1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfGastosViajeA1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfBienConsumoP1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAnio1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfBienConsumoA1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfBienConsumoP2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAnio2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfBienConsumoA2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfBienConsumoP3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAnio3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfBienConsumoA3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="tfBienConsumoP4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="tfBienConsumoA4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="tfBienConsumoP1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblAnio1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBienConsumoA1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblAnio2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="tfBienConsumoP3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblAnio3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBienConsumoA3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBienNoPersonalP3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tfBienNoPersonalA3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
+                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -289,32 +309,26 @@
                                   <Component id="tfBienNoPersonalP1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="tfBienNoPersonalA1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tfBienNoPersonalP2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfBienNoPersonalA2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tfBienNoPersonalP3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfBienNoPersonalA3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="tfBienNoPersonalP4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="tfBienNoPersonalA4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfGastosViajeP4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfGastosViajeA4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfBienUsoP4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfBienUsoA4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTotalP4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTotalA4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfBienConsumoA4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfBienConsumoP4" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblTotal" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBienUso" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lblTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblGastosViajeP" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblGastosViajeA" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTotalP" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTotalA" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -322,13 +336,16 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblTotalA1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblTotalA1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTotalP1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="tfBienUsoA2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="tfBienUsoP2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTotalP2" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblTotalA2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTotalP2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -337,18 +354,10 @@
                                   <Component id="lblTotalP3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblTotalA3" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tfBienUsoA4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfBienUsoP4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTotalP4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTotalA4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="tfBienUsoP1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tfBienUsoA1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTotalP1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

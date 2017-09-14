@@ -89,15 +89,16 @@ public class BienConsumo implements Serializable, Comparable<BienConsumo> {
     }
 
     @Override
-    public int compareTo(BienConsumo gv) {
-        int esteAnio = Integer.valueOf(this.anio);
-        int elOtroAnio = Integer.valueOf(gv.getAnio());
+    public int compareTo(BienConsumo bc) {
+        int esteAnio = Integer.parseInt(this.anio);
+        int elOtroAnio = Integer.parseInt(bc.getAnio());
         if (esteAnio < elOtroAnio) {
             return -1;
-        } else if (esteAnio > elOtroAnio) {
+        } 
+        if (esteAnio > elOtroAnio) {
             return 1;
-        } else {
-            return 0;
-        }
+        } 
+        return 0;
     }
+    
 }
