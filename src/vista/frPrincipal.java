@@ -37,6 +37,8 @@ import javax.swing.*;
 import vista.EntradasSalidas.diagEntradas;
 import vista.EntradasSalidas.diagEntradasPases;
 import vista.EntradasSalidas.diagSalidas;
+import vista.becas.evaluacion.DgBecasEvaluacionWeb;
+import vista.becas.evaluacion.DgBecasItemEvaluar;
 import vista.categorizacion.diagCargaRapidaCategorizacion;
 import vista.categorizacion.diagInvestigadorBusqueda;
 import vista.categorizacion.diagLlamadoBusqueda;
@@ -528,6 +530,39 @@ public class frPrincipal extends javax.swing.JFrame {
                 diagInformes reportes = new diagInformes(null, true);
                 reportes.setLocation(Comunes.centrarDialog(reportes));
                 reportes.setVisible(true);
+            }
+        });
+        jxTaskPnBecas.add(new AbstractAction() {
+            {
+                putValue(Action.NAME, "Evaluación");
+                javax.swing.Icon icon = new ImageIcon(getClass().getResource("/imagenes/nuevo.png"));
+                putValue(Action.SMALL_ICON, icon);
+                putValue(Action.SHORT_DESCRIPTION, "Evaluación");
+            }
+
+            public void actionPerformed(ActionEvent e) {
+                DgBecasEvaluacionWeb dgBecasEvaluacionWeb  = new DgBecasEvaluacionWeb (null, true);
+                dgBecasEvaluacionWeb.setLocationRelativeTo(null);
+                dgBecasEvaluacionWeb.setVisible(true);
+
+
+            }
+        });
+        
+        jxTaskPnBecas.add(new AbstractAction() {
+            {
+                putValue(Action.NAME, "Items a evaluar");
+                javax.swing.Icon icon = new ImageIcon(getClass().getResource("/imagenes/nuevo.png"));
+                putValue(Action.SMALL_ICON, icon);
+                putValue(Action.SHORT_DESCRIPTION, "Items a evaluar");
+            }
+
+            public void actionPerformed(ActionEvent e) {
+                DgBecasItemEvaluar dgBecasItemEvaluar  = new DgBecasItemEvaluar (null, true);
+                dgBecasItemEvaluar.setLocationRelativeTo(null);
+                dgBecasItemEvaluar.setVisible(true);
+
+
             }
         });
         jxTaskPnBecas.add(new AbstractAction() {
