@@ -5,8 +5,11 @@
 package facade;
 
 import controladores.TipoPublicacionJpaController;
+import controladores.exceptions.NonexistentEntityException;
 import entidades.proyecto.editorial.TipoPublicacion;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.*;
 
 /**
@@ -44,6 +47,14 @@ public class TipoPublicacionFacade {
 
     public void alta(TipoPublicacion tipoPublicacion) {
         new TipoPublicacionJpaController(emf).create(tipoPublicacion);
+    }
+    
+    public void eliminar(long id) {
+        try {
+            new TipoPublicacionJpaController(emf).destroy(id);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(TipoActividadFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public TipoPublicacion buscar(long id) {

@@ -154,6 +154,8 @@ public class diagModificarRendicion extends javax.swing.JDialog {
         tfAnioRendido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cmbLibreDeuda = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        cmbTramiteRendicion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -256,7 +258,7 @@ public class diagModificarRendicion extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(61, 61, 61)
-                        .addComponent(btnAgregarDetalleRendicion, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                        .addComponent(btnAgregarDetalleRendicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEliminarDetalleRendicion)
                         .addGap(27, 27, 27))
@@ -298,6 +300,10 @@ public class diagModificarRendicion extends javax.swing.JDialog {
 
         cmbLibreDeuda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "NO", "SI", "EN TRAMITE" }));
 
+        jLabel6.setText(org.openide.util.NbBundle.getMessage(diagModificarRendicion.class, "diagModificarRendicion.jLabel6.text")); // NOI18N
+
+        cmbTramiteRendicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Con Canon", "Sin Canon" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -313,19 +319,25 @@ public class diagModificarRendicion extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfMontoRendido, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(dpFechaRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tfMontoRendido, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(37, 37, 37)
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(dpFechaRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tfAnioRendido, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
+                                .addGap(26, 26, 26)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(cmbLibreDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(cmbLibreDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbTramiteRendicion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -348,7 +360,9 @@ public class diagModificarRendicion extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfAnioRendido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
-                        .addComponent(cmbLibreDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbLibreDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(cmbTramiteRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -448,12 +462,14 @@ public class diagModificarRendicion extends javax.swing.JDialog {
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnLimpiarLista;
     private javax.swing.JComboBox cmbLibreDeuda;
+    private javax.swing.JComboBox<String> cmbTramiteRendicion;
     private org.jdesktop.swingx.JXDatePicker dpFechaRendicion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -500,6 +516,7 @@ public class diagModificarRendicion extends javax.swing.JDialog {
         dpFechaRendicion.setDate(getRendicion().getFechaRendicion());
         tfAnioRendido.setText(String.valueOf(getRendicion().getAnioRendido()));
         cmbLibreDeuda.setSelectedItem(getRendicion().getLibreDeuda());
+        cmbTramiteRendicion.setSelectedItem(getRendicion().getTramiteRendicion());
         cargarEncabezadoTablaDetalle();
         if(getRendicion().getRendicionDetalle().size() > 0){
             btnAgregarDetalleRendicion.setEnabled(true);
@@ -871,6 +888,7 @@ public class diagModificarRendicion extends javax.swing.JDialog {
         rendicionModificada.setObservacion(taObservacion.getText());
         rendicionModificada.setAnioRendido(Integer.parseInt(tfAnioRendido.getText()));
         rendicionModificada.setLibreDeuda(cmbLibreDeuda.getSelectedItem().toString());
+        rendicionModificada.setTramiteRendicion(cmbTramiteRendicion.getSelectedItem().toString());
         if(Comunes.validarBigDecimal(tfMontoRendido.getText())){
             rendicionModificada.setMontoRendido(new BigDecimal(tfMontoRendido.getText()));
         }else{

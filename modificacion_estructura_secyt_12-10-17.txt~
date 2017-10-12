@@ -1,0 +1,47 @@
+ALTER TABLE `economico_rendicion` ADD `TRAMITERENDICION` VARCHAR( 25 ) NOT NULL AFTER `ARCHIVORENDICION_ID` ;
+
+
+/// PROBAR QUE NO DE ERROR EDITORIALCIENTIFICA QUE ES LA TABLA QUE EXISTIA Y A LA QUE SE LE AGRAGO LA RELACION DE UNO A MUCHOS ///
+ 
+/// PRIMERO CREAR ESTA TABLA PARA QUE NO DE ERROR EN LA DE ABAJO ///
+- CREATE TABLE `editorial_destinoEditorial` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NOMBRE` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+- CREATE TABLE `editorial_donacionEditorial` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `CANTIDAD` int(11) DEFAULT NULL,
+  `FECHA` date DEFAULT NULL,
+  `DESTINO_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_editorial_donacionEditorial_DESTINO_ID` (`DESTINO_ID`),
+  CONSTRAINT `FK_editorial_donacionEditorial_DESTINO_ID` FOREIGN KEY (`DESTINO_ID`) REFERENCES `editorial_destinoEditorial` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+
+
+
+CREATE TABLE `editorial_editorialCientifica` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ISBN` varchar(255) DEFAULT NULL,
+  `ANIOPUBLICACION` date DEFAULT NULL,
+  `AUTOR` longtext,
+  `COAUTOR` varchar(255) DEFAULT NULL,
+  `MENCIONES` varchar(255) DEFAULT NULL,
+  `RESUMEN` longtext,
+  `SUMMARY` varchar(255) DEFAULT NULL,
+  `TITULO` longtext,
+  `EXPEDIENTE_ID` bigint(20) DEFAULT NULL,
+  `PROYECTO_ID` bigint(20) DEFAULT NULL,
+  `TIPOPUBLICACION_ID` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_editorial_editorialCientifica_PROYECTO_ID` (`PROYECTO_ID`),
+  KEY `FK_editorial_editorialCientifica_EXPEDIENTE_ID` (`EXPEDIENTE_ID`),
+  KEY `editorial_editorialCientifica_TIPOPUBLICACION_ID` (`TIPOPUBLICACION_ID`),
+  CONSTRAINT `editorial_editorialCientifica_TIPOPUBLICACION_ID` FOREIGN KEY (`TIPOPUBLICACION_ID`) REFERENCES `editorial_tipopublicacion` (`ID`),
+  CONSTRAINT `FK_editorial_editorialCientifica_EXPEDIENTE_ID` FOREIGN KEY (`EXPEDIENTE_ID`) REFERENCES `editorial_expedienteeditorial` (`ID`),
+  CONSTRAINT `FK_editorial_editorialCientifica_PROYECTO_ID` FOREIGN KEY (`PROYECTO_ID`) REFERENCES `proyecto` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=332 DEFAULT CHARSET=latin1

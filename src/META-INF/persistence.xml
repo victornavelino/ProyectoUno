@@ -257,6 +257,12 @@
     <class>entidades.proyecto.editorial.EvaluacionEditorial</class>
     <class>entidades.proyecto.editorial.FormatoLibro</class>
     <class>entidades.proyecto.editorial.Stock</class>
+    <class>entidades.becas.evaluacion.BecasComiteEvaluador</class>
+    <class>entidades.becas.evaluacion.BecasEvaluacionWeb</class>
+    <class>entidades.becas.evaluacion.BecasEvaluacionWebBecasItemEvaluar</class>
+    <class>entidades.becas.evaluacion.BecasItemEvaluar</class>
+    <class>entidades.proyecto.editorial.DonacionEditorial</class>
+    <class>entidades.proyecto.editorial.DestinoEditorial</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/secyt"/>
       <property name="javax.persistence.jdbc.password" value="1234"/>

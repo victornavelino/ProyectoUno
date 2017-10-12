@@ -6,7 +6,7 @@
 package controladores;
 
 import controladores.exceptions.NonexistentEntityException;
-import entidades.becas.evaluacion.BecasItemEvaluar;
+import entidades.proyecto.editorial.DestinoEditorial;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -18,11 +18,11 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author diego
+ * @author walter
  */
-public class BecasItemEvaluarJpaController implements Serializable {
+public class DestinoEditorialJpaController implements Serializable {
 
-    public BecasItemEvaluarJpaController(EntityManagerFactory emf) {
+    public DestinoEditorialJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +31,12 @@ public class BecasItemEvaluarJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(BecasItemEvaluar becasItemEvaluar) {
+    public void create(DestinoEditorial destinoEditorial) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(becasItemEvaluar);
+            em.persist(destinoEditorial);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +45,19 @@ public class BecasItemEvaluarJpaController implements Serializable {
         }
     }
 
-    public void edit(BecasItemEvaluar becasItemEvaluar) throws NonexistentEntityException, Exception {
+    public void edit(DestinoEditorial destinoEditorial) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            becasItemEvaluar = em.merge(becasItemEvaluar);
+            destinoEditorial = em.merge(destinoEditorial);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = becasItemEvaluar.getId();
-                if (findBecasItemEvaluar(id) == null) {
-                    throw new NonexistentEntityException("The becasItemEvaluar with id " + id + " no longer exists.");
+                Long id = destinoEditorial.getId();
+                if (findDestinoEditorial(id) == null) {
+                    throw new NonexistentEntityException("The destinoEditorial with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +73,14 @@ public class BecasItemEvaluarJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            BecasItemEvaluar becasItemEvaluar;
+            DestinoEditorial destinoEditorial;
             try {
-                becasItemEvaluar = em.getReference(BecasItemEvaluar.class, id);
-                becasItemEvaluar.getId();
+                destinoEditorial = em.getReference(DestinoEditorial.class, id);
+                destinoEditorial.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The becasItemEvaluar with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The destinoEditorial with id " + id + " no longer exists.", enfe);
             }
-            em.remove(becasItemEvaluar);
+            em.remove(destinoEditorial);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +89,19 @@ public class BecasItemEvaluarJpaController implements Serializable {
         }
     }
 
-    public List<BecasItemEvaluar> findBecasItemEvaluarEntities() {
-        return findBecasItemEvaluarEntities(true, -1, -1);
+    public List<DestinoEditorial> findDestinoEditorialEntities() {
+        return findDestinoEditorialEntities(true, -1, -1);
     }
 
-    public List<BecasItemEvaluar> findBecasItemEvaluarEntities(int maxResults, int firstResult) {
-        return findBecasItemEvaluarEntities(false, maxResults, firstResult);
+    public List<DestinoEditorial> findDestinoEditorialEntities(int maxResults, int firstResult) {
+        return findDestinoEditorialEntities(false, maxResults, firstResult);
     }
 
-    private List<BecasItemEvaluar> findBecasItemEvaluarEntities(boolean all, int maxResults, int firstResult) {
+    private List<DestinoEditorial> findDestinoEditorialEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(BecasItemEvaluar.class));
+            cq.select(cq.from(DestinoEditorial.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +113,20 @@ public class BecasItemEvaluarJpaController implements Serializable {
         }
     }
 
-    public BecasItemEvaluar findBecasItemEvaluar(Long id) {
+    public DestinoEditorial findDestinoEditorial(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(BecasItemEvaluar.class, id);
+            return em.find(DestinoEditorial.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getBecasItemEvaluarCount() {
+    public int getDestinoEditorialCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<BecasItemEvaluar> rt = cq.from(BecasItemEvaluar.class);
+            Root<DestinoEditorial> rt = cq.from(DestinoEditorial.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

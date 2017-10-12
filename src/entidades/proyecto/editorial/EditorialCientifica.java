@@ -46,6 +46,16 @@ public class EditorialCientifica implements Serializable {
     private String summary;        
     @ManyToMany
     private List<Investigador> investigadores;
+    @OneToMany
+    private List<DonacionEditorial> donaciones;
+
+    public List<DonacionEditorial> getDonaciones() {
+        return donaciones;
+    }
+
+    public void setDonaciones(List<DonacionEditorial> donaciones) {
+        this.donaciones = donaciones;
+    }
 
     public List<Investigador> getInvestigadores() {
         return investigadores;

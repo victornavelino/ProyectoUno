@@ -3,38 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entidades.becas.evaluacion;
+package entidades.proyecto.editorial;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
  *
- * @author diego
+ * @author walter
  */
 @Entity
-@Table(name = "becas_item_evaluar")
-@NamedQueries({
-    
-    @NamedQuery(name="BecasItemEvaluar.findByDescripcion", 
-            query="SELECT b FROM BecasItemEvaluar b WHERE TRIM(LOWER(b.descripcion)) = :descripcion"),
-    
-    @NamedQuery(name="BecasItemEvaluar.findByDescripcionID", 
-            query="SELECT b FROM BecasItemEvaluar b WHERE TRIM(LOWER(b.descripcion)) = :descripcion AND b.id <> :id")
-})
-public class BecasItemEvaluar implements Serializable {
+@Table(name = "editorial_destinoEditorial")
+public class DestinoEditorial implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    private String descripcion;
+    private String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public Long getId() {
         return id;
@@ -43,15 +41,6 @@ public class BecasItemEvaluar implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-    
 
     @Override
     public int hashCode() {
@@ -63,10 +52,10 @@ public class BecasItemEvaluar implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BecasItemEvaluar)) {
+        if (!(object instanceof DestinoEditorial)) {
             return false;
         }
-        BecasItemEvaluar other = (BecasItemEvaluar) object;
+        DestinoEditorial other = (DestinoEditorial) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -75,10 +64,7 @@ public class BecasItemEvaluar implements Serializable {
 
     @Override
     public String toString() {
-
-        return this.descripcion;
-
-        
+        return "entidades.proyecto.editorial.DestinoEditorial[ id=" + id + " ]";
     }
     
 }

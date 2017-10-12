@@ -92,6 +92,8 @@ public class diagVerDetalleRendicion extends javax.swing.JDialog {
         tfAnioRendido = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         tfLibreDeuda = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        tfTramiteRendicion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(diagVerDetalleRendicion.class, "diagVerDetalleRendicion.title")); // NOI18N
@@ -148,6 +150,10 @@ public class diagVerDetalleRendicion extends javax.swing.JDialog {
 
         tfLibreDeuda.setText(org.openide.util.NbBundle.getMessage(diagVerDetalleRendicion.class, "diagVerDetalleRendicion.tfLibreDeuda.text")); // NOI18N
 
+        jLabel7.setText(org.openide.util.NbBundle.getMessage(diagVerDetalleRendicion.class, "diagVerDetalleRendicion.jLabel7.text")); // NOI18N
+
+        tfTramiteRendicion.setText(org.openide.util.NbBundle.getMessage(diagVerDetalleRendicion.class, "diagVerDetalleRendicion.tfTramiteRendicion.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,21 +167,24 @@ public class diagVerDetalleRendicion extends javax.swing.JDialog {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(dpFechaRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(83, 83, 83)
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tfLibreDeuda))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(tfMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(72, 72, 72)
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tfAnioRendido, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(dpFechaRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfLibreDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfTramiteRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(tfMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfAnioRendido, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +219,9 @@ public class diagVerDetalleRendicion extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(dpFechaRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(tfLibreDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfLibreDeuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(tfTramiteRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -293,6 +304,7 @@ public class diagVerDetalleRendicion extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTotalBC;
@@ -304,6 +316,7 @@ public class diagVerDetalleRendicion extends javax.swing.JDialog {
     private javax.swing.JTextField tfAnioRendido;
     private javax.swing.JTextField tfLibreDeuda;
     private javax.swing.JTextField tfMonto;
+    private javax.swing.JTextField tfTramiteRendicion;
     // End of variables declaration//GEN-END:variables
 
     private void inicializarComponentes() {
@@ -321,6 +334,7 @@ public class diagVerDetalleRendicion extends javax.swing.JDialog {
         btnImprimirRendicion.setVisible(b);
         tfAnioRendido.setEditable(b);
         tfLibreDeuda.setEditable(b);
+        tfTramiteRendicion.setEditable(b);
         lblTotalBC.setVisible(b);
         lblTotalBNP.setVisible(b);
         lblTotalBU.setVisible(b);
@@ -378,6 +392,7 @@ public class diagVerDetalleRendicion extends javax.swing.JDialog {
         taObservacion.setText(getRendicion().getObservacion());
         tfAnioRendido.setText(String.valueOf(getRendicion().getAnioRendido()));
         tfLibreDeuda.setText(getRendicion().getLibreDeuda());
+        tfTramiteRendicion.setText(getRendicion().getTramiteRendicion());
         dpFechaRendicion.setDate(getRendicion().getFechaRendicion());
     }
 
