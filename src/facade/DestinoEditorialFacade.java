@@ -18,7 +18,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Panchi
+ * @author wbivanco
  */
 public class DestinoEditorialFacade {
     /*
@@ -27,12 +27,12 @@ public class DestinoEditorialFacade {
  */
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoUnoPU",ConexionFacade.PROPIEDADES);
     EntityManager em = emf.createEntityManager();
-    private static InstitucionFacade instance = null;
+    private static DestinoEditorialFacade instance = null;
 
     protected DestinoEditorialFacade() {
     }
 
-    public static InstitucionFacade getInstance() {
+    public static DestinoEditorialFacade getInstance() {
         if (instance == null) {
             createInstance();
         }
@@ -43,7 +43,7 @@ public class DestinoEditorialFacade {
 
     private synchronized static void createInstance() {
         if (instance == null) {
-            instance = new InstitucionFacade();
+            instance = new DestinoEditorialFacade();
         }
     }
 
@@ -61,9 +61,9 @@ public class DestinoEditorialFacade {
         try {
             new DestinoEditorialJpaController(emf).edit(destino);
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(InstitucionFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DestinoEditorialFacade.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(InstitucionFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DestinoEditorialFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }   
 
@@ -76,7 +76,7 @@ public class DestinoEditorialFacade {
         try {
             new DestinoEditorialJpaController(emf).destroy(id);
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(CampoAplicacionFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DestinoEditorialFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

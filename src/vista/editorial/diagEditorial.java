@@ -9,6 +9,7 @@ import entidades.operaciones.Operacion;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Evaluacion;
 import entidades.proyecto.Proyecto;
+import entidades.proyecto.editorial.DonacionEditorial;
 import entidades.proyecto.editorial.EditorialCientifica;
 import entidades.proyecto.editorial.EvaluacionEditorial;
 import entidades.proyecto.editorial.ExpedienteEditorial;
@@ -56,6 +57,12 @@ public class diagEditorial extends javax.swing.JDialog {
     private List<String> palabrasClaves = new ArrayList<String>();
     private List<String> keyWords = new ArrayList<String>();
 
+    DefaultTableModel modeloTablaDonaciones = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
     /**
      * Creates new form diagEditorial
      */
@@ -915,8 +922,17 @@ public class diagEditorial extends javax.swing.JDialog {
         btnEliminarTipoPublicacion.setEnabled(false);
         
         cargarTipoPublicacion();  
+        
+        // Cargo info de la solapa de donaciones
         Comunes.cargarJComboConBlanco(cmbDestinoEditorial, DestinoEditorialFacade.getInstance().listarTodosDestinoOrdenados());
-        //CargarAutores();        
+        btnGuardarDonacion.setEnabled(false);
+        cargarEncabezadoTablaDonaciones();
+        limpiarTablaDonaciones();            
+        cargarCuerpoTablaDonaciones();
+        
+        
+        
+        
         btnPublicaciones.setEnabled(false);
         
         this.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
@@ -1349,5 +1365,45 @@ public class diagEditorial extends javax.swing.JDialog {
         facade.TipoPublicacionFacade.getInstance().eliminar(idTipo);
         habilitarEliminarTipoPublicacion();
         cargarTipos();        
+    }
+
+    private void cargarEncabezadoTablaDonaciones() {
+        modeloTablaDonaciones.addColumn("Fecha");
+        modeloTablaDonaciones.addColumn("Destino");
+        modeloTablaDonaciones.addColumn("Cantidad");        
+        tblDonaciones.setModel(modeloTablaDonaciones);
+    }
+
+    private void limpiarTablaDonaciones() {
+        DefaultTableModel modeloTablaLimpia = (DefaultTableModel) tblDonaciones.getModel();
+        modeloTablaLimpia.getDataVector().clear(); //limpias el contenido
+        tblDonaciones.setModel(modeloTablaLimpia);//asignas el nuevo modelo de la tabla
+        tblDonaciones.updateUI();//actualizas la tabla
+    }
+    
+    private void cargarCuerpoTablaDonaciones() {
+        DonacionEditorial donacion = facade.DonacionEditorialFacade.getInstance().presupuestoxProyecto(proyectoElegido);
+        if (presu != null) {
+            int tamanio = presu.getBienConsumo().size();
+            Object[] fila = new Object[6];
+            List<BienUso> listaBU = presu.getBienUso();
+            List<BienNoPersonal> listaBNP = presu.getBienNoPersonal();
+            List<BienConsumo> listaBC = presu.getBienConsumo();
+            List<GastoViaje> listaGV = presu.getGastosViaje();
+            for (int i = 0; i < tamanio; i++) {
+                fila[0] = i + 1;
+                fila[1] = listaBC.get(i).getValor();
+                fila[2] = listaBNP.get(i).getValor();
+                fila[3] = listaGV.get(i).getValor();
+                fila[4] = listaBU.get(i).getValor();
+                fila[5] = presu.getBienUso().get(i).getValor().add(
+                        presu.getBienConsumo().get(i).getValor().add(
+                                presu.getBienNoPersonal().get(i).getValor().add(
+                                        presu.getGastosViaje().get(i).getValor())));
+                modeloTablaPresupuesto.addRow(fila);
+            }
+            modeloTablaPresupuesto.addRow(fila);
+            tblDatosPresupuestoAsignado.setModel(modeloTablaPresupuesto);
+        }
     }
 }
