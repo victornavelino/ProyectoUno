@@ -9,6 +9,7 @@ import entidades.operaciones.Operacion;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Evaluacion;
 import entidades.proyecto.Proyecto;
+import entidades.proyecto.editorial.DestinoEditorial;
 import entidades.proyecto.editorial.DonacionEditorial;
 import entidades.proyecto.editorial.EditorialCientifica;
 import entidades.proyecto.editorial.EvaluacionEditorial;
@@ -17,9 +18,10 @@ import entidades.proyecto.editorial.Stock;
 import entidades.proyecto.editorial.TipoPublicacion;
 import entidades.usuario.Usuario;
 import facade.DestinoEditorialFacade;
+import facade.DonacionEditorialFacade;
 import facade.EditorialCientificaFacade;
 import facade.EvaluacionEditorialFacade;
-import facade.DestinoEditorialFacade;
+import facade.DonacionEditorialFacade;
 import facade.InvestigadorFacade;
 import facade.OperacionFacade;
 import facade.editorial.StockFacade;
@@ -611,6 +613,11 @@ public class diagEditorial extends javax.swing.JDialog {
         tfCantidadDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfCantidadDonacion.text")); // NOI18N
 
         btnGuardarDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnGuardarDonacion.text")); // NOI18N
+        btnGuardarDonacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarDonacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -629,8 +636,8 @@ public class diagEditorial extends javax.swing.JDialog {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(cmbDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)
-                        .addComponent(btnGuardarDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(407, Short.MAX_VALUE))
+                        .addComponent(btnGuardarDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -802,6 +809,10 @@ public class diagEditorial extends javax.swing.JDialog {
     private void btnEliminarTipoPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoPublicacionActionPerformed
         eliminarTipoPulicacion();
     }//GEN-LAST:event_btnEliminarTipoPublicacionActionPerformed
+
+    private void btnGuardarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDonacionActionPerformed
+        agregarDonacionEditorial();
+    }//GEN-LAST:event_btnGuardarDonacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1382,28 +1393,53 @@ public class diagEditorial extends javax.swing.JDialog {
     }
     
     private void cargarCuerpoTablaDonaciones() {
-        DonacionEditorial donacion = facade.DonacionEditorialFacade.getInstance().presupuestoxProyecto(proyectoElegido);
-        if (presu != null) {
-            int tamanio = presu.getBienConsumo().size();
-            Object[] fila = new Object[6];
-            List<BienUso> listaBU = presu.getBienUso();
-            List<BienNoPersonal> listaBNP = presu.getBienNoPersonal();
-            List<BienConsumo> listaBC = presu.getBienConsumo();
-            List<GastoViaje> listaGV = presu.getGastosViaje();
-            for (int i = 0; i < tamanio; i++) {
-                fila[0] = i + 1;
-                fila[1] = listaBC.get(i).getValor();
-                fila[2] = listaBNP.get(i).getValor();
-                fila[3] = listaGV.get(i).getValor();
-                fila[4] = listaBU.get(i).getValor();
-                fila[5] = presu.getBienUso().get(i).getValor().add(
-                        presu.getBienConsumo().get(i).getValor().add(
-                                presu.getBienNoPersonal().get(i).getValor().add(
-                                        presu.getGastosViaje().get(i).getValor())));
-                modeloTablaPresupuesto.addRow(fila);
-            }
-            modeloTablaPresupuesto.addRow(fila);
-            tblDatosPresupuestoAsignado.setModel(modeloTablaPresupuesto);
+        List<DonacionEditorial> donacion = facade.DonacionEditorialFacade.getInstance().listarTodas();
+        int tamanio = donacion.size();
+        Object[] fila = new Object[3];
+        
+        for (int i = 0; i < tamanio; i++) {
+            fila[0] = donacion.get(i).getFecha();
+            fila[1] = donacion.get(i).getDestino();
+            fila[2] = donacion.get(i).getCantidad();           
+            modeloTablaDonaciones.addRow(fila);
+        }
+        tblDonaciones.setModel(modeloTablaDonaciones);
+    }
+
+    private void agregarDonacionEditorial() {
+        validarCamposDonacion();
+    }
+
+    private void validarCamposDonacion() {
+        boolean bandera = true;
+        String error = "Error: \n";
+
+        if (tfCantidadDonacion.getText().isEmpty()) {
+            bandera = false;
+            error += "Debe ingresar una cantidad a donar \n";
+        }
+
+        if (dpFechaDonacion.getDate() == null) {
+            bandera = false;
+            error += "Debe ingresar una Fecha de donación \n";
+        }
+
+        if (bandera == false) {
+            JOptionPane.showMessageDialog(null, error);
+        } else {
+            agregarFila();
         }
     }
+
+    private void agregarFila() {
+        DonacionEditorial donacion = new DonacionEditorial();
+        
+        donacion.setCantidad(Comunes.validarStringAInt(tfCantidadDonacion.getText()));
+        donacion.setDestino((DestinoEditorial) cmbDestinoEditorial.getSelectedItem());
+        donacion.setFecha(dpFechaDonacion.getDate());
+        
+        DonacionEditorialFacade.getInstance().alta(donacion);
+        JOptionPane.showMessageDialog(null, "Fila Agregada");
+    }
+    
 }
