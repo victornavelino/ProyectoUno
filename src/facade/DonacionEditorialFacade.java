@@ -68,9 +68,9 @@ public class DonacionEditorialFacade {
     }   
 
     public List<DonacionEditorial> listarTodas() {
-        Query quBuscar = em.createQuery("SELECT d FROM editorial_donacionEditorial d ORDER BY d.fecha");
+        Query quBuscar = em.createQuery("SELECT d FROM DonacionEditorial d ORDER BY d.fecha");
         return quBuscar.getResultList();
-    }   
+    }      
 
     public void eliminar(long id) {
         try {

@@ -24,14 +24,18 @@ import facade.EvaluacionEditorialFacade;
 import facade.DonacionEditorialFacade;
 import facade.InvestigadorFacade;
 import facade.OperacionFacade;
+import facade.UnidadAcademicaFacade;
 import facade.editorial.StockFacade;
 import facade.editorial.TipoPublicacionFacade;
 import includes.Comunes;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vista.diagProyectoBusquedaSimple;
@@ -58,6 +62,8 @@ public class diagEditorial extends javax.swing.JDialog {
     private List<Stock> listaUnidades = new ArrayList<Stock>();
     private List<String> palabrasClaves = new ArrayList<String>();
     private List<String> keyWords = new ArrayList<String>();
+    
+    List<DonacionEditorial> listaDonaciones = new ArrayList<DonacionEditorial>();
 
     DefaultTableModel modeloTablaDonaciones = new DefaultTableModel() {
         @Override
@@ -160,15 +166,18 @@ public class diagEditorial extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        cmbDestinoEditorial = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         dpFechaDonacion = new org.jdesktop.swingx.JXDatePicker();
         jLabel15 = new javax.swing.JLabel();
         tfCantidadDonacion = new javax.swing.JTextField();
-        btnGuardarDonacion = new javax.swing.JButton();
+        btnAgregarDonacion = new javax.swing.JButton();
+        cmbDestinoEditorial = new javax.swing.JComboBox();
+        btnAgregarDestinoEditorial = new javax.swing.JButton();
+        btnEliminarDestinoEditorial = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDonaciones = new javax.swing.JTable();
+        btnEliminarDonacion = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -497,7 +506,7 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addComponent(btnEliminarEvaluacion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btVerDetallesEvaluacionSeleccionada)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
@@ -548,7 +557,7 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addComponent(btAgregarEvaluacion1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminarEvaluacion1)))
-                .addContainerGap(435, Short.MAX_VALUE))
+                .addContainerGap(439, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
@@ -604,18 +613,30 @@ public class diagEditorial extends javax.swing.JDialog {
 
         jLabel13.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel13.text")); // NOI18N
 
-        cmbDestinoEditorial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel14.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel14.text")); // NOI18N
 
         jLabel15.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel15.text")); // NOI18N
 
         tfCantidadDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfCantidadDonacion.text")); // NOI18N
 
-        btnGuardarDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnGuardarDonacion.text")); // NOI18N
-        btnGuardarDonacion.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnAgregarDonacion.text")); // NOI18N
+        btnAgregarDonacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarDonacionActionPerformed(evt);
+                btnAgregarDonacionActionPerformed(evt);
+            }
+        });
+
+        btnAgregarDestinoEditorial.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnAgregarDestinoEditorial.text")); // NOI18N
+        btnAgregarDestinoEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarDestinoEditorialActionPerformed(evt);
+            }
+        });
+
+        btnEliminarDestinoEditorial.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarDestinoEditorial.text")); // NOI18N
+        btnEliminarDestinoEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDestinoEditorialActionPerformed(evt);
             }
         });
 
@@ -631,13 +652,21 @@ public class diagEditorial extends javax.swing.JDialog {
                     .addComponent(jLabel15))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfCantidadDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dpFechaDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(cmbDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(btnGuardarDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(309, Short.MAX_VALUE))
+                        .addComponent(dpFechaDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAgregarDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfCantidadDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(cmbDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAgregarDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminarDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -646,11 +675,13 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(cmbDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardarDonacion))
+                    .addComponent(btnAgregarDestinoEditorial)
+                    .addComponent(btnEliminarDestinoEditorial))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(dpFechaDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dpFechaDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarDonacion))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -671,7 +702,19 @@ public class diagEditorial extends javax.swing.JDialog {
 
             }
         ));
+        tblDonaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDonacionesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDonaciones);
+
+        btnEliminarDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarDonacion.text")); // NOI18N
+        btnEliminarDonacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDonacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -679,13 +722,19 @@ public class diagEditorial extends javax.swing.JDialog {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1096, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(437, 437, 437)
+                .addComponent(btnEliminarDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addComponent(btnEliminarDonacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -810,9 +859,25 @@ public class diagEditorial extends javax.swing.JDialog {
         eliminarTipoPulicacion();
     }//GEN-LAST:event_btnEliminarTipoPublicacionActionPerformed
 
-    private void btnGuardarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarDonacionActionPerformed
+    private void btnAgregarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDonacionActionPerformed
         agregarDonacionEditorial();
-    }//GEN-LAST:event_btnGuardarDonacionActionPerformed
+    }//GEN-LAST:event_btnAgregarDonacionActionPerformed
+
+    private void btnEliminarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDonacionActionPerformed
+        eliminarDonacionEditorial(tblDonaciones.getSelectedRow());
+    }//GEN-LAST:event_btnEliminarDonacionActionPerformed
+
+    private void tblDonacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonacionesMouseClicked
+        eliminarFilaDonacion();
+    }//GEN-LAST:event_tblDonacionesMouseClicked
+
+    private void btnEliminarDestinoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDestinoEditorialActionPerformed
+        eliminarDestinoEditorial();
+    }//GEN-LAST:event_btnEliminarDestinoEditorialActionPerformed
+
+    private void btnAgregarDestinoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDestinoEditorialActionPerformed
+        agregarDestinoEditorial();
+    }//GEN-LAST:event_btnAgregarDestinoEditorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -860,13 +925,16 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JButton btAgregarEvaluacion;
     private javax.swing.JButton btAgregarEvaluacion1;
     private javax.swing.JButton btVerDetallesEvaluacionSeleccionada;
+    private javax.swing.JButton btnAgregarDestinoEditorial;
+    private javax.swing.JButton btnAgregarDonacion;
     private javax.swing.JButton btnEditarEvaluacion;
+    private javax.swing.JButton btnEliminarDestinoEditorial;
+    private javax.swing.JButton btnEliminarDonacion;
     private javax.swing.JButton btnEliminarEvaluacion;
     private javax.swing.JButton btnEliminarEvaluacion1;
     private javax.swing.JButton btnEliminarTipoPublicacion;
-    private javax.swing.JButton btnGuardarDonacion;
     private javax.swing.JButton btnPublicaciones;
-    private javax.swing.JComboBox<String> cmbDestinoEditorial;
+    private javax.swing.JComboBox cmbDestinoEditorial;
     private org.jdesktop.swingx.JXDatePicker dpFechaDonacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -933,17 +1001,13 @@ public class diagEditorial extends javax.swing.JDialog {
         btnEliminarTipoPublicacion.setEnabled(false);
         
         cargarTipoPublicacion();  
-        
-        // Cargo info de la solapa de donaciones
-        Comunes.cargarJComboConBlanco(cmbDestinoEditorial, DestinoEditorialFacade.getInstance().listarTodosDestinoOrdenados());
-        btnGuardarDonacion.setEnabled(false);
+                
+        btnAgregarDonacion.setEnabled(true);
+        btnEliminarDonacion.setEnabled(false);
         cargarEncabezadoTablaDonaciones();
-        limpiarTablaDonaciones();            
-        cargarCuerpoTablaDonaciones();
         
-        
-        
-        
+        cargarComboDestinoEditorial();        
+                
         btnPublicaciones.setEnabled(false);
         
         this.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
@@ -955,7 +1019,11 @@ public class diagEditorial extends javax.swing.JDialog {
                 integrantesFuera.removeAll(autoresDentro);
                 Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);
                 break;
-            case "Modificación":
+            case "Modificación":                
+                listaDonaciones = editorialCientifica.getDonaciones();
+                limpiarTablaDonaciones();    
+                cargarCuerpoTablaDonaciones(listaDonaciones);
+                
                 autoresDentro = editorialCientifica.getInvestigadores();       
                 Comunes.cargarJList(lstIntegrantesDentroLibro, autoresDentro);
                 List<Investigador> integrantesFueram = InvestigadorFacade.getInstance().getTodosInvestigador();
@@ -1091,7 +1159,11 @@ public class diagEditorial extends javax.swing.JDialog {
         } else {
             editorialCientifica.setInvestigadores(null);
         }
-        
+        if(listaDonaciones.size() > 0){
+            editorialCientifica.setDonaciones(listaDonaciones);
+        } else {
+            editorialCientifica.setDonaciones(null);
+        }
         
     }
 
@@ -1392,15 +1464,15 @@ public class diagEditorial extends javax.swing.JDialog {
         tblDonaciones.updateUI();//actualizas la tabla
     }
     
-    private void cargarCuerpoTablaDonaciones() {
-        List<DonacionEditorial> donacion = facade.DonacionEditorialFacade.getInstance().listarTodas();
-        int tamanio = donacion.size();
+    private void cargarCuerpoTablaDonaciones(List<DonacionEditorial> listaDonaciones) {
+        
+        int tamanio = listaDonaciones.size();
         Object[] fila = new Object[3];
         
         for (int i = 0; i < tamanio; i++) {
-            fila[0] = donacion.get(i).getFecha();
-            fila[1] = donacion.get(i).getDestino();
-            fila[2] = donacion.get(i).getCantidad();           
+            fila[0] = listaDonaciones.get(i).getFecha();
+            fila[1] = listaDonaciones.get(i).getDestino();
+            fila[2] = listaDonaciones.get(i).getCantidad();           
             modeloTablaDonaciones.addRow(fila);
         }
         tblDonaciones.setModel(modeloTablaDonaciones);
@@ -1432,14 +1504,65 @@ public class diagEditorial extends javax.swing.JDialog {
     }
 
     private void agregarFila() {
-        DonacionEditorial donacion = new DonacionEditorial();
+        DonacionEditorial donacion = new DonacionEditorial();       
         
         donacion.setCantidad(Comunes.validarStringAInt(tfCantidadDonacion.getText()));
         donacion.setDestino((DestinoEditorial) cmbDestinoEditorial.getSelectedItem());
         donacion.setFecha(dpFechaDonacion.getDate());
         
-        DonacionEditorialFacade.getInstance().alta(donacion);
+        listaDonaciones.add(donacion);
+        
+        limpiarTablaDonaciones();
+        cargarCuerpoTablaDonaciones(listaDonaciones);       
+         
         JOptionPane.showMessageDialog(null, "Fila Agregada");
     }
+
+    private void eliminarDonacionEditorial(int fila) {
+        listaDonaciones.remove(fila);
+        modeloTablaDonaciones.removeRow(tblDonaciones.getSelectedRow());
+        limpiarTablaDonaciones();         
+        cargarCuerpoTablaDonaciones(listaDonaciones);
+        btnEliminarDonacion.setEnabled(false);
+        
+        JOptionPane.showMessageDialog(null, "Fila eliminada con Exito");
+    }
+
+    private void eliminarFilaDonacion() {
+        btnEliminarDonacion.setEnabled(true);
+    }
+
+    private void eliminarDestinoEditorial() {
+        int indice = cmbDestinoEditorial.getSelectedIndex();       
+        List<DestinoEditorial> listaDestinos = new ArrayList<DestinoEditorial>();
+        listaDestinos = facade.DestinoEditorialFacade.getInstance().listarTodosDestinosOrdenados();
+        
+        long idDestino = listaDestinos.get(indice-1).getId();
+        facade.DestinoEditorialFacade.getInstance().eliminar(idDestino);        
+        HabilitarEliminarDestinoEditorial();
+        cargarComboDestinoEditorial();
+    }
+
+    private void HabilitarEliminarDestinoEditorial() {
+        String desti = cmbDestinoEditorial.getSelectedItem().toString();
+        if(!desti.equals("--Seleccione--")){
+            btnEliminarDestinoEditorial.setEnabled(true);
+        }
+        else{
+            btnEliminarDestinoEditorial.setEnabled(false);
+        }
+    }
+
+    private void agregarDestinoEditorial() {
+        diagDestinoEditorial destino = new diagDestinoEditorial(null, true,  usuario, "Alta");
+        destino.setLocation(Comunes.centrarDialog(destino));
+        destino.setVisible(true);
+        
+        btnEliminarDestinoEditorial.setEnabled(false);
+        cargarComboDestinoEditorial();   
+    }
     
+    private void cargarComboDestinoEditorial() {
+        Comunes.cargarJComboConBlanco(cmbDestinoEditorial,DestinoEditorialFacade.getInstance().listarTodosDestinosOrdenados());  
+    }
 }

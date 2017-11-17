@@ -10,6 +10,7 @@ import entidades.proyecto.editorial.DestinoEditorial;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+//import javax.persistence.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
@@ -67,8 +68,8 @@ public class DestinoEditorialFacade {
         }
     }   
 
-    public List<DestinoEditorial> listarTodosDestinoOrdenados() {
-        Query quBuscar = em.createQuery("SELECT d FROM editorial_destinoEditorial d ORDER BY d.nombre");
+    public List<DestinoEditorial> listarTodosDestinosOrdenados() {
+        Query quBuscar = em.createQuery("SELECT d FROM DestinoEditorial d ORDER BY d.nombre");       
         return quBuscar.getResultList();
     }   
 
