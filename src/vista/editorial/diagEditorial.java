@@ -626,6 +626,12 @@ public class diagEditorial extends javax.swing.JDialog {
             }
         });
 
+        cmbDestinoEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbDestinoEditorialActionPerformed(evt);
+            }
+        });
+
         btnAgregarDestinoEditorial.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnAgregarDestinoEditorial.text")); // NOI18N
         btnAgregarDestinoEditorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -864,11 +870,11 @@ public class diagEditorial extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAgregarDonacionActionPerformed
 
     private void btnEliminarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDonacionActionPerformed
-        eliminarDonacionEditorial(tblDonaciones.getSelectedRow());
+        eliminarFila(tblDonaciones.getSelectedRow());
     }//GEN-LAST:event_btnEliminarDonacionActionPerformed
 
     private void tblDonacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonacionesMouseClicked
-        eliminarFilaDonacion();
+        habilitarBotonEliminarFilaDonacion();
     }//GEN-LAST:event_tblDonacionesMouseClicked
 
     private void btnEliminarDestinoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDestinoEditorialActionPerformed
@@ -878,6 +884,10 @@ public class diagEditorial extends javax.swing.JDialog {
     private void btnAgregarDestinoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDestinoEditorialActionPerformed
         agregarDestinoEditorial();
     }//GEN-LAST:event_btnAgregarDestinoEditorialActionPerformed
+
+    private void cmbDestinoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDestinoEditorialActionPerformed
+        habilitarBotonEliminarDestino();
+    }//GEN-LAST:event_cmbDestinoEditorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1004,6 +1014,7 @@ public class diagEditorial extends javax.swing.JDialog {
                 
         btnAgregarDonacion.setEnabled(true);
         btnEliminarDonacion.setEnabled(false);
+        btnEliminarDestinoEditorial.setEnabled(false);
         cargarEncabezadoTablaDonaciones();
         
         cargarComboDestinoEditorial();        
@@ -1518,7 +1529,7 @@ public class diagEditorial extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null, "Fila Agregada");
     }
 
-    private void eliminarDonacionEditorial(int fila) {
+    private void eliminarFila(int fila) {
         listaDonaciones.remove(fila);
         modeloTablaDonaciones.removeRow(tblDonaciones.getSelectedRow());
         limpiarTablaDonaciones();         
@@ -1528,7 +1539,7 @@ public class diagEditorial extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null, "Fila eliminada con Exito");
     }
 
-    private void eliminarFilaDonacion() {
+    private void habilitarBotonEliminarFilaDonacion() {
         btnEliminarDonacion.setEnabled(true);
     }
 
@@ -1539,11 +1550,12 @@ public class diagEditorial extends javax.swing.JDialog {
         
         long idDestino = listaDestinos.get(indice-1).getId();
         facade.DestinoEditorialFacade.getInstance().eliminar(idDestino);        
-        HabilitarEliminarDestinoEditorial();
+        //HabilitarEliminarDestinoEditorial();
         cargarComboDestinoEditorial();
+        btnEliminarDestinoEditorial.setEnabled(false);
     }
 
-    private void HabilitarEliminarDestinoEditorial() {
+    private void habilitarBotonEliminarDestino() {
         String desti = cmbDestinoEditorial.getSelectedItem().toString();
         if(!desti.equals("--Seleccione--")){
             btnEliminarDestinoEditorial.setEnabled(true);
@@ -1554,7 +1566,7 @@ public class diagEditorial extends javax.swing.JDialog {
     }
 
     private void agregarDestinoEditorial() {
-        diagDestinoEditorial destino = new diagDestinoEditorial(null, true,  usuario, "Alta");
+        diagAltaDestinoEditorial destino = new diagAltaDestinoEditorial(null, true,  usuario, "Alta");
         destino.setLocation(Comunes.centrarDialog(destino));
         destino.setVisible(true);
         
@@ -1565,4 +1577,6 @@ public class diagEditorial extends javax.swing.JDialog {
     private void cargarComboDestinoEditorial() {
         Comunes.cargarJComboConBlanco(cmbDestinoEditorial,DestinoEditorialFacade.getInstance().listarTodosDestinosOrdenados());  
     }
+
+    
 }
