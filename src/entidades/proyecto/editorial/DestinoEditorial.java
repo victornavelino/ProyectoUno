@@ -63,8 +63,8 @@ public class DestinoEditorial implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "entidades.proyecto.editorial.DestinoEditorial[ id=" + id + " ]";
+    public String toString() {        
+        return  this.getNombre().toUpperCase();
     }
     
 }

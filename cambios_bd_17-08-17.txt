@@ -1,7 +1,0 @@
-- ALTER TABLE `editorial_editorialCientifica` ADD `SUMMARY` VARCHAR( 255 ) NULL AFTER `RESUMEN` ;
-
-
-
-
-
-
