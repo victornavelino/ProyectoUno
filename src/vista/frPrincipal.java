@@ -47,6 +47,7 @@ import vista.categorizacion.winsip.diagWinsip;
 import vista.economico.diagAdministrarEconomico;
 import vista.economico.diagAdministrarEconomicoProyectos;
 import vista.editorial.diagEditorialPrincipal;
+import vista.editorial.diagReportesEditorialCientifica;
 import vista.editorial.diagExpedienteEditorialPrincipal;
 import vista.evaluacionesweb.diagEvaluacionesWeb;
 import vista.panelControl.diagEliminarPanelControl;
@@ -1015,6 +1016,19 @@ public class frPrincipal extends javax.swing.JFrame {
                 diagStockPrincipal stockPrincipal = new diagStockPrincipal(null, true, usuario);
                 stockPrincipal.setLocation(Comunes.centrarDialog(stockPrincipal));
                 stockPrincipal.setVisible(true);
+            }
+        });
+        
+        jXTaskPnEditorial.add(new AbstractAction() {
+            {
+                putValue(Action.NAME, "Reportes");
+                putValue(Action.SHORT_DESCRIPTION, "Resportes");
+            }
+            
+            public void actionPerformed(ActionEvent e) {               
+                diagReportesEditorialCientifica reportesEditorialCientifica = new diagReportesEditorialCientifica(null, true);
+                reportesEditorialCientifica.setLocation(Comunes.centrarDialog(reportesEditorialCientifica));
+                reportesEditorialCientifica.setVisible(true);
             }
         });
 
