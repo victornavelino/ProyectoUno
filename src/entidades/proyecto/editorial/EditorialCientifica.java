@@ -4,6 +4,7 @@
  */
 package entidades.proyecto.editorial;
 
+import entidades.UnidadAcademica;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Proyecto;
 import entidades.proyecto.vinculacion.ParticipacionVinculacion;
@@ -48,7 +49,75 @@ public class EditorialCientifica implements Serializable {
     private List<Investigador> investigadores;
     @OneToMany
     private List<DonacionEditorial> donaciones;
+    
+    private int cantidadPaginas;
+    private String idioma;
+    private String referato;
+    private String tipoCodigo;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaRecibido;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaAceptado;
+    @OneToOne
+    private UnidadAcademica unidadAcademica;
 
+    public int getCantidadPaginas() {
+        return cantidadPaginas;
+    }
+
+    public void setCantidadPaginas(int cantidadPaginas) {
+        this.cantidadPaginas = cantidadPaginas;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public String getReferato() {
+        return referato;
+    }
+
+    public void setReferato(String referato) {
+        this.referato = referato;
+    }
+
+    public String getTipoCodigo() {
+        return tipoCodigo;
+    }
+
+    public void setTipoCodigo(String tipoCodigo) {
+        this.tipoCodigo = tipoCodigo;
+    }
+
+    public Date getFechaRecibido() {
+        return fechaRecibido;
+    }
+
+    public void setFechaRecibido(Date fechaRecibido) {
+        this.fechaRecibido = fechaRecibido;
+    }
+
+    public Date getFechaAceptado() {
+        return fechaAceptado;
+    }
+
+    public void setFechaAceptado(Date fechaAceptado) {
+        this.fechaAceptado = fechaAceptado;
+    }
+
+    public UnidadAcademica getUnidadAcademica() {
+        return unidadAcademica;
+    }
+
+    public void setUnidadAcademica(UnidadAcademica unidadAcademica) {
+        this.unidadAcademica = unidadAcademica;
+    }
+ 
+    
     public List<DonacionEditorial> getDonaciones() {
         return donaciones;
     }
