@@ -7,6 +7,7 @@ package facade;
 import controladores.DestinoEditorialJpaController;
 import controladores.exceptions.NonexistentEntityException;
 import entidades.proyecto.editorial.DestinoEditorial;
+import entidades.proyecto.editorial.DonacionEditorial;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,6 +68,12 @@ public class DestinoEditorialFacade {
             Logger.getLogger(DestinoEditorialFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }   
+    
+    public  List<DonacionEditorial> buscarDestinoEnDonacion(long idDestino){        
+        Query quDonacion = em.createQuery("SELECT d FROM DonacionEditorial d "
+                + "WHERE d.destino.id =" + idDestino);            
+        return quDonacion.getResultList();            
+    }
 
     public List<DestinoEditorial> listarTodosDestinosOrdenados() {
         Query quBuscar = em.createQuery("SELECT d FROM DestinoEditorial d ORDER BY d.nombre");       
