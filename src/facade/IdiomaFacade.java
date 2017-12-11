@@ -8,11 +8,13 @@ package facade;
 import controladores.IdiomaJpaController;
 import controladores.exceptions.NonexistentEntityException;
 import entidades.Idioma;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -70,4 +72,8 @@ public class IdiomaFacade {
         }
     }
     
+   public List<Idioma> listarTodosOrdenados(){
+       Query quBuscar = em.createQuery("SELECT i FROM Idioma i ORDER BY i.idioma");
+       return quBuscar.getResultList();       
+   }    
 }

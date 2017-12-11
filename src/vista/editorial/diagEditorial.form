@@ -139,7 +139,7 @@
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jcbTipoPublicacion" pref="273" max="32767" attributes="0"/>
                                           <Component id="jtfProyectoRelacionado" pref="273" max="32767" attributes="0"/>
-                                          <Component id="cbmIdioma" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cmbIdioma" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -227,7 +227,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cbmIdioma" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbIdioma" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnNuevoIdioma" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnEliminarIdioma" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -620,7 +620,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbmIdioma">
+            <Component class="javax.swing.JComboBox" name="cmbIdioma">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
@@ -641,6 +641,9 @@
                   <ResourceString bundle="vista/editorial/Bundle.properties" key="diagEditorial.btnNuevoIdioma.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoIdiomaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnEliminarIdioma">
               <Properties>

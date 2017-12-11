@@ -23,6 +23,7 @@ import facade.DestinoEditorialFacade;
 import facade.DonacionEditorialFacade;
 import facade.EditorialCientificaFacade;
 import facade.EvaluacionEditorialFacade;
+import facade.IdiomaFacade;
 import facade.InvestigadorFacade;
 import facade.OperacionFacade;
 import facade.UnidadAcademicaFacade;
@@ -48,6 +49,7 @@ import vista.editorial.stock.diagStock;
 import vista.proyectos.resultado.diagProyectoResultado;
 import vistas.evaluaciones.diagEvaluacion;
 import vistas.investigadores.diagInvestigador;
+import vista.diagIdiomaAlta;
 
 /**
  *
@@ -156,7 +158,7 @@ public class diagEditorial extends javax.swing.JDialog {
         jLabel18 = new javax.swing.JLabel();
         dpFechaAceptado = new org.jdesktop.swingx.JXDatePicker();
         jLabel19 = new javax.swing.JLabel();
-        cbmIdioma = new javax.swing.JComboBox<>();
+        cmbIdioma = new javax.swing.JComboBox<>();
         btnNuevoIdioma = new javax.swing.JButton();
         btnEliminarIdioma = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -381,9 +383,14 @@ public class diagEditorial extends javax.swing.JDialog {
 
         jLabel19.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel19.text")); // NOI18N
 
-        cbmIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnNuevoIdioma.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevoIdioma.text")); // NOI18N
+        btnNuevoIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoIdiomaActionPerformed(evt);
+            }
+        });
 
         btnEliminarIdioma.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarIdioma.text")); // NOI18N
 
@@ -434,7 +441,7 @@ public class diagEditorial extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jcbTipoPublicacion, 0, 273, Short.MAX_VALUE)
                                     .addComponent(jtfProyectoRelacionado, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                                    .addComponent(cbmIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(cmbIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabel19))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -500,7 +507,7 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbmIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnNuevoIdioma)
                         .addComponent(btnEliminarIdioma)))
                 .addContainerGap(34, Short.MAX_VALUE))
@@ -977,6 +984,10 @@ public class diagEditorial extends javax.swing.JDialog {
         agregarInvestigador();
     }//GEN-LAST:event_btnAgregarAutorActionPerformed
 
+    private void btnNuevoIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoIdiomaActionPerformed
+        agregarIdioma();
+    }//GEN-LAST:event_btnNuevoIdiomaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1035,8 +1046,8 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JButton btnEliminarTipoPublicacion;
     private javax.swing.JButton btnNuevoIdioma;
     private javax.swing.JButton btnPublicaciones;
-    private javax.swing.JComboBox<String> cbmIdioma;
     private javax.swing.JComboBox cmbDestinoEditorial;
+    private javax.swing.JComboBox<String> cmbIdioma;
     private javax.swing.JComboBox<String> cmbTipoCodigo;
     private org.jdesktop.swingx.JXDatePicker dpFechaAceptado;
     private org.jdesktop.swingx.JXDatePicker dpFechaDonacion;
@@ -1118,9 +1129,12 @@ public class diagEditorial extends javax.swing.JDialog {
         
         cargarComboDestinoEditorial();   
         cargarComboTipoCodigo();
+        cargarComboIdioma();
                 
         btnPublicaciones.setEnabled(false);
         btnEliminarStock.setEnabled(false);
+        btnEliminarIdioma.setEnabled(false);
+        
         this.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
 
         switch (tipoOperacion) {
@@ -1719,6 +1733,19 @@ public class diagEditorial extends javax.swing.JDialog {
         listaTipos.add("ISSN");
         
         Comunes.cargarJComboConBlanco(cmbTipoCodigo,listaTipos);
+    }
+
+    private void agregarIdioma() {
+        diagIdiomaAlta diagIdioma = new diagIdiomaAlta(null, true, usuario, "Alta");
+        diagIdioma.setLocation(Comunes.centrarDialog(diagIdioma));
+        diagIdioma.setVisible(true);
+        
+        btnEliminarIdioma.setEnabled(false);
+        cargarComboIdioma();       
+    }
+
+    private void cargarComboIdioma() {
+        Comunes.cargarJComboConBlanco(cmbIdioma, IdiomaFacade.getInstance().listarTodosOrdenados());
     }
 
     

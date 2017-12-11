@@ -5,18 +5,42 @@
  */
 package vista;
 
+import entidades.Idioma;
+import entidades.operaciones.Operacion;
+import entidades.usuario.Usuario;
+import facade.IdiomaFacade;
+import facade.OperacionFacade;
+import includes.Comunes;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author walter
  */
 public class diagIdiomaAlta extends javax.swing.JDialog {
 
+    private Usuario usuario;
+    private String operacion;
+            
     /**
      * Creates new form diagIdiomaAlta
      */
     public diagIdiomaAlta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+    
+    public diagIdiomaAlta(java.awt.Frame parent, boolean modal,Usuario usuario){
+         super(parent, modal);
+        initComponents();
+        this.usuario = usuario;        
+    }
+    
+    public diagIdiomaAlta(java.awt.Frame parent, boolean modal,Usuario usuario, String operacion){
+         super(parent, modal);
+        initComponents();
+        this.usuario = usuario;        
+        this.operacion = operacion;
     }
 
     /**
@@ -146,4 +170,25 @@ public class diagIdiomaAlta extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfIdioma;
     // End of variables declaration//GEN-END:variables
+
+    private void guardarDestino() {
+        if(tfIdioma.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Debe ingresar un idioma");
+        }else{
+            Idioma idioma = new Idioma();
+            
+            idioma.setIdioma(tfIdioma.getText());
+            
+            IdiomaFacade.getInstance().alta(idioma);
+            
+            Operacion operacion = new Operacion();
+            operacion.setFecha(Comunes.obtenerFechaActualDesdeDB());
+            operacion.setOperacion("Alta de idioma");
+            operacion.setUsuario(usuario);
+            OperacionFacade.getInstance().alta(operacion);
+            
+            JOptionPane.showMessageDialog(null, "Idioma agregado con éxito!!");
+        }
+    }
+
 }

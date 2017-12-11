@@ -89,11 +89,11 @@ public class TipoPublicacionFacade {
         }
     }
 
-
     public List<TipoPublicacion> listarTodos() {
         Query quBuscar = em.createQuery("SELECT tt FROM TipoPublicacion tt");
         return quBuscar.getResultList();
     }
+    
     public List<TipoPublicacion> buscarPorFormato(TipoPublicacion tipoPublicacion) {
         
             
