@@ -65,7 +65,7 @@ public class Idioma implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Idioma[ id=" + id + " ]";
+        return this.getIdioma().toUpperCase();
     }
     
 }

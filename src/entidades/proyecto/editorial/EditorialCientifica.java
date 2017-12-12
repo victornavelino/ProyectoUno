@@ -4,6 +4,7 @@
  */
 package entidades.proyecto.editorial;
 
+import entidades.Idioma;
 import entidades.UnidadAcademica;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Proyecto;
@@ -51,7 +52,8 @@ public class EditorialCientifica implements Serializable {
     private List<DonacionEditorial> donaciones;
     
     private int cantidadPaginas;
-    private String idioma;
+    @ManyToOne
+    private Idioma idioma;
     private String referato;
     private String tipoCodigo;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -69,11 +71,11 @@ public class EditorialCientifica implements Serializable {
         this.cantidadPaginas = cantidadPaginas;
     }
 
-    public String getIdioma() {
+    public Idioma getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(String idioma) {
+    public void setIdioma(Idioma idioma) {
         this.idioma = idioma;
     }
 

@@ -67,8 +67,18 @@ public class diagIdiomaAlta extends javax.swing.JDialog {
         tfIdioma.setText(org.openide.util.NbBundle.getMessage(diagIdiomaAlta.class, "diagIdiomaAlta.tfIdioma.text")); // NOI18N
 
         btnCancelar.setText(org.openide.util.NbBundle.getMessage(diagIdiomaAlta.class, "diagIdiomaAlta.btnCancelar.text")); // NOI18N
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAceptar.setText(org.openide.util.NbBundle.getMessage(diagIdiomaAlta.class, "diagIdiomaAlta.btnAceptar.text")); // NOI18N
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,11 +91,11 @@ public class diagIdiomaAlta extends javax.swing.JDialog {
                 .addComponent(tfIdioma)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addComponent(btnAceptar)
-                .addGap(71, 71, 71))
+                .addGap(77, 77, 77)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,6 +130,14 @@ public class diagIdiomaAlta extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        guardarIdioma();
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,7 +189,7 @@ public class diagIdiomaAlta extends javax.swing.JDialog {
     private javax.swing.JTextField tfIdioma;
     // End of variables declaration//GEN-END:variables
 
-    private void guardarDestino() {
+    private void guardarIdioma() {
         if(tfIdioma.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Debe ingresar un idioma");
         }else{
@@ -188,6 +206,8 @@ public class diagIdiomaAlta extends javax.swing.JDialog {
             OperacionFacade.getInstance().alta(operacion);
             
             JOptionPane.showMessageDialog(null, "Idioma agregado con éxito!!");
+            
+            this.dispose();
         }
     }
 

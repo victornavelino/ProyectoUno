@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author walter
  */
-public class diagAltaDestinoEditorial extends javax.swing.JDialog {
+public class diagDestinoEditorialAlta extends javax.swing.JDialog {
     
     private Usuario usuario;
     private String operacion;
@@ -26,17 +26,17 @@ public class diagAltaDestinoEditorial extends javax.swing.JDialog {
     /**
      * Creates new form diagAltaDestinoEditorial
      */
-    public diagAltaDestinoEditorial(java.awt.Frame parent, boolean modal) {
+    public diagDestinoEditorialAlta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
     
-    public diagAltaDestinoEditorial(java.awt.Frame parent, boolean modal, Usuario usuario) {
+    public diagDestinoEditorialAlta(java.awt.Frame parent, boolean modal, Usuario usuario) {
         super(parent, modal);
         initComponents();
         this.usuario = usuario;
     }
-    public diagAltaDestinoEditorial(java.awt.Frame parent, boolean modal, Usuario usuario, String operacion) {
+    public diagDestinoEditorialAlta(java.awt.Frame parent, boolean modal, Usuario usuario, String operacion) {
         super(parent, modal);
         initComponents();
         this.usuario = usuario;
@@ -60,20 +60,20 @@ public class diagAltaDestinoEditorial extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(diagAltaDestinoEditorial.class, "diagAltaDestinoEditorial.jPanel1.border.title"))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(diagDestinoEditorialAlta.class, "diagDestinoEditorialAlta.jPanel1.border.title"))); // NOI18N
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(diagAltaDestinoEditorial.class, "diagAltaDestinoEditorial.jLabel1.text")); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(diagDestinoEditorialAlta.class, "diagDestinoEditorialAlta.jLabel1.text")); // NOI18N
 
-        tfDestino.setText(org.openide.util.NbBundle.getMessage(diagAltaDestinoEditorial.class, "diagAltaDestinoEditorial.tfDestino.text")); // NOI18N
+        tfDestino.setText(org.openide.util.NbBundle.getMessage(diagDestinoEditorialAlta.class, "diagDestinoEditorialAlta.tfDestino.text")); // NOI18N
 
-        btnGuardar.setText(org.openide.util.NbBundle.getMessage(diagAltaDestinoEditorial.class, "diagAltaDestinoEditorial.btnGuardar.text")); // NOI18N
+        btnGuardar.setText(org.openide.util.NbBundle.getMessage(diagDestinoEditorialAlta.class, "diagDestinoEditorialAlta.btnGuardar.text")); // NOI18N
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
 
-        btnCancelar.setText(org.openide.util.NbBundle.getMessage(diagAltaDestinoEditorial.class, "diagAltaDestinoEditorial.btnCancelar.text")); // NOI18N
+        btnCancelar.setText(org.openide.util.NbBundle.getMessage(diagDestinoEditorialAlta.class, "diagDestinoEditorialAlta.btnCancelar.text")); // NOI18N
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -156,20 +156,21 @@ public class diagAltaDestinoEditorial extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(diagAltaDestinoEditorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(diagDestinoEditorialAlta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(diagAltaDestinoEditorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(diagDestinoEditorialAlta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(diagAltaDestinoEditorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(diagDestinoEditorialAlta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(diagAltaDestinoEditorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(diagDestinoEditorialAlta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                diagAltaDestinoEditorial dialog = new diagAltaDestinoEditorial(new javax.swing.JFrame(), true);
+                diagDestinoEditorialAlta dialog = new diagDestinoEditorialAlta(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

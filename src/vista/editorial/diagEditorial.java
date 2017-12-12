@@ -7,6 +7,7 @@ package vista.editorial;
 
 //import controladores.DestinoEditorialJpaController;
 import controladores.exceptions.NonexistentEntityException;
+import entidades.Idioma;
 import entidades.operaciones.Operacion;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Evaluacion;
@@ -107,6 +108,7 @@ public class diagEditorial extends javax.swing.JDialog {
         evaluaciones = editorialCientifica.getEvaluacionesEditorial();
         initComponents();
         inicializarComponentes();
+        JOptionPane.showMessageDialog(null, "id"+editorialCientifica.getId());
     }
 
     /**
@@ -248,6 +250,8 @@ public class diagEditorial extends javax.swing.JDialog {
         jtaMenciones.setRows(5);
         jScrollPane3.setViewportView(jtaMenciones);
 
+        jxDatePub.setFormats("dd/MM/yyyy");
+
         jButton4.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jButton4.text")); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -379,11 +383,20 @@ public class diagEditorial extends javax.swing.JDialog {
 
         jLabel17.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel17.text")); // NOI18N
 
+        dpFechaRecibido.setFormats("dd/MM/yyyy");
+
         jLabel18.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel18.text")); // NOI18N
+
+        dpFechaAceptado.setFormats("dd/MM/yyyy");
 
         jLabel19.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel19.text")); // NOI18N
 
         cmbIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbIdiomaActionPerformed(evt);
+            }
+        });
 
         btnNuevoIdioma.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevoIdioma.text")); // NOI18N
         btnNuevoIdioma.addActionListener(new java.awt.event.ActionListener() {
@@ -393,6 +406,11 @@ public class diagEditorial extends javax.swing.JDialog {
         });
 
         btnEliminarIdioma.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarIdioma.text")); // NOI18N
+        btnEliminarIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarIdiomaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -988,6 +1006,14 @@ public class diagEditorial extends javax.swing.JDialog {
         agregarIdioma();
     }//GEN-LAST:event_btnNuevoIdiomaActionPerformed
 
+    private void cmbIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdiomaActionPerformed
+        habilitarEliminarIdioma();
+    }//GEN-LAST:event_cmbIdiomaActionPerformed
+
+    private void btnEliminarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarIdiomaActionPerformed
+        eliminarIdioma();
+    }//GEN-LAST:event_btnEliminarIdiomaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1225,13 +1251,25 @@ public class diagEditorial extends javax.swing.JDialog {
                     }
                 } catch (NullPointerException ex) {
                 }
+                
                 try{
-                    if (!evaluaciones.isEmpty()){
-                        
-                    
+                    if (!evaluaciones.isEmpty()){                    
                         Comunes.cargarJList(jListEvaluaciones, evaluaciones);}
-                } catch (NullPointerException ex) {
-                }               
+                    } catch (NullPointerException ex) {
+                }    
+                
+                dpFechaAceptado.setDate(editorialCientifica.getFechaAceptado());
+                dpFechaRecibido.setDate(editorialCientifica.getFechaRecibido());
+                jxDatePub.setDate(editorialCientifica.getAnioPublicacion());
+                //Comunes.cargarJComboConBlanco(cmbTipoCodigo, editorialCientifica.getTipoCodigo());
+                List<Idioma> listaIdio = facade.IdiomaFacade.getInstance().listarTodosOrdenados();
+                Comunes.cargarJCombo(cmbIdioma, listaIdio);
+                //List lista= new List();
+                List<String> listaTipoCod = new ArrayList<>();
+                listaTipoCod.set(0, "ISBN");
+                listaTipoCod.set(1, "ISSN");
+                Comunes.cargarJCombo(cmbTipoCodigo, listaTipoCod);
+                
         }
     }    
 
@@ -1269,26 +1307,44 @@ public class diagEditorial extends javax.swing.JDialog {
         } else {
             editorialCientifica.setTipoPublicacion(null);
         }
+        
         if (jtfProyectoRelacionado.getText() != null) {
             editorialCientifica.setProyecto(proyecto);
         } else {
             editorialCientifica.setProyecto(null);
         }
+        
         if (!evaluaciones.isEmpty()){
             editorialCientifica.setEvaluacionesEditorial(evaluaciones);
         } else {
             editorialCientifica.setEvaluacionesEditorial(null);
         }
+        
         if (autoresDentro.size() > 0) {
             editorialCientifica.setInvestigadores(autoresDentro);
         } else {
             editorialCientifica.setInvestigadores(null);
         }
+        
         if(listaDonaciones.size() > 0){
             editorialCientifica.setDonaciones(listaDonaciones);
         } else {
             editorialCientifica.setDonaciones(null);
         }
+        
+        if (cmbIdioma.getSelectedIndex() > 0) {
+            editorialCientifica.setIdioma((Idioma) cmbIdioma.getSelectedItem());
+        } else {
+            editorialCientifica.setIdioma(null);
+        }
+        
+        if (cmbTipoCodigo.getSelectedIndex() > 0) {
+            editorialCientifica.setTipoCodigo((String) cmbTipoCodigo.getSelectedItem());
+        } else {
+            editorialCientifica.setTipoCodigo(null);
+        }
+        editorialCientifica.setFechaAceptado(dpFechaAceptado.getDate());
+        editorialCientifica.setFechaRecibido(dpFechaRecibido.getDate());
         
     }
 
@@ -1572,7 +1628,8 @@ public class diagEditorial extends javax.swing.JDialog {
         long idTipo = listaTipos.get(indice-1).getId();
         facade.TipoPublicacionFacade.getInstance().eliminar(idTipo);
         habilitarEliminarTipoPublicacion();
-        cargarTipos();        
+        cargarTipos(); 
+        JOptionPane.showMessageDialog(null, "Tipo de publicación eliminado exitosamente");
     }
 
     private void cargarEncabezadoTablaDonaciones() {
@@ -1650,7 +1707,7 @@ public class diagEditorial extends javax.swing.JDialog {
         cargarCuerpoTablaDonaciones(listaDonaciones);
         btnEliminarDonacion.setEnabled(false);
         
-        JOptionPane.showMessageDialog(null, "Fila eliminada con Exito");
+        JOptionPane.showMessageDialog(null, "Fila eliminada exitosamente");
     }
 
     private void habilitarBotonEliminarFilaDonacion() {
@@ -1684,6 +1741,7 @@ public class diagEditorial extends javax.swing.JDialog {
         //HabilitarEliminarDestinoEditorial();
         cargarComboDestinoEditorial();
         btnEliminarDestinoEditorial.setEnabled(false);
+        JOptionPane.showMessageDialog(null, "Destino editorial eliminado exitosamente");
     }
 
     private void habilitarBotonEliminarDestino() {
@@ -1697,7 +1755,7 @@ public class diagEditorial extends javax.swing.JDialog {
     }
 
     private void agregarDestinoEditorial() {
-        diagAltaDestinoEditorial destino = new diagAltaDestinoEditorial(null, true,  usuario, "Alta");
+        diagDestinoEditorialAlta destino = new diagDestinoEditorialAlta(null, true,  usuario, "Alta");
         destino.setLocation(Comunes.centrarDialog(destino));
         destino.setVisible(true);
         
@@ -1746,6 +1804,28 @@ public class diagEditorial extends javax.swing.JDialog {
 
     private void cargarComboIdioma() {
         Comunes.cargarJComboConBlanco(cmbIdioma, IdiomaFacade.getInstance().listarTodosOrdenados());
+    }
+
+    private void habilitarEliminarIdioma() {
+        String idioma = cmbIdioma.getSelectedItem().toString();
+        if(!idioma.equals("--Seleccione--")){
+            btnEliminarIdioma.setEnabled(true);
+        }
+        else{
+            btnEliminarIdioma.setEnabled(false);
+        }
+    }
+
+    private void eliminarIdioma() {
+        int indice = cmbIdioma.getSelectedIndex();       
+        List<Idioma> listaIdiomas = new ArrayList<Idioma>();
+        listaIdiomas = facade.IdiomaFacade.getInstance().listarTodosOrdenados();
+        
+        long idIdioma = listaIdiomas.get(indice-1).getId();
+        facade.IdiomaFacade.getInstance().eliminar(idIdioma);
+        cargarComboIdioma();
+        habilitarEliminarIdioma();        
+        JOptionPane.showMessageDialog(null, "Idioma eliminado exitosamente");
     }
 
     

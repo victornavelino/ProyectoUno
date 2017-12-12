@@ -20,6 +20,16 @@ ADD `UNIDADACADEMICA_ID` BIGINT( 20 ) NOT NULL ;
 
 - ALTER TABLE `editorial_editorialCientifica` ADD INDEX ( `UNIDADACADEMICA_ID` ) ;
 
+
+
+
+- ALTER TABLE `editorial_editorialCientifica` ADD `IDIOMA_ID` BIGINT NULL AFTER `UNIDADACADEMICA_ID` ;
+
+- ALTER TABLE `editorial_editorialCientifica` ADD INDEX ( `IDIOMA_ID` ) ;
+
+
+
+
 /// PRIMERO CREAR ESTA TABLA PARA QUE NO DE ERROR EN LA DE ABAJO ///
 
 - CREATE TABLE `editorial_destinoEditorial` (
