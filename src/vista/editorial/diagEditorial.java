@@ -108,7 +108,6 @@ public class diagEditorial extends javax.swing.JDialog {
         evaluaciones = editorialCientifica.getEvaluacionesEditorial();
         initComponents();
         inicializarComponentes();
-        JOptionPane.showMessageDialog(null, "id"+editorialCientifica.getId());
     }
 
     /**
@@ -163,6 +162,14 @@ public class diagEditorial extends javax.swing.JDialog {
         cmbIdioma = new javax.swing.JComboBox<>();
         btnNuevoIdioma = new javax.swing.JButton();
         btnEliminarIdioma = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        cmbReferato = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        cmbAcademica = new javax.swing.JComboBox<>();
+        btnNuevaAcademica = new javax.swing.JButton();
+        btnEliminarAcademica = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        tfCantidadPaginas = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListEvaluaciones = new javax.swing.JList();
@@ -361,12 +368,12 @@ public class diagEditorial extends javax.swing.JDialog {
                                 .addComponent(jButton9)
                                 .addGap(30, 30, 30)
                                 .addComponent(btnAgregarAutor))
-                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)))
                     .addGroup(jPanelAsesoresLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -412,6 +419,22 @@ public class diagEditorial extends javax.swing.JDialog {
             }
         });
 
+        jLabel20.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel20.text")); // NOI18N
+
+        cmbReferato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione--", "SI", "NO" }));
+
+        jLabel21.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel21.text")); // NOI18N
+
+        cmbAcademica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnNuevaAcademica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevaAcademica.text")); // NOI18N
+
+        btnEliminarAcademica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarAcademica.text")); // NOI18N
+
+        jLabel22.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel22.text")); // NOI18N
+
+        tfCantidadPaginas.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfCantidadPaginas.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -445,22 +468,38 @@ public class diagEditorial extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(dpFechaAceptado, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel21))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbAcademica, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cmbReferato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(btnNuevaAcademica, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnEliminarAcademica, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel19)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel22))
                                 .addGap(42, 42, 42)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jcbTipoPublicacion, 0, 273, Short.MAX_VALUE)
                                     .addComponent(jtfProyectoRelacionado, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                                    .addComponent(cmbIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jLabel19))
+                                    .addComponent(cmbIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfCantidadPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -472,7 +511,7 @@ public class diagEditorial extends javax.swing.JDialog {
                             .addComponent(btnEliminarTipoPublicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnEliminarIdioma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -496,7 +535,7 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(0, 17, Short.MAX_VALUE))
+                        .addGap(0, 24, Short.MAX_VALUE))
                     .addComponent(jPanelAsesores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,21 +553,32 @@ public class diagEditorial extends javax.swing.JDialog {
                     .addComponent(jButton4)
                     .addComponent(jtfProyectoRelacionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPublicaciones)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel20)
+                    .addComponent(cmbReferato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jcbTipoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(btnEliminarTipoPublicacion))
+                    .addComponent(btnEliminarTipoPublicacion)
+                    .addComponent(jLabel21)
+                    .addComponent(cmbAcademica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnNuevoIdioma)
-                        .addComponent(btnEliminarIdioma)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel22))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNuevoIdioma)
+                            .addComponent(btnEliminarIdioma)
+                            .addComponent(btnNuevaAcademica)
+                            .addComponent(btnEliminarAcademica))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfCantidadPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
@@ -604,7 +654,7 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addComponent(btnEliminarEvaluacion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btVerDetallesEvaluacionSeleccionada)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
@@ -660,7 +710,7 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addComponent(btAgregarEvaluacion1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEliminarStock)))
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
@@ -707,7 +757,7 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
@@ -867,7 +917,7 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel5.TabConstraints.tabTitle"), jPanel5); // NOI18N
@@ -895,7 +945,7 @@ public class diagEditorial extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jTabbedPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
@@ -1064,16 +1114,20 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JButton btnAgregarDestinoEditorial;
     private javax.swing.JButton btnAgregarDonacion;
     private javax.swing.JButton btnEditarEvaluacion;
+    private javax.swing.JButton btnEliminarAcademica;
     private javax.swing.JButton btnEliminarDestinoEditorial;
     private javax.swing.JButton btnEliminarDonacion;
     private javax.swing.JButton btnEliminarEvaluacion;
     private javax.swing.JButton btnEliminarIdioma;
     private javax.swing.JButton btnEliminarStock;
     private javax.swing.JButton btnEliminarTipoPublicacion;
+    private javax.swing.JButton btnNuevaAcademica;
     private javax.swing.JButton btnNuevoIdioma;
     private javax.swing.JButton btnPublicaciones;
+    private javax.swing.JComboBox<String> cmbAcademica;
     private javax.swing.JComboBox cmbDestinoEditorial;
     private javax.swing.JComboBox<String> cmbIdioma;
+    private javax.swing.JComboBox<String> cmbReferato;
     private javax.swing.JComboBox<String> cmbTipoCodigo;
     private org.jdesktop.swingx.JXDatePicker dpFechaAceptado;
     private org.jdesktop.swingx.JXDatePicker dpFechaDonacion;
@@ -1096,6 +1150,9 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1137,6 +1194,7 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JTable tblDonaciones;
     private javax.swing.JTextField tfBuscarIntregantesLibro;
     private javax.swing.JTextField tfCantidadDonacion;
+    private javax.swing.JTextField tfCantidadPaginas;
     // End of variables declaration//GEN-END:variables
 
     private void inicializarComponentes() {
@@ -1156,10 +1214,12 @@ public class diagEditorial extends javax.swing.JDialog {
         cargarComboDestinoEditorial();   
         cargarComboTipoCodigo();
         cargarComboIdioma();
+        cargarComboReferato();
                 
         btnPublicaciones.setEnabled(false);
         btnEliminarStock.setEnabled(false);
         btnEliminarIdioma.setEnabled(false);
+        btnEliminarAcademica.setEnabled(false);
         
         this.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
 
@@ -1264,11 +1324,13 @@ public class diagEditorial extends javax.swing.JDialog {
                 //Comunes.cargarJComboConBlanco(cmbTipoCodigo, editorialCientifica.getTipoCodigo());
                 List<Idioma> listaIdio = facade.IdiomaFacade.getInstance().listarTodosOrdenados();
                 Comunes.cargarJCombo(cmbIdioma, listaIdio);
-                //List lista= new List();
-                List<String> listaTipoCod = new ArrayList<>();
-                listaTipoCod.set(0, "ISBN");
-                listaTipoCod.set(1, "ISSN");
+               
+                ArrayList<String> listaTipoCod = new ArrayList<String>();
+                listaTipoCod.add("ISBN");
+                listaTipoCod.add("ISSN");
                 Comunes.cargarJCombo(cmbTipoCodigo, listaTipoCod);
+                
+                tfCantidadPaginas.setText(String.valueOf(editorialCientifica.getCantidadPaginas()));
                 
         }
     }    
@@ -1343,8 +1405,16 @@ public class diagEditorial extends javax.swing.JDialog {
         } else {
             editorialCientifica.setTipoCodigo(null);
         }
+        
+        if (cmbAcademica.getSelectedIndex() > 0) {
+            editorialCientifica.setReferato(cmbReferato.getSelectedItem().toString());
+        } else {
+            editorialCientifica.setReferato(null);
+        }
+        
         editorialCientifica.setFechaAceptado(dpFechaAceptado.getDate());
         editorialCientifica.setFechaRecibido(dpFechaRecibido.getDate());
+        editorialCientifica.setCantidadPaginas(Integer.parseInt(tfCantidadPaginas.getText()));
         
     }
 
@@ -1787,6 +1857,7 @@ public class diagEditorial extends javax.swing.JDialog {
 
     private void cargarComboTipoCodigo() {
         List<String> listaTipos =  new ArrayList<String>();
+        listaTipos.add("--Seleccione--");
         listaTipos.add("ISBN");
         listaTipos.add("ISSN");
         
@@ -1804,6 +1875,13 @@ public class diagEditorial extends javax.swing.JDialog {
 
     private void cargarComboIdioma() {
         Comunes.cargarJComboConBlanco(cmbIdioma, IdiomaFacade.getInstance().listarTodosOrdenados());
+    }
+    
+    private void cargarComboReferato(){
+        ArrayList<String> referato = new ArrayList<String>();
+        referato.add("--Seleccione--");
+        referato.add("SI");
+        referato.add("NO");
     }
 
     private void habilitarEliminarIdioma() {
