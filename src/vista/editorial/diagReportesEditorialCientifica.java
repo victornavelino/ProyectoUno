@@ -86,12 +86,10 @@ public class diagReportesEditorialCientifica extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //new reportes.Reporte().reporteParticipacionesProyectos();
         new reportes.Reporte().reporteEditorialCientifica();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //new reportes.Reporte().reporteParticipacionesProyectos();
         new reportes.Reporte().reporteDonacionesEditorialCientifica();
     }//GEN-LAST:event_jButton2ActionPerformed
 

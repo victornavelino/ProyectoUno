@@ -36,6 +36,7 @@ import net.sf.jasperreports.engine.data.JRXmlDataSource;
 import net.sf.jasperreports.engine.query.JRJpaQueryExecuterFactory;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 import org.xml.sax.InputSource;
 import vista.diagInvestigadorBusquedaSimple;
 import vista.diagProyectoBusquedaSimple;
@@ -429,16 +430,20 @@ public class Reporte {
         return null;
     }
     
+    
+    
+    
+    
     public void reporteEditorialCientifica() {
-        /*try {
+        try {
             Map parameters = new HashMap();
             parameters.put(JRJpaQueryExecuterFactory.PARAMETER_JPA_ENTITY_MANAGER, em);
             JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/reportes/listadoEditorialCientifica.jasper"), parameters);
-            dialogoReporte(jasperPrint, "Listado de Editorial Científica");
+            //dialogoReporte(jasperPrint, "Listado de Editorial Científica");
+            JasperViewer.viewReport(jasperPrint, false);           
         } catch (JRException ex) {
             Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
-
-        }*/
+        }
     }
     
     public void reporteDonacionesEditorialCientifica() {

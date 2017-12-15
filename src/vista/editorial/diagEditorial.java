@@ -8,6 +8,7 @@ package vista.editorial;
 //import controladores.DestinoEditorialJpaController;
 import controladores.exceptions.NonexistentEntityException;
 import entidades.Idioma;
+import entidades.UnidadAcademica;
 import entidades.operaciones.Operacion;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Evaluacion;
@@ -51,6 +52,7 @@ import vista.proyectos.resultado.diagProyectoResultado;
 import vistas.evaluaciones.diagEvaluacion;
 import vistas.investigadores.diagInvestigador;
 import vista.diagIdiomaAlta;
+import vista.diagUnidadAcademicaAlta;
 
 /**
  *
@@ -170,6 +172,8 @@ public class diagEditorial extends javax.swing.JDialog {
         btnEliminarAcademica = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         tfCantidadPaginas = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        tfStock = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListEvaluaciones = new javax.swing.JList();
@@ -178,12 +182,6 @@ public class diagEditorial extends javax.swing.JDialog {
         btnEditarEvaluacion = new javax.swing.JButton();
         btnEliminarEvaluacion = new javax.swing.JButton();
         btVerDetallesEvaluacionSeleccionada = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jListUnidades = new javax.swing.JList();
-        btAgregarEvaluacion1 = new javax.swing.JButton();
-        btnEliminarStock = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         taResumen = new javax.swing.JTextArea();
@@ -421,19 +419,36 @@ public class diagEditorial extends javax.swing.JDialog {
 
         jLabel20.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel20.text")); // NOI18N
 
-        cmbReferato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Seleccione--", "SI", "NO" }));
-
         jLabel21.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel21.text")); // NOI18N
 
         cmbAcademica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAcademica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAcademicaActionPerformed(evt);
+            }
+        });
 
         btnNuevaAcademica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevaAcademica.text")); // NOI18N
+        btnNuevaAcademica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaAcademicaActionPerformed(evt);
+            }
+        });
 
         btnEliminarAcademica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarAcademica.text")); // NOI18N
+        btnEliminarAcademica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarAcademicaActionPerformed(evt);
+            }
+        });
 
         jLabel22.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel22.text")); // NOI18N
 
         tfCantidadPaginas.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfCantidadPaginas.text")); // NOI18N
+
+        jLabel11.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel11.text")); // NOI18N
+
+        tfStock.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfStock.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -471,20 +486,22 @@ public class diagEditorial extends javax.swing.JDialog {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel20)
-                                    .addComponent(jLabel21))
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbAcademica, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cmbReferato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(btnNuevaAcademica, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnEliminarAcademica, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(btnEliminarAcademica, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cmbReferato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
@@ -578,7 +595,10 @@ public class diagEditorial extends javax.swing.JDialog {
                             .addComponent(btnNuevaAcademica)
                             .addComponent(btnEliminarAcademica))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfCantidadPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfCantidadPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
@@ -658,62 +678,6 @@ public class diagEditorial extends javax.swing.JDialog {
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
-
-        jListUnidades.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListUnidadesValueChanged(evt);
-            }
-        });
-        jScrollPane5.setViewportView(jListUnidades);
-
-        btAgregarEvaluacion1.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btAgregarEvaluacion1.text")); // NOI18N
-        btAgregarEvaluacion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAgregarEvaluacion1ActionPerformed(evt);
-            }
-        });
-
-        btnEliminarStock.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarStock.text")); // NOI18N
-        btnEliminarStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarStockActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel11.text")); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btAgregarEvaluacion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarStock, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel11))
-                .addContainerGap(761, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btAgregarEvaluacion1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminarStock)))
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
 
         taResumen.setColumns(20);
         taResumen.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -963,67 +927,6 @@ public class diagEditorial extends javax.swing.JDialog {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnEliminarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarStockActionPerformed
-        eliminarStock();
-    }//GEN-LAST:event_btnEliminarStockActionPerformed
-
-    private void btAgregarEvaluacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarEvaluacion1ActionPerformed
-        agregarStock();        // TODO add your handling code here:
-    }//GEN-LAST:event_btAgregarEvaluacion1ActionPerformed
-
-    private void btVerDetallesEvaluacionSeleccionadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerDetallesEvaluacionSeleccionadaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btVerDetallesEvaluacionSeleccionadaActionPerformed
-
-    private void btnEliminarEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEvaluacionActionPerformed
-        eliminarEvaluacion();
-    }//GEN-LAST:event_btnEliminarEvaluacionActionPerformed
-
-    private void btnEditarEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEvaluacionActionPerformed
-        modificarEvaluacion();
-    }//GEN-LAST:event_btnEditarEvaluacionActionPerformed
-
-    private void btAgregarEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarEvaluacionActionPerformed
-        agregarNuevaEvaluacion();        // TODO add your handling code here:
-    }//GEN-LAST:event_btAgregarEvaluacionActionPerformed
-
-    private void btnPublicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicacionesActionPerformed
-        mostrarPublicaciones();
-    }//GEN-LAST:event_btnPublicacionesActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        nuevoTipoDePublicacion();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        agregarProyecto();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        agregarIntegrantesLibro();
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        quitarIntegrantesLibro();
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void tfBuscarIntregantesLibroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarIntregantesLibroKeyPressed
-        buscarIntegrantesLibro();
-    }//GEN-LAST:event_tfBuscarIntregantesLibroKeyPressed
-
-    private void jcbTipoPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoPublicacionActionPerformed
-        habilitarEliminarTipoPublicacion();
-    }//GEN-LAST:event_jcbTipoPublicacionActionPerformed
-
-    private void btnEliminarTipoPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoPublicacionActionPerformed
-        eliminarTipoPulicacion();
-    }//GEN-LAST:event_btnEliminarTipoPublicacionActionPerformed
-
-    private void btnAgregarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDonacionActionPerformed
-        agregarDonacionEditorial();
-    }//GEN-LAST:event_btnAgregarDonacionActionPerformed
-
     private void btnEliminarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDonacionActionPerformed
         eliminarFila(tblDonaciones.getSelectedRow());
     }//GEN-LAST:event_btnEliminarDonacionActionPerformed
@@ -1044,13 +947,41 @@ public class diagEditorial extends javax.swing.JDialog {
         habilitarBotonEliminarDestino();
     }//GEN-LAST:event_cmbDestinoEditorialActionPerformed
 
-    private void jListUnidadesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListUnidadesValueChanged
-        habilitarBotonEliminarStock();
-    }//GEN-LAST:event_jListUnidadesValueChanged
+    private void btnAgregarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDonacionActionPerformed
+        agregarDonacionEditorial();
+    }//GEN-LAST:event_btnAgregarDonacionActionPerformed
 
-    private void btnAgregarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAutorActionPerformed
-        agregarInvestigador();
-    }//GEN-LAST:event_btnAgregarAutorActionPerformed
+    private void btVerDetallesEvaluacionSeleccionadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerDetallesEvaluacionSeleccionadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btVerDetallesEvaluacionSeleccionadaActionPerformed
+
+    private void btnEliminarEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEvaluacionActionPerformed
+        eliminarEvaluacion();
+    }//GEN-LAST:event_btnEliminarEvaluacionActionPerformed
+
+    private void btnEditarEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEvaluacionActionPerformed
+        modificarEvaluacion();
+    }//GEN-LAST:event_btnEditarEvaluacionActionPerformed
+
+    private void btAgregarEvaluacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarEvaluacionActionPerformed
+        agregarNuevaEvaluacion();        // TODO add your handling code here:
+    }//GEN-LAST:event_btAgregarEvaluacionActionPerformed
+
+    private void btnEliminarAcademicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAcademicaActionPerformed
+        eliminarUnidadAcademica();
+    }//GEN-LAST:event_btnEliminarAcademicaActionPerformed
+
+    private void btnNuevaAcademicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaAcademicaActionPerformed
+        nuevaUnidadAcademica();
+    }//GEN-LAST:event_btnNuevaAcademicaActionPerformed
+
+    private void cmbAcademicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAcademicaActionPerformed
+        habilitarEliminarUnidadAcademica();
+    }//GEN-LAST:event_cmbAcademicaActionPerformed
+
+    private void btnEliminarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarIdiomaActionPerformed
+        eliminarIdioma();
+    }//GEN-LAST:event_btnEliminarIdiomaActionPerformed
 
     private void btnNuevoIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoIdiomaActionPerformed
         agregarIdioma();
@@ -1060,9 +991,42 @@ public class diagEditorial extends javax.swing.JDialog {
         habilitarEliminarIdioma();
     }//GEN-LAST:event_cmbIdiomaActionPerformed
 
-    private void btnEliminarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarIdiomaActionPerformed
-        eliminarIdioma();
-    }//GEN-LAST:event_btnEliminarIdiomaActionPerformed
+    private void btnEliminarTipoPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoPublicacionActionPerformed
+        eliminarTipoPulicacion();
+    }//GEN-LAST:event_btnEliminarTipoPublicacionActionPerformed
+
+    private void btnAgregarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAutorActionPerformed
+        agregarInvestigador();
+    }//GEN-LAST:event_btnAgregarAutorActionPerformed
+
+    private void tfBuscarIntregantesLibroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarIntregantesLibroKeyPressed
+        buscarIntegrantesLibro();
+    }//GEN-LAST:event_tfBuscarIntregantesLibroKeyPressed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        quitarIntegrantesLibro();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        agregarIntegrantesLibro();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void btnPublicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicacionesActionPerformed
+        mostrarPublicaciones();
+    }//GEN-LAST:event_btnPublicacionesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        nuevoTipoDePublicacion();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        agregarProyecto();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jcbTipoPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoPublicacionActionPerformed
+        habilitarEliminarTipoPublicacion();
+    }//GEN-LAST:event_jcbTipoPublicacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1108,7 +1072,6 @@ public class diagEditorial extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarEvaluacion;
-    private javax.swing.JButton btAgregarEvaluacion1;
     private javax.swing.JButton btVerDetallesEvaluacionSeleccionada;
     private javax.swing.JButton btnAgregarAutor;
     private javax.swing.JButton btnAgregarDestinoEditorial;
@@ -1119,7 +1082,6 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JButton btnEliminarDonacion;
     private javax.swing.JButton btnEliminarEvaluacion;
     private javax.swing.JButton btnEliminarIdioma;
-    private javax.swing.JButton btnEliminarStock;
     private javax.swing.JButton btnEliminarTipoPublicacion;
     private javax.swing.JButton btnNuevaAcademica;
     private javax.swing.JButton btnNuevoIdioma;
@@ -1162,10 +1124,8 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListEvaluaciones;
-    private javax.swing.JList jListUnidades;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -1177,7 +1137,6 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -1195,9 +1154,10 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JTextField tfBuscarIntregantesLibro;
     private javax.swing.JTextField tfCantidadDonacion;
     private javax.swing.JTextField tfCantidadPaginas;
+    private javax.swing.JTextField tfStock;
     // End of variables declaration//GEN-END:variables
 
-    private void inicializarComponentes() {
+    private void inicializarComponentes() {        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
         int taskBarSize = scnMax.bottom;
@@ -1211,15 +1171,17 @@ public class diagEditorial extends javax.swing.JDialog {
         btnEliminarDestinoEditorial.setEnabled(false);
         cargarEncabezadoTablaDonaciones();
         
+        //btnEliminarStock.setEnabled(false);
+        btnEliminarIdioma.setEnabled(false);
+        btnEliminarAcademica.setEnabled(false);
+        
         cargarComboDestinoEditorial();   
         cargarComboTipoCodigo();
         cargarComboIdioma();
         cargarComboReferato();
+        cargarComboUnidadAcademica();
                 
-        btnPublicaciones.setEnabled(false);
-        btnEliminarStock.setEnabled(false);
-        btnEliminarIdioma.setEnabled(false);
-        btnEliminarAcademica.setEnabled(false);
+        btnPublicaciones.setEnabled(false);      
         
         this.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
 
@@ -1247,12 +1209,12 @@ public class diagEditorial extends javax.swing.JDialog {
                     }
                 } catch (NullPointerException ex) {
                 }                
-                try {
+                /*try {
                     if (!listaUnidades.isEmpty()) {
                         cargarListaUnidades();
                     }
                 } catch (NullPointerException ex) {
-                }                
+                }             */   
 
                 try {
                     if (editorialCientifica.getResumen() != null) {
@@ -1305,9 +1267,7 @@ public class diagEditorial extends javax.swing.JDialog {
 
                 try {
                     if (editorialCientifica.getTipoPublicacion() != null) {
-
                         jcbTipoPublicacion.setSelectedItem(editorialCientifica.getTipoPublicacion());
-
                     }
                 } catch (NullPointerException ex) {
                 }
@@ -1321,17 +1281,39 @@ public class diagEditorial extends javax.swing.JDialog {
                 dpFechaAceptado.setDate(editorialCientifica.getFechaAceptado());
                 dpFechaRecibido.setDate(editorialCientifica.getFechaRecibido());
                 jxDatePub.setDate(editorialCientifica.getAnioPublicacion());
-                //Comunes.cargarJComboConBlanco(cmbTipoCodigo, editorialCientifica.getTipoCodigo());
-                List<Idioma> listaIdio = facade.IdiomaFacade.getInstance().listarTodosOrdenados();
-                Comunes.cargarJCombo(cmbIdioma, listaIdio);
-               
-                ArrayList<String> listaTipoCod = new ArrayList<String>();
-                listaTipoCod.add("ISBN");
-                listaTipoCod.add("ISSN");
-                Comunes.cargarJCombo(cmbTipoCodigo, listaTipoCod);
+                
+                try {
+                    if (editorialCientifica.getIdioma()!= null) {
+                        cmbIdioma.setSelectedItem(editorialCientifica.getIdioma());
+                    }
+                } catch (NullPointerException ex) {
+                }
+                
+                try {
+                    if (editorialCientifica.getUnidadAcademica()!= null) {
+                        cmbAcademica.setSelectedItem(editorialCientifica.getUnidadAcademica());
+                    }
+                } catch (NullPointerException ex) {
+                }
+                //List<Idioma> listaIdio = facade.IdiomaFacade.getInstance().listarTodosOrdenados();
+                //Comunes.cargarJComboConBlanco(cmbIdioma, listaIdio);
+                
+                try {
+                    if (editorialCientifica.getTipoCodigo()!= null) {
+                        cmbTipoCodigo.setSelectedItem(editorialCientifica.getTipoCodigo());
+                    }
+                } catch (NullPointerException ex) {
+                }
+                
+                try {
+                    if (editorialCientifica.getReferato()!= null) {
+                        cmbReferato.setSelectedItem(editorialCientifica.getReferato());
+                    }
+                } catch (NullPointerException ex) {
+                }                
                 
                 tfCantidadPaginas.setText(String.valueOf(editorialCientifica.getCantidadPaginas()));
-                
+                tfStock.setText(String.valueOf(editorialCientifica.getStock()));
         }
     }    
 
@@ -1406,16 +1388,22 @@ public class diagEditorial extends javax.swing.JDialog {
             editorialCientifica.setTipoCodigo(null);
         }
         
-        if (cmbAcademica.getSelectedIndex() > 0) {
+        if (cmbReferato.getSelectedIndex() > 0) {
             editorialCientifica.setReferato(cmbReferato.getSelectedItem().toString());
         } else {
             editorialCientifica.setReferato(null);
         }
         
+        if (cmbAcademica.getSelectedIndex() > 0) {
+            editorialCientifica.setUnidadAcademica((UnidadAcademica) cmbAcademica.getSelectedItem());
+        } else {
+            editorialCientifica.setUnidadAcademica(null);
+        }
+        
         editorialCientifica.setFechaAceptado(dpFechaAceptado.getDate());
         editorialCientifica.setFechaRecibido(dpFechaRecibido.getDate());
         editorialCientifica.setCantidadPaginas(Integer.parseInt(tfCantidadPaginas.getText()));
-        
+        editorialCientifica.setStock(Integer.parseInt(tfStock.getText()));
     }
 
     private void altaEditorial() {
@@ -1544,17 +1532,17 @@ public class diagEditorial extends javax.swing.JDialog {
 
         }
         
-        stock.setLocation(Comunes.centrarDialog(stock));
+        /*stock.setLocation(Comunes.centrarDialog(stock));
         stock.setVisible(true);
         if (stock.getStockCreado() != null) {
             listaUnidades.add(stock.getStockCreado());
             cargarListaUnidades();
-        }
+        }*/
     }
 
-    private void cargarListaUnidades() {
+    /*private void cargarListaUnidades() {
         Comunes.cargarJList(jListUnidades, listaUnidades);
-    }
+    }*/
 
     private void modificarEvaluacion() {
         if (jListEvaluaciones.getSelectedIndex() != -1) {
@@ -1666,7 +1654,7 @@ public class diagEditorial extends javax.swing.JDialog {
         }
     }
     
-    private void CargarAutores() {
+    /*private void CargarAutores() {
         if(jtfTitulo.getText().equals("")){
             
         }else{
@@ -1678,7 +1666,7 @@ public class diagEditorial extends javax.swing.JDialog {
         List<Investigador> integrantesFuera = InvestigadorFacade.getInstance().getTodosInvestigador();
         integrantesFuera.removeAll(autoresDentro);
         Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);
-    }
+    }*/
 
     private void habilitarEliminarTipoPublicacion() {
         String tipoPubli = jcbTipoPublicacion.getSelectedItem().toString();
@@ -1837,7 +1825,7 @@ public class diagEditorial extends javax.swing.JDialog {
         Comunes.cargarJComboConBlanco(cmbDestinoEditorial,DestinoEditorialFacade.getInstance().listarTodosDestinosOrdenados());  
     }
 
-    private void eliminarStock() {
+    /*private void eliminarStock() {
         Stock stockElegido = (Stock) jListUnidades.getSelectedValue();
         StockFacade.getInstance().Eliminar(stockElegido.getId());
         JOptionPane.showMessageDialog(null, "Stock eliminado correctamente");
@@ -1847,7 +1835,7 @@ public class diagEditorial extends javax.swing.JDialog {
 
     private void habilitarBotonEliminarStock() {
         btnEliminarStock.setEnabled(true);
-    }
+    }*/
 
     private void agregarInvestigador() {
         diagInvestigador investigador = new diagInvestigador(null, true, "Alta", usuario);        
@@ -1857,7 +1845,6 @@ public class diagEditorial extends javax.swing.JDialog {
 
     private void cargarComboTipoCodigo() {
         List<String> listaTipos =  new ArrayList<String>();
-        listaTipos.add("--Seleccione--");
         listaTipos.add("ISBN");
         listaTipos.add("ISSN");
         
@@ -1878,10 +1865,11 @@ public class diagEditorial extends javax.swing.JDialog {
     }
     
     private void cargarComboReferato(){
-        ArrayList<String> referato = new ArrayList<String>();
-        referato.add("--Seleccione--");
-        referato.add("SI");
-        referato.add("NO");
+        ArrayList<String> listaReferato = new ArrayList<String>();
+        listaReferato.add("SI");
+        listaReferato.add("NO");
+        
+        Comunes.cargarJComboConBlanco(cmbReferato,listaReferato);
     }
 
     private void habilitarEliminarIdioma() {
@@ -1904,6 +1892,40 @@ public class diagEditorial extends javax.swing.JDialog {
         cargarComboIdioma();
         habilitarEliminarIdioma();        
         JOptionPane.showMessageDialog(null, "Idioma eliminado exitosamente");
+    }
+
+    private void cargarComboUnidadAcademica() {
+        Comunes.cargarJComboConBlanco(cmbAcademica,UnidadAcademicaFacade.getInstance().getTodasUnidadAcademica()); 
+    }
+
+    private void nuevaUnidadAcademica() {
+        diagUnidadAcademicaAlta nuevaUnidad = new diagUnidadAcademicaAlta(null, true);
+        nuevaUnidad.setLocation(Comunes.centrarDialog(nuevaUnidad));
+        nuevaUnidad.setVisible(true);
+        btnEliminarAcademica.setEnabled(false);
+        cargarComboUnidadAcademica();        
+    }
+
+    private void eliminarUnidadAcademica() {
+        int indice = cmbAcademica.getSelectedIndex();       
+        List<UnidadAcademica> listaUA = new ArrayList<UnidadAcademica>();
+        listaUA = facade.UnidadAcademicaFacade.getInstance().getTodasUnidadAcademica();
+        
+        long idUA = listaUA.get(indice-1).getId();
+        facade.UnidadAcademicaFacade.getInstance().eliminar(idUA);
+        habilitarEliminarUnidadAcademica();        
+        cargarComboUnidadAcademica(); 
+        JOptionPane.showMessageDialog(null, "Unidad Académica eliminada exitosamente");
+    }
+
+    private void habilitarEliminarUnidadAcademica() {
+        String UA = cmbAcademica.getSelectedItem().toString();
+        if(!UA.equals("--Seleccione--")){
+            btnEliminarAcademica.setEnabled(true);
+        }
+        else{
+            btnEliminarAcademica.setEnabled(false);
+        }
     }
 
     

@@ -48,7 +48,6 @@ public class EditorialCientifica implements Serializable {
     private String summary;        
     @ManyToMany
     private List<Investigador> investigadores;
-    @OneToMany
     private List<DonacionEditorial> donaciones;
     
     private int cantidadPaginas;
@@ -62,6 +61,15 @@ public class EditorialCientifica implements Serializable {
     private Date fechaAceptado;
     @OneToOne
     private UnidadAcademica unidadAcademica;
+    private int stock;
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     public int getCantidadPaginas() {
         return cantidadPaginas;

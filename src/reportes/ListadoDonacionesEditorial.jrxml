@@ -30,7 +30,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="206" splitType="Stretch">
+		<band height="167" splitType="Stretch">
 			<image>
 				<reportElement x="31" y="0" width="116" height="103" uuid="2947d7f3-dcda-4108-b9c0-50a396aac2cc"/>
 				<imageExpression><![CDATA["/home/walter/NetBeansProjects/ProyectoUno/src/imagenes/Logo_Unca_color.jpg"]]></imageExpression>
@@ -54,6 +54,15 @@
 				</textElement>
 				<text><![CDATA[Listado de Donaciones]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="322" y="143" width="70" height="20" uuid="1a954fc2-0b7a-453a-837e-c23b10dff302"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha listado:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="398" y="142" width="152" height="20" uuid="a5d99346-a5f1-46e5-9d37-70feac366828"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -63,51 +72,42 @@
 		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="160" splitType="Stretch">
-			<textField>
-				<reportElement x="147" y="107" width="100" height="20" uuid="eb27d7dc-d72d-4efb-a79a-8361942dcb22"/>
-				<textFieldExpression><![CDATA[$F{CANTIDAD}]]></textFieldExpression>
-			</textField>
+		<band height="151" splitType="Stretch">
 			<staticText>
-				<reportElement x="74" y="7" width="58" height="20" uuid="259f0394-0c9d-4e50-89f7-2f9f2ab088ef"/>
+				<reportElement x="49" y="5" width="58" height="20" uuid="259f0394-0c9d-4e50-89f7-2f9f2ab088ef"/>
+				<textElement textAlignment="Right"/>
 				<text><![CDATA[Título:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="74" y="27" width="58" height="20" uuid="1497fa36-3294-4b44-981d-e58521ba48c4"/>
-				<text><![CDATA[Autores:]]></text>
+				<reportElement x="23" y="25" width="84" height="20" uuid="1497fa36-3294-4b44-981d-e58521ba48c4"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha donación:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="74" y="47" width="58" height="20" uuid="86358bf0-2cc5-4678-82bf-92fbc2e83061"/>
-				<text><![CDATA[ISBN:]]></text>
+				<reportElement x="23" y="45" width="84" height="20" uuid="86358bf0-2cc5-4678-82bf-92fbc2e83061"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Tipo y número:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="74" y="67" width="58" height="20" uuid="1a954fc2-0b7a-453a-837e-c23b10dff302"/>
-				<text><![CDATA[Fecha:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="74" y="87" width="58" height="20" uuid="9ed4ed14-bf86-48f1-95f7-8c2c5cbfe082"/>
+				<reportElement x="49" y="105" width="58" height="20" uuid="9ed4ed14-bf86-48f1-95f7-8c2c5cbfe082"/>
+				<textElement textAlignment="Right"/>
 				<text><![CDATA[Destino:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="74" y="107" width="58" height="20" uuid="16ab0c56-0af7-42d4-ac33-0468726be603"/>
+				<reportElement x="49" y="125" width="58" height="20" uuid="16ab0c56-0af7-42d4-ac33-0468726be603"/>
+				<textElement textAlignment="Right"/>
 				<text><![CDATA[Cantidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="65" width="100" height="20" uuid="7940da0a-61c4-4ddf-8c61-4109a2061542"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Cantidad páginas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="85" width="43" height="20" uuid="fcddd721-b563-422d-987d-bd3b24873a00"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Idioma:]]></text>
 			</staticText>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="37" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="5d069949-f10f-4fe6-9bfe-7926dcc5cc10"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-		</band>
-	</columnFooter>
-	<pageFooter>
-		<band height="35" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band splitType="Stretch"/>
-	</summary>
 </jasperReport>

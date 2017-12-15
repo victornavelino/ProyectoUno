@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f0b75e7d-db49-494a-ad44-ba8a7e587729">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="62"/>
+	<queryString>
+		<![CDATA[SELECT
+     editorial_editorialCientifica.`ID` AS editorial_editorialCientifica_ID,
+     editorial_editorialCientifica.`ISBN` AS editorial_editorialCientifica_ISBN,
+     editorial_editorialCientifica.`ANIOPUBLICACION` AS editorial_editorialCientifica_ANIOPUBLICACION,
+     editorial_editorialCientifica.`AUTOR` AS editorial_editorialCientifica_AUTOR,
+     editorial_editorialCientifica.`COAUTOR` AS editorial_editorialCientifica_COAUTOR,
+     editorial_editorialCientifica.`MENCIONES` AS editorial_editorialCientifica_MENCIONES,
+     editorial_editorialCientifica.`RESUMEN` AS editorial_editorialCientifica_RESUMEN,
+     editorial_editorialCientifica.`SUMMARY` AS editorial_editorialCientifica_SUMMARY,
+     editorial_editorialCientifica.`TITULO` AS editorial_editorialCientifica_TITULO,
+     editorial_editorialCientifica.`EXPEDIENTE_ID` AS editorial_editorialCientifica_EXPEDIENTE_ID,
+     editorial_editorialCientifica.`PROYECTO_ID` AS editorial_editorialCientifica_PROYECTO_ID,
+     editorial_editorialCientifica.`TIPOPUBLICACION_ID` AS editorial_editorialCientifica_TIPOPUBLICACION_ID,
+     editorial_editorialCientifica.`CANTIDADPAGINAS` AS editorial_editorialCientifica_CANTIDADPAGINAS,
+     editorial_editorialCientifica.`IDIOMA` AS editorial_editorialCientifica_IDIOMA,
+     editorial_editorialCientifica.`REFERATO` AS editorial_editorialCientifica_REFERATO,
+     editorial_editorialCientifica.`TIPOCODIGO` AS editorial_editorialCientifica_TIPOCODIGO,
+     editorial_editorialCientifica.`FECHARECIBIDO` AS editorial_editorialCientifica_FECHARECIBIDO,
+     editorial_editorialCientifica.`FECHAACEPTADO` AS editorial_editorialCientifica_FECHAACEPTADO,
+     editorial_editorialCientifica.`UNIDADACADEMICA_ID` AS editorial_editorialCientifica_UNIDADACADEMICA_ID,
+     editorial_editorialCientifica.`IDIOMA_ID` AS editorial_editorialCientifica_IDIOMA_ID,
+     editorial_editorialCientifica.`STOCK` AS editorial_editorialCientifica_STOCK
+FROM
+     `editorial_editorialCientifica` editorial_editorialCientifica]]>
+	</queryString>
+	<field name="editorial_editorialCientifica_ID" class="java.lang.Long"/>
+	<field name="editorial_editorialCientifica_ISBN" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_ANIOPUBLICACION" class="java.sql.Date"/>
+	<field name="editorial_editorialCientifica_AUTOR" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_COAUTOR" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_MENCIONES" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_RESUMEN" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_SUMMARY" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_TITULO" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_EXPEDIENTE_ID" class="java.lang.Long"/>
+	<field name="editorial_editorialCientifica_PROYECTO_ID" class="java.lang.Long"/>
+	<field name="editorial_editorialCientifica_TIPOPUBLICACION_ID" class="java.lang.Long"/>
+	<field name="editorial_editorialCientifica_CANTIDADPAGINAS" class="java.lang.Integer"/>
+	<field name="editorial_editorialCientifica_IDIOMA" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_REFERATO" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_TIPOCODIGO" class="java.lang.String"/>
+	<field name="editorial_editorialCientifica_FECHARECIBIDO" class="java.sql.Date"/>
+	<field name="editorial_editorialCientifica_FECHAACEPTADO" class="java.sql.Date"/>
+	<field name="editorial_editorialCientifica_UNIDADACADEMICA_ID" class="java.lang.Long"/>
+	<field name="editorial_editorialCientifica_IDIOMA_ID" class="java.lang.Long"/>
+	<field name="editorial_editorialCientifica_STOCK" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="166" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="143" width="165" height="20" uuid="f3668ef8-f985-4da1-b2be-ea70aa6b44ce"/>
+				<text><![CDATA[Editorial Científica Universitaria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="103" width="186" height="20" uuid="5ce17784-3fe4-48f8-af1d-75a36686bdc7"/>
+				<text><![CDATA[Universidad Nacional de Catamarca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="123" width="163" height="20" uuid="008566b8-68ef-46ef-8abf-ba53dc72c603"/>
+				<text><![CDATA[Secretaría de Ciencia y Técnica]]></text>
+			</staticText>
+			<image>
+				<reportElement x="39" y="0" width="116" height="103" uuid="18f6d7c4-97e8-43a6-af68-18332d7cddd2"/>
+				<imageExpression><![CDATA["/home/walter/NetBeansProjects/ProyectoUno/src/imagenes/Logo_Unca_color.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="186" y="51" width="356" height="32" uuid="9ed092f0-0350-4f4f-b8e4-5a7fd4cce5d0"/>
+				<textElement>
+					<font size="24" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Listado de Editorial Científica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="144" width="70" height="20" uuid="d875edec-7ad2-4d8e-b806-dc05398c2604"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha listado:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="390" y="143" width="152" height="20" uuid="318f783c-0c4a-4ea8-aeae-1bf830907b01"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="2" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="148" splitType="Stretch">
+			<staticText>
+				<reportElement x="65" y="8" width="58" height="20" uuid="ccc3128f-f289-43bd-b528-178744c2c8ae"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Título:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="48" width="84" height="20" uuid="80b630d0-d905-4ad9-affd-f659172653c9"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Tipo y número:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="88" width="43" height="20" uuid="6c62d964-10d8-4473-896a-2dac54c85d29"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Idioma:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="28" width="104" height="20" uuid="1d5d9347-fa32-47a7-b603-6144af496c3b"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha publicación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="68" width="100" height="20" uuid="62c2f4c6-907d-4764-9430-b0e3861dca7d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Cantidad páginas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="108" width="42" height="20" uuid="2ac7157b-b136-477a-9199-9da81ba51d54"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Stock:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="137" width="539" height="1" uuid="8039e5e7-54cb-4aa1-a3d3-e87bf7a5e637"/>
+			</line>
+			<textField>
+				<reportElement x="129" y="8" width="418" height="20" uuid="d1eefd5c-30fa-457d-a647-2353b28bf6f0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{editorial_editorialCientifica_TITULO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="28" width="294" height="20" uuid="6124babf-c760-44cf-b7d4-14da4fa48f6c"/>
+				<textFieldExpression><![CDATA[$F{editorial_editorialCientifica_ANIOPUBLICACION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="48" width="100" height="20" uuid="a8a4ead6-777a-4574-9e2b-1d566808b89e"/>
+				<textFieldExpression><![CDATA[$F{editorial_editorialCientifica_TIPOCODIGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="48" width="100" height="20" uuid="140f2ead-0407-4f2f-b110-33dec0b8ea46"/>
+				<textFieldExpression><![CDATA[$F{editorial_editorialCientifica_ISBN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="68" width="261" height="20" uuid="ea8ed9b6-c47d-494b-9dc0-89a706517381"/>
+				<textFieldExpression><![CDATA[$F{editorial_editorialCientifica_CANTIDADPAGINAS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="88" width="210" height="20" uuid="aa6818be-ac44-4063-b89d-e9fa9ef14fcc"/>
+				<textFieldExpression><![CDATA[$F{editorial_editorialCientifica_IDIOMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="108" width="210" height="20" uuid="c44165d7-21d6-4863-a2da-56e0287b1c63"/>
+				<textFieldExpression><![CDATA[$F{editorial_editorialCientifica_STOCK}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
