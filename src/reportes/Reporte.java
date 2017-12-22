@@ -7,12 +7,16 @@ package reportes;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Proyecto;
 import entidades.proyecto.Rol;
+import entidades.proyecto.editorial.EditorialCientifica;
 import entidades.proyecto.vinculacion.ProyectoVinculacion;
 import entidades.proyectoWeb.ProyectoWeb;
 import facade.ConexionFacade;
 import includes.CvarWsClient;
 import java.awt.Toolkit;
 import java.io.StringReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -27,6 +31,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -430,43 +435,16 @@ public class Reporte {
         return null;
     }
     
-    
-    
-    
+        
     
     public void reporteEditorialCientifica() {
         try {
             Map parameters = new HashMap();
             parameters.put(JRJpaQueryExecuterFactory.PARAMETER_JPA_ENTITY_MANAGER, em);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/reportes/listadoEditorialCientifica.jasper"), parameters);
-            //dialogoReporte(jasperPrint, "Listado de Editorial Científica");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/reportes/listadoEditorialCientifica.jasper"), parameters);            
             JasperViewer.viewReport(jasperPrint, false);           
         } catch (JRException ex) {
             Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public void reporteDonacionesEditorialCientifica() {
-        /*try {
-            Map parameters = new HashMap();
-            parameters.put(JRJpaQueryExecuterFactory.PARAMETER_JPA_ENTITY_MANAGER, em);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/reportes/listadoEditorialCientifica.jasper"), parameters);
-            dialogoReporte(jasperPrint, "Listado de Editorial Científica");
-        } catch (JRException ex) {
-            Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
-
-        }*/
-    }
-    
-    /*public void reporteParticipacionesProyectos() {
-        try {
-            Map parameters = new HashMap();
-            parameters.put(JRJpaQueryExecuterFactory.PARAMETER_JPA_ENTITY_MANAGER, em);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/reportes/reporteParticipacionesProyectos.jasper"), parameters);
-            dialogoReporte(jasperPrint, "Listado de Investigadores");
-        } catch (JRException ex) {
-            Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-    }*/
+    }   
 }
