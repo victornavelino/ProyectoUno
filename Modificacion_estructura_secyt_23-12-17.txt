@@ -10,8 +10,6 @@ ADD `FECHARECIBIDO` DATE NULL ,
 ADD `FECHAACEPTADO` DATE NULL ,
 ADD `UNIDADACADEMICA_ID` BIGINT( 20 ) NULL ;
 
-
-
 ALTER TABLE `editorial_editorialCientifica` ADD INDEX ( `UNIDADACADEMICA_ID` ) ;
 
 ALTER TABLE `editorial_editorialCientifica` ADD `IDIOMA_ID` BIGINT NULL AFTER `UNIDADACADEMICA_ID` ;
@@ -25,8 +23,6 @@ UPDATE `editorial_editorialCientifica` SET `STOCK` = 0;
 UPDATE `editorial_editorialCientifica` SET `CANTIDADPAGINAS` = 0; 
 
 UPDATE `editorial_editorialCientifica` SET `TIPOCODIGO` = "ISBN" WHERE ISBN <> "";
-
-
 
 CREATE TABLE `editorial_destinoEditorial` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,

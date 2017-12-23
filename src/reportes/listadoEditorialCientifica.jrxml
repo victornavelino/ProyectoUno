@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoEditorialCientifica" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5ede044-da5b-4a07-87e9-b39081d4bf20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="89"/>
 	<subDataset name="New Dataset 1" uuid="cd22606a-7afe-45e5-9ea0-cb1e2cde861f"/>
 	<queryString language="ejbql">
 		<![CDATA[SELECT e FROM EditorialCientifica e]]>
@@ -11,7 +11,7 @@
 	<field name="anioPublicacion" class="java.util.Date"/>
 	<field name="tipoCodigo" class="java.lang.String"/>
 	<field name="cantidadPaginas" class="java.lang.Integer"/>
-	<field name="idioma" class="java.lang.String"/>
+	<field name="idioma" class="java.lang.Object"/>
 	<field name="stock" class="java.lang.String"/>
 	<field name="ISBN" class="java.lang.String"/>
 	<background>
@@ -27,19 +27,19 @@
 			<staticText>
 				<reportElement x="10" y="147" width="169" height="20" uuid="e2cced40-4977-4dd1-b69d-bfc0d09f31d8"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Editorial Cientifica Universitaria]]></text>
+				<text><![CDATA[Editorial Cientifíca Universitaria]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="13" y="127" width="162" height="20" uuid="aaa18154-3fba-4d8f-92fb-133b0b4ae7a7"/>
 				<textElement textAlignment="Center"/>
-				<text><![CDATA[Secretaria de Ciencia y Tecnica]]></text>
+				<text><![CDATA[Secretaría de Ciencia y Técnica]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="200" y="48" width="357" height="38" uuid="238ebd28-5974-4edc-80d6-63f9075c95b0"/>
 				<textElement textAlignment="Center">
 					<font size="24"/>
 				</textElement>
-				<text><![CDATA[Listado de Editorial Cientifica]]></text>
+				<text><![CDATA[Listado de Editorial Científica]]></text>
 			</staticText>
 			<image>
 				<reportElement x="43" y="0" width="129" height="107" uuid="eaeae5fa-eeaf-463e-be23-ba3970616954"/>
@@ -68,12 +68,12 @@
 			<staticText>
 				<reportElement x="69" y="16" width="36" height="20" uuid="6ff66117-faf2-44bc-8fc6-36db4749a7c2"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Titulo:]]></text>
+				<text><![CDATA[Título:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="8" y="36" width="97" height="20" uuid="d3df8a84-9889-4ee7-bb12-fa820bd7fe2c"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Fecha publicacion:]]></text>
+				<text><![CDATA[Fecha publicación:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="27" y="56" width="78" height="20" uuid="49edbda8-c701-40e4-8f82-a477d361d961"/>
@@ -83,7 +83,7 @@
 			<staticText>
 				<reportElement x="5" y="76" width="100" height="20" uuid="c84fd60d-4641-4b66-8d78-3b51fa60fbb6"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Cantidad paginas:]]></text>
+				<text><![CDATA[Cantidad páginas:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="62" y="96" width="43" height="20" uuid="647d16cc-9d5c-4202-a863-633c8157ae02"/>
@@ -110,9 +110,9 @@
 				<reportElement x="117" y="76" width="100" height="20" uuid="d2a3b3fc-dd87-433c-a55c-2821c640ef0c"/>
 				<textFieldExpression><![CDATA[$F{cantidadPaginas}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="117" y="96" width="100" height="20" uuid="65f3774f-a2f2-4880-a020-c9a9c8f8642b"/>
-				<textFieldExpression><![CDATA[$F{idioma}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{idioma}.getIdioma()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="117" y="116" width="100" height="20" uuid="89e889d2-6e77-47da-8e45-dd2bef452a64"/>
@@ -121,7 +121,7 @@
 			<staticText>
 				<reportElement x="254" y="56" width="100" height="20" uuid="e8f01e04-a665-4129-b0a1-5cfa2488ec2c"/>
 				<textElement textAlignment="Right"/>
-				<text><![CDATA[Numero:]]></text>
+				<text><![CDATA[Número:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="364" y="56" width="193" height="20" uuid="2d24ada0-0e2d-446b-8448-363393d0ccf7"/>
