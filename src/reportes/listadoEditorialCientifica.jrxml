@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoEditorialCientifica" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5ede044-da5b-4a07-87e9-b39081d4bf20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="89"/>
+	<property name="ireport.y" value="132"/>
 	<subDataset name="New Dataset 1" uuid="cd22606a-7afe-45e5-9ea0-cb1e2cde861f"/>
 	<queryString language="ejbql">
 		<![CDATA[SELECT e FROM EditorialCientifica e]]>
@@ -14,6 +14,7 @@
 	<field name="idioma" class="java.lang.Object"/>
 	<field name="stock" class="java.lang.String"/>
 	<field name="ISBN" class="java.lang.String"/>
+	<field name="tematica" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -57,7 +58,7 @@
 		</band>
 	</title>
 	<detail>
-		<band height="153" splitType="Stretch">
+		<band height="204" splitType="Stretch">
 			<textField>
 				<reportElement x="117" y="16" width="440" height="20" uuid="f6fd3aa6-7c30-42f9-9abd-4fdfcbc54dae"/>
 				<textElement>
@@ -96,7 +97,7 @@
 				<text><![CDATA[Stock:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="5" y="144" width="562" height="1" uuid="93e6c106-f325-4db3-98b1-09cbba27ad97"/>
+				<reportElement x="5" y="193" width="562" height="1" uuid="93e6c106-f325-4db3-98b1-09cbba27ad97"/>
 			</line>
 			<textField>
 				<reportElement x="117" y="36" width="137" height="20" uuid="435fd1a1-44ca-49e8-bda3-6d46f3b584db"/>
@@ -126,6 +127,20 @@
 			<textField>
 				<reportElement x="364" y="56" width="193" height="20" uuid="2d24ada0-0e2d-446b-8448-363393d0ccf7"/>
 				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="48" y="136" width="57" height="20" uuid="03749f6c-58de-4670-93a1-f61c61b4fd54"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Temática:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="156" width="55" height="20" uuid="350611f9-ea2d-44f0-97b7-82d4f56d38fd"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Autor/es:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="117" y="136" width="237" height="20" uuid="7bd5a9de-466a-49c7-805f-8cdb8bd7174e"/>
+				<textFieldExpression><![CDATA[$F{tematica}.getTematica()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -433,9 +433,7 @@ public class Reporte {
             System.out.println("error de conversion");
         }
         return null;
-    }
-    
-        
+    }        
     
     public void reporteEditorialCientifica() {
         try {
@@ -446,5 +444,16 @@ public class Reporte {
         } catch (JRException ex) {
             Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }   
+    }  
+    
+    public void reporteDonacionesEditorialCientifica() {
+        try {
+            Map parameters = new HashMap();
+            parameters.put(JRJpaQueryExecuterFactory.PARAMETER_JPA_ENTITY_MANAGER, em);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(getClass().getResourceAsStream("/reportes/listadoDonacionesEditorialCientifica.jasper"), parameters);            
+            JasperViewer.viewReport(jasperPrint, false);           
+        } catch (JRException ex) {
+            Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }  
 }

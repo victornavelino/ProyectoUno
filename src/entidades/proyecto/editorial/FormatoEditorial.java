@@ -62,7 +62,7 @@ public class FormatoEditorial implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.proyecto.editorial.FormatoEditorial[ id=" + id + " ]";
+        return this.getFormato().toUpperCase();
     }
     
 }

@@ -18,16 +18,20 @@ import entidades.proyecto.editorial.DonacionEditorial;
 import entidades.proyecto.editorial.EditorialCientifica;
 import entidades.proyecto.editorial.EvaluacionEditorial;
 import entidades.proyecto.editorial.ExpedienteEditorial;
+import entidades.proyecto.editorial.FormatoEditorial;
 import entidades.proyecto.editorial.Stock;
+import entidades.proyecto.editorial.TematicaEditorial;
 import entidades.proyecto.editorial.TipoPublicacion;
 import entidades.usuario.Usuario;
 import facade.DestinoEditorialFacade;
 import facade.DonacionEditorialFacade;
 import facade.EditorialCientificaFacade;
 import facade.EvaluacionEditorialFacade;
+import facade.FormatoEditorialFacade;
 import facade.IdiomaFacade;
 import facade.InvestigadorFacade;
 import facade.OperacionFacade;
+import facade.TematicaEditorialFacade;
 import facade.UnidadAcademicaFacade;
 import facade.editorial.StockFacade;
 import facade.editorial.TipoPublicacionFacade;
@@ -459,20 +463,50 @@ public class diagEditorial extends javax.swing.JDialog {
         tfStock.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfStock.text")); // NOI18N
 
         btnNuevaTematica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevaTematica.text")); // NOI18N
+        btnNuevaTematica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaTematicaActionPerformed(evt);
+            }
+        });
 
         btnEliminarTematica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarTematica.text")); // NOI18N
+        btnEliminarTematica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTematicaActionPerformed(evt);
+            }
+        });
 
         jLabel23.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel23.text")); // NOI18N
 
         cmbTematica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTematica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTematicaActionPerformed(evt);
+            }
+        });
 
         jLabel24.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel24.text")); // NOI18N
 
         cmbFormato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFormato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFormatoActionPerformed(evt);
+            }
+        });
 
         btnNuevoFormato.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevoFormato.text")); // NOI18N
+        btnNuevoFormato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoFormatoActionPerformed(evt);
+            }
+        });
 
         btnEliminarFormato.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarFormato.text")); // NOI18N
+        btnEliminarFormato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarFormatoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1089,6 +1123,30 @@ public class diagEditorial extends javax.swing.JDialog {
         habilitarEliminarTipoPublicacion();
     }//GEN-LAST:event_jcbTipoPublicacionActionPerformed
 
+    private void btnNuevaTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaTematicaActionPerformed
+        agregarTematica();
+    }//GEN-LAST:event_btnNuevaTematicaActionPerformed
+
+    private void btnEliminarFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFormatoActionPerformed
+        eliminarFormato();
+    }//GEN-LAST:event_btnEliminarFormatoActionPerformed
+
+    private void cmbTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTematicaActionPerformed
+        habilitarEliminarTematica();
+    }//GEN-LAST:event_cmbTematicaActionPerformed
+
+    private void cmbFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFormatoActionPerformed
+        habilitarEliminarFormato();
+    }//GEN-LAST:event_cmbFormatoActionPerformed
+
+    private void btnNuevoFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoFormatoActionPerformed
+        agregarFormato();
+    }//GEN-LAST:event_btnNuevoFormatoActionPerformed
+
+    private void btnEliminarTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTematicaActionPerformed
+        eliminarTematica();
+    }//GEN-LAST:event_btnEliminarTematicaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1238,6 +1296,8 @@ public class diagEditorial extends javax.swing.JDialog {
         btnAgregarDonacion.setEnabled(true);
         btnEliminarDonacion.setEnabled(false);
         btnEliminarDestinoEditorial.setEnabled(false);
+        btnEliminarTematica.setEnabled(false);
+        btnEliminarFormato.setEnabled(false);
         cargarEncabezadoTablaDonaciones();
         
         //btnEliminarStock.setEnabled(false);
@@ -1249,6 +1309,8 @@ public class diagEditorial extends javax.swing.JDialog {
         cargarComboIdioma();
         cargarComboReferato();
         cargarComboUnidadAcademica();
+        cargarComboFormato();
+        cargarComboTematica();
                 
         btnPublicaciones.setEnabled(false);      
         
@@ -1383,6 +1445,20 @@ public class diagEditorial extends javax.swing.JDialog {
                 
                 tfCantidadPaginas.setText(String.valueOf(editorialCientifica.getCantidadPaginas()));
                 tfStock.setText(String.valueOf(editorialCientifica.getStock()));
+                
+                try {
+                    if (editorialCientifica.getTematica()!= null) {
+                        cmbTematica.setSelectedItem(editorialCientifica.getTematica());
+                    }
+                } catch (NullPointerException ex) {
+                }
+                
+                try {
+                    if (editorialCientifica.getFormato()!= null) {
+                        cmbFormato.setSelectedItem(editorialCientifica.getFormato());
+                    }
+                } catch (NullPointerException ex) {
+                }
         }
     }    
 
@@ -1473,6 +1549,18 @@ public class diagEditorial extends javax.swing.JDialog {
         editorialCientifica.setFechaRecibido(dpFechaRecibido.getDate());
         editorialCientifica.setCantidadPaginas(Integer.parseInt(tfCantidadPaginas.getText()));
         editorialCientifica.setStock(Integer.parseInt(tfStock.getText()));
+        
+        if (cmbTematica.getSelectedIndex() > 0) {
+            editorialCientifica.setTematica((TematicaEditorial) cmbTematica.getSelectedItem());
+        } else {
+            editorialCientifica.setTematica(null);
+        }
+        
+        if (cmbFormato.getSelectedIndex() > 0) {
+            editorialCientifica.setFormato((FormatoEditorial) cmbFormato.getSelectedItem());
+        } else {
+            editorialCientifica.setFormato(null);
+        }
     }
 
     private void altaEditorial() {
@@ -1995,6 +2083,76 @@ public class diagEditorial extends javax.swing.JDialog {
         else{
             btnEliminarAcademica.setEnabled(false);
         }
+    }
+
+    private void agregarTematica() {
+        diagTematicaEditorialAlta diagTematica = new diagTematicaEditorialAlta(null, true, usuario, "Alta");
+        diagTematica.setLocation(Comunes.centrarDialog(diagTematica));
+        diagTematica.setVisible(true);
+        
+        btnEliminarTematica.setEnabled(false);
+        cargarComboTematica();     
+    }
+
+    private void agregarFormato() {
+        diagFormatoEditorialAlta diagFormato = new diagFormatoEditorialAlta(null, true, usuario, "Alta");
+        diagFormato.setLocation(Comunes.centrarDialog(diagFormato));
+        diagFormato.setVisible(true);
+        
+        btnEliminarFormato.setEnabled(false);
+        cargarComboFormato();     
+    }
+
+    private void cargarComboTematica() {
+        Comunes.cargarJComboConBlanco(cmbTematica, TematicaEditorialFacade.getInstance().listarTodasOrdenadas());
+    }
+
+    private void cargarComboFormato() {
+        Comunes.cargarJComboConBlanco(cmbFormato, FormatoEditorialFacade.getInstance().listarTodosOrdenados());
+    }
+
+    private void habilitarEliminarTematica() {
+        String tematica = cmbTematica.getSelectedItem().toString();
+        if(!tematica.equals("--Seleccione--")){
+            btnEliminarTematica.setEnabled(true);
+        }
+        else{
+            btnEliminarTematica.setEnabled(false);
+        }
+    }
+
+    private void habilitarEliminarFormato() {
+        String formato = cmbFormato.getSelectedItem().toString();
+        if(!formato.equals("--Seleccione--")){
+            btnEliminarFormato.setEnabled(true);
+        }
+        else{
+            btnEliminarFormato.setEnabled(false);
+        }
+    }
+
+    private void eliminarTematica() {
+        int indice = cmbTematica.getSelectedIndex();       
+        List<TematicaEditorial> listaTematicas = new ArrayList<TematicaEditorial>();
+        listaTematicas = facade.TematicaEditorialFacade.getInstance().listarTodasOrdenadas();
+        
+        long idTematica = listaTematicas.get(indice-1).getId();
+        facade.TematicaEditorialFacade.getInstance().eliminar(idTematica);
+        cargarComboTematica();
+        habilitarEliminarTematica();        
+        JOptionPane.showMessageDialog(null, "Temática eliminada exitosamente");
+    }
+
+    private void eliminarFormato() {
+        int indice = cmbFormato.getSelectedIndex();       
+        List<FormatoEditorial> listaFormatos = new ArrayList<FormatoEditorial>();
+        listaFormatos = facade.FormatoEditorialFacade.getInstance().listarTodosOrdenados();
+        
+        long idFormato = listaFormatos.get(indice-1).getId();
+        facade.FormatoEditorialFacade.getInstance().eliminar(idFormato);
+        cargarComboFormato();
+        habilitarEliminarFormato();        
+        JOptionPane.showMessageDialog(null, "Formato eliminado exitosamente");
     }
 
     

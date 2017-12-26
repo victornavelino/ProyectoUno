@@ -62,7 +62,7 @@ public class TematicaEditorial implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.proyecto.editorial.TematicaEditorial[ id=" + id + " ]";
+        return this.getTematica().toUpperCase();
     }
     
 }
