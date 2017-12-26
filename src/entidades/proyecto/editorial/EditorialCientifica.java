@@ -62,7 +62,27 @@ public class EditorialCientifica implements Serializable {
     @OneToOne
     private UnidadAcademica unidadAcademica;
     private int stock;
+    @OneToOne
+    private FormatoEditorial formato; 
+    @OneToOne
+    private TematicaEditorial tematica;
 
+    public FormatoEditorial getFormato() {
+        return formato;
+    }
+
+    public void setFormato(FormatoEditorial formato) {
+        this.formato = formato;
+    }
+
+    public TematicaEditorial getTematica() {
+        return tematica;
+    }
+
+    public void setTematica(TematicaEditorial tematica) {
+        this.tematica = tematica;
+    }    
+    
     public int getStock() {
         return stock;
     }

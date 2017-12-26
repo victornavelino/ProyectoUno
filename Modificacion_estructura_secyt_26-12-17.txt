@@ -24,6 +24,10 @@ UPDATE `editorial_editorialCientifica` SET `CANTIDADPAGINAS` = 0;
 
 UPDATE `editorial_editorialCientifica` SET `TIPOCODIGO` = "ISBN" WHERE ISBN <> "";
 
+// 26-12-17
+ALTER TABLE `editorial_editorialCientifica` ADD `FORMATO_ID` BIGINT NULL AFTER `STOCK`, ADD `TEMATICA_ID` BIGINT NULL AFTER `FORMATO_ID`;
+//
+
 CREATE TABLE `editorial_destinoEditorial` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `NOMBRE` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,

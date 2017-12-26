@@ -264,6 +264,8 @@
     <class>entidades.proyecto.editorial.DonacionEditorial</class>
     <class>entidades.proyecto.editorial.DestinoEditorial</class>
     <class>entidades.Idioma</class>
+    <class>entidades.proyecto.editorial.FormatoEditorial</class>
+    <class>entidades.proyecto.editorial.TematicaEditorial</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/secyt"/>
       <property name="javax.persistence.jdbc.password" value="1234"/>
