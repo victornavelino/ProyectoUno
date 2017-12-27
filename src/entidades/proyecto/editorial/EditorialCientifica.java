@@ -48,6 +48,7 @@ public class EditorialCientifica implements Serializable {
     private String summary;        
     @ManyToMany
     private List<Investigador> investigadores;
+    @OneToMany
     private List<DonacionEditorial> donaciones;
     
     private int cantidadPaginas;

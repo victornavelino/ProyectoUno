@@ -3,6 +3,10 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="73"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT e FROM EditorialCientifica e WHERE count(e.donaciones)]]>
+	</queryString>
+	<field name="titulo" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -100,6 +104,10 @@
 			<line>
 				<reportElement x="12" y="204" width="531" height="1" uuid="2badaf0f-7b6a-48e7-a5e3-1bcb257d6a0c"/>
 			</line>
+			<textField>
+				<reportElement x="119" y="12" width="421" height="20" uuid="8f58e118-e11f-4f94-962e-7aeb1a998fec"/>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>
