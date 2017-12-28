@@ -1939,7 +1939,8 @@ public class diagEditorial extends javax.swing.JDialog {
         List<DonacionEditorial> donaciones = facade.DestinoEditorialFacade.getInstance().buscarDestinoEnDonacion(idDestino);
         
         if(donaciones.size() == 0){                        
-            facade.DestinoEditorialFacade.getInstance().eliminar(idDestino);   
+            facade.DestinoEditorialFacade.getInstance().eliminar(idDestino); 
+            JOptionPane.showMessageDialog(null, "Destino editorial eliminado exitosamente");
         }else{
             JOptionPane.showMessageDialog(null, "No se puede eliminar el destino "
                    + "debido a que se encuentra cargado en una o más donaciones");
@@ -1955,8 +1956,7 @@ public class diagEditorial extends javax.swing.JDialog {
              
         //HabilitarEliminarDestinoEditorial();
         cargarComboDestinoEditorial();
-        btnEliminarDestinoEditorial.setEnabled(false);
-        JOptionPane.showMessageDialog(null, "Destino editorial eliminado exitosamente");
+        btnEliminarDestinoEditorial.setEnabled(false);       
     }
 
     private void habilitarBotonEliminarDestino() {

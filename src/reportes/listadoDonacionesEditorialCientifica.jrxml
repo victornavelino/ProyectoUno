@@ -2,11 +2,17 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoDonacionesEditorialCientifica" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="33cb2900-ca0a-44f0-8a3f-1b203689a8e0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="73"/>
+	<property name="ireport.y" value="0"/>
 	<queryString language="ejbql">
-		<![CDATA[SELECT e FROM EditorialCientifica e WHERE count(e.donaciones)]]>
+		<![CDATA[SELECT e FROM EditorialCientifica e WHERE(SELECT COUNT(d) FROM e.donaciones d) > 0]]>
 	</queryString>
 	<field name="titulo" class="java.lang.String"/>
+	<field name="anioPublicacion" class="java.util.Date"/>
+	<field name="tematica" class="java.lang.Object"/>
+	<field name="idioma" class="java.lang.Object"/>
+	<field name="cantidadPaginas" class="java.lang.Integer"/>
+	<field name="tipoCodigo" class="java.lang.String"/>
+	<field name="ISBN" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -50,63 +56,90 @@
 		</band>
 	</title>
 	<detail>
-		<band height="215" splitType="Stretch">
+		<band height="234" splitType="Stretch">
 			<staticText>
-				<reportElement x="64" y="12" width="43" height="20" uuid="db413679-3410-4ca2-a4c5-87b250632786"/>
+				<reportElement x="64" y="13" width="43" height="20" uuid="db413679-3410-4ca2-a4c5-87b250632786"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Título:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="32" width="100" height="20" uuid="db258b8d-a710-4c41-81c4-92620ff56d7b"/>
+				<reportElement x="7" y="49" width="100" height="20" uuid="db258b8d-a710-4c41-81c4-92620ff56d7b"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Fecha publicación:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="48" y="52" width="59" height="20" uuid="cfc630e4-0b4b-4a88-aad1-b58e300ce2ec"/>
+				<reportElement x="48" y="69" width="59" height="20" uuid="cfc630e4-0b4b-4a88-aad1-b58e300ce2ec"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Temática:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="60" y="72" width="47" height="20" uuid="41ca37d2-506a-44fd-b12c-4116f64426b0"/>
+				<reportElement x="60" y="89" width="47" height="20" uuid="41ca37d2-506a-44fd-b12c-4116f64426b0"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Idioma:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="92" width="100" height="20" uuid="5309814a-a243-441a-9717-bc8c693e0dd0"/>
+				<reportElement x="7" y="109" width="100" height="20" uuid="5309814a-a243-441a-9717-bc8c693e0dd0"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Cantidad páginas:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="67" y="112" width="40" height="20" uuid="26add1fe-a40f-4d15-ad0f-3b120f2a24bc"/>
+				<reportElement x="67" y="129" width="40" height="20" uuid="26add1fe-a40f-4d15-ad0f-3b120f2a24bc"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Tipo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="219" y="112" width="54" height="20" uuid="942e7807-1f9a-457e-962c-d9f2bc5bc4ac"/>
+				<reportElement x="219" y="129" width="54" height="20" uuid="942e7807-1f9a-457e-962c-d9f2bc5bc4ac"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Número:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="19" y="132" width="88" height="20" uuid="61d59261-d600-4ff1-b078-d36e6085e02e"/>
+				<reportElement x="19" y="149" width="88" height="20" uuid="61d59261-d600-4ff1-b078-d36e6085e02e"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Fecha donación:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="49" y="152" width="58" height="20" uuid="3939d2fc-49b5-4bdd-ad9e-296290601abb"/>
+				<reportElement x="49" y="169" width="58" height="20" uuid="3939d2fc-49b5-4bdd-ad9e-296290601abb"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Destino:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="172" width="100" height="20" uuid="7d15fbb1-c054-49db-ad5c-1a1f2011fb05"/>
+				<reportElement x="7" y="189" width="100" height="20" uuid="7d15fbb1-c054-49db-ad5c-1a1f2011fb05"/>
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Cantidad donada:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="12" y="204" width="531" height="1" uuid="2badaf0f-7b6a-48e7-a5e3-1bcb257d6a0c"/>
+				<reportElement x="12" y="221" width="531" height="1" uuid="2badaf0f-7b6a-48e7-a5e3-1bcb257d6a0c"/>
 			</line>
 			<textField>
-				<reportElement x="119" y="12" width="421" height="20" uuid="8f58e118-e11f-4f94-962e-7aeb1a998fec"/>
+				<reportElement x="119" y="13" width="421" height="35" uuid="8f58e118-e11f-4f94-962e-7aeb1a998fec"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="49" width="100" height="20" uuid="7c52a7fa-6a1f-46b2-b0bc-4fdd1fd4733c"/>
+				<textFieldExpression><![CDATA[$F{anioPublicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="69" width="300" height="20" uuid="6c634138-3466-46c2-bc73-6e6e4a9f4185"/>
+				<textFieldExpression><![CDATA[$F{tematica}.getTematica()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="89" width="270" height="20" uuid="fab65532-bfe5-4a04-a15c-882bf20f94a4"/>
+				<textFieldExpression><![CDATA[$F{idioma}.getIdioma()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="109" width="122" height="20" uuid="10dddf09-6c3f-4f3a-99f1-aa3106102be1"/>
+				<textFieldExpression><![CDATA[$F{cantidadPaginas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="129" width="100" height="20" uuid="2e3e17f9-00a1-4d75-81cf-e56306a875ef"/>
+				<textFieldExpression><![CDATA[$F{tipoCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="289" y="129" width="188" height="20" uuid="c0db6f0d-6ebc-430c-8dab-5226ce1bac71"/>
+				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
