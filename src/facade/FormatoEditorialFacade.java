@@ -72,6 +72,5 @@ public class FormatoEditorialFacade {
     public List<FormatoEditorial> listarTodosOrdenados(){
         Query quBuscar = em.createQuery("SELECT f FROM FormatoEditorial f ORDER BY f.formato");
         return quBuscar.getResultList();       
-    }    
-    
+    }   
 }

@@ -70,9 +70,8 @@ public class TematicaEditorialFacade {
         }
     }
     
-   public List<TematicaEditorial> listarTodasOrdenadas(){
-       Query quBuscar = em.createQuery("SELECT t FROM TematicaEditorial t ORDER BY t.tematica");
-       return quBuscar.getResultList();       
-   } 
-    
+    public List<TematicaEditorial> listarTodasOrdenadas(){
+        Query quBuscar = em.createQuery("SELECT t FROM TematicaEditorial t ORDER BY t.tematica");
+        return quBuscar.getResultList();       
+    }   
 }

@@ -95,6 +95,5 @@ public class UnidadAcademicaFacade {
         Query quBuscar = em.createQuery("SELECT i FROM UnidadAcademica i "
                 + "WHERE i.descripcion LIKE '%" + descripcion + "%'");
         return quBuscar.getResultList();
-    }
-
+    }   
 }

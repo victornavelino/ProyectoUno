@@ -1841,10 +1841,19 @@ public class diagEditorial extends javax.swing.JDialog {
         listaTipos = facade.TipoPublicacionFacade.getInstance().getTodosPublicacion();
         
         long idTipo = listaTipos.get(indice-1).getId();
-        facade.TipoPublicacionFacade.getInstance().eliminar(idTipo);
-        habilitarEliminarTipoPublicacion();
-        cargarTipos(); 
-        JOptionPane.showMessageDialog(null, "Tipo de publicación eliminado exitosamente");
+        
+        List<EditorialCientifica> tipos = facade.EditorialCientificaFacade.getInstance().listarTiposPublicacionEnEditorial(idTipo);
+        
+        if(tipos.size() == 0){
+            facade.TipoPublicacionFacade.getInstance().eliminar(idTipo);
+            JOptionPane.showMessageDialog(null, "Tipo de publicación eliminado exitosamente");
+            cargarTipos();    
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el tipo de publicación "
+                   + "debido a que se encuentra cargado en una o más editoriales");            
+        }
+        
+        habilitarEliminarTipoPublicacion();            
     }
 
     private void cargarEncabezadoTablaDonaciones() {
@@ -1886,6 +1895,14 @@ public class diagEditorial extends javax.swing.JDialog {
         if (tfCantidadDonacion.getText().isEmpty()) {
             bandera = false;
             error += "Debe ingresar una cantidad a donar \n";
+        }else{
+            if(Comunes.validarStringAInt(tfCantidadDonacion.getText()) > editorialCientifica.getStock()){
+                bandera = false;
+                error += "La cantidad ingresada es mayor al stock actual de la editorial\n";                
+            }else{
+                int resta = editorialCientifica.getStock() - Comunes.validarStringAInt(tfCantidadDonacion.getText());
+                tfStock.setText(String.valueOf(resta));
+            }            
         }
 
         if (dpFechaDonacion.getDate() == null) {
@@ -1895,7 +1912,7 @@ public class diagEditorial extends javax.swing.JDialog {
 
         if (bandera == false) {
             JOptionPane.showMessageDialog(null, error);
-        } else {
+        }else{
             agregarFila();
         }
     }
@@ -2045,10 +2062,19 @@ public class diagEditorial extends javax.swing.JDialog {
         listaIdiomas = facade.IdiomaFacade.getInstance().listarTodosOrdenados();
         
         long idIdioma = listaIdiomas.get(indice-1).getId();
-        facade.IdiomaFacade.getInstance().eliminar(idIdioma);
-        cargarComboIdioma();
-        habilitarEliminarIdioma();        
-        JOptionPane.showMessageDialog(null, "Idioma eliminado exitosamente");
+        
+        List<EditorialCientifica> idiomas = facade.EditorialCientificaFacade.getInstance().listarIdiomasEnEditorial(idIdioma);
+        
+        if(idiomas.size() == 0){
+            facade.IdiomaFacade.getInstance().eliminar(idIdioma);
+            JOptionPane.showMessageDialog(null, "Idioma eliminado exitosamente");
+            cargarComboIdioma();
+         }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el idioma "
+                   + "debido a que se encuentra cargado en una o más editoriales");            
+        }
+        
+        habilitarEliminarIdioma();               
     }
 
     private void cargarComboUnidadAcademica() {
@@ -2063,16 +2089,25 @@ public class diagEditorial extends javax.swing.JDialog {
         cargarComboUnidadAcademica();        
     }
 
-    private void eliminarUnidadAcademica() {
+    private void eliminarUnidadAcademica() {        
         int indice = cmbAcademica.getSelectedIndex();       
         List<UnidadAcademica> listaUA = new ArrayList<UnidadAcademica>();
         listaUA = facade.UnidadAcademicaFacade.getInstance().getTodasUnidadAcademica();
         
         long idUA = listaUA.get(indice-1).getId();
-        facade.UnidadAcademicaFacade.getInstance().eliminar(idUA);
-        habilitarEliminarUnidadAcademica();        
-        cargarComboUnidadAcademica(); 
-        JOptionPane.showMessageDialog(null, "Unidad Académica eliminada exitosamente");
+        
+        List<EditorialCientifica> academicas = facade.EditorialCientificaFacade.getInstance().listarAcademicasEnEditorial(idUA);
+        
+        if(academicas.size() == 0){
+            facade.UnidadAcademicaFacade.getInstance().eliminar(idUA);
+            JOptionPane.showMessageDialog(null, "Unidad Académica eliminada exitosamente");
+            cargarComboUnidadAcademica();       
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar la Unidad Académica "
+                   + "debido a que se encuentra cargada en una o más editoriales");            
+        }
+        
+        habilitarEliminarUnidadAcademica();                 
     }
 
     private void habilitarEliminarUnidadAcademica() {
@@ -2137,10 +2172,19 @@ public class diagEditorial extends javax.swing.JDialog {
         listaTematicas = facade.TematicaEditorialFacade.getInstance().listarTodasOrdenadas();
         
         long idTematica = listaTematicas.get(indice-1).getId();
-        facade.TematicaEditorialFacade.getInstance().eliminar(idTematica);
-        cargarComboTematica();
+        
+        List<EditorialCientifica> tematicas = facade.EditorialCientificaFacade.getInstance().listarTematicasEnEditorial(idTematica);
+        
+        if(tematicas.size() == 0){
+            facade.TematicaEditorialFacade.getInstance().eliminar(idTematica);
+            JOptionPane.showMessageDialog(null, "Temática eliminada exitosamente");
+            cargarComboTematica();
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar la temática "
+                   + "debido a que se encuentra cargado en una o más editoriales");            
+        }
+        
         habilitarEliminarTematica();        
-        JOptionPane.showMessageDialog(null, "Temática eliminada exitosamente");
     }
 
     private void eliminarFormato() {
@@ -2149,11 +2193,18 @@ public class diagEditorial extends javax.swing.JDialog {
         listaFormatos = facade.FormatoEditorialFacade.getInstance().listarTodosOrdenados();
         
         long idFormato = listaFormatos.get(indice-1).getId();
-        facade.FormatoEditorialFacade.getInstance().eliminar(idFormato);
-        cargarComboFormato();
-        habilitarEliminarFormato();        
-        JOptionPane.showMessageDialog(null, "Formato eliminado exitosamente");
-    }
-
-    
+        
+        List<EditorialCientifica> formatos = facade.EditorialCientificaFacade.getInstance().listarFormatosEnEditorial(idFormato);
+        
+        if(formatos.size() == 0){
+            facade.FormatoEditorialFacade.getInstance().eliminar(idFormato);
+            JOptionPane.showMessageDialog(null, "Formato eliminado exitosamente");
+            cargarComboFormato();
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el formato "
+                   + "debido a que se encuentra cargado en una o más editoriales");            
+        }
+        
+        habilitarEliminarFormato();                
+    }    
 }

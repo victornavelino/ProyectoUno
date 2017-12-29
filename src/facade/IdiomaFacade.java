@@ -72,8 +72,8 @@ public class IdiomaFacade {
         }
     }
     
-   public List<Idioma> listarTodosOrdenados(){
-       Query quBuscar = em.createQuery("SELECT i FROM Idioma i ORDER BY i.idioma");
-       return quBuscar.getResultList();       
-   }    
+    public List<Idioma> listarTodosOrdenados(){
+        Query quBuscar = em.createQuery("SELECT i FROM Idioma i ORDER BY i.idioma");
+        return quBuscar.getResultList();       
+    }     
 }

@@ -77,5 +77,5 @@ public class TipoPublicacionFacade {
         EntityManager em = emf.createEntityManager();
         Query quBuscar = em.createQuery("SELECT td FROM TipoPublicacion td ORDER BY td.descripcion");
         return quBuscar.getResultList();
-    }
+    }    
 }
