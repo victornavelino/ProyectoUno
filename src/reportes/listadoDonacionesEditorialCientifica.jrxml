@@ -3,6 +3,11 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<subDataset name="donaciones" uuid="3d7b8312-51e0-4269-9afd-33f2c5195296">
+		<field name="fecha" class="java.util.Date"/>
+		<field name="cantidad" class="java.lang.Integer"/>
+		<field name="destino" class="java.lang.Object"/>
+	</subDataset>
 	<queryString language="ejbql">
 		<![CDATA[SELECT e FROM EditorialCientifica e WHERE(SELECT COUNT(d) FROM e.donaciones d) > 0]]>
 	</queryString>
@@ -13,6 +18,7 @@
 	<field name="cantidadPaginas" class="java.lang.Integer"/>
 	<field name="tipoCodigo" class="java.lang.String"/>
 	<field name="ISBN" class="java.lang.String"/>
+	<field name="donaciones" class="java.util.List"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -38,9 +44,9 @@
 				<text><![CDATA[Editorial Científica Universitaria]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="190" y="66" width="350" height="67" uuid="9ade2e73-d140-46e6-9dc8-b1c3905cd6d4"/>
+				<reportElement x="193" y="46" width="350" height="67" uuid="9ade2e73-d140-46e6-9dc8-b1c3905cd6d4"/>
 				<textElement textAlignment="Center">
-					<font size="24"/>
+					<font size="24" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Listado de Donaciones de Editorial Científica]]></text>
 			</staticText>
@@ -49,14 +55,14 @@
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Fecha listado:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="396" y="153" width="144" height="20" uuid="e6c724a4-80ec-4afa-b1a7-a4b81af040fc"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<detail>
-		<band height="234" splitType="Stretch">
+		<band height="281" splitType="Stretch">
 			<staticText>
 				<reportElement x="64" y="13" width="43" height="20" uuid="db413679-3410-4ca2-a4c5-87b250632786"/>
 				<textElement textAlignment="Right"/>
@@ -92,23 +98,8 @@
 				<textElement textAlignment="Right"/>
 				<text><![CDATA[Número:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="19" y="149" width="88" height="20" uuid="61d59261-d600-4ff1-b078-d36e6085e02e"/>
-				<textElement textAlignment="Right"/>
-				<text><![CDATA[Fecha donación:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="49" y="169" width="58" height="20" uuid="3939d2fc-49b5-4bdd-ad9e-296290601abb"/>
-				<textElement textAlignment="Right"/>
-				<text><![CDATA[Destino:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="7" y="189" width="100" height="20" uuid="7d15fbb1-c054-49db-ad5c-1a1f2011fb05"/>
-				<textElement textAlignment="Right"/>
-				<text><![CDATA[Cantidad donada:]]></text>
-			</staticText>
 			<line>
-				<reportElement x="12" y="221" width="531" height="1" uuid="2badaf0f-7b6a-48e7-a5e3-1bcb257d6a0c"/>
+				<reportElement x="12" y="272" width="531" height="1" uuid="2badaf0f-7b6a-48e7-a5e3-1bcb257d6a0c"/>
 			</line>
 			<textField>
 				<reportElement x="119" y="13" width="421" height="35" uuid="8f58e118-e11f-4f94-962e-7aeb1a998fec"/>
@@ -141,6 +132,66 @@
 				<reportElement x="289" y="129" width="188" height="20" uuid="c0db6f0d-6ebc-430c-8dab-5226ce1bac71"/>
 				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
 			</textField>
+			<componentElement>
+				<reportElement key="table" x="17" y="175" width="515" height="86" uuid="bb3c2c63-e5f7-4321-9de6-616ccbda5f57"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="donaciones" uuid="fb28045a-deda-4b8e-b660-8c7f6957556c">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{donaciones})
+]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="95" uuid="c47515f2-930e-43df-8b5b-59132c55428e">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d67ec1fb-9130-4877-80aa-9ff7a230fedb"/>
+								<text><![CDATA[Fecha donación]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField pattern="dd/MM/yyyy">
+								<reportElement x="0" y="0" width="90" height="30" uuid="0454f9de-b06b-4582-9354-b107c01409b8"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="102" uuid="f268f04c-c86d-44a2-b091-6482a07bacc3">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="6" y="0" width="90" height="30" uuid="9dbad56a-5184-4f96-8338-4f36a99f7f4c"/>
+								<text><![CDATA[Cantidad donada]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement x="6" y="0" width="90" height="30" uuid="c23c8ebe-8ff0-4765-932d-edaae79a1d41"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="390" uuid="68b8ac0a-ddad-4cab-9d4f-af912bee065c">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="7" y="0" width="90" height="30" uuid="68370059-e490-4bec-b487-ec80ef73c69a"/>
+								<text><![CDATA[Destino donación]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement x="8" y="0" width="359" height="30" uuid="dffe59b1-1e74-4f85-aa27-5fbb3ec49790"/>
+								<textFieldExpression><![CDATA[$F{destino}.getNombre()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="213" y="152" width="100" height="20" uuid="7d18ba27-953c-499f-8d8f-1f8c1db1bb98"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Donaciones]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>
