@@ -154,4 +154,34 @@ public class EditorialCientificaFacade {
     public List<EditorialCientifica> buscarPorTodo(String text) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public List<EditorialCientifica> listarTiposPublicacionEnEditorial(Long id){
+        Query quBuscar = em.createQuery("SELECT e FROM EditorialCientifica e "
+               + "WHERE e.tipoPublicacion.id=" + id);
+        return quBuscar.getResultList();       
+    } 
+    
+    public List<EditorialCientifica> listarFormatosEnEditorial(Long id){
+        Query quBuscar = em.createQuery("SELECT e FROM EditorialCientifica e "
+               + "WHERE e.formato.id=" + id);
+        return quBuscar.getResultList();       
+    } 
+    
+    public List<EditorialCientifica> listarIdiomasEnEditorial(long id){
+        Query quBuscar = em.createQuery("SELECT e FROM EditorialCientifica e "
+               + "WHERE e.idioma.id=" + id);
+        return quBuscar.getResultList();       
+    }
+    
+    public List<EditorialCientifica> listarTematicasEnEditorial(Long id){
+        Query quBuscar = em.createQuery("SELECT e FROM EditorialCientifica e "
+               + "WHERE e.tematica.id=" + id);
+        return quBuscar.getResultList();       
+    } 
+    
+    public List<EditorialCientifica> listarAcademicasEnEditorial(long id){
+        Query quBuscar = em.createQuery("SELECT e FROM EditorialCientifica e "
+               + "WHERE e.unidadAcademica.id=" + id);
+        return quBuscar.getResultList();       
+    }
 }

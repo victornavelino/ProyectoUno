@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoDonacionesEditorialCientifica" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="33cb2900-ca0a-44f0-8a3f-1b203689a8e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="donaciones" uuid="3d7b8312-51e0-4269-9afd-33f2c5195296">
+		<field name="fecha" class="java.util.Date"/>
+		<field name="cantidad" class="java.lang.Integer"/>
+		<field name="destino" class="java.lang.Object"/>
+	</subDataset>
+	<queryString language="ejbql">
+		<![CDATA[SELECT e FROM EditorialCientifica e WHERE(SELECT COUNT(d) FROM e.donaciones d) > 0]]>
+	</queryString>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="anioPublicacion" class="java.util.Date"/>
+	<field name="tematica" class="java.lang.Object"/>
+	<field name="idioma" class="java.lang.Object"/>
+	<field name="cantidadPaginas" class="java.lang.Integer"/>
+	<field name="tipoCodigo" class="java.lang.String"/>
+	<field name="ISBN" class="java.lang.String"/>
+	<field name="donaciones" class="java.util.List"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="184" splitType="Stretch">
+			<image>
+				<reportElement x="27" y="2" width="234" height="111" uuid="fb3df736-33e3-4dd7-bb64-5b5e245acb1b"/>
+				<imageExpression><![CDATA["/home/walter/NetBeansProjects/ProyectoUno/src/imagenes/Logo_Unca_color.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="113" width="190" height="20" uuid="06e11280-fb20-4a9b-92ba-62506d6c8b28"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Universidad Nacional de Catamarca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="133" width="164" height="20" uuid="d94cdb26-cef1-49db-959f-c270733e3b3b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Secretaría de Ciencia y Técnica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="154" width="161" height="20" uuid="1fd573bc-1ee5-4d8f-b6eb-0deefe75d87f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Editorial Científica Universitaria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="46" width="350" height="67" uuid="9ade2e73-d140-46e6-9dc8-b1c3905cd6d4"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado de Donaciones de Editorial Científica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="153" width="76" height="20" uuid="c8654f2a-6126-4d3e-80c9-a2dc3ec553ba"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha listado:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="396" y="153" width="144" height="20" uuid="e6c724a4-80ec-4afa-b1a7-a4b81af040fc"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="281" splitType="Stretch">
+			<staticText>
+				<reportElement x="64" y="13" width="43" height="20" uuid="db413679-3410-4ca2-a4c5-87b250632786"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Título:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="49" width="100" height="20" uuid="db258b8d-a710-4c41-81c4-92620ff56d7b"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha publicación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="69" width="59" height="20" uuid="cfc630e4-0b4b-4a88-aad1-b58e300ce2ec"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Temática:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="89" width="47" height="20" uuid="41ca37d2-506a-44fd-b12c-4116f64426b0"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Idioma:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="7" y="109" width="100" height="20" uuid="5309814a-a243-441a-9717-bc8c693e0dd0"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Cantidad páginas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="67" y="129" width="40" height="20" uuid="26add1fe-a40f-4d15-ad0f-3b120f2a24bc"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Tipo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="129" width="54" height="20" uuid="942e7807-1f9a-457e-962c-d9f2bc5bc4ac"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Número:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="12" y="272" width="531" height="1" uuid="2badaf0f-7b6a-48e7-a5e3-1bcb257d6a0c"/>
+			</line>
+			<textField>
+				<reportElement x="119" y="13" width="421" height="35" uuid="8f58e118-e11f-4f94-962e-7aeb1a998fec"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="49" width="100" height="20" uuid="7c52a7fa-6a1f-46b2-b0bc-4fdd1fd4733c"/>
+				<textFieldExpression><![CDATA[$F{anioPublicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="69" width="300" height="20" uuid="6c634138-3466-46c2-bc73-6e6e4a9f4185"/>
+				<textFieldExpression><![CDATA[$F{tematica}.getTematica()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="89" width="270" height="20" uuid="fab65532-bfe5-4a04-a15c-882bf20f94a4"/>
+				<textFieldExpression><![CDATA[$F{idioma}.getIdioma()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="109" width="122" height="20" uuid="10dddf09-6c3f-4f3a-99f1-aa3106102be1"/>
+				<textFieldExpression><![CDATA[$F{cantidadPaginas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="129" width="100" height="20" uuid="2e3e17f9-00a1-4d75-81cf-e56306a875ef"/>
+				<textFieldExpression><![CDATA[$F{tipoCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="289" y="129" width="188" height="20" uuid="c0db6f0d-6ebc-430c-8dab-5226ce1bac71"/>
+				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table" x="17" y="175" width="515" height="86" uuid="bb3c2c63-e5f7-4321-9de6-616ccbda5f57"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="donaciones" uuid="fb28045a-deda-4b8e-b660-8c7f6957556c">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{donaciones})
+]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="95" uuid="c47515f2-930e-43df-8b5b-59132c55428e">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="d67ec1fb-9130-4877-80aa-9ff7a230fedb"/>
+								<text><![CDATA[Fecha donación]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField pattern="dd/MM/yyyy">
+								<reportElement x="0" y="0" width="90" height="30" uuid="0454f9de-b06b-4582-9354-b107c01409b8"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="102" uuid="f268f04c-c86d-44a2-b091-6482a07bacc3">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="6" y="0" width="90" height="30" uuid="9dbad56a-5184-4f96-8338-4f36a99f7f4c"/>
+								<text><![CDATA[Cantidad donada]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement x="6" y="0" width="90" height="30" uuid="c23c8ebe-8ff0-4765-932d-edaae79a1d41"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="390" uuid="68b8ac0a-ddad-4cab-9d4f-af912bee065c">
+						<jr:columnHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="7" y="0" width="90" height="30" uuid="68370059-e490-4bec-b487-ec80ef73c69a"/>
+								<text><![CDATA[Destino donación]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField>
+								<reportElement x="8" y="0" width="359" height="30" uuid="dffe59b1-1e74-4f85-aa27-5fbb3ec49790"/>
+								<textFieldExpression><![CDATA[$F{destino}.getNombre()]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="213" y="152" width="100" height="20" uuid="7d18ba27-953c-499f-8d8f-1f8c1db1bb98"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Donaciones]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

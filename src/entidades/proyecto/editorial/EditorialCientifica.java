@@ -4,6 +4,8 @@
  */
 package entidades.proyecto.editorial;
 
+import entidades.Idioma;
+import entidades.UnidadAcademica;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Proyecto;
 import entidades.proyecto.vinculacion.ParticipacionVinculacion;
@@ -46,6 +48,114 @@ public class EditorialCientifica implements Serializable {
     private String summary;        
     @ManyToMany
     private List<Investigador> investigadores;
+    @OneToMany
+    private List<DonacionEditorial> donaciones;
+    
+    private int cantidadPaginas;
+    @ManyToOne
+    private Idioma idioma;
+    private String referato;
+    private String tipoCodigo;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaRecibido;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaAceptado;
+    @OneToOne
+    private UnidadAcademica unidadAcademica;
+    private int stock;
+    @OneToOne
+    private FormatoEditorial formato; 
+    @OneToOne
+    private TematicaEditorial tematica;
+
+    public FormatoEditorial getFormato() {
+        return formato;
+    }
+
+    public void setFormato(FormatoEditorial formato) {
+        this.formato = formato;
+    }
+
+    public TematicaEditorial getTematica() {
+        return tematica;
+    }
+
+    public void setTematica(TematicaEditorial tematica) {
+        this.tematica = tematica;
+    }    
+    
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getCantidadPaginas() {
+        return cantidadPaginas;
+    }
+
+    public void setCantidadPaginas(int cantidadPaginas) {
+        this.cantidadPaginas = cantidadPaginas;
+    }
+
+    public Idioma getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(Idioma idioma) {
+        this.idioma = idioma;
+    }
+
+    public String getReferato() {
+        return referato;
+    }
+
+    public void setReferato(String referato) {
+        this.referato = referato;
+    }
+
+    public String getTipoCodigo() {
+        return tipoCodigo;
+    }
+
+    public void setTipoCodigo(String tipoCodigo) {
+        this.tipoCodigo = tipoCodigo;
+    }
+
+    public Date getFechaRecibido() {
+        return fechaRecibido;
+    }
+
+    public void setFechaRecibido(Date fechaRecibido) {
+        this.fechaRecibido = fechaRecibido;
+    }
+
+    public Date getFechaAceptado() {
+        return fechaAceptado;
+    }
+
+    public void setFechaAceptado(Date fechaAceptado) {
+        this.fechaAceptado = fechaAceptado;
+    }
+
+    public UnidadAcademica getUnidadAcademica() {
+        return unidadAcademica;
+    }
+
+    public void setUnidadAcademica(UnidadAcademica unidadAcademica) {
+        this.unidadAcademica = unidadAcademica;
+    }
+ 
+    
+    public List<DonacionEditorial> getDonaciones() {
+        return donaciones;
+    }
+
+    public void setDonaciones(List<DonacionEditorial> donaciones) {
+        this.donaciones = donaciones;
+    }
 
     public List<Investigador> getInvestigadores() {
         return investigadores;

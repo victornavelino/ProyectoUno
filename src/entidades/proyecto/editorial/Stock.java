@@ -29,6 +29,7 @@ public class Stock implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String codigo;
+    private int cantidad;
     private FormatoLibro formato;
     @OneToOne()
     private EditorialCientifica publicacion;
@@ -75,6 +76,14 @@ public class Stock implements Serializable {
         this.fecha = fecha;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -97,8 +106,8 @@ public class Stock implements Serializable {
 
     @Override
     public String toString() {
-        return  "Código: '" + this.getCodigo() + "' - " +
-                "Libro: '"+ this.getPublicacion().getTitulo() + "' - " +
+        return  
+               "Libro: '" + this.getPublicacion().getTitulo() + "' - " +
                "Cantidad: '1'- " + 
                "Formato: '" + this.getFormato() + "' ";
     }

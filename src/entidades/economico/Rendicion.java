@@ -47,6 +47,15 @@ public class Rendicion implements Serializable {
     private Documento archivoRendicion;
     private int anioRendido;
     private String libreDeuda;
+    private String tramiteRendicion;
+
+    public String getTramiteRendicion() {
+        return tramiteRendicion;
+    }
+
+    public void setTramiteRendicion(String tramiteRendicion) {
+        this.tramiteRendicion = tramiteRendicion;
+    }
     
     public Long getId() {
         return id;

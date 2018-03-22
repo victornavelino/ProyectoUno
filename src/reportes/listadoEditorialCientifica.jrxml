@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoEditorialCientifica" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5ede044-da5b-4a07-87e9-b39081d4bf20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="76"/>
+	<queryString language="ejbql">
+		<![CDATA[SELECT e FROM EditorialCientifica e]]>
+	</queryString>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="anioPublicacion" class="java.util.Date"/>
+	<field name="tipoCodigo" class="java.lang.String"/>
+	<field name="cantidadPaginas" class="java.lang.Integer"/>
+	<field name="idioma" class="java.lang.Object"/>
+	<field name="stock" class="java.lang.String"/>
+	<field name="ISBN" class="java.lang.String"/>
+	<field name="tematica" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="183" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="107" width="188" height="20" uuid="53daa211-96ab-40b1-abfb-1840b13c8713"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Universidad Nacional de Catamarca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="147" width="169" height="20" uuid="e2cced40-4977-4dd1-b69d-bfc0d09f31d8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Editorial Cientifíca Universitaria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="127" width="162" height="20" uuid="aaa18154-3fba-4d8f-92fb-133b0b4ae7a7"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Secretaría de Ciencia y Técnica]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="48" width="357" height="59" uuid="238ebd28-5974-4edc-80d6-63f9075c95b0"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado de Editorial Científica]]></text>
+			</staticText>
+			<image>
+				<reportElement x="43" y="0" width="129" height="107" uuid="eaeae5fa-eeaf-463e-be23-ba3970616954"/>
+				<imageExpression><![CDATA["/home/walter/NetBeansProjects/ProyectoUno/src/imagenes/Logo_Unca_color.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="364" y="147" width="71" height="20" uuid="e591a0b8-a9f4-420a-bfdf-1e4696daa587"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha listado:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="445" y="147" width="122" height="20" uuid="53cd0745-c310-4831-b0b3-0aeee33a88f9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="203" splitType="Stretch">
+			<textField>
+				<reportElement x="117" y="16" width="440" height="41" uuid="f6fd3aa6-7c30-42f9-9abd-4fdfcbc54dae"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="69" y="16" width="36" height="20" uuid="6ff66117-faf2-44bc-8fc6-36db4749a7c2"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Título:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="57" width="97" height="20" uuid="d3df8a84-9889-4ee7-bb12-fa820bd7fe2c"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha publicación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="77" width="78" height="20" uuid="49edbda8-c701-40e4-8f82-a477d361d961"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Tipo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="97" width="100" height="20" uuid="c84fd60d-4641-4b66-8d78-3b51fa60fbb6"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Cantidad páginas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="117" width="43" height="20" uuid="647d16cc-9d5c-4202-a863-633c8157ae02"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Idioma:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="137" width="44" height="20" uuid="d89cca59-726f-4590-bfd8-2292e5cbfb5c"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Stock:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="5" y="189" width="562" height="1" uuid="93e6c106-f325-4db3-98b1-09cbba27ad97"/>
+			</line>
+			<textField>
+				<reportElement x="117" y="57" width="137" height="20" uuid="435fd1a1-44ca-49e8-bda3-6d46f3b584db"/>
+				<textFieldExpression><![CDATA[$F{anioPublicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="77" width="100" height="20" uuid="cf5327e0-5f00-4e1a-9467-7eb32cec0e95"/>
+				<textFieldExpression><![CDATA[$F{tipoCodigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="97" width="100" height="20" uuid="d2a3b3fc-dd87-433c-a55c-2821c640ef0c"/>
+				<textFieldExpression><![CDATA[$F{cantidadPaginas}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="117" y="117" width="100" height="20" uuid="65f3774f-a2f2-4880-a020-c9a9c8f8642b"/>
+				<textFieldExpression><![CDATA[$F{idioma}.getIdioma()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="137" width="100" height="20" uuid="89e889d2-6e77-47da-8e45-dd2bef452a64"/>
+				<textFieldExpression><![CDATA[$F{stock}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="254" y="77" width="100" height="20" uuid="e8f01e04-a665-4129-b0a1-5cfa2488ec2c"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Número:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="364" y="77" width="193" height="20" uuid="2d24ada0-0e2d-446b-8448-363393d0ccf7"/>
+				<textFieldExpression><![CDATA[$F{ISBN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="48" y="157" width="57" height="20" uuid="03749f6c-58de-4670-93a1-f61c61b4fd54"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Temática:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="117" y="157" width="237" height="20" uuid="7bd5a9de-466a-49c7-805f-8cdb8bd7174e"/>
+				<textFieldExpression><![CDATA[$F{tematica}.getTematica()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
