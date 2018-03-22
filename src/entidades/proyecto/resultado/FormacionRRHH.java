@@ -29,6 +29,7 @@ public class FormacionRRHH implements Serializable {
     private int tesisAprobadasMaestria;
     private int tesisAprobadasDoctorado;
     private int tesinasGradoAprobadas;
+    private int cantidadIntegrantes;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
     @ManyToOne
@@ -115,6 +116,14 @@ public class FormacionRRHH implements Serializable {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public int getCantidadIntegrantes() {
+        return cantidadIntegrantes;
+    }
+
+    public void setCantidadIntegrantes(int cantidadIntegrantes) {
+        this.cantidadIntegrantes = cantidadIntegrantes;
     }
 
     @Override
