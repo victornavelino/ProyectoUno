@@ -153,6 +153,8 @@ public class diagAltaRendicion extends javax.swing.JDialog {
         cmbCobros = new javax.swing.JComboBox();
         jLabel8 = new javax.swing.JLabel();
         cmbPagos = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        cmbTramiteRendicion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(diagAltaRendicion.class, "diagAltaRendicion.title")); // NOI18N
@@ -243,7 +245,7 @@ public class diagAltaRendicion extends javax.swing.JDialog {
                         .addComponent(lblTotalBC)
                         .addGap(45, 45, 45)
                         .addComponent(lblTotalBNP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblTotalGV)
                         .addGap(54, 54, 54)
                         .addComponent(lblTotalBU))
@@ -302,6 +304,10 @@ public class diagAltaRendicion extends javax.swing.JDialog {
 
         jLabel8.setText(org.openide.util.NbBundle.getMessage(diagAltaRendicion.class, "diagAltaRendicion.jLabel8.text")); // NOI18N
 
+        jLabel9.setText(org.openide.util.NbBundle.getMessage(diagAltaRendicion.class, "diagAltaRendicion.jLabel9.text")); // NOI18N
+
+        cmbTramiteRendicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Con Canon", "Sin Canon" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -348,8 +354,13 @@ public class diagAltaRendicion extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfDiferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tfMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(cmbPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbPagos, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbTramiteRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,8 +384,10 @@ public class diagAltaRendicion extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(cmbPagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                    .addComponent(cmbPagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(cmbTramiteRendicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -474,6 +487,7 @@ public class diagAltaRendicion extends javax.swing.JDialog {
     private javax.swing.JComboBox cmbCobros;
     private javax.swing.JComboBox cmbLibreDeuda;
     private javax.swing.JComboBox cmbPagos;
+    private javax.swing.JComboBox<String> cmbTramiteRendicion;
     private org.jdesktop.swingx.JXDatePicker dpFechaRendicion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -483,6 +497,7 @@ public class diagAltaRendicion extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -837,6 +852,7 @@ public class diagAltaRendicion extends javax.swing.JDialog {
         rendicion.setLibreDeuda(cmbLibreDeuda.getSelectedItem().toString());
         rendicion.setObservacion(taObservacion.getText());
         rendicion.setPagoEconomico(pagoSeleccionado);
+        rendicion.setTramiteRendicion(cmbTramiteRendicion.getSelectedItem().toString());
 
         // Averiguo si la rendicón tiene detalle
         if (listaRendicionesDetalle.size() > 0) {

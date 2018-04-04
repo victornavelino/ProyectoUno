@@ -1804,6 +1804,7 @@ public class diagAdministrarEconomico extends javax.swing.JDialog {
         modeloTablaRendiciones.addColumn("Monto");
         modeloTablaRendiciones.addColumn("Año Rendido");
         modeloTablaRendiciones.addColumn("Libre Deuda");
+        modeloTablaRendiciones.addColumn("Trámite");
         tblDatosRendiciones.setModel(modeloTablaRendiciones);
     }
 
@@ -1819,13 +1820,15 @@ public class diagAdministrarEconomico extends javax.swing.JDialog {
                 listaRendi = pago.getRendiciones();
                 for (Rendicion rendi : listaRendi) {
                     listaRendiciones.add(rendi);
-                    Object[] fila = new Object[4];
+                    Object[] fila = new Object[5];
                     if (rendi.getFechaRendicion() != null) {
                         fila[0] = formato.format(rendi.getFechaRendicion());
                     }
                     fila[1] = rendi.getMontoRendido();
                     fila[2] = rendi.getAnioRendido();
                     fila[3] = rendi.getLibreDeuda();
+                    fila[4] = rendi.getTramiteRendicion();
+                    
                     totalRendido = totalRendido.add(rendi.getMontoRendido());
 
                     modeloTablaRendiciones.addRow(fila);

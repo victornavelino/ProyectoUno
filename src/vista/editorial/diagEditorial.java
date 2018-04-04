@@ -5,31 +5,48 @@
  */
 package vista.editorial;
 
+//import controladores.DestinoEditorialJpaController;
+import controladores.exceptions.NonexistentEntityException;
+import entidades.Idioma;
+import entidades.UnidadAcademica;
 import entidades.operaciones.Operacion;
 import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Evaluacion;
 import entidades.proyecto.Proyecto;
+import entidades.proyecto.editorial.DestinoEditorial;
+import entidades.proyecto.editorial.DonacionEditorial;
 import entidades.proyecto.editorial.EditorialCientifica;
 import entidades.proyecto.editorial.EvaluacionEditorial;
 import entidades.proyecto.editorial.ExpedienteEditorial;
+import entidades.proyecto.editorial.FormatoEditorial;
 import entidades.proyecto.editorial.Stock;
+import entidades.proyecto.editorial.TematicaEditorial;
 import entidades.proyecto.editorial.TipoPublicacion;
 import entidades.usuario.Usuario;
+import facade.DestinoEditorialFacade;
+import facade.DonacionEditorialFacade;
 import facade.EditorialCientificaFacade;
 import facade.EvaluacionEditorialFacade;
-import facade.EvaluacionFacade;
+import facade.FormatoEditorialFacade;
+import facade.IdiomaFacade;
 import facade.InvestigadorFacade;
 import facade.OperacionFacade;
-import facade.ProyectoVinculacionFacade;
+import facade.TematicaEditorialFacade;
+import facade.UnidadAcademicaFacade;
 import facade.editorial.StockFacade;
 import facade.editorial.TipoPublicacionFacade;
 import includes.Comunes;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vista.diagProyectoBusquedaSimple;
@@ -37,6 +54,9 @@ import vista.editorial.evaluaciones.diagEvaluacionEditorial;
 import vista.editorial.stock.diagStock;
 import vista.proyectos.resultado.diagProyectoResultado;
 import vistas.evaluaciones.diagEvaluacion;
+import vistas.investigadores.diagInvestigador;
+import vista.diagIdiomaAlta;
+import vista.diagUnidadAcademicaAlta;
 
 /**
  *
@@ -56,7 +76,16 @@ public class diagEditorial extends javax.swing.JDialog {
     private List<Stock> listaUnidades = new ArrayList<Stock>();
     private List<String> palabrasClaves = new ArrayList<String>();
     private List<String> keyWords = new ArrayList<String>();
+    SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+    
+    List<DonacionEditorial> listaDonaciones = new ArrayList<DonacionEditorial>();
 
+    DefaultTableModel modeloTablaDonaciones = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int fila, int columna) {
+            return false;
+        }
+    };
     /**
      * Creates new form diagEditorial
      */
@@ -127,6 +156,36 @@ public class diagEditorial extends javax.swing.JDialog {
         tfBuscarIntregantesLibro = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnAgregarAutor = new javax.swing.JButton();
+        btnEliminarTipoPublicacion = new javax.swing.JButton();
+        cmbTipoCodigo = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        dpFechaRecibido = new org.jdesktop.swingx.JXDatePicker();
+        jLabel18 = new javax.swing.JLabel();
+        dpFechaAceptado = new org.jdesktop.swingx.JXDatePicker();
+        jLabel19 = new javax.swing.JLabel();
+        cmbIdioma = new javax.swing.JComboBox<>();
+        btnNuevoIdioma = new javax.swing.JButton();
+        btnEliminarIdioma = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        cmbReferato = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        cmbAcademica = new javax.swing.JComboBox<>();
+        btnNuevaAcademica = new javax.swing.JButton();
+        btnEliminarAcademica = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        tfCantidadPaginas = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        tfStock = new javax.swing.JTextField();
+        btnNuevaTematica = new javax.swing.JButton();
+        btnEliminarTematica = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        cmbTematica = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
+        cmbFormato = new javax.swing.JComboBox<>();
+        btnNuevoFormato = new javax.swing.JButton();
+        btnEliminarFormato = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jListEvaluaciones = new javax.swing.JList();
@@ -135,12 +194,6 @@ public class diagEditorial extends javax.swing.JDialog {
         btnEditarEvaluacion = new javax.swing.JButton();
         btnEliminarEvaluacion = new javax.swing.JButton();
         btVerDetallesEvaluacionSeleccionada = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jListUnidades = new javax.swing.JList();
-        btAgregarEvaluacion1 = new javax.swing.JButton();
-        btnEliminarEvaluacion1 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         taResumen = new javax.swing.JTextArea();
@@ -148,6 +201,21 @@ public class diagEditorial extends javax.swing.JDialog {
         taSummary = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        dpFechaDonacion = new org.jdesktop.swingx.JXDatePicker();
+        jLabel15 = new javax.swing.JLabel();
+        tfCantidadDonacion = new javax.swing.JTextField();
+        btnAgregarDonacion = new javax.swing.JButton();
+        cmbDestinoEditorial = new javax.swing.JComboBox();
+        btnAgregarDestinoEditorial = new javax.swing.JButton();
+        btnEliminarDestinoEditorial = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDonaciones = new javax.swing.JTable();
+        btnEliminarDonacion = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -179,12 +247,18 @@ public class diagEditorial extends javax.swing.JDialog {
         jLabel9.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel9.text")); // NOI18N
 
         jtfTitulo.setColumns(20);
+        jtfTitulo.setLineWrap(true);
         jtfTitulo.setRows(5);
         jScrollPane2.setViewportView(jtfTitulo);
 
         jtfIsbn.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jtfIsbn.text")); // NOI18N
 
         jcbTipoPublicacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbTipoPublicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbTipoPublicacionActionPerformed(evt);
+            }
+        });
 
         jtfProyectoRelacionado.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jtfProyectoRelacionado.text")); // NOI18N
         jtfProyectoRelacionado.setEnabled(false);
@@ -192,6 +266,8 @@ public class diagEditorial extends javax.swing.JDialog {
         jtaMenciones.setColumns(20);
         jtaMenciones.setRows(5);
         jScrollPane3.setViewportView(jtaMenciones);
+
+        jxDatePub.setFormats("dd/MM/yyyy");
 
         jButton4.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jButton4.text")); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -247,6 +323,13 @@ public class diagEditorial extends javax.swing.JDialog {
 
         jLabel6.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel6.text")); // NOI18N
 
+        btnAgregarAutor.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnAgregarAutor.text")); // NOI18N
+        btnAgregarAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAutorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelAsesoresLayout = new javax.swing.GroupLayout(jPanelAsesores);
         jPanelAsesores.setLayout(jPanelAsesoresLayout);
         jPanelAsesoresLayout.setHorizontalGroup(
@@ -262,9 +345,10 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addGap(18, 18, 18)))
                 .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAsesoresLayout.createSequentialGroup()
-                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                            .addComponent(btnAgregarAutor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,18 +368,17 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(tfBuscarIntregantesLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelAsesoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelAsesoresLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane11))
-                            .addGroup(jPanelAsesoresLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton9)
-                                .addGap(48, 48, 48))))
+                                .addGap(30, 30, 30)
+                                .addComponent(btnAgregarAutor))
+                            .addComponent(jScrollPane11)))
                     .addGroup(jPanelAsesoresLayout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel2)
@@ -303,6 +386,127 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addComponent(jScrollPane10)))
                 .addContainerGap())
         );
+
+        btnEliminarTipoPublicacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarTipoPublicacion.text")); // NOI18N
+        btnEliminarTipoPublicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTipoPublicacionActionPerformed(evt);
+            }
+        });
+
+        cmbTipoCodigo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel16.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel16.text")); // NOI18N
+
+        jLabel17.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel17.text")); // NOI18N
+
+        dpFechaRecibido.setFormats("dd/MM/yyyy");
+
+        jLabel18.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel18.text")); // NOI18N
+
+        dpFechaAceptado.setFormats("dd/MM/yyyy");
+
+        jLabel19.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel19.text")); // NOI18N
+
+        cmbIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbIdiomaActionPerformed(evt);
+            }
+        });
+
+        btnNuevoIdioma.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevoIdioma.text")); // NOI18N
+        btnNuevoIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoIdiomaActionPerformed(evt);
+            }
+        });
+
+        btnEliminarIdioma.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarIdioma.text")); // NOI18N
+        btnEliminarIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarIdiomaActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel20.text")); // NOI18N
+
+        jLabel21.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel21.text")); // NOI18N
+
+        cmbAcademica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbAcademica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAcademicaActionPerformed(evt);
+            }
+        });
+
+        btnNuevaAcademica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevaAcademica.text")); // NOI18N
+        btnNuevaAcademica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaAcademicaActionPerformed(evt);
+            }
+        });
+
+        btnEliminarAcademica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarAcademica.text")); // NOI18N
+        btnEliminarAcademica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarAcademicaActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel22.text")); // NOI18N
+
+        tfCantidadPaginas.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfCantidadPaginas.text")); // NOI18N
+
+        jLabel11.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel11.text")); // NOI18N
+
+        tfStock.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfStock.text")); // NOI18N
+
+        btnNuevaTematica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevaTematica.text")); // NOI18N
+        btnNuevaTematica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaTematicaActionPerformed(evt);
+            }
+        });
+
+        btnEliminarTematica.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarTematica.text")); // NOI18N
+        btnEliminarTematica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTematicaActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel23.text")); // NOI18N
+
+        cmbTematica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbTematica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTematicaActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel24.text")); // NOI18N
+
+        cmbFormato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbFormato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFormatoActionPerformed(evt);
+            }
+        });
+
+        btnNuevoFormato.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnNuevoFormato.text")); // NOI18N
+        btnNuevoFormato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoFormatoActionPerformed(evt);
+            }
+        });
+
+        btnEliminarFormato.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarFormato.text")); // NOI18N
+        btnEliminarFormato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarFormatoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -313,79 +517,183 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel4)))
-                        .addGap(69, 69, 69)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17))
+                        .addGap(44, 44, 44)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelAsesores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(cmbTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(btnNuevaTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(137, 137, 137)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel20)
+                                            .addComponent(jLabel21))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbReferato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(cmbFormato, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(cmbAcademica, javax.swing.GroupLayout.Alignment.LEADING, 0, 254, Short.MAX_VALUE)
+                                                    .addComponent(jLabel22))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(btnNuevaAcademica, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                                                    .addComponent(tfCantidadPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(btnNuevoFormato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(btnEliminarAcademica, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                                                    .addComponent(btnEliminarFormato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(dpFechaRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(72, 72, 72)
+                                        .addComponent(jLabel18))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addComponent(cmbTipoCodigo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(163, 163, 163))
+                                        .addComponent(jScrollPane3)
+                                        .addComponent(jtfIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanelAsesores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(dpFechaAceptado, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEliminarTematica, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcbTipoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtfProyectoRelacionado, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel19)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(42, 42, 42)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jcbTipoPublicacion, 0, 273, Short.MAX_VALUE)
+                                            .addComponent(jtfProyectoRelacionado, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                                            .addComponent(cmbIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnNuevoIdioma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnPublicaciones))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(665, 665, 665)))))
-                .addContainerGap(6, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnPublicaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarTipoPublicacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnEliminarIdioma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel24)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(79, 79, 79)
-                                .addComponent(jLabel5))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtfIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(15, 15, 15)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmbTipoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                            .addComponent(jLabel16)
+                            .addComponent(jtfIsbn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)))
                     .addComponent(jPanelAsesores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jxDatePub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(dpFechaAceptado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dpFechaRecibido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jxDatePub, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton4)
                         .addComponent(jtfProyectoRelacionado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPublicaciones))
-                    .addComponent(jLabel9))
+                        .addComponent(btnPublicaciones)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel20))
+                    .addComponent(cmbReferato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jcbTipoPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(111, 111, 111))
+                    .addComponent(jButton1)
+                    .addComponent(btnEliminarTipoPublicacion)
+                    .addComponent(jLabel21)
+                    .addComponent(cmbAcademica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevaAcademica)
+                    .addComponent(btnEliminarAcademica))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel23))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNuevoIdioma)
+                            .addComponent(btnEliminarIdioma)
+                            .addComponent(jLabel24)
+                            .addComponent(cmbFormato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNuevoFormato)
+                            .addComponent(btnEliminarFormato))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfCantidadPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(tfStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNuevaTematica)
+                            .addComponent(btnEliminarTematica)
+                            .addComponent(jLabel22)
+                            .addComponent(cmbTematica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel1.TabConstraints.tabTitle"), jPanel1); // NOI18N
@@ -443,7 +751,7 @@ public class diagEditorial extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btVerDetallesEvaluacionSeleccionada)))
-                .addContainerGap(669, Short.MAX_VALUE))
+                .addContainerGap(822, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,61 +769,10 @@ public class diagEditorial extends javax.swing.JDialog {
                         .addComponent(btnEliminarEvaluacion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btVerDetallesEvaluacionSeleccionada)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
-
-        jScrollPane5.setViewportView(jListUnidades);
-
-        btAgregarEvaluacion1.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btAgregarEvaluacion1.text")); // NOI18N
-        btAgregarEvaluacion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAgregarEvaluacion1ActionPerformed(evt);
-            }
-        });
-
-        btnEliminarEvaluacion1.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarEvaluacion1.text")); // NOI18N
-        btnEliminarEvaluacion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarEvaluacion1ActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel11.text")); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btAgregarEvaluacion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminarEvaluacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel11))
-                .addContainerGap(760, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btAgregarEvaluacion1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEliminarEvaluacion1)))
-                .addContainerGap(279, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
 
         taResumen.setColumns(20);
         taResumen.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -546,7 +803,7 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
                     .addComponent(jScrollPane8))
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addContainerGap(423, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -555,14 +812,174 @@ public class diagEditorial extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel25)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel6.border.title"))); // NOI18N
+
+        jLabel13.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel13.text")); // NOI18N
+
+        jLabel14.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel14.text")); // NOI18N
+
+        dpFechaDonacion.setFormats("dd/MM/yyyy");
+
+        jLabel15.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jLabel15.text")); // NOI18N
+
+        tfCantidadDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.tfCantidadDonacion.text")); // NOI18N
+
+        btnAgregarDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnAgregarDonacion.text")); // NOI18N
+        btnAgregarDonacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarDonacionActionPerformed(evt);
+            }
+        });
+
+        cmbDestinoEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbDestinoEditorialActionPerformed(evt);
+            }
+        });
+
+        btnAgregarDestinoEditorial.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnAgregarDestinoEditorial.text")); // NOI18N
+        btnAgregarDestinoEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarDestinoEditorialActionPerformed(evt);
+            }
+        });
+
+        btnEliminarDestinoEditorial.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarDestinoEditorial.text")); // NOI18N
+        btnEliminarDestinoEditorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDestinoEditorialActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel15))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(dpFechaDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAgregarDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfCantidadDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(cmbDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAgregarDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminarDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(cmbDestinoEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarDestinoEditorial)
+                    .addComponent(btnEliminarDestinoEditorial))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(dpFechaDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAgregarDonacion))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(tfCantidadDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel7.border.title"))); // NOI18N
+
+        tblDonaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tblDonaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDonacionesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDonaciones);
+
+        btnEliminarDonacion.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.btnEliminarDonacion.text")); // NOI18N
+        btnEliminarDonacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDonacionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1252, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(437, 437, 437)
+                .addComponent(btnEliminarDonacion, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addComponent(btnEliminarDonacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jPanel5.TabConstraints.tabTitle"), jPanel5); // NOI18N
 
         jButton3.setText(org.openide.util.NbBundle.getMessage(diagEditorial.class, "diagEditorial.jButton3.text")); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -575,23 +992,23 @@ public class diagEditorial extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(464, 464, 464)
+                .addGap(466, 466, 466)
                 .addComponent(jButton2)
-                .addGap(41, 41, 41)
+                .addGap(63, 63, 63)
                 .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1164, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -605,13 +1022,29 @@ public class diagEditorial extends javax.swing.JDialog {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void btnEliminarEvaluacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEvaluacion1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarEvaluacion1ActionPerformed
+    private void btnEliminarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDonacionActionPerformed
+        eliminarFila(tblDonaciones.getSelectedRow());
+    }//GEN-LAST:event_btnEliminarDonacionActionPerformed
 
-    private void btAgregarEvaluacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgregarEvaluacion1ActionPerformed
-        agregarStock();        // TODO add your handling code here:
-    }//GEN-LAST:event_btAgregarEvaluacion1ActionPerformed
+    private void tblDonacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDonacionesMouseClicked
+        habilitarBotonEliminarFilaDonacion();
+    }//GEN-LAST:event_tblDonacionesMouseClicked
+
+    private void btnEliminarDestinoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDestinoEditorialActionPerformed
+        eliminarDestinoEditorial();
+    }//GEN-LAST:event_btnEliminarDestinoEditorialActionPerformed
+
+    private void btnAgregarDestinoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDestinoEditorialActionPerformed
+        agregarDestinoEditorial();
+    }//GEN-LAST:event_btnAgregarDestinoEditorialActionPerformed
+
+    private void cmbDestinoEditorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDestinoEditorialActionPerformed
+        habilitarBotonEliminarDestino();
+    }//GEN-LAST:event_cmbDestinoEditorialActionPerformed
+
+    private void btnAgregarDonacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarDonacionActionPerformed
+        agregarDonacionEditorial();
+    }//GEN-LAST:event_btnAgregarDonacionActionPerformed
 
     private void btVerDetallesEvaluacionSeleccionadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerDetallesEvaluacionSeleccionadaActionPerformed
         // TODO add your handling code here:
@@ -629,6 +1062,50 @@ public class diagEditorial extends javax.swing.JDialog {
         agregarNuevaEvaluacion();        // TODO add your handling code here:
     }//GEN-LAST:event_btAgregarEvaluacionActionPerformed
 
+    private void btnEliminarAcademicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAcademicaActionPerformed
+        eliminarUnidadAcademica();
+    }//GEN-LAST:event_btnEliminarAcademicaActionPerformed
+
+    private void btnNuevaAcademicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaAcademicaActionPerformed
+        nuevaUnidadAcademica();
+    }//GEN-LAST:event_btnNuevaAcademicaActionPerformed
+
+    private void cmbAcademicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAcademicaActionPerformed
+        habilitarEliminarUnidadAcademica();
+    }//GEN-LAST:event_cmbAcademicaActionPerformed
+
+    private void btnEliminarIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarIdiomaActionPerformed
+        eliminarIdioma();
+    }//GEN-LAST:event_btnEliminarIdiomaActionPerformed
+
+    private void btnNuevoIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoIdiomaActionPerformed
+        agregarIdioma();
+    }//GEN-LAST:event_btnNuevoIdiomaActionPerformed
+
+    private void cmbIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdiomaActionPerformed
+        habilitarEliminarIdioma();
+    }//GEN-LAST:event_cmbIdiomaActionPerformed
+
+    private void btnEliminarTipoPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTipoPublicacionActionPerformed
+        eliminarTipoPulicacion();
+    }//GEN-LAST:event_btnEliminarTipoPublicacionActionPerformed
+
+    private void btnAgregarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAutorActionPerformed
+        agregarInvestigador();
+    }//GEN-LAST:event_btnAgregarAutorActionPerformed
+
+    private void tfBuscarIntregantesLibroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarIntregantesLibroKeyPressed
+        buscarIntegrantesLibro();
+    }//GEN-LAST:event_tfBuscarIntregantesLibroKeyPressed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        quitarIntegrantesLibro();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        agregarIntegrantesLibro();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     private void btnPublicacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPublicacionesActionPerformed
         mostrarPublicaciones();
     }//GEN-LAST:event_btnPublicacionesActionPerformed
@@ -642,17 +1119,33 @@ public class diagEditorial extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        agregarIntegrantesLibro();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void jcbTipoPublicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTipoPublicacionActionPerformed
+        habilitarEliminarTipoPublicacion();
+    }//GEN-LAST:event_jcbTipoPublicacionActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        quitarIntegrantesLibro();
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void btnNuevaTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaTematicaActionPerformed
+        agregarTematica();
+    }//GEN-LAST:event_btnNuevaTematicaActionPerformed
 
-    private void tfBuscarIntregantesLibroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarIntregantesLibroKeyPressed
-        buscarIntegrantesLibro();
-    }//GEN-LAST:event_tfBuscarIntregantesLibroKeyPressed
+    private void btnEliminarFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFormatoActionPerformed
+        eliminarFormato();
+    }//GEN-LAST:event_btnEliminarFormatoActionPerformed
+
+    private void cmbTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTematicaActionPerformed
+        habilitarEliminarTematica();
+    }//GEN-LAST:event_cmbTematicaActionPerformed
+
+    private void cmbFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFormatoActionPerformed
+        habilitarEliminarFormato();
+    }//GEN-LAST:event_cmbFormatoActionPerformed
+
+    private void btnNuevoFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoFormatoActionPerformed
+        agregarFormato();
+    }//GEN-LAST:event_btnNuevoFormatoActionPerformed
+
+    private void btnEliminarTematicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTematicaActionPerformed
+        eliminarTematica();
+    }//GEN-LAST:event_btnEliminarTematicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -698,12 +1191,34 @@ public class diagEditorial extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarEvaluacion;
-    private javax.swing.JButton btAgregarEvaluacion1;
     private javax.swing.JButton btVerDetallesEvaluacionSeleccionada;
+    private javax.swing.JButton btnAgregarAutor;
+    private javax.swing.JButton btnAgregarDestinoEditorial;
+    private javax.swing.JButton btnAgregarDonacion;
     private javax.swing.JButton btnEditarEvaluacion;
+    private javax.swing.JButton btnEliminarAcademica;
+    private javax.swing.JButton btnEliminarDestinoEditorial;
+    private javax.swing.JButton btnEliminarDonacion;
     private javax.swing.JButton btnEliminarEvaluacion;
-    private javax.swing.JButton btnEliminarEvaluacion1;
+    private javax.swing.JButton btnEliminarFormato;
+    private javax.swing.JButton btnEliminarIdioma;
+    private javax.swing.JButton btnEliminarTematica;
+    private javax.swing.JButton btnEliminarTipoPublicacion;
+    private javax.swing.JButton btnNuevaAcademica;
+    private javax.swing.JButton btnNuevaTematica;
+    private javax.swing.JButton btnNuevoFormato;
+    private javax.swing.JButton btnNuevoIdioma;
     private javax.swing.JButton btnPublicaciones;
+    private javax.swing.JComboBox<String> cmbAcademica;
+    private javax.swing.JComboBox cmbDestinoEditorial;
+    private javax.swing.JComboBox<String> cmbFormato;
+    private javax.swing.JComboBox<String> cmbIdioma;
+    private javax.swing.JComboBox<String> cmbReferato;
+    private javax.swing.JComboBox<String> cmbTematica;
+    private javax.swing.JComboBox<String> cmbTipoCodigo;
+    private org.jdesktop.swingx.JXDatePicker dpFechaAceptado;
+    private org.jdesktop.swingx.JXDatePicker dpFechaDonacion;
+    private org.jdesktop.swingx.JXDatePicker dpFechaRecibido;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -714,7 +1229,19 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -724,18 +1251,19 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListEvaluaciones;
-    private javax.swing.JList jListUnidades;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanelAsesores;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -749,18 +1277,42 @@ public class diagEditorial extends javax.swing.JDialog {
     private javax.swing.JList lstIntegrantesDentroLibro;
     private javax.swing.JTextArea taResumen;
     private javax.swing.JTextArea taSummary;
+    private javax.swing.JTable tblDonaciones;
     private javax.swing.JTextField tfBuscarIntregantesLibro;
+    private javax.swing.JTextField tfCantidadDonacion;
+    private javax.swing.JTextField tfCantidadPaginas;
+    private javax.swing.JTextField tfStock;
     // End of variables declaration//GEN-END:variables
 
-    private void inicializarComponentes() {
+    private void inicializarComponentes() {        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
         int taskBarSize = scnMax.bottom;
         this.setSize(screenSize.width, screenSize.height - taskBarSize);
-
+        btnEliminarTipoPublicacion.setEnabled(false);
+        
         cargarTipoPublicacion();  
-        //CargarAutores();        
-        btnPublicaciones.setEnabled(false);
+                
+        btnAgregarDonacion.setEnabled(true);
+        btnEliminarDonacion.setEnabled(false);
+        btnEliminarDestinoEditorial.setEnabled(false);
+        btnEliminarTematica.setEnabled(false);
+        btnEliminarFormato.setEnabled(false);
+        cargarEncabezadoTablaDonaciones();
+        
+        //btnEliminarStock.setEnabled(false);
+        btnEliminarIdioma.setEnabled(false);
+        btnEliminarAcademica.setEnabled(false);
+        
+        cargarComboDestinoEditorial();   
+        cargarComboTipoCodigo();
+        cargarComboIdioma();
+        cargarComboReferato();
+        cargarComboUnidadAcademica();
+        cargarComboFormato();
+        cargarComboTematica();
+                
+        btnPublicaciones.setEnabled(false);      
         
         this.setSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize()));
 
@@ -771,7 +1323,11 @@ public class diagEditorial extends javax.swing.JDialog {
                 integrantesFuera.removeAll(autoresDentro);
                 Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);
                 break;
-            case "Modificación":
+            case "Modificación":                
+                listaDonaciones = editorialCientifica.getDonaciones();
+                limpiarTablaDonaciones();    
+                cargarCuerpoTablaDonaciones(listaDonaciones);
+                
                 autoresDentro = editorialCientifica.getInvestigadores();       
                 Comunes.cargarJList(lstIntegrantesDentroLibro, autoresDentro);
                 List<Investigador> integrantesFueram = InvestigadorFacade.getInstance().getTodosInvestigador();
@@ -784,12 +1340,12 @@ public class diagEditorial extends javax.swing.JDialog {
                     }
                 } catch (NullPointerException ex) {
                 }                
-                try {
+                /*try {
                     if (!listaUnidades.isEmpty()) {
                         cargarListaUnidades();
                     }
                 } catch (NullPointerException ex) {
-                }                
+                }             */   
 
                 try {
                     if (editorialCientifica.getResumen() != null) {
@@ -842,23 +1398,69 @@ public class diagEditorial extends javax.swing.JDialog {
 
                 try {
                     if (editorialCientifica.getTipoPublicacion() != null) {
-
                         jcbTipoPublicacion.setSelectedItem(editorialCientifica.getTipoPublicacion());
-
                     }
                 } catch (NullPointerException ex) {
                 }
+                
                 try{
-                    if (!evaluaciones.isEmpty()){
-                        
-                    
+                    if (!evaluaciones.isEmpty()){                    
                         Comunes.cargarJList(jListEvaluaciones, evaluaciones);}
+                    } catch (NullPointerException ex) {
+                }    
+                
+                dpFechaAceptado.setDate(editorialCientifica.getFechaAceptado());
+                dpFechaRecibido.setDate(editorialCientifica.getFechaRecibido());
+                jxDatePub.setDate(editorialCientifica.getAnioPublicacion());
+                
+                try {
+                    if (editorialCientifica.getIdioma()!= null) {
+                        cmbIdioma.setSelectedItem(editorialCientifica.getIdioma());
+                    }
                 } catch (NullPointerException ex) {
-                }               
+                }
+                
+                try {
+                    if (editorialCientifica.getUnidadAcademica()!= null) {
+                        cmbAcademica.setSelectedItem(editorialCientifica.getUnidadAcademica());
+                    }
+                } catch (NullPointerException ex) {
+                }
+                //List<Idioma> listaIdio = facade.IdiomaFacade.getInstance().listarTodosOrdenados();
+                //Comunes.cargarJComboConBlanco(cmbIdioma, listaIdio);
+                
+                try {
+                    if (editorialCientifica.getTipoCodigo()!= null) {
+                        cmbTipoCodigo.setSelectedItem(editorialCientifica.getTipoCodigo());
+                    }
+                } catch (NullPointerException ex) {
+                }
+                
+                try {
+                    if (editorialCientifica.getReferato()!= null) {
+                        cmbReferato.setSelectedItem(editorialCientifica.getReferato());
+                    }
+                } catch (NullPointerException ex) {
+                }                
+                
+                tfCantidadPaginas.setText(String.valueOf(editorialCientifica.getCantidadPaginas()));
+                tfStock.setText(String.valueOf(editorialCientifica.getStock()));
+                
+                try {
+                    if (editorialCientifica.getTematica()!= null) {
+                        cmbTematica.setSelectedItem(editorialCientifica.getTematica());
+                    }
+                } catch (NullPointerException ex) {
+                }
+                
+                try {
+                    if (editorialCientifica.getFormato()!= null) {
+                        cmbFormato.setSelectedItem(editorialCientifica.getFormato());
+                    }
+                } catch (NullPointerException ex) {
+                }
         }
-    }
-
-    
+    }    
 
     private void asignarDatos() {
         editorialCientifica.setTitulo(jtfTitulo.getText());
@@ -894,20 +1496,70 @@ public class diagEditorial extends javax.swing.JDialog {
         } else {
             editorialCientifica.setTipoPublicacion(null);
         }
+        
         if (jtfProyectoRelacionado.getText() != null) {
             editorialCientifica.setProyecto(proyecto);
         } else {
             editorialCientifica.setProyecto(null);
         }
+        
         if (!evaluaciones.isEmpty()){
             editorialCientifica.setEvaluacionesEditorial(evaluaciones);
         } else {
             editorialCientifica.setEvaluacionesEditorial(null);
         }
+        
         if (autoresDentro.size() > 0) {
             editorialCientifica.setInvestigadores(autoresDentro);
         } else {
             editorialCientifica.setInvestigadores(null);
+        }
+        
+        if(listaDonaciones.size() > 0){
+            editorialCientifica.setDonaciones(listaDonaciones);
+        } else {
+            editorialCientifica.setDonaciones(null);
+        }
+        
+        if (cmbIdioma.getSelectedIndex() > 0) {
+            editorialCientifica.setIdioma((Idioma) cmbIdioma.getSelectedItem());
+        } else {
+            editorialCientifica.setIdioma(null);
+        }
+        
+        if (cmbTipoCodigo.getSelectedIndex() > 0) {
+            editorialCientifica.setTipoCodigo((String) cmbTipoCodigo.getSelectedItem());
+        } else {
+            editorialCientifica.setTipoCodigo(null);
+        }
+        
+        if (cmbReferato.getSelectedIndex() > 0) {
+            editorialCientifica.setReferato(cmbReferato.getSelectedItem().toString());
+        } else {
+            editorialCientifica.setReferato(null);
+        }
+        
+        if (cmbAcademica.getSelectedIndex() > 0) {
+            editorialCientifica.setUnidadAcademica((UnidadAcademica) cmbAcademica.getSelectedItem());
+        } else {
+            editorialCientifica.setUnidadAcademica(null);
+        }
+        
+        editorialCientifica.setFechaAceptado(dpFechaAceptado.getDate());
+        editorialCientifica.setFechaRecibido(dpFechaRecibido.getDate());
+        editorialCientifica.setCantidadPaginas(Integer.parseInt(tfCantidadPaginas.getText()));
+        editorialCientifica.setStock(Integer.parseInt(tfStock.getText()));
+        
+        if (cmbTematica.getSelectedIndex() > 0) {
+            editorialCientifica.setTematica((TematicaEditorial) cmbTematica.getSelectedItem());
+        } else {
+            editorialCientifica.setTematica(null);
+        }
+        
+        if (cmbFormato.getSelectedIndex() > 0) {
+            editorialCientifica.setFormato((FormatoEditorial) cmbFormato.getSelectedItem());
+        } else {
+            editorialCientifica.setFormato(null);
         }
     }
 
@@ -1037,17 +1689,17 @@ public class diagEditorial extends javax.swing.JDialog {
 
         }
         
-        stock.setLocation(Comunes.centrarDialog(stock));
+        /*stock.setLocation(Comunes.centrarDialog(stock));
         stock.setVisible(true);
         if (stock.getStockCreado() != null) {
             listaUnidades.add(stock.getStockCreado());
             cargarListaUnidades();
-        }
+        }*/
     }
 
-    private void cargarListaUnidades() {
+    /*private void cargarListaUnidades() {
         Comunes.cargarJList(jListUnidades, listaUnidades);
-    }
+    }*/
 
     private void modificarEvaluacion() {
         if (jListEvaluaciones.getSelectedIndex() != -1) {
@@ -1105,13 +1757,15 @@ public class diagEditorial extends javax.swing.JDialog {
 //    }
 
     private void nuevoTipoDePublicacion() {
-    diagTipoEditorial tipo = new diagTipoEditorial(null, true,  usuario, "Alta");
+        diagTipoEditorial tipo = new diagTipoEditorial(null, true,  usuario, "Alta");
         tipo.setLocation(Comunes.centrarDialog(tipo));
         tipo.setVisible(true);
-        cargarTipos();
-           }
+        btnEliminarTipoPublicacion.setEnabled(false);
+        cargarTipos();        
+    }
+    
     private void cargarTipos(){
-        Comunes.cargarJCombo(jcbTipoPublicacion, TipoPublicacionFacade.getInstance().listarTodos());
+        Comunes.cargarJComboConBlanco(jcbTipoPublicacion, TipoPublicacionFacade.getInstance().listarTodos());
     }
 
     private void mostrarPublicaciones() {
@@ -1157,7 +1811,7 @@ public class diagEditorial extends javax.swing.JDialog {
         }
     }
     
-    private void CargarAutores() {
+    /*private void CargarAutores() {
         if(jtfTitulo.getText().equals("")){
             
         }else{
@@ -1169,5 +1823,388 @@ public class diagEditorial extends javax.swing.JDialog {
         List<Investigador> integrantesFuera = InvestigadorFacade.getInstance().getTodosInvestigador();
         integrantesFuera.removeAll(autoresDentro);
         Comunes.cargarJList(lsIntegrantesFueraLibro, integrantesFuera);
+    }*/
+
+    private void habilitarEliminarTipoPublicacion() {
+        String tipoPubli = jcbTipoPublicacion.getSelectedItem().toString();
+        if(!tipoPubli.equals("--Seleccione--")){
+            btnEliminarTipoPublicacion.setEnabled(true);
+        }
+        else{
+            btnEliminarTipoPublicacion.setEnabled(false);
+        }
     }
+
+    private void eliminarTipoPulicacion() {
+        int indice = jcbTipoPublicacion.getSelectedIndex();       
+        List<TipoPublicacion> listaTipos = new ArrayList<TipoPublicacion>();
+        listaTipos = facade.TipoPublicacionFacade.getInstance().getTodosPublicacion();
+        
+        long idTipo = listaTipos.get(indice-1).getId();
+        
+        List<EditorialCientifica> tipos = facade.EditorialCientificaFacade.getInstance().listarTiposPublicacionEnEditorial(idTipo);
+        
+        if(tipos.size() == 0){
+            facade.TipoPublicacionFacade.getInstance().eliminar(idTipo);
+            JOptionPane.showMessageDialog(null, "Tipo de publicación eliminado exitosamente");
+            cargarTipos();    
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el tipo de publicación "
+                   + "debido a que se encuentra cargado en una o más editoriales");            
+        }
+        
+        habilitarEliminarTipoPublicacion();            
+    }
+
+    private void cargarEncabezadoTablaDonaciones() {
+        modeloTablaDonaciones.addColumn("Fecha");
+        modeloTablaDonaciones.addColumn("Destino");
+        modeloTablaDonaciones.addColumn("Cantidad");        
+        tblDonaciones.setModel(modeloTablaDonaciones);
+    }
+
+    private void limpiarTablaDonaciones() {
+        DefaultTableModel modeloTablaLimpia = (DefaultTableModel) tblDonaciones.getModel();
+        modeloTablaLimpia.getDataVector().clear(); //limpias el contenido
+        tblDonaciones.setModel(modeloTablaLimpia);//asignas el nuevo modelo de la tabla
+        tblDonaciones.updateUI();//actualizas la tabla
+    }
+    
+    private void cargarCuerpoTablaDonaciones(List<DonacionEditorial> listaDonaciones) {
+        
+        int tamanio = listaDonaciones.size();
+        Object[] fila = new Object[3];
+        
+        for (int i = 0; i < tamanio; i++) {
+            fila[0] = formato.format(listaDonaciones.get(i).getFecha());
+            fila[1] = listaDonaciones.get(i).getDestino();
+            fila[2] = listaDonaciones.get(i).getCantidad();           
+            modeloTablaDonaciones.addRow(fila);
+        }
+        tblDonaciones.setModel(modeloTablaDonaciones);
+    }
+
+    private void agregarDonacionEditorial() {
+        validarCamposDonacion();
+    }
+
+    private void validarCamposDonacion() {
+        boolean bandera = true;
+        String error = "Error: \n";
+
+        if (tfCantidadDonacion.getText().isEmpty()) {
+            bandera = false;
+            error += "Debe ingresar una cantidad a donar \n";
+        }else{
+            if(Comunes.validarStringAInt(tfCantidadDonacion.getText()) > editorialCientifica.getStock()){
+                bandera = false;
+                error += "La cantidad ingresada es mayor al stock actual de la editorial\n";                
+            }else{
+                int resta = editorialCientifica.getStock() - Comunes.validarStringAInt(tfCantidadDonacion.getText());
+                tfStock.setText(String.valueOf(resta));
+            }            
+        }
+
+        if (dpFechaDonacion.getDate() == null) {
+            bandera = false;
+            error += "Debe ingresar una Fecha de donación \n";
+        }
+
+        if (bandera == false) {
+            JOptionPane.showMessageDialog(null, error);
+        }else{
+            agregarFila();
+        }
+    }
+
+    private void agregarFila() {
+        DonacionEditorial donacion = new DonacionEditorial();       
+        
+        donacion.setCantidad(Comunes.validarStringAInt(tfCantidadDonacion.getText()));
+        donacion.setDestino((DestinoEditorial) cmbDestinoEditorial.getSelectedItem());
+        donacion.setFecha(dpFechaDonacion.getDate());
+        
+        listaDonaciones.add(donacion);
+        
+        limpiarTablaDonaciones();
+        cargarCuerpoTablaDonaciones(listaDonaciones);       
+         
+        JOptionPane.showMessageDialog(null, "Fila Agregada");
+    }
+
+    private void eliminarFila(int fila) {
+        listaDonaciones.remove(fila);
+        modeloTablaDonaciones.removeRow(tblDonaciones.getSelectedRow());
+        limpiarTablaDonaciones();         
+        cargarCuerpoTablaDonaciones(listaDonaciones);
+        btnEliminarDonacion.setEnabled(false);
+        
+        JOptionPane.showMessageDialog(null, "Fila eliminada exitosamente");
+    }
+
+    private void habilitarBotonEliminarFilaDonacion() {
+        btnEliminarDonacion.setEnabled(true);
+    }
+
+    private void eliminarDestinoEditorial() {
+        int indice = cmbDestinoEditorial.getSelectedIndex();       
+        List<DestinoEditorial> listaDestinos = new ArrayList<DestinoEditorial>();
+        listaDestinos = facade.DestinoEditorialFacade.getInstance().listarTodosDestinosOrdenados();
+        
+        long idDestino = listaDestinos.get(indice-1).getId();        
+        
+        List<DonacionEditorial> donaciones = facade.DestinoEditorialFacade.getInstance().buscarDestinoEnDonacion(idDestino);
+        
+        if(donaciones.size() == 0){                        
+            facade.DestinoEditorialFacade.getInstance().eliminar(idDestino); 
+            JOptionPane.showMessageDialog(null, "Destino editorial eliminado exitosamente");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el destino "
+                   + "debido a que se encuentra cargado en una o más donaciones");
+            
+        }
+        
+        /*try {
+            facade.DestinoEditorialFacade.getInstance().eliminar(idDestino);   
+            //new DestinoEditorialJpaController(emf).edit(destino);
+        } catch (Exception ex) {
+            Logger.getLogger(DestinoEditorialFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+             
+        //HabilitarEliminarDestinoEditorial();
+        cargarComboDestinoEditorial();
+        btnEliminarDestinoEditorial.setEnabled(false);       
+    }
+
+    private void habilitarBotonEliminarDestino() {
+        String desti = cmbDestinoEditorial.getSelectedItem().toString();
+        if(!desti.equals("--Seleccione--")){
+            btnEliminarDestinoEditorial.setEnabled(true);
+        }
+        else{
+            btnEliminarDestinoEditorial.setEnabled(false);
+        }
+    }
+
+    private void agregarDestinoEditorial() {
+        diagDestinoEditorialAlta destino = new diagDestinoEditorialAlta(null, true,  usuario, "Alta");
+        destino.setLocation(Comunes.centrarDialog(destino));
+        destino.setVisible(true);
+        
+        btnEliminarDestinoEditorial.setEnabled(false);
+        cargarComboDestinoEditorial();   
+    }
+    
+    private void cargarComboDestinoEditorial() {
+        Comunes.cargarJComboConBlanco(cmbDestinoEditorial,DestinoEditorialFacade.getInstance().listarTodosDestinosOrdenados());  
+    }
+
+    /*private void eliminarStock() {
+        Stock stockElegido = (Stock) jListUnidades.getSelectedValue();
+        StockFacade.getInstance().Eliminar(stockElegido.getId());
+        JOptionPane.showMessageDialog(null, "Stock eliminado correctamente");
+        listaUnidades = StockFacade.getInstance().getPorPublicacionId(editorialCientifica.getId());
+        cargarListaUnidades();
+    }
+
+    private void habilitarBotonEliminarStock() {
+        btnEliminarStock.setEnabled(true);
+    }*/
+
+    private void agregarInvestigador() {
+        diagInvestigador investigador = new diagInvestigador(null, true, "Alta", usuario);        
+        investigador.setLocation(Comunes.centrarDialog(investigador));
+        investigador.setVisible(true);               
+    }
+
+    private void cargarComboTipoCodigo() {
+        List<String> listaTipos =  new ArrayList<String>();
+        listaTipos.add("ISBN");
+        listaTipos.add("ISSN");
+        
+        Comunes.cargarJComboConBlanco(cmbTipoCodigo,listaTipos);
+    }
+
+    private void agregarIdioma() {
+        diagIdiomaAlta diagIdioma = new diagIdiomaAlta(null, true, usuario, "Alta");
+        diagIdioma.setLocation(Comunes.centrarDialog(diagIdioma));
+        diagIdioma.setVisible(true);
+        
+        btnEliminarIdioma.setEnabled(false);
+        cargarComboIdioma();       
+    }
+
+    private void cargarComboIdioma() {
+        Comunes.cargarJComboConBlanco(cmbIdioma, IdiomaFacade.getInstance().listarTodosOrdenados());
+    }
+    
+    private void cargarComboReferato(){
+        ArrayList<String> listaReferato = new ArrayList<String>();
+        listaReferato.add("SI");
+        listaReferato.add("NO");
+        
+        Comunes.cargarJComboConBlanco(cmbReferato,listaReferato);
+    }
+
+    private void habilitarEliminarIdioma() {
+        String idioma = cmbIdioma.getSelectedItem().toString();
+        if(!idioma.equals("--Seleccione--")){
+            btnEliminarIdioma.setEnabled(true);
+        }
+        else{
+            btnEliminarIdioma.setEnabled(false);
+        }
+    }
+
+    private void eliminarIdioma() {
+        int indice = cmbIdioma.getSelectedIndex();       
+        List<Idioma> listaIdiomas = new ArrayList<Idioma>();
+        listaIdiomas = facade.IdiomaFacade.getInstance().listarTodosOrdenados();
+        
+        long idIdioma = listaIdiomas.get(indice-1).getId();
+        
+        List<EditorialCientifica> idiomas = facade.EditorialCientificaFacade.getInstance().listarIdiomasEnEditorial(idIdioma);
+        
+        if(idiomas.size() == 0){
+            facade.IdiomaFacade.getInstance().eliminar(idIdioma);
+            JOptionPane.showMessageDialog(null, "Idioma eliminado exitosamente");
+            cargarComboIdioma();
+         }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el idioma "
+                   + "debido a que se encuentra cargado en una o más editoriales");            
+        }
+        
+        habilitarEliminarIdioma();               
+    }
+
+    private void cargarComboUnidadAcademica() {
+        Comunes.cargarJComboConBlanco(cmbAcademica,UnidadAcademicaFacade.getInstance().getTodasUnidadAcademica()); 
+    }
+
+    private void nuevaUnidadAcademica() {
+        diagUnidadAcademicaAlta nuevaUnidad = new diagUnidadAcademicaAlta(null, true);
+        nuevaUnidad.setLocation(Comunes.centrarDialog(nuevaUnidad));
+        nuevaUnidad.setVisible(true);
+        btnEliminarAcademica.setEnabled(false);
+        cargarComboUnidadAcademica();        
+    }
+
+    private void eliminarUnidadAcademica() {        
+        int indice = cmbAcademica.getSelectedIndex();       
+        List<UnidadAcademica> listaUA = new ArrayList<UnidadAcademica>();
+        listaUA = facade.UnidadAcademicaFacade.getInstance().getTodasUnidadAcademica();
+        
+        long idUA = listaUA.get(indice-1).getId();
+        
+        List<EditorialCientifica> academicas = facade.EditorialCientificaFacade.getInstance().listarAcademicasEnEditorial(idUA);
+        
+        if(academicas.size() == 0){
+            facade.UnidadAcademicaFacade.getInstance().eliminar(idUA);
+            JOptionPane.showMessageDialog(null, "Unidad Académica eliminada exitosamente");
+            cargarComboUnidadAcademica();       
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar la Unidad Académica "
+                   + "debido a que se encuentra cargada en una o más editoriales");            
+        }
+        
+        habilitarEliminarUnidadAcademica();                 
+    }
+
+    private void habilitarEliminarUnidadAcademica() {
+        String UA = cmbAcademica.getSelectedItem().toString();
+        if(!UA.equals("--Seleccione--")){
+            btnEliminarAcademica.setEnabled(true);
+        }
+        else{
+            btnEliminarAcademica.setEnabled(false);
+        }
+    }
+
+    private void agregarTematica() {
+        diagTematicaEditorialAlta diagTematica = new diagTematicaEditorialAlta(null, true, usuario, "Alta");
+        diagTematica.setLocation(Comunes.centrarDialog(diagTematica));
+        diagTematica.setVisible(true);
+        
+        btnEliminarTematica.setEnabled(false);
+        cargarComboTematica();     
+    }
+
+    private void agregarFormato() {
+        diagFormatoEditorialAlta diagFormato = new diagFormatoEditorialAlta(null, true, usuario, "Alta");
+        diagFormato.setLocation(Comunes.centrarDialog(diagFormato));
+        diagFormato.setVisible(true);
+        
+        btnEliminarFormato.setEnabled(false);
+        cargarComboFormato();     
+    }
+
+    private void cargarComboTematica() {
+        Comunes.cargarJComboConBlanco(cmbTematica, TematicaEditorialFacade.getInstance().listarTodasOrdenadas());
+    }
+
+    private void cargarComboFormato() {
+        Comunes.cargarJComboConBlanco(cmbFormato, FormatoEditorialFacade.getInstance().listarTodosOrdenados());
+    }
+
+    private void habilitarEliminarTematica() {
+        String tematica = cmbTematica.getSelectedItem().toString();
+        if(!tematica.equals("--Seleccione--")){
+            btnEliminarTematica.setEnabled(true);
+        }
+        else{
+            btnEliminarTematica.setEnabled(false);
+        }
+    }
+
+    private void habilitarEliminarFormato() {
+        String formato = cmbFormato.getSelectedItem().toString();
+        if(!formato.equals("--Seleccione--")){
+            btnEliminarFormato.setEnabled(true);
+        }
+        else{
+            btnEliminarFormato.setEnabled(false);
+        }
+    }
+
+    private void eliminarTematica() {
+        int indice = cmbTematica.getSelectedIndex();       
+        List<TematicaEditorial> listaTematicas = new ArrayList<TematicaEditorial>();
+        listaTematicas = facade.TematicaEditorialFacade.getInstance().listarTodasOrdenadas();
+        
+        long idTematica = listaTematicas.get(indice-1).getId();
+        
+        List<EditorialCientifica> tematicas = facade.EditorialCientificaFacade.getInstance().listarTematicasEnEditorial(idTematica);
+        
+        if(tematicas.size() == 0){
+            facade.TematicaEditorialFacade.getInstance().eliminar(idTematica);
+            JOptionPane.showMessageDialog(null, "Temática eliminada exitosamente");
+            cargarComboTematica();
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar la temática "
+                   + "debido a que se encuentra cargado en una o más editoriales");            
+        }
+        
+        habilitarEliminarTematica();        
+    }
+
+    private void eliminarFormato() {
+        int indice = cmbFormato.getSelectedIndex();       
+        List<FormatoEditorial> listaFormatos = new ArrayList<FormatoEditorial>();
+        listaFormatos = facade.FormatoEditorialFacade.getInstance().listarTodosOrdenados();
+        
+        long idFormato = listaFormatos.get(indice-1).getId();
+        
+        List<EditorialCientifica> formatos = facade.EditorialCientificaFacade.getInstance().listarFormatosEnEditorial(idFormato);
+        
+        if(formatos.size() == 0){
+            facade.FormatoEditorialFacade.getInstance().eliminar(idFormato);
+            JOptionPane.showMessageDialog(null, "Formato eliminado exitosamente");
+            cargarComboFormato();
+        }else{
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el formato "
+                   + "debido a que se encuentra cargado en una o más editoriales");            
+        }
+        
+        habilitarEliminarFormato();                
+    }    
 }

@@ -86,7 +86,7 @@ public class diagStock extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        tfCodigo = new javax.swing.JTextField();
+        tfCantidad = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         tfPublicacion = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
@@ -103,10 +103,10 @@ public class diagStock extends javax.swing.JDialog {
 
         jLabel4.setText(org.openide.util.NbBundle.getMessage(diagStock.class, "diagStock.jLabel4.text")); // NOI18N
 
-        tfCodigo.setText(org.openide.util.NbBundle.getMessage(diagStock.class, "diagStock.tfCodigo.text")); // NOI18N
-        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+        tfCantidad.setText(org.openide.util.NbBundle.getMessage(diagStock.class, "diagStock.tfCantidad.text")); // NOI18N
+        tfCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfCodigoKeyTyped(evt);
+                tfCantidadKeyTyped(evt);
             }
         });
 
@@ -115,6 +115,11 @@ public class diagStock extends javax.swing.JDialog {
         tfPublicacion.setText(org.openide.util.NbBundle.getMessage(diagStock.class, "diagStock.tfPublicacion.text")); // NOI18N
 
         btnCancelar.setText(org.openide.util.NbBundle.getMessage(diagStock.class, "diagStock.btnCancelar.text")); // NOI18N
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText(org.openide.util.NbBundle.getMessage(diagStock.class, "diagStock.jButton2.text")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -144,52 +149,56 @@ public class diagStock extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(btnCancelar)
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton2)
+                        .addGap(0, 101, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)
+                        .addGap(6, 6, 6)
+                        .addComponent(tfPublicacion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonPublicacionBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                            .addComponent(tfPublicacion)
-                            .addComponent(cboFormato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2))
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cboFormato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonPublicacionBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(btnCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(tfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5)
+                    .addComponent(tfPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonPublicacionBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cboFormato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tfPublicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonPublicacionBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(jButton2))
-                .addGap(35, 35, 35))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,15 +215,15 @@ public class diagStock extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
+    private void tfCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCantidadKeyTyped
         // escribir solo numeros
         //char caracter = evt.getKeyChar();
         // Verificar si la tecla pulsada no es un digito
         //if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
         //    evt.consume();  // ignorar el evento de teclado
         //}
-        Comunes.soloNumeros(tfCodigo, evt);
-    }//GEN-LAST:event_tfCodigoKeyTyped
+        Comunes.soloNumeros(tfCantidad, evt);
+    }//GEN-LAST:event_tfCantidadKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         guardar();        // TODO add your handling code here:
@@ -228,6 +237,10 @@ public class diagStock extends javax.swing.JDialog {
     private void jButtonPublicacionBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPublicacionBuscarActionPerformed
         buscarPublicacion();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonPublicacionBuscarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,7 +294,7 @@ public class diagStock extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField tfCodigo;
+    private javax.swing.JTextField tfCantidad;
     private javax.swing.JTextField tfPublicacion;
     // End of variables declaration//GEN-END:variables
  private void inicializarComponentes() {
@@ -312,7 +325,7 @@ public class diagStock extends javax.swing.JDialog {
                 }
                 try {
                     if (stock.getCodigo() != null) {
-                        tfCodigo.setText(stock.getCodigo());
+                        tfCantidad.setText(stock.getCodigo());
 
                     }
                 } catch (NullPointerException ex) {
@@ -365,13 +378,13 @@ private void altaStock() {
 
     private boolean validar() {
         boolean flag = false;
-        if (!tfCodigo.getText().equals("")) {
+        if (!tfCantidad.getText().equals("")) {
             if (cboFormato.getSelectedIndex() != -1) {
 
                 flag = true;
             } else {
                 JOptionPane.showMessageDialog(null, "Debe ingresar el formato.", "Error", JOptionPane.ERROR_MESSAGE);
-                tfCodigo.requestFocus();
+                tfCantidad.requestFocus();
             }
 
         } else {
@@ -383,7 +396,7 @@ private void altaStock() {
     }
 
     private void asignarDatos() {
-        stock.setCodigo(tfCodigo.getText());
+        stock.setCantidad(Comunes.validarStringAInt(tfCantidad.getText()));
         stock.setFormato((FormatoLibro) cboFormato.getSelectedItem());
         if(editorial == null){
             stock.setPublicacion(null);
