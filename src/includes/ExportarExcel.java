@@ -54,7 +54,9 @@ public class ExportarExcel {
     public void crearExcelJtable(JTable jtable, String nombre) {
         List<String> lista = new ArrayList<>();
         int numFilas = jtable.getRowCount();
+        System.out.println("Nro de FILAS: "+numFilas);
         int numColumnas = jtable.getColumnCount();
+        System.out.println("Nro de COlumnas: "+numColumnas);
         StringBuilder stringBuider = new StringBuilder();
         for (int colIndex = 0; colIndex < numColumnas; colIndex++) {
             stringBuider.append(jtable.getColumnName(colIndex));

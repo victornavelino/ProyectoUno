@@ -137,25 +137,23 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(314, 314, 314)
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(btnExportarArt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 757, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(285, 285, 285)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboConvocatoria, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboConvocatoria, 0, 547, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCargarConvocatorias, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(389, 389, 389))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnExportarArt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(538, 538, 538))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,14 +163,13 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
                     .addComponent(btnCargarConvocatorias)
                     .addComponent(cboConvocatoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExportarArt, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCerrar)
-                        .addContainerGap())))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnExportarArt, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -292,24 +289,24 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
         try {
             fila[n++] = proyectoWeb.getTitulo();
         } catch (Exception e) {
-            fila[n++] = "";
+            fila[n++] = "n/n";
         }
 
         if (proyectoWeb.getTipoFinanciamiento() != null) {
             fila[n++] = proyectoWeb.getTipoFinanciamiento().getName();
         } else {
-            fila[n++] = "";
+            fila[n++] = "n/n";
         }
 
         if (proyectoWeb.getFechaInicio() != null) {
             fila[n++] = formats.format(proyectoWeb.getFechaInicio());
         } else {
-            fila[n++] = "";
+            fila[n++] = "n/n";
         }
         if (proyectoWeb.getFechaFinalizacion() != null) {
             fila[n++] = formats.format(proyectoWeb.getFechaFinalizacion());
         } else {
-            fila[n++] = "";
+            fila[n++] = "n/n";
         }
         try {
             if (proyectoWeb.getParticipaEnPrograma()) {
@@ -318,7 +315,7 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
                 fila[n++] = "NO";
             }
         } catch (Exception e) {
-            fila[n++] = "";
+            fila[n++] = "n/n";
         }
 
         for (ParticipacionWeb participacionWeb : proyectoWeb.getParticipacionesWeb()) {
@@ -335,60 +332,86 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
         if (proyectoWeb.getUnidadAcademica() != null) {
             fila[n++] = proyectoWeb.getUnidadAcademica();
         } else {
-            fila[n++] = "";
+            fila[n++] = "n/n";
         }
-        if (proyectoWeb.getUnidadEjecutora() != null) {
-            fila[n++] = proyectoWeb.getUnidadEjecutora();
-        } else {
-            fila[n++] = "";
+        try {
+            if (proyectoWeb.getUnidadEjecutora() != null) {
+                fila[n++] = proyectoWeb.getUnidadEjecutora();
+            } else {
+                fila[n++] = "n/n";
+            }
+        } catch (Exception e) {
+            fila[n++] = "n/n";
         }
+
         if (!proyectoWeb.getLocalizaciones().isEmpty()) {
             for (UnidadInvestigacion unidadInvestigacion : proyectoWeb.getLocalizaciones()) {
                 fila[n++] = unidadInvestigacion + "; ";
             }
         } else {
-            fila[n++] = "";
+            fila[n++] = "n/n";
         }
-        if (proyectoWeb.getLineaInvestigacion() != null) {
-            fila[n++] = proyectoWeb.getLineaInvestigacion();
-        } else {
-            fila[n++] = "";
+        try {
+            if (proyectoWeb.getLineaInvestigacion() != null) {
+                fila[n++] = proyectoWeb.getLineaInvestigacion();
+            } else {
+                fila[n++] = "n/n";
+            }
+        } catch (Exception e) {
+            fila[n++] = "n/n";
         }
-        if (proyectoWeb.getSectorPrioritario() != null) {
-            fila[n++] = proyectoWeb.getSectorPrioritario();
-        } else {
-            fila[n++] = "";
+        try {
+            if (proyectoWeb.getSectorPrioritario() != null) {
+                fila[n++] = proyectoWeb.getSectorPrioritario();
+            } else {
+                fila[n++] = "n/n";
+            }
+        } catch (Exception e) {
+            fila[n++] = "n/n";
         }
 
         try {
-            for (CampoAplicacion campoAplicacion : proyectoWeb.getCamposAplicacion()) {
-                fila[n++] = campoAplicacion + "; ";
+            if (!proyectoWeb.getCamposAplicacion().isEmpty()) {
+                fila[n++] = proyectoWeb.getCamposAplicacion().get(0);
+            } else {
+                fila[n++] = "n/n";
             }
         } catch (Exception e) {
-            fila[n++] = "";
-        }
-        if (proyectoWeb.getObjetivoSocioeconomico() != null) {
-            fila[n++] = proyectoWeb.getObjetivoSocioeconomico();
-        } else {
-            fila[n++] = "";
+            fila[n++] = "n/n";
         }
 
-        if (proyectoWeb.getTipoProyecto() != null) {
-            fila[n++] = proyectoWeb.getTipoProyecto();
-        } else {
-            fila[n++] = "";
+        try {
+            if (proyectoWeb.getObjetivoSocioeconomico() != null) {
+                fila[n++] = proyectoWeb.getObjetivoSocioeconomico();
+            } else {
+                fila[n++] = "n/n";
+            }
+        } catch (Exception e) {
+            fila[n++] = "n/n";
         }
 
-        if (proyectoWeb.getSubDisciplinasCientificas() != null) {
+        try {
+            if (proyectoWeb.getTipoProyecto() != null) {
+                fila[n++] = proyectoWeb.getTipoProyecto();
+            } else {
+                fila[n++] = "n/n";
+            }
+        } catch (Exception e) {
+            fila[n++] = "n/n";
+        }
+
+        if (!proyectoWeb.getSubDisciplinasCientificas().isEmpty()) {
             //PRIMER IF
-           System.err.println("ENTRO SUBDISCIPLINA");
+            System.err.println("ENTRO SUBDISCIPLINA");
             try {
-                for (SubDisciplinaCientifica subDisciplinasCientifica : proyectoWeb.getSubDisciplinasCientificas()) {
 
-                    fila[n++] = subDisciplinasCientifica.getDisciplinaCientifica().getAreaTematica() + "; ";
+                for (SubDisciplinaCientifica subDisciplinasCientifica : proyectoWeb.getSubDisciplinasCientificas()) {
+                    if (subDisciplinasCientifica.getDisciplinaCientifica().getAreaTematica() != null) {
+                        fila[n++] = subDisciplinasCientifica.getDisciplinaCientifica().getAreaTematica() + "; ";
+                    }
                 }
             } catch (Exception e) {
-                fila[n++] = " ";
+                fila[n++] = "n/n";
             }
 
             //SERGUDNO IF
@@ -397,7 +420,7 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
                     fila[n++] = subDisciplinasCientifica.getDisciplinaCientifica() + "; ";
                 }
             } catch (Exception e) {
-                fila[n++] = " ";
+                fila[n++] = "n/n";
             }
             ////TERCER IF
             try {
@@ -405,20 +428,24 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
                     fila[n++] = subDisciplinasCientifica + "; ";
                 }
             } catch (Exception e) {
-                fila[n++] = " ";
+                fila[n++] = "n/n";
             }
         } else {
             System.err.println("ELSE SUBDISCIPLINA");
-            fila[n++] = " ";
-            fila[n++] = " ";
-            fila[n++] = " ";
+            fila[n++] = "n/n";
+            fila[n++] = "n/n";
+            fila[n++] = "n/n";
+        }
+        try {
+            if (proyectoWeb.getProyectoOrientado()) {
+                fila[n++] = "SI";
+            } else {
+                fila[n++] = "NO";
+            }
+        } catch (Exception e) {
+            fila[n++] = "n/n";
         }
 
-        if (proyectoWeb.getProyectoOrientado()) {
-            fila[n++] = "SI";
-        } else {
-            fila[n++] = "NO";
-        }
         try {
             if (proyectoWeb.getFinalizado()) {
                 fila[n++] = "SI";
@@ -426,6 +453,7 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
                 fila[n++] = "NO";
             }
         } catch (Exception e) {
+            fila[n++] = "n/n";
 
         }
 
@@ -483,8 +511,10 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
             }
             tblProyectosWeb.setModel(modeloTablaProyectosWeb);
             // Comunes.setOcultarColumnasJTable(tblVentas, 0);
+
         } catch (Exception ex) {
-            Logger.getLogger(DiagListadoProyectosWeb.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DiagListadoProyectosWeb.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -496,8 +526,10 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
     private void cargarConvocatorias() {
         try {
             cargarTablaProyectosWeb(ProyectoWebFacade.getInstance().listar(((Convocatoria) cboConvocatoria.getSelectedItem())));
+
         } catch (Exception ex) {
-            Logger.getLogger(DiagListadoProyectosWeb.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DiagListadoProyectosWeb.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

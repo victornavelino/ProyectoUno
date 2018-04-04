@@ -73,7 +73,24 @@ public class ParticipacionWebFacade {
             return null;
         }
     }
-      public List<ParticipacionWeb> getParticipacionesWeb(Convocatoria convocatoria) {
+
+    public ParticipacionWeb getSubDirector(ProyectoWeb proyectoWeb) {
+        try {
+            Query quDirector = em.createQuery("SELECT pa FROM ParticipacionWeb pa WHERE"
+                    + " pa.rol.descripcion=:subdirector AND ((pa.fechaHasta IS NULL  OR pa.fechaHasta > :fecha ) OR pa.proyectoWeb.fechaFinalizacion < :fecha )"
+                    + "AND pa.proyectoWeb.id=:proye ORDER BY pa.fechaHasta DESC");
+            quDirector.setParameter("subdirector", "Sub-Director");
+            quDirector.setParameter("fecha", Comunes.obtenerFechaActualDesdeDB());
+            quDirector.setParameter("proye", proyectoWeb.getId());
+            return (ParticipacionWeb) quDirector.getResultList().get(0);
+        } catch (NoResultException e) {
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<ParticipacionWeb> getParticipacionesWeb(Convocatoria convocatoria) {
         try {
             Query quParticip = em.createQuery("SELECT pa FROM ParticipacionWeb pa WHERE pa.proyectoWeb.convocatoria=:convocatoria ORDER BY pa.investigador.persona.apellido ASC");
             quParticip.setParameter("convocatoria", convocatoria);

@@ -13,17 +13,12 @@ import entidades.becas.evaluacion.BecasEvaluacionWebBecasItemEvaluar;
 import entidades.becas.evaluacion.BecasItemEvaluar;
 import entidades.persona.Evaluador;
 import facade.becas.evaluacion.BecasEvaluacionWebFacade;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import org.openide.util.Exceptions;
 
 /**
  *

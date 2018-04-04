@@ -34,16 +34,16 @@
                       <Component id="btnCerrar" min="-2" pref="184" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnExportarArt" min="-2" pref="182" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="531" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="558" max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="99" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="117" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="cboConvocatoria" min="-2" pref="291" max="-2" attributes="0"/>
+              <Component id="cboConvocatoria" min="-2" pref="517" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnCargarConvocatorias" min="-2" pref="121" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="389" max="-2" attributes="0"/>
