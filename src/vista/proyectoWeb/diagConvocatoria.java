@@ -4,13 +4,22 @@
  */
 package vista.proyectoWeb;
 
+import entidades.Documento;
+import entidades.Resolucion;
 import entidades.categorizacion.ValorCategoria;
+import entidades.proyectoWeb.ArchivoWeb;
 import entidades.proyectoWeb.Convocatoria;
+import entidades.proyectoWeb.ProyectoWeb;
 import facade.ProyectoWebFacade;
 import facade.ValorCategoriaFacade;
 import includes.Comunes;
 import includes.ModeloTablaNoEditable;
 import includes.SuperDialog;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +27,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -76,6 +87,7 @@ public class diagConvocatoria extends SuperDialog {
         btnAgregar = new javax.swing.JButton();
         btQuitar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -219,6 +231,13 @@ public class diagConvocatoria extends SuperDialog {
             }
         });
 
+        jButton2.setText(org.openide.util.NbBundle.getMessage(diagConvocatoria.class, "diagConvocatoria.jButton2.text")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -226,7 +245,6 @@ public class diagConvocatoria extends SuperDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(masterScrollPane)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(descripcionLabel)
@@ -244,18 +262,23 @@ public class diagConvocatoria extends SuperDialog {
                                 .addComponent(montoMaximoField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(pnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(newButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(deleteButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(refreshButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(newButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(refreshButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(masterScrollPane))
                         .addGap(11, 11, 11)))
                 .addContainerGap())
         );
@@ -294,13 +317,15 @@ public class diagConvocatoria extends SuperDialog {
                             .addComponent(refreshButton)
                             .addComponent(deleteButton)
                             .addComponent(newButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                        .addGap(22, 22, 22))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(masterScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(masterScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -345,6 +370,10 @@ public class diagConvocatoria extends SuperDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         verProyectos();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        exportarCVarConvocatoria();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -398,6 +427,7 @@ public class diagConvocatoria extends SuperDialog {
     private javax.swing.JLabel fechaFinLabel;
     private javax.swing.JLabel fechaIniLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -619,9 +649,9 @@ public class diagConvocatoria extends SuperDialog {
         if (convocatoriaSeleccionada != null) {
             if (convocatoriaSeleccionada.getId() != null) {
 //                try {
-                    DiagProyectosWeb datosProyecto = new DiagProyectosWeb(null, true, convocatoriaSeleccionada);
-                    datosProyecto.setLocation(Comunes.centrarDialog(datosProyecto));
-                    datosProyecto.setVisible(true);
+                DiagProyectosWeb datosProyecto = new DiagProyectosWeb(null, true, convocatoriaSeleccionada);
+                datosProyecto.setLocation(Comunes.centrarDialog(datosProyecto));
+                datosProyecto.setVisible(true);
 //                } catch (Exception ex) {
 //                    System.out.println("Error cargando proyectos: "+ ex);
 //                    JOptionPane.showMessageDialog(rootPane, "No se pudiero ver los proyectos");
@@ -633,4 +663,44 @@ public class diagConvocatoria extends SuperDialog {
             JOptionPane.showMessageDialog(rootPane, "No selecciono una convocatoria");
         }
     }
+
+    private void exportarCVarConvocatoria() {
+        if (convocatoriaSeleccionada != null) {
+            if (convocatoriaSeleccionada.getId() != null) {
+
+                try {
+                    for (ProyectoWeb proyectoWeb : ProyectoWebFacade.getInstance().listar(convocatoriaSeleccionada)) {
+                        // create byte buffer
+                        String zipFile = "/home/hugo/" + proyectoWeb.getParticipacionesWeb().get(0).getInvestigador().toString() + ".zip";
+                        FileOutputStream fos = new FileOutputStream(zipFile);
+                        ZipOutputStream zos = new ZipOutputStream(fos);
+                        
+                        for (ArchivoWeb archivoWeb : proyectoWeb.getLstArchivoWeb()) {
+
+                            byte[] archivoInterno = archivoWeb.getContenidoArchivo();
+                            File srcFile = File.createTempFile("tmp", archivoWeb.getNombre());
+                            FileInputStream fis = new FileInputStream(srcFile);
+                            zos.putNextEntry(new ZipEntry(srcFile.getName()));
+                            zos.write(archivoInterno);
+                            zos.closeEntry();
+                            fis.close();
+
+                        }
+
+                    }
+
+                } catch (IOException ex) {
+                        Comunes.mensajeError(ex, "Error creating zip file: ");
+                } catch (Exception ex) {
+                    Comunes.mensajeError(ex, "No se pudo abrir el documento seleccionado");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No selecciono una convocatoria");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No selecciono una convocatoria");
+        }
+    }
+
 }
