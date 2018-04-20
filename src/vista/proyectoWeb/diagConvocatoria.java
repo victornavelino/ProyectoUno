@@ -16,10 +16,13 @@ import includes.Comunes;
 import includes.ModeloTablaNoEditable;
 import includes.SuperDialog;
 import java.awt.Desktop;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -667,30 +671,42 @@ public class diagConvocatoria extends SuperDialog {
     private void exportarCVarConvocatoria() {
         if (convocatoriaSeleccionada != null) {
             if (convocatoriaSeleccionada.getId() != null) {
-
+                File folder = new File("/home/hugo/" + convocatoriaSeleccionada.getNombre());
+                folder.mkdir();
                 try {
+
+                    System.err.println(folder.getName());
+                    System.err.println(folder.getAbsolutePath());
                     for (ProyectoWeb proyectoWeb : ProyectoWebFacade.getInstance().listar(convocatoriaSeleccionada)) {
                         // create byte buffer
-                        String zipFile = "/home/hugo/" + proyectoWeb.getParticipacionesWeb().get(0).getInvestigador().toString() + ".zip";
+                        String zipFile = "" + folder.getAbsolutePath() + "/" + proyectoWeb.getParticipacionesWeb().get(0).getInvestigador().toString() + ".zip";
+                        System.out.println(zipFile);
                         FileOutputStream fos = new FileOutputStream(zipFile);
+                        //ZipOutputStream zos = new ZipOutputStream(fos);
+
                         ZipOutputStream zos = new ZipOutputStream(fos);
-                        
                         for (ArchivoWeb archivoWeb : proyectoWeb.getLstArchivoWeb()) {
 
-                            byte[] archivoInterno = archivoWeb.getContenidoArchivo();
-                            File srcFile = File.createTempFile("tmp", archivoWeb.getNombre());
-                            FileInputStream fis = new FileInputStream(srcFile);
-                            zos.putNextEntry(new ZipEntry(srcFile.getName()));
-                            zos.write(archivoInterno);
-                            zos.closeEntry();
-                            fis.close();
+                            try {
+                                //ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                                ZipEntry entry = new ZipEntry(archivoWeb.getNombre());
+                                entry.setSize(archivoWeb.getContenidoArchivo().length);
+                                zos.putNextEntry(entry);
+                                zos.write(archivoWeb.getContenidoArchivo());
+                                zos.closeEntry();
+
+                            } catch (Exception e) {
+                                System.err.println("ERRORRRR");
+                            }
 
                         }
+                        zos.close();
 
                     }
 
                 } catch (IOException ex) {
-                        Comunes.mensajeError(ex, "Error creating zip file: ");
+                    Comunes.mensajeError(ex, "Error creating zip file: ");
                 } catch (Exception ex) {
                     Comunes.mensajeError(ex, "No se pudo abrir el documento seleccionado");
                 }
