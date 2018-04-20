@@ -671,7 +671,10 @@ public class diagConvocatoria extends SuperDialog {
     private void exportarCVarConvocatoria() {
         if (convocatoriaSeleccionada != null) {
             if (convocatoriaSeleccionada.getId() != null) {
-                File folder = new File("/home/hugo/" + convocatoriaSeleccionada.getNombre());
+                File folder = new File("C:\\" + convocatoriaSeleccionada.getNombre());
+                //System.err.println("PUEDE ESCRIBIR?: "+folder.canWrite());
+                folder.setWritable(true);
+                System.err.println("PUEDE ESCRIBIR?: "+folder.canWrite());
                 folder.mkdir();
                 try {
 
