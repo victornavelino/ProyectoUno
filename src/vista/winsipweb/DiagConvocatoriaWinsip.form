@@ -91,7 +91,6 @@
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnNuevoConvocatoria" min="-2" pref="112" max="-2" attributes="0"/>
-                              <Component id="btnEditarConvocatoria" min="-2" pref="112" max="-2" attributes="0"/>
                               <Component id="btnEliminarConvocatoria" min="-2" pref="112" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -146,11 +145,9 @@
                       <Component id="masterScrollPane" alignment="1" min="-2" pref="133" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="btnNuevoConvocatoria" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnEditarConvocatoria" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnEliminarConvocatoria" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -388,19 +385,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoConvocatoriaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnEditarConvocatoria">
-          <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="vista/winsipweb/Bundle.properties" key="DiagConvocatoriaWinsip.btnEditarConvocatoria.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="btnEliminarConvocatoria">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="vista/winsipweb/Bundle.properties" key="DiagConvocatoriaWinsip.btnEliminarConvocatoria.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarConvocatoriaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnGuardarConvocatoria">
           <Properties>
