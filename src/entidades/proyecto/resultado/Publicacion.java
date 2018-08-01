@@ -8,6 +8,7 @@ import entidades.persona.investigador.Investigador;
 import entidades.proyecto.Proyecto;
 import entidades.proyecto.vinculacion.ProyectoVinculacion;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -29,6 +30,9 @@ public abstract class Publicacion implements Serializable {
     private List<Proyecto> proyectos;
     @ManyToMany
     private List<ProyectoVinculacion> proyectosVinculacion;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date fechaCreacion;
+    private String usuarioCreacion;
 
     
     @ManyToMany
@@ -74,6 +78,22 @@ public abstract class Publicacion implements Serializable {
         this.id = id;
     }
 
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getUsuarioCreacion() {
+        return usuarioCreacion;
+    }
+
+    public void setUsuarioCreacion(String usuarioCreacion) {
+        this.usuarioCreacion = usuarioCreacion;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

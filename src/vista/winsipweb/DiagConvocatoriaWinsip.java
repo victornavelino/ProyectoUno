@@ -10,7 +10,9 @@ import entidades.proyecto.Proyecto;
 import facade.ConvocatoriaWinsipFacade;
 import facade.ProyectoFacade;
 import includes.Comunes;
+import includes.ModeloTablaNoEditable;
 import java.awt.Component;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +27,8 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     private ConvocatoriaWinsip convocatoriaWinsip;
     ProyectoFacade proyectoFacade = ProyectoFacade.getInstance();
     private List<Proyecto> proyectos;
+    List<ConvocatoriaWinsip> listTablaWinsip = new ArrayList<>();
+    private ModeloTablaNoEditable modeloTabla;
 
     /**
      * Creates new form ConvocatoriaWinsip
@@ -77,14 +81,14 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
 
         masterTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Descripcion", "Apertura", "Cierre"
+                "Id", "Nombre", "Descripcion", "Apertura", "Cierre", "Habilitada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -439,6 +443,11 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     }
 
     private void deshabilitarComponentes() {
+        java.util.Collection listaConvocatorias = ConvocatoriaWinsipFacade.getInstance().getTodos();
+        listTablaWinsip.clear();
+        listTablaWinsip.addAll(listaConvocatorias);
+        cargarTablaWinsip(listTablaWinsip);
+        
         tfNombre.setEnabled(false);
         tfDescripcion.setEnabled(false);
         dpApertura.setEnabled(false);
@@ -527,6 +536,8 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
             winsip.setCierre(dpCierre.getDate());
             winsip.setProyectos(proyectos);
             ConvocatoriaWinsipFacade.getInstance().alta(winsip);
+            JOptionPane.showMessageDialog(rootPane, "Alta Correcta");
+            inicializarComponentes();
         }
 
     }
@@ -542,5 +553,49 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "La lista de proyectos no debe estar vacia");
         } 
         return valido;
+    }
+
+    private void cargarTablaWinsip(List<ConvocatoriaWinsip> listTablaWinsip) {
+        modeloTabla = new ModeloTablaNoEditable();
+        cargarEncabezadosTabla(modeloTabla);
+        try {
+            for (ConvocatoriaWinsip m : listTablaWinsip) {
+                modeloTabla.addRow(cargarMensaje(m));
+
+            }
+            masterTable.setModel(modeloTabla);
+        } catch (Exception ex) {
+        }
+
+    }
+
+    private void cargarEncabezadosTabla(ModeloTablaNoEditable modeloTabla) {
+        modeloTabla.addColumn("Id");
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Descripcion");
+        modeloTabla.addColumn("Fecha Apertura");
+        modeloTabla.addColumn("Fecha Cierre");
+        modeloTabla.addColumn("Habilitada");
+        masterTable.setModel(modeloTabla);
+    }
+        private Object[] cargarMensaje(ConvocatoriaWinsip c) {
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Object[] fila = new Object[7];
+        fila[0] = c.getId();
+        fila[1] = c.getNombre();
+        fila[2] = c.getDescripcion();
+        try {
+            fila[3] = formato.format(c.getApertura());
+        } catch (Exception ex) {
+        }
+        try {
+            fila[4] = formato.format(c.getCierre());
+        } catch (Exception ex) {
+        }
+
+        fila[5] = c.getHabilitada();
+        return fila;
+
     }
 }
