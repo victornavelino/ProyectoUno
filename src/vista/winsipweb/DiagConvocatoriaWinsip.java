@@ -7,10 +7,14 @@ package vista.winsipweb;
 
 import entidades.convocatoriawinsip.ConvocatoriaWinsip;
 import entidades.proyecto.Proyecto;
+import facade.ConvocatoriaWinsipFacade;
 import facade.ProyectoFacade;
 import includes.Comunes;
+import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,6 +69,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         btnEliminarConvocatoria = new javax.swing.JButton();
         btnGuardarConvocatoria = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -208,6 +213,13 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         });
 
         btnCancelar.setText(org.openide.util.NbBundle.getMessage(DiagConvocatoriaWinsip.class, "DiagConvocatoriaWinsip.btnCancelar.text")); // NOI18N
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setText(org.openide.util.NbBundle.getMessage(DiagConvocatoriaWinsip.class, "DiagConvocatoriaWinsip.jCheckBox1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,25 +228,22 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(dpCierre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dpApertura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dpApertura, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dpCierre, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCheckBox1))))
                         .addGap(50, 50, 50)
                         .addComponent(pnProyectos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -273,7 +282,9 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dpCierre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))))
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addComponent(jCheckBox1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardarConvocatoria)
@@ -339,12 +350,16 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNuevoConvocatoriaActionPerformed
 
     private void btnGuardarConvocatoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarConvocatoriaActionPerformed
-        // TODO add your handling code here:
+        darAltaConvocatoriaWinsip();
     }//GEN-LAST:event_btnGuardarConvocatoriaActionPerformed
 
     private void tfBuscarProyectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBuscarProyectosActionPerformed
         buscarProyecto(tfBuscarProyectos.getText());
     }//GEN-LAST:event_tfBuscarProyectosActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cancelar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,6 +414,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     private javax.swing.JButton btnNuevoConvocatoria;
     private org.jdesktop.swingx.JXDatePicker dpApertura;
     private org.jdesktop.swingx.JXDatePicker dpCierre;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -418,7 +434,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void inicializarComponentes() {
-        proyectos=new ArrayList<>();
+        proyectos = new ArrayList<>();
         deshabilitarComponentes();
     }
 
@@ -427,9 +443,10 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         tfDescripcion.setEnabled(false);
         dpApertura.setEnabled(false);
         dpCierre.setEnabled(false);
-        pnProyectos.setEnabled(false);
         btnGuardarConvocatoria.setEnabled(false);
         btnCancelar.setEnabled(false);
+        jCheckBox1.setEnabled(false);
+        habilitarJPanel(false);
     }
 
     private void agregarConvocatoria() {
@@ -443,9 +460,10 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         tfDescripcion.setEnabled(true);
         dpApertura.setEnabled(true);
         dpCierre.setEnabled(true);
-        pnProyectos.setEnabled(true);
         btnGuardarConvocatoria.setEnabled(true);
         btnCancelar.setEnabled(true);
+        jCheckBox1.setEnabled(true);
+        habilitarJPanel(true);
     }
 
     private void buscarProyecto(String text) {
@@ -464,7 +482,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
 
     private void cargarProyectos() {
 
-        List<Proyecto> proyectosDisponibles = proyectoFacade.getproyectos();
+        List<Proyecto> proyectosDisponibles = proyectoFacade.getTodos();
         proyectosDisponibles.removeAll(proyectos);
         Comunes.cargarJList(lstProyectosDisponibles, proyectosDisponibles);
         Comunes.cargarJList(lstProyectosConvocatoria, proyectos);
@@ -476,5 +494,53 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
             proyectos.removeAll(lstProyectosConvocatoria.getSelectedValuesList());
         }
         cargarProyectos();
+    }
+
+    private void habilitarJPanel(Boolean estado) {
+        Component[] com = pnProyectos.getComponents();
+        for (int a = 0; a < com.length; a++) {
+            com[a].setEnabled(estado);
+        }
+    }
+
+    private void cancelar() {
+        tfNombre.setText("");
+        tfDescripcion.setText("");
+        tfBuscarProyectos.setText("");
+        Comunes.cargarJList(lstProyectosConvocatoria, new ArrayList());
+        Comunes.cargarJList(lstProyectosDisponibles, new ArrayList());
+        proyectos = null;
+        dpApertura.setDate(new Date());
+        dpCierre.setDate(new Date());
+        jCheckBox1.setSelected(false);
+        deshabilitarComponentes();
+
+    }
+
+    private void darAltaConvocatoriaWinsip() {
+        if (validarDatos()) {
+            ConvocatoriaWinsip winsip = new ConvocatoriaWinsip();
+            winsip.setNombre(tfNombre.getText());
+            winsip.setDescripcion(tfDescripcion.getText());
+            winsip.setHabilitada(jCheckBox1.isSelected());
+            winsip.setApertura(dpApertura.getDate());
+            winsip.setCierre(dpCierre.getDate());
+            winsip.setProyectos(proyectos);
+            ConvocatoriaWinsipFacade.getInstance().alta(winsip);
+        }
+
+    }
+
+    private boolean validarDatos() {
+        Boolean valido = true;
+        if (tfNombre.getText().isEmpty()) {
+            valido = false;
+            JOptionPane.showMessageDialog(rootPane, "EL nombre no puede estar vacio");
+        }
+        if (proyectos.isEmpty()) {
+            valido = false;
+            JOptionPane.showMessageDialog(rootPane, "La lista de proyectos no debe estar vacia");
+        } 
+        return valido;
     }
 }

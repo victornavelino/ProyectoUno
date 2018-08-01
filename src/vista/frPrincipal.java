@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  * Principal.java
  *
  * Created on 06/10/2009, 22:33:56
@@ -74,6 +74,7 @@ import vistas.mensajes.diagMensajes;
 import vistas.supervision.diagGestionContrasenas;
 import vista.editorial.stock.diagStockPrincipal;
 import vista.proyectos.vinculacion.DiagProyectoVinculacionBusquedaSimple;
+import vista.winsipweb.DiagConvocatoriaWinsip;
 
 /**
  *
@@ -325,6 +326,18 @@ public class frPrincipal extends javax.swing.JFrame {
         });
         jXTaskPnProyectos.add(new AbstractAction() {
             {
+                putValue(Action.NAME, "Convocatorias Winsip");
+                putValue(Action.SHORT_DESCRIPTION, "Gestionar Convocatorias Winsip");
+            }
+
+            public void actionPerformed(ActionEvent e) {
+                DiagConvocatoriaWinsip diagConvocatoriaWinsip = new DiagConvocatoriaWinsip(null, true);
+                diagConvocatoriaWinsip.setLocation(Comunes.centrarDialog(diagConvocatoriaWinsip));
+                diagConvocatoriaWinsip.setVisible(true);
+            }
+        });
+        jXTaskPnProyectos.add(new AbstractAction() {
+            {
                 putValue(Action.NAME, "Envío Archivos");
                 javax.swing.Icon icon = new ImageIcon(getClass().getResource("/imagenes/nuevo.png"));
                 putValue(Action.SMALL_ICON, icon);
@@ -542,14 +555,13 @@ public class frPrincipal extends javax.swing.JFrame {
             }
 
             public void actionPerformed(ActionEvent e) {
-                DgBecasEvaluacionWeb dgBecasEvaluacionWeb  = new DgBecasEvaluacionWeb (null, true);
+                DgBecasEvaluacionWeb dgBecasEvaluacionWeb = new DgBecasEvaluacionWeb(null, true);
                 dgBecasEvaluacionWeb.setLocationRelativeTo(null);
                 dgBecasEvaluacionWeb.setVisible(true);
 
-
             }
         });
-        
+
         jxTaskPnBecas.add(new AbstractAction() {
             {
                 putValue(Action.NAME, "Items a evaluar");
@@ -559,10 +571,9 @@ public class frPrincipal extends javax.swing.JFrame {
             }
 
             public void actionPerformed(ActionEvent e) {
-                DgBecasItemEvaluar dgBecasItemEvaluar  = new DgBecasItemEvaluar (null, true);
+                DgBecasItemEvaluar dgBecasItemEvaluar = new DgBecasItemEvaluar(null, true);
                 dgBecasItemEvaluar.setLocationRelativeTo(null);
                 dgBecasItemEvaluar.setVisible(true);
-
 
             }
         });
@@ -1018,14 +1029,14 @@ public class frPrincipal extends javax.swing.JFrame {
                 stockPrincipal.setVisible(true);
             }
         });
-        
+
         jXTaskPnEditorial.add(new AbstractAction() {
             {
                 putValue(Action.NAME, "Reportes");
                 putValue(Action.SHORT_DESCRIPTION, "Resportes");
             }
-            
-            public void actionPerformed(ActionEvent e) {               
+
+            public void actionPerformed(ActionEvent e) {
                 diagReportesEditorialCientifica reportesEditorialCientifica = new diagReportesEditorialCientifica(null, true);
                 reportesEditorialCientifica.setLocation(Comunes.centrarDialog(reportesEditorialCientifica));
                 reportesEditorialCientifica.setVisible(true);
@@ -1533,24 +1544,25 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 jxTaskPnCategorizaciones.setVisible(false);
                 jxTaskPnIncentivos.setVisible(false);
             } else if (usuario.getGrupo().getNombre().equals("editorialcientifica")) {
-            System.out.println("USUARIOOO: " + usuario.getNombreUsuario());
-            System.out.println("USUARIOOO: grupo" + usuario.getGrupo().getDescripcion());
-            System.out.println("entro");
-            jXTaskPnProyectosVinculacion.setVisible(false);
-            jXTaskPnProyectos.setVisible(false);
-            jXTaskPnEconomico.setVisible(false);
-            jxTaskPnBecas.setVisible(false);
-            jxTaskPnCategorizaciones.setVisible(false);
-            jxTaskPnIncentivos.setVisible(false);
-            jXTaskPnUsuarios.setVisible(false);
-            jXTaskPnSupervision.setVisible(false);
-            jXTaskPnEntradasSalidas.setVisible(false);
-        } else {
-            // redirectSystemStreams();
-        }
+                System.out.println("USUARIOOO: " + usuario.getNombreUsuario());
+                System.out.println("USUARIOOO: grupo" + usuario.getGrupo().getDescripcion());
+                System.out.println("entro");
+                jXTaskPnProyectosVinculacion.setVisible(false);
+                jXTaskPnProyectos.setVisible(false);
+                jXTaskPnEconomico.setVisible(false);
+                jxTaskPnBecas.setVisible(false);
+                jxTaskPnCategorizaciones.setVisible(false);
+                jxTaskPnIncentivos.setVisible(false);
+                jXTaskPnUsuarios.setVisible(false);
+                jXTaskPnSupervision.setVisible(false);
+                jXTaskPnEntradasSalidas.setVisible(false);
+            } else {
+                // redirectSystemStreams();
+            }
 
+        }
     }
-    }
+
     private void panelDeControlTitulos() {
         diagEliminarPanelControl diagEliminarPanelControl = new diagEliminarPanelControl(this, true);
         diagEliminarPanelControl.setLocation(Comunes.centrarDialog(diagEliminarPanelControl));
