@@ -38,6 +38,25 @@ public class Contrato implements Serializable {
     private List<Proyecto> proyectos;
     @ManyToMany
     private List<ProyectoVinculacion> proyectosVinculacion;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date fechaCreacion;
+    private String usuarioCreacion;
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getUsuarioCreacion() {
+        return usuarioCreacion;
+    }
+
+    public void setUsuarioCreacion(String usuarioCreacion) {
+        this.usuarioCreacion = usuarioCreacion;
+    }
 
     public List<ProyectoVinculacion> getProyectosVinculacion() {
         return proyectosVinculacion;

@@ -36,6 +36,25 @@ public class FormacionRRHH implements Serializable {
     private Proyecto proyecto;
 @ManyToOne
     private ProyectoVinculacion proyectoVinculacion;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date fechaCreacion;
+    private String usuarioCreacion;
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getUsuarioCreacion() {
+        return usuarioCreacion;
+    }
+
+    public void setUsuarioCreacion(String usuarioCreacion) {
+        this.usuarioCreacion = usuarioCreacion;
+    }
 
     public ProyectoVinculacion getProyectoVinculacion() {
         return proyectoVinculacion;

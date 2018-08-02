@@ -30,6 +30,26 @@ public class Congreso extends Publicacion implements Serializable {
     String volumen;
     String pagina;
     String anio;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date fechaCreacion;
+    private String usuarioCreacion;
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getUsuarioCreacion() {
+        return usuarioCreacion;
+    }
+
+    public void setUsuarioCreacion(String usuarioCreacion) {
+        this.usuarioCreacion = usuarioCreacion;
+    }
+    
 
     public String getAnio() {
         return anio;
@@ -107,7 +127,7 @@ public class Congreso extends Publicacion implements Serializable {
     public String toString() {
         String strFechaContrato = "";
         strFechaContrato = new SimpleDateFormat("dd/MM/YYYY").format(fecha);
-        return strFechaContrato + "\n " + super.getTitulo() + "\n " + nombreEvento 
+        return strFechaContrato + "\n " + super.getTitulo() + "\n " + nombreEvento
                 + "\n " + lugar;
     }
 }
