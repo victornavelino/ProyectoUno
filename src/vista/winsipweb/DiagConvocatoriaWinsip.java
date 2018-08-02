@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
 
-    private ConvocatoriaWinsip convocatoriaWinsip;
+    // private ConvocatoriaWinsip convocatoriaWinsip;
     private ConvocatoriaWinsip convocatoriaWinsipSeleccionada;
     ProyectoFacade proyectoFacade = ProyectoFacade.getInstance();
     private List<Proyecto> proyectos;
@@ -354,7 +354,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNuevoConvocatoriaActionPerformed
 
     private void btnGuardarConvocatoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarConvocatoriaActionPerformed
-        darAltaConvocatoriaWinsip();
+        guardarConvocatoriaWinsip(convocatoriaWinsipSeleccionada);
     }//GEN-LAST:event_btnGuardarConvocatoriaActionPerformed
 
     private void tfBuscarProyectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBuscarProyectosActionPerformed
@@ -366,7 +366,16 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEliminarConvocatoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarConvocatoriaActionPerformed
-        eliminarConvocatoriaWinsip();
+        if (masterTable.getSelectedRow() != -1) {
+            int resp = JOptionPane.showConfirmDialog(null, "Desea eliminar, esta seguro?");
+            if (JOptionPane.OK_OPTION == resp) {
+                eliminarConvocatoriaWinsip();
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un registro");
+        }
+
+
     }//GEN-LAST:event_btnEliminarConvocatoriaActionPerformed
 
     /**
@@ -459,11 +468,16 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         btnCancelar.setEnabled(false);
         jCheckBox1.setEnabled(false);
         habilitarJPanel(false);
+        Comunes.cargarJList(lstProyectosConvocatoria, new ArrayList());
+        Comunes.cargarJList(lstProyectosDisponibles, new ArrayList());
+        btnAgregar.setVisible(true);
+        btnEliminarConvocatoria.setEnabled(true);
+        btnNuevoConvocatoria.setEnabled(true);
     }
-
     private void agregarConvocatoria() {
         habilitarComponentes();
-        convocatoriaWinsip = new ConvocatoriaWinsip();
+        convocatoriaWinsipSeleccionada = new ConvocatoriaWinsip();
+        proyectos=new ArrayList<>();
     }
 
     private void habilitarComponentes() {
@@ -526,12 +540,12 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         dpCierre.setDate(new Date());
         jCheckBox1.setSelected(false);
         deshabilitarComponentes();
+        btnAgregar.setEnabled(true);
 
     }
 
-    private void darAltaConvocatoriaWinsip() {
+    private void guardarConvocatoriaWinsip(ConvocatoriaWinsip winsip) {
         if (validarDatos()) {
-            ConvocatoriaWinsip winsip = new ConvocatoriaWinsip();
             winsip.setNombre(tfNombre.getText());
             winsip.setDescripcion(tfDescripcion.getText());
             winsip.setHabilitada(jCheckBox1.isSelected());
@@ -539,7 +553,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
             winsip.setCierre(dpCierre.getDate());
             winsip.setProyectos(proyectos);
             if (winsip.getId() != null) {
-                ConvocatoriaWinsipFacade.getInstance().alta(winsip);
+                ConvocatoriaWinsipFacade.getInstance().modificar(winsip);
                 JOptionPane.showMessageDialog(rootPane, "Modificacion Correcta");
             } else {
                 ConvocatoriaWinsipFacade.getInstance().alta(winsip);
@@ -627,6 +641,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
             cargarCampos();
             btnGuardarConvocatoria.setEnabled(true);
             btnEliminarConvocatoria.setEnabled(true);
+            btnCancelar.setEnabled(true);
             btnNuevoConvocatoria.setEnabled(false);
             btQuitar.setEnabled(true);
             btnAgregar.setEnabled(true);
