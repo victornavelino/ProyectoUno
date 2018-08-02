@@ -74,5 +74,12 @@ public class ConvocatoriaWinsipFacade {
 //        quBuscar.setParameter("descripcion", descripcion);
 //        return quBuscar.getResultList();
 //    }
+    public ConvocatoriaWinsip buscar(Long id) throws Exception {
+        return new ConvocatoriaWinsipJpaController(emf).findConvocatoriaWinsip(id);
+    }
+
+    public void eliminar(ConvocatoriaWinsip convocatoria) throws Exception {
+        new ConvocatoriaWinsipJpaController(emf).destroy(convocatoria.getId());
+    }
 
 }

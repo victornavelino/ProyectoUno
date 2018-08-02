@@ -24,7 +24,8 @@ import javax.swing.JOptionPane;
  */
 public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
 
-    private ConvocatoriaWinsip convocatoriaWinsip;
+    // private ConvocatoriaWinsip convocatoriaWinsip;
+    private ConvocatoriaWinsip convocatoriaWinsipSeleccionada;
     ProyectoFacade proyectoFacade = ProyectoFacade.getInstance();
     private List<Proyecto> proyectos;
     List<ConvocatoriaWinsip> listTablaWinsip = new ArrayList<>();
@@ -69,7 +70,6 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         tfBuscarProyectos = new javax.swing.JTextField();
         btnNuevoConvocatoria = new javax.swing.JButton();
-        btnEditarConvocatoria = new javax.swing.JButton();
         btnEliminarConvocatoria = new javax.swing.JButton();
         btnGuardarConvocatoria = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -205,9 +205,12 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
             }
         });
 
-        btnEditarConvocatoria.setText(org.openide.util.NbBundle.getMessage(DiagConvocatoriaWinsip.class, "DiagConvocatoriaWinsip.btnEditarConvocatoria.text")); // NOI18N
-
         btnEliminarConvocatoria.setText(org.openide.util.NbBundle.getMessage(DiagConvocatoriaWinsip.class, "DiagConvocatoriaWinsip.btnEliminarConvocatoria.text")); // NOI18N
+        btnEliminarConvocatoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarConvocatoriaActionPerformed(evt);
+            }
+        });
 
         btnGuardarConvocatoria.setText(org.openide.util.NbBundle.getMessage(DiagConvocatoriaWinsip.class, "DiagConvocatoriaWinsip.btnGuardarConvocatoria.text")); // NOI18N
         btnGuardarConvocatoria.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +259,6 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnNuevoConvocatoria, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditarConvocatoria, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEliminarConvocatoria, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(276, 276, 276)
@@ -298,11 +300,9 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
                     .addComponent(masterScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnNuevoConvocatoria)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditarConvocatoria)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEliminarConvocatoria)
-                        .addGap(36, 36, 36))))
+                        .addGap(60, 60, 60))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -326,7 +326,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void masterTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masterTableMouseClicked
-
+        seleccionar();
     }//GEN-LAST:event_masterTableMouseClicked
 
     private void tfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreActionPerformed
@@ -354,7 +354,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNuevoConvocatoriaActionPerformed
 
     private void btnGuardarConvocatoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarConvocatoriaActionPerformed
-        darAltaConvocatoriaWinsip();
+        guardarConvocatoriaWinsip(convocatoriaWinsipSeleccionada);
     }//GEN-LAST:event_btnGuardarConvocatoriaActionPerformed
 
     private void tfBuscarProyectosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBuscarProyectosActionPerformed
@@ -364,6 +364,19 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         cancelar();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEliminarConvocatoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarConvocatoriaActionPerformed
+        if (masterTable.getSelectedRow() != -1) {
+            int resp = JOptionPane.showConfirmDialog(null, "Desea eliminar, esta seguro?");
+            if (JOptionPane.OK_OPTION == resp) {
+                eliminarConvocatoriaWinsip();
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Debe seleccionar un registro");
+        }
+
+
+    }//GEN-LAST:event_btnEliminarConvocatoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,7 +425,6 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
     private javax.swing.JButton btQuitar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEditarConvocatoria;
     private javax.swing.JButton btnEliminarConvocatoria;
     private javax.swing.JButton btnGuardarConvocatoria;
     private javax.swing.JButton btnNuevoConvocatoria;
@@ -447,7 +459,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         listTablaWinsip.clear();
         listTablaWinsip.addAll(listaConvocatorias);
         cargarTablaWinsip(listTablaWinsip);
-        
+
         tfNombre.setEnabled(false);
         tfDescripcion.setEnabled(false);
         dpApertura.setEnabled(false);
@@ -456,11 +468,16 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         btnCancelar.setEnabled(false);
         jCheckBox1.setEnabled(false);
         habilitarJPanel(false);
+        Comunes.cargarJList(lstProyectosConvocatoria, new ArrayList());
+        Comunes.cargarJList(lstProyectosDisponibles, new ArrayList());
+        btnAgregar.setVisible(true);
+        btnEliminarConvocatoria.setEnabled(true);
+        btnNuevoConvocatoria.setEnabled(true);
     }
-
     private void agregarConvocatoria() {
         habilitarComponentes();
-        convocatoriaWinsip = new ConvocatoriaWinsip();
+        convocatoriaWinsipSeleccionada = new ConvocatoriaWinsip();
+        proyectos=new ArrayList<>();
     }
 
     private void habilitarComponentes() {
@@ -523,20 +540,26 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         dpCierre.setDate(new Date());
         jCheckBox1.setSelected(false);
         deshabilitarComponentes();
+        btnAgregar.setEnabled(true);
 
     }
 
-    private void darAltaConvocatoriaWinsip() {
+    private void guardarConvocatoriaWinsip(ConvocatoriaWinsip winsip) {
         if (validarDatos()) {
-            ConvocatoriaWinsip winsip = new ConvocatoriaWinsip();
             winsip.setNombre(tfNombre.getText());
             winsip.setDescripcion(tfDescripcion.getText());
             winsip.setHabilitada(jCheckBox1.isSelected());
             winsip.setApertura(dpApertura.getDate());
             winsip.setCierre(dpCierre.getDate());
             winsip.setProyectos(proyectos);
-            ConvocatoriaWinsipFacade.getInstance().alta(winsip);
-            JOptionPane.showMessageDialog(rootPane, "Alta Correcta");
+            if (winsip.getId() != null) {
+                ConvocatoriaWinsipFacade.getInstance().modificar(winsip);
+                JOptionPane.showMessageDialog(rootPane, "Modificacion Correcta");
+            } else {
+                ConvocatoriaWinsipFacade.getInstance().alta(winsip);
+                JOptionPane.showMessageDialog(rootPane, "Alta Correcta");
+            }
+
             inicializarComponentes();
         }
 
@@ -551,7 +574,7 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         if (proyectos.isEmpty()) {
             valido = false;
             JOptionPane.showMessageDialog(rootPane, "La lista de proyectos no debe estar vacia");
-        } 
+        }
         return valido;
     }
 
@@ -578,7 +601,8 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         modeloTabla.addColumn("Habilitada");
         masterTable.setModel(modeloTabla);
     }
-        private Object[] cargarMensaje(ConvocatoriaWinsip c) {
+
+    private Object[] cargarMensaje(ConvocatoriaWinsip c) {
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Object[] fila = new Object[7];
@@ -597,5 +621,49 @@ public class DiagConvocatoriaWinsip extends javax.swing.JDialog {
         fila[5] = c.getHabilitada();
         return fila;
 
+    }
+
+    private void eliminarConvocatoriaWinsip() {
+        try {
+            ConvocatoriaWinsipFacade.getInstance().eliminar(convocatoriaWinsipSeleccionada);
+            btnGuardarConvocatoria.setEnabled(false);
+            btnEliminarConvocatoria.setEnabled(false);
+            inicializarComponentes();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(rootPane, "No se pudo borrar la convocatoria; ya tiene Winsips asociados");
+        }
+    }
+
+    private void seleccionar() {
+        try {
+            convocatoriaWinsipSeleccionada = ConvocatoriaWinsipFacade.getInstance().buscar((Long) masterTable.getValueAt(masterTable.getSelectedRow(), 0));
+            proyectos = convocatoriaWinsipSeleccionada.getProyectos();
+            cargarCampos();
+            btnGuardarConvocatoria.setEnabled(true);
+            btnEliminarConvocatoria.setEnabled(true);
+            btnCancelar.setEnabled(true);
+            btnNuevoConvocatoria.setEnabled(false);
+            btQuitar.setEnabled(true);
+            btnAgregar.setEnabled(true);
+//            habilitarcampos de edicion
+            habilitarJPanel(true);
+            tfNombre.setEnabled(true);
+            tfDescripcion.setEnabled(true);
+            dpApertura.setEnabled(true);
+            dpCierre.setEnabled(true);
+            jCheckBox1.setEnabled(true);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo seleccionar la convocatoria");
+            inicializarComponentes();
+        }
+    }
+
+    private void cargarCampos() {
+        tfNombre.setText(convocatoriaWinsipSeleccionada.getNombre());
+        tfDescripcion.setText(convocatoriaWinsipSeleccionada.getDescripcion());
+        jCheckBox1.setSelected(convocatoriaWinsipSeleccionada.getHabilitada());
+        dpApertura.setDate(convocatoriaWinsipSeleccionada.getApertura());
+        dpCierre.setDate(convocatoriaWinsipSeleccionada.getCierre());
+        cargarProyectos();
     }
 }
