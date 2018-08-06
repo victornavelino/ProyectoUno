@@ -65,7 +65,10 @@ public class ConvocatoriaWinsipFacade {
     }
 
     public List<ConvocatoriaWinsip> getTodos() {
-        Query quBuscar = em.createQuery("SELECT c FROM ConvocatoriaWinsip c");
+        EntityManagerFactory emfa = Persistence.createEntityManagerFactory("ProyectoUnoPU", ConexionFacade.PROPIEDADES);
+        EntityManager ema = emfa.createEntityManager();
+        Query quBuscar = ema.createQuery("SELECT c FROM ConvocatoriaWinsip c");
+        ema.getEntityManagerFactory().getCache().evictAll();
         return quBuscar.getResultList();
     }
 

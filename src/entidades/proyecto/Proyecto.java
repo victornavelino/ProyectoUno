@@ -100,7 +100,7 @@ public class Proyecto implements Serializable {
     private List<CampoAplicacion> camposAplicacion;
     @OneToOne
     private LineaInvestigacion lineaInvestigacion;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Resolucion> resoluciones;
     @OneToOne
     private Resolucion documentoWinsip;
