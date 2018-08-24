@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-/*
+ /*
  * diagInformes.java
  *
  * Created on 26-dic-2011, 14:23:10
@@ -214,7 +214,7 @@ public class diagInformes extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(diagInformes.class, "diagInformes.jPanel2.border.title"))); // NOI18N
 
-        cboExportarAExcel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Postulantes", "Evaluaciones", "Pagos", "Situacion" }));
+        cboExportarAExcel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Postulantes", "Evaluaciones", "Pagos", "Situacion", "Todo" }));
 
         btnExportar.setText(org.openide.util.NbBundle.getMessage(diagInformes.class, "diagInformes.btnExportar.text")); // NOI18N
         btnExportar.addActionListener(new java.awt.event.ActionListener() {
@@ -440,8 +440,10 @@ public class diagInformes extends javax.swing.JDialog {
             case 3:
                 PostulacionBecaFacade.getInstance().exportarAExcelSituacionPostulantes();
                 break;
+            case 4:
+                PostulacionBecaFacade.getInstance().exportarAExcelTodoBecas();
+                break;
         }
-
 
     }
 }
