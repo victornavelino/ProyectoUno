@@ -35,6 +35,10 @@ public class ConvocatoriaWinsip implements Serializable {
     private Date apertura;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date cierre;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaEvaluadaInicio;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaEvaluadaFin;
     @OneToMany
     private List<Proyecto> proyectos;
     private Boolean habilitada;
@@ -94,6 +98,24 @@ public class ConvocatoriaWinsip implements Serializable {
     public void setHabilitada(Boolean habilitada) {
         this.habilitada = habilitada;
     }
+
+    public Date getFechaEvaluadaInicio() {
+        return fechaEvaluadaInicio;
+    }
+
+    public void setFechaEvaluadaInicio(Date fechaEvaluadaInicio) {
+        this.fechaEvaluadaInicio = fechaEvaluadaInicio;
+    }
+
+    public Date getFechaEvaluadaFin() {
+        return fechaEvaluadaFin;
+    }
+
+    public void setFechaEvaluadaFin(Date fechaEvaluadaFin) {
+        this.fechaEvaluadaFin = fechaEvaluadaFin;
+    }
+
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -118,5 +140,5 @@ public class ConvocatoriaWinsip implements Serializable {
     public String toString() {
         return "entidades.convocatoriawinsip.ConvocatoriaWinsip[ id=" + id + " ]";
     }
-    
+
 }
