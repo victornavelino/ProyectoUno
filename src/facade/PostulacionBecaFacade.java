@@ -154,6 +154,9 @@ public class PostulacionBecaFacade {
         Comunes.ventanaCargando(this, "excelPostulantes", "Preparandose para Exportar a Excel", null);
     }
 
+    public void exportarAExcelTodoBecas() {
+        Comunes.ventanaCargando(this, "excelTodo", "Preparandose para Exportar a Excel", null);
+    }
     public void excelPostulantes() {
         //Datos a escribir
         List<String> lista = new ArrayList<String>();
@@ -269,6 +272,122 @@ public class PostulacionBecaFacade {
         new ExportarExcel().crearExcel(lista, "Postulantes");
 
     }
+    public void excelTodo() {
+        //Datos a escribir
+        List<String> lista = new ArrayList<String>();
+        lista.add("Nº|Codigo Incentivos|Postulante|Beca|"
+                + "Carreras|Docencias|Postgrado|Facultad|Proyecto|"
+                + "Plan|Directores");
+
+        for (PostulacionBeca p : getTodosPostulaciones()) {
+            StringBuilder stringBuider = new StringBuilder();
+            stringBuider.append(p.getId());
+            stringBuider.append("|");
+            if (p.getProyecto() != null) {
+                stringBuider.append(p.getProyecto().getCodigoIncentivos());
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            if (p.getPostulante() != null) {
+                stringBuider.append(p.getPostulante().toString());
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            if (p.getBeca() != null) {
+                stringBuider.append(p.getBeca().toString());
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            if (p.getPostulante().getFormacionesAcademicasGrado() != null) {
+                for (FormacionAcademicaGrado f : p.getPostulante().getFormacionesAcademicasGrado()) {
+                    if (f.toString() != null) {
+                        stringBuider.append(f.toString());
+                        stringBuider.append("; ");
+                    } else {
+                        stringBuider.append(" ");
+                    }
+                }
+
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            if (p.getPostulante().getDocencias() != null) {
+                for (Docencia d : p.getPostulante().getDocencias()) {
+                    if (d.getDedicacionDocente() != null) {
+                        stringBuider.append(d.toString());
+                        stringBuider.append("; ");
+                    } else {
+                        stringBuider.append(" ");
+                    }
+                }
+
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+
+            if (p.getPostulante().getFormacionesAcademicasPosgrado() != null) {
+                for (FormacionAcademicaPosgrado f : p.getPostulante().getFormacionesAcademicasPosgrado()) {
+                    if (f.getTituloPosgrado() != null) {
+                        stringBuider.append(f.toString());
+                        stringBuider.append("; ");
+                    } else {
+                        stringBuider.append(" ");
+                    }
+                }
+
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+
+            if (p.getPostulante().getDocencias() != null) {
+                for (Docencia d : p.getPostulante().getDocencias()) {
+                    if (d.getUnidadAcademica() != null) {
+                        stringBuider.append(d.getUnidadAcademica());
+                        stringBuider.append("; ");
+                    } else {
+                        stringBuider.append(" ");
+                    }
+                }
+
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            if (p.getProyecto() != null) {
+                stringBuider.append(p.getProyecto());
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            if (p.getPlandetrabajo() != null) {
+                stringBuider.append(p.getPlandetrabajo());
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            if (p.getAsesores() != null) {
+                for (Investigador i : p.getAsesores()) {
+                    stringBuider.append(i.toString());
+                    stringBuider.append("; ");
+                }
+            } else {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            lista.add(stringBuider.toString());
+
+        }
+        // Generar el fichero
+        new ExportarExcel().crearExcel(lista, "Postulantes");
+
+    }
+    
 
     public void exportarAExcelSituacionPostulantes() {
         Comunes.ventanaCargando(this, "excelSituacionPostulantes", "Preparandose para Exportar a Excel", null);
@@ -369,23 +488,26 @@ public class PostulacionBecaFacade {
         query.setParameter("investigador", investigador);
         return query.getResultList();
     }
-    
-    public List<PostulacionBeca> findPostulacionBecaLike(String cadena) throws Exception{
-         em.close();
-         em = emf.createEntityManager();
-         Query query = null;
-         if(!cadena.isEmpty()){
-             query = em.createQuery("SELECT l FROM PostulacionBeca l WHERE l.beca.descripcion "
-                     + "LIKE '"+cadena.trim().toLowerCase()+ "%' OR l.postulante.persona.nombre LIKE '%" +
-                     cadena.trim().toLowerCase() + "%' OR l.postulante.persona.apellido LIKE '%" +
-                     cadena.trim().toLowerCase() + "%' ORDER BY "
-                     + "l.beca.descripcion " );
-         }else{
-             query = em.createQuery("SELECT l FROM PostulacionBeca l ORDER BY l.beca.descripcion");
-         }
-         
-         
-         return query.getResultList();
 
-     }//fin findMedicamentoLike
+    public List<PostulacionBeca> findPostulacionBecaLike(String cadena) throws Exception {
+        em.close();
+        em = emf.createEntityManager();
+        Query query = null;
+        if (!cadena.isEmpty()) {
+            query = em.createQuery("SELECT l FROM PostulacionBeca l WHERE l.beca.descripcion "
+                    + "LIKE '" + cadena.trim().toLowerCase() + "%' OR l.postulante.persona.nombre LIKE '%"
+                    + cadena.trim().toLowerCase() + "%' OR l.postulante.persona.apellido LIKE '%"
+                    + cadena.trim().toLowerCase() + "%' ORDER BY "
+                    + "l.beca.descripcion ");
+        } else {
+            query = em.createQuery("SELECT l FROM PostulacionBeca l ORDER BY l.beca.descripcion");
+        }
+
+        return query.getResultList();
+
+    }//fin findMedicamentoLike
+
+    public void exportarAExcelTodo() {
+        
+    }
 }

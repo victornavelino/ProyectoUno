@@ -337,11 +337,12 @@
         <Component class="javax.swing.JComboBox" name="cboExportarAExcel">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="5">
                 <StringItem index="0" value="Postulantes"/>
                 <StringItem index="1" value="Evaluaciones"/>
                 <StringItem index="2" value="Pagos"/>
                 <StringItem index="3" value="Situacion"/>
+                <StringItem index="4" value="Todo"/>
               </StringArray>
             </Property>
           </Properties>
