@@ -79,7 +79,7 @@ public class PublicacionFacade {
     public List<Libro> getLibros() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoUnoPU",ConexionFacade.PROPIEDADES);
         EntityManager em = emf.createEntityManager();
-        Query quBuscar = em.createQuery("SELECT l FROM Libro l");
+        Query quBuscar = em.createQuery("SELECT l FROM Libro l where l.id IN (Select p.id from Publicacion p where type(p)= Libro and p.id=l.id)");
         try {
             if (!quBuscar.getResultList().isEmpty()) {
                 return quBuscar.getResultList();
