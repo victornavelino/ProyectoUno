@@ -373,7 +373,7 @@ public class ProyectoFacade {
         Query quProyectos = em.createQuery("SELECT p FROM Proyecto p, IN (p.participaciones) par WHERE "
                 + "par.rol.descripcion LIKE :car "
                 + "AND CONCAT(par.investigador.persona.apellido,' ',par.investigador.persona.nombre) LIKE :nom");
-        quProyectos.setParameter("nom", "%"+ nombre + "%");
+        quProyectos.setParameter("nom", "%" + nombre + "%");
         quProyectos.setParameter("car", cargo);
         return quProyectos.getResultList();
     }
@@ -702,37 +702,35 @@ public class ProyectoFacade {
         new ExportarExcel().crearExcel(lista, "Proyectos prorroga");
 
     }
-    
+
     Comparator<BienUso> comparadorBU = new Comparator<BienUso>() {
         public int compare(BienUso a, BienUso b) {
             return (a.getAnio().compareTo(b.getAnio()));
-            }
-        };
-    
+        }
+    };
+
     Comparator<BienConsumo> comparadorBC = new Comparator<BienConsumo>() {
         public int compare(BienConsumo a, BienConsumo b) {
             return (a.getAnio().compareTo(b.getAnio()));
-            }
-        };
-    
+        }
+    };
+
     Comparator<GastoViaje> comparadorGV = new Comparator<GastoViaje>() {
         public int compare(GastoViaje a, GastoViaje b) {
             return (a.getAnio().compareTo(b.getAnio()));
-            }
-        };
-    
+        }
+    };
+
     Comparator<BienNoPersonal> comparadorBNP = new Comparator<BienNoPersonal>() {
         public int compare(BienNoPersonal a, BienNoPersonal b) {
             return (a.getAnio().compareTo(b.getAnio()));
-            }
-        };
-    
-    
-    
+        }
+    };
+
     public void exportarAExcelInvProySubdisc() {
         //Datos a escribir
         List<String> lista = new ArrayList<>();
-        lista.add("CODIGO INCENTIVOS|NOMBRE PROYECTO|FECHA INICIO PROY|FECHA FINAL PROYECTO|ROL|APELLIDO Y NOMBRE|CATEGORIA 2010|AREAS TEMATICAS PROY|DISCIPLINAS CIENTIFICAS PROY|SUBDISCIPLINAS CIENTIFICAS PROY|UNIDAD ACADEMICA|LINEA PRIORITARIA|TIPO DE ACTIVIDADES|SECTORES PRIORITARIOS|OBJETIVO SOCIOECONOMICO|RESUMEN|FA GRADO|FA POSGRADO|FA OTRA|DEDICACION DOCENTE 2015|SEXO|FECHA NACIMIENTO|EDAD|PRESUPUESTO AÑO1|PRESUPUESTO AÑO2|PRESUPUESTO AÑO3|PRESUPUESTO AÑO4|");
+        lista.add("CODIGO INCENTIVOS|NOMBRE PROYECTO|FECHA INICIO PROY|FECHA FINAL PROYECTO|ROL|APELLIDO Y NOMBRE|CATEGORIA 2010|DEDICACION SEMANAL|FECHA ALTA|FECHA BAJA|AREAS TEMATICAS PROY|DISCIPLINAS CIENTIFICAS PROY|SUBDISCIPLINAS CIENTIFICAS PROY|UNIDAD ACADEMICA|LINEA PRIORITARIA|TIPO DE ACTIVIDADES|SECTORES PRIORITARIOS|OBJETIVO SOCIOECONOMICO|FA GRADO|FA POSGRADO|FA OTRA|DEDICACION DOCENTE 2015|SEXO|FECHA NACIMIENTO|EDAD|PRESUPUESTO AÑO1|PRESUPUESTO AÑO2|PRESUPUESTO AÑO3|PRESUPUESTO AÑO4|");
         List<Participacion> todos = new ParticipacionFacade().getTodos();
         for (Participacion p : todos) {
             StringBuilder stringBuider = new StringBuilder();
@@ -773,17 +771,35 @@ public class ProyectoFacade {
 
             try {
                 String strCategoria = " ";
-                if(!p.getInvestigador().getCategorizaciones().isEmpty()){
+                if (!p.getInvestigador().getCategorizaciones().isEmpty()) {
                     for (Categorizacion cat : p.getInvestigador().getCategorizaciones()) {
                         if (cat.getLlamado().getId() == 6L) {
                             strCategoria = cat.getCategoriaAsignada().getValorCategoria().getDescripcion();
                         }
                     }
                     stringBuider.append(strCategoria);
-                }else{
+                } else {
                     stringBuider.append(" ");
                 }
             } catch (Exception ex) {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            try {
+                stringBuider.append(p.getDedicacionSemanal());
+            } catch (java.lang.NullPointerException ex) {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            try {
+                stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(p.getFechaDesde()));
+            } catch (java.lang.NullPointerException ex) {
+                stringBuider.append(" ");
+            }
+            stringBuider.append("|");
+            try {
+                stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(p.getFechaHasta()));
+            } catch (java.lang.NullPointerException ex) {
                 stringBuider.append(" ");
             }
             stringBuider.append("|");
@@ -814,11 +830,11 @@ public class ProyectoFacade {
             }
             stringBuider.append("|");
             try {
-                if(!p.getProyecto().getSubDisciplinasCientificas().isEmpty()){
+                if (!p.getProyecto().getSubDisciplinasCientificas().isEmpty()) {
                     for (SubDisciplinaCientifica s : p.getProyecto().getSubDisciplinasCientificas()) {
                         stringBuider.append(s.getDescripcion()).append(" ");
                     }
-                }else{
+                } else {
                     stringBuider.append(" ");
                 }
             } catch (java.lang.NullPointerException ex) {
@@ -826,11 +842,11 @@ public class ProyectoFacade {
             }
             stringBuider.append("|");
             try {
-                if(p.getProyecto().getUnidadAcademica() != null){
+                if (p.getProyecto().getUnidadAcademica() != null) {
                     stringBuider.append(p.getProyecto().getUnidadAcademica().toString());
-                }else{
+                } else {
                     stringBuider.append(" ");
-                }    
+                }
             } catch (Exception ex) {
                 stringBuider.append("wWWWWW ");
             }
@@ -884,12 +900,6 @@ public class ProyectoFacade {
             }
             stringBuider.append("|");
             try {
-                stringBuider.append(p.getProyecto().getResumen());
-            } catch (java.lang.NullPointerException ex) {
-                stringBuider.append(" ");
-            }
-            stringBuider.append("|");
-            try {
                 if (!p.getInvestigador().getFormacionesAcademicasGrado().isEmpty()) {
                     for (FormacionAcademicaGrado s : p.getInvestigador().getFormacionesAcademicasGrado()) {
                         stringBuider.append(s).append("; ");
@@ -903,37 +913,36 @@ public class ProyectoFacade {
             }
             stringBuider.append("|");
             try {
-                if(!p.getInvestigador().getFormacionesAcademicasPosgrado().isEmpty()){
+                if (!p.getInvestigador().getFormacionesAcademicasPosgrado().isEmpty()) {
                     for (FormacionAcademicaPosgrado s : p.getInvestigador().getFormacionesAcademicasPosgrado()) {
                         stringBuider.append(s).append("; ");
                     }
-                }
-                else{
+                } else {
                     stringBuider.append(" ");
                 }
             } catch (java.lang.NullPointerException ex) {
                 stringBuider.append(" ");
-            }finally{
+            } finally {
                 stringBuider.append("|");
             }
-            
+
             try {
-                if(!p.getInvestigador().getFormacionesAcademicasOtras().isEmpty()){
+                if (!p.getInvestigador().getFormacionesAcademicasOtras().isEmpty()) {
                     for (FormacionAcademicaOtra s : p.getInvestigador().getFormacionesAcademicasOtras()) {
                         stringBuider.append(s).append("; ");
                     }
-                }else{
+                } else {
                     stringBuider.append(" ");
                 }
             } catch (java.lang.NullPointerException ex) {
                 System.out.println(ex.getMessage());
                 stringBuider.append(" ");
-            } finally{
+            } finally {
                 stringBuider.append("|");
             }
-            
+
             try {
-                if(!p.getInvestigador().getDocencias().isEmpty()){
+                if (!p.getInvestigador().getDocencias().isEmpty()) {
                     for (Docencia d : p.getInvestigador().getDocencias()) {
                         if (d.getAño() == 2015) {
                             stringBuider.append(d);
@@ -942,7 +951,7 @@ public class ProyectoFacade {
                         }
 
                     }
-                }else{
+                } else {
                     stringBuider.append(" ");
                 }
             } catch (java.lang.NullPointerException ex) {
@@ -970,91 +979,91 @@ public class ProyectoFacade {
             }
             stringBuider.append("|");
             //presupuesto
-            try{
-                
+            try {
+
                 List<BienUso> listaBU = p.getProyecto().getPresupuesto().getBienUso();
                 List<BienNoPersonal> listaBNP = p.getProyecto().getPresupuesto().getBienNoPersonal();
                 List<GastoViaje> listaGV = p.getProyecto().getPresupuesto().getGastosViaje();
                 List<BienConsumo> listaBC = p.getProyecto().getPresupuesto().getBienConsumo();
-                
+
                 double anio1 = 0;
                 double anio2 = 0;
                 double anio3 = 0;
                 double anio4 = 0;
-                
-                if(!listaBU.isEmpty()){
-                    Collections.sort(listaBU,comparadorBU);
+
+                if (!listaBU.isEmpty()) {
+                    Collections.sort(listaBU, comparadorBU);
                 }
-                if(!listaBNP.isEmpty()){
-                    Collections.sort(listaBNP,comparadorBNP);
+                if (!listaBNP.isEmpty()) {
+                    Collections.sort(listaBNP, comparadorBNP);
                 }
-                if(!listaGV.isEmpty()){
-                    Collections.sort(listaGV,comparadorGV);
+                if (!listaGV.isEmpty()) {
+                    Collections.sort(listaGV, comparadorGV);
                 }
-                if(!listaBC.isEmpty()){
-                    Collections.sort(listaBC,comparadorBC);
+                if (!listaBC.isEmpty()) {
+                    Collections.sort(listaBC, comparadorBC);
                 }
-                
-                for(int i=1; i <= listaBNP.size(); i++){
-                    if(i==1){
-                        anio1 += listaBNP.get(i-1).getValor().doubleValue();
+
+                for (int i = 1; i <= listaBNP.size(); i++) {
+                    if (i == 1) {
+                        anio1 += listaBNP.get(i - 1).getValor().doubleValue();
                     }
-                    if(i==2){
-                        anio2 += listaBNP.get(i-1).getValor().doubleValue();
+                    if (i == 2) {
+                        anio2 += listaBNP.get(i - 1).getValor().doubleValue();
                     }
-                    if(i==3){
-                        anio3 += listaBNP.get(i-1).getValor().doubleValue();
+                    if (i == 3) {
+                        anio3 += listaBNP.get(i - 1).getValor().doubleValue();
                     }
-                    if(i==4){
-                        anio4 += listaBNP.get(i-1).getValor().doubleValue();
-                    }
-                }
-                
-                for(int i=1; i <= listaBU.size(); i++){
-                    if(i==1){
-                        anio1 += listaBU.get(i-1).getValor().doubleValue();
-                    }
-                    if(i==2){
-                        anio2 += listaBU.get(i-1).getValor().doubleValue();
-                    }
-                    if(i==3){
-                        anio3 += listaBU.get(i-1).getValor().doubleValue();
-                    }
-                    if(i==4){
-                        anio4 += listaBU.get(i-1).getValor().doubleValue();
+                    if (i == 4) {
+                        anio4 += listaBNP.get(i - 1).getValor().doubleValue();
                     }
                 }
-                
-                for(int i=1; i <= listaGV.size(); i++){
-                    if(i==1){
-                        anio1 += listaGV.get(i-1).getValor().doubleValue();
+
+                for (int i = 1; i <= listaBU.size(); i++) {
+                    if (i == 1) {
+                        anio1 += listaBU.get(i - 1).getValor().doubleValue();
                     }
-                    if(i==2){
-                        anio2 += listaGV.get(i-1).getValor().doubleValue();
+                    if (i == 2) {
+                        anio2 += listaBU.get(i - 1).getValor().doubleValue();
                     }
-                    if(i==3){
-                        anio3 += listaGV.get(i-1).getValor().doubleValue();
+                    if (i == 3) {
+                        anio3 += listaBU.get(i - 1).getValor().doubleValue();
                     }
-                    if(i==4){
-                        anio4 += listaGV.get(i-1).getValor().doubleValue();
-                    }
-                }
-                
-                for(int i=1; i <= listaBC.size(); i++){
-                    if(i==1){
-                        anio1 += listaBC.get(i-1).getValor().doubleValue();
-                    }
-                    if(i==2){
-                        anio2 += listaBC.get(i-1).getValor().doubleValue();
-                    }
-                    if(i==3){
-                        anio3 += listaBC.get(i-1).getValor().doubleValue();
-                    }
-                    if(i==4){
-                        anio4 += listaBC.get(i-1).getValor().doubleValue();
+                    if (i == 4) {
+                        anio4 += listaBU.get(i - 1).getValor().doubleValue();
                     }
                 }
-                
+
+                for (int i = 1; i <= listaGV.size(); i++) {
+                    if (i == 1) {
+                        anio1 += listaGV.get(i - 1).getValor().doubleValue();
+                    }
+                    if (i == 2) {
+                        anio2 += listaGV.get(i - 1).getValor().doubleValue();
+                    }
+                    if (i == 3) {
+                        anio3 += listaGV.get(i - 1).getValor().doubleValue();
+                    }
+                    if (i == 4) {
+                        anio4 += listaGV.get(i - 1).getValor().doubleValue();
+                    }
+                }
+
+                for (int i = 1; i <= listaBC.size(); i++) {
+                    if (i == 1) {
+                        anio1 += listaBC.get(i - 1).getValor().doubleValue();
+                    }
+                    if (i == 2) {
+                        anio2 += listaBC.get(i - 1).getValor().doubleValue();
+                    }
+                    if (i == 3) {
+                        anio3 += listaBC.get(i - 1).getValor().doubleValue();
+                    }
+                    if (i == 4) {
+                        anio4 += listaBC.get(i - 1).getValor().doubleValue();
+                    }
+                }
+
                 stringBuider.append(String.valueOf(anio1));
                 stringBuider.append("|");
                 stringBuider.append(String.valueOf(anio2));
@@ -1063,13 +1072,13 @@ public class ProyectoFacade {
                 stringBuider.append("|");
                 stringBuider.append(String.valueOf(anio4));
                 stringBuider.append("|");
-            }catch(java.lang.NullPointerException ex){
+            } catch (java.lang.NullPointerException ex) {
                 stringBuider.append(" ");
-            }finally{
+            } finally {
                 //stringBuider.append("|");
             }
             lista.add(stringBuider.toString());
-            
+
         }
 
         // Generar el fichero
@@ -1079,9 +1088,9 @@ public class ProyectoFacade {
 
     public void exportarAExcelProyectosLibros() {
         //Datos a escribir
-
+        ParticipacionFacade participacionFacade = new ParticipacionFacade();
         List<String> lista = new ArrayList<>();
-        lista.add("CODIGO INCENTIVOS|NOMBRE PROYECTO|FECHA INICIO PROY|FECHA FINAL PROYECTO|PRORROGAS|TITULO LIBRO|ENVIADO|ACEPTADO|PUBLICADO|AÑO|ISBN");
+        lista.add("CODIGO INCENTIVOS|DIRECTOR|NOMBRE PROYECTO|UNIDAD ACADEMICA|TITULO LIBRO|AUTORES|EDITOR|AREA DISCIPLINAR|LUGAR PUBLICACION|AÑO PUBLICACION|ISBN");
         List<Libro> libros = PublicacionFacade.getInstance().getLibros();
         for (Libro libro : libros) {
             for (Proyecto proyecto : libro.getProyectos()) {
@@ -1093,30 +1102,23 @@ public class ProyectoFacade {
                 }
                 stringBuider.append("|");
                 try {
+                    stringBuider.append(participacionFacade.getDirector(proyecto).getInvestigador());
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
                     stringBuider.append(proyecto.getTitulo());
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
                 try {
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(proyecto.getFechaInicio()));
+                    stringBuider.append(proyecto.getUnidadAcademica());
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
-                try {
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(proyecto.getFechaFinalizacion()));
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-                    for (Prorroga prorroga : proyecto.getProrrogas()) {
-                        stringBuider.append(prorroga.toString()).append(" ");
-                    }
-                } catch (java.lang.NullPointerException ex) {
-                }
-                stringBuider.append(" |");
                 try {
                     stringBuider.append(libro.getTitulo());
 
@@ -1124,24 +1126,35 @@ public class ProyectoFacade {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
-
                 try {
-
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(libro.getFechaEnviado()));
-                } catch (Exception ex) {
+                    for (Participacion participacion : proyecto.getParticipaciones()) {
+                        stringBuider.append(participacion.getInvestigador()).append(",");
+                    }
+                } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
                 try {
 
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(libro.getFechaAceptado()));
+                    stringBuider.append(libro.getEditor());
                 } catch (Exception ex) {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
                 try {
+                    if (!proyecto.getSubDisciplinasCientificas().isEmpty()) {
+                        stringBuider.append(proyecto.getSubDisciplinasCientificas().get(0).getDisciplinaCientifica().toString());
+                    } else {
+                        stringBuider.append(" ");
+                    }
 
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(libro.getFechaPublicado()));
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+
+                    stringBuider.append(libro.getLugarPublicacion());
                 } catch (Exception ex) {
                     stringBuider.append(" ");
                 }
