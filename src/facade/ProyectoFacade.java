@@ -1127,8 +1127,8 @@ public class ProyectoFacade {
                 }
                 stringBuider.append("|");
                 try {
-                    for (Participacion participacion : proyecto.getParticipaciones()) {
-                        stringBuider.append(participacion.getInvestigador()).append(",");
+                    for (Investigador investigador : libro.getInvestigadores()) {
+                        stringBuider.append(investigador).append(",");
                     }
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
@@ -1185,9 +1185,9 @@ public class ProyectoFacade {
 
     public void exportarAExcelProyectosCapitulosLibros() {
         //Datos a escribir
-
+        ParticipacionFacade participacionFacade = new ParticipacionFacade();
         List<String> lista = new ArrayList<>();
-        lista.add("CODIGO INCENTIVOS|NOMBRE PROYECTO|FECHA INICIO PROY|FECHA FINAL PROYECTO|PRORROGAS|TITULO CAPITULO|LIBRO|ENVIADO|ACEPTADO|PUBLICADO|AÑO|ISBN");
+        lista.add("CODIGO INCENTIVOS|DIRECTOR|NOMBRE PROYECTO|UNIDAD ACADEMICA|TITULO CAPITULO|AUTORES CAPITULO|TITULO LIBRO|EDITOR|AREA DISCIPLINAR|LUGAR PUBLICACION|AÑO PUBLICACION|ISBN");
         List<CapituloLibro> capitulosLibro = PublicacionFacade.getInstance().getCapitulosLibro();
         for (CapituloLibro capituloLibro : capitulosLibro) {
             for (Proyecto proyecto : capituloLibro.getProyectos()) {
@@ -1199,68 +1199,68 @@ public class ProyectoFacade {
                 }
                 stringBuider.append("|");
                 try {
+                    stringBuider.append(participacionFacade.getDirector(proyecto).getInvestigador());
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
                     stringBuider.append(proyecto.getTitulo());
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
                 try {
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(proyecto.getFechaInicio()));
+                    stringBuider.append(proyecto.getUnidadAcademica());
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
-                try {
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(proyecto.getFechaFinalizacion()));
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-                    for (Prorroga prorroga : proyecto.getProrrogas()) {
-                        stringBuider.append(prorroga.toString()).append(" ");
-                    }
-                } catch (java.lang.NullPointerException ex) {
-                }
-                stringBuider.append(" |");
                 try {
                     stringBuider.append(capituloLibro.getTitulo());
 
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
-                stringBuider.append(" |");
+                stringBuider.append("|");
+                try {
+                    for (Investigador investigador : capituloLibro.getInvestigadores()) {
+                        stringBuider.append(investigador).append(",");
+                    }
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
                 try {
                     stringBuider.append(capituloLibro.getNombreLibro());
-
-                } catch (java.lang.NullPointerException ex) {
+                } catch (Exception ex) {
                     stringBuider.append(" ");
                 }
                 try {
-                    stringBuider.append(capituloLibro.getLibro().getTitulo());
+                    if (!capituloLibro.getEditor().isEmpty()) {
+                        stringBuider.append(capituloLibro.getEditor());
+                    } else {
+                        stringBuider.append(" ");
+                    }
 
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-
-                try {
-
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(capituloLibro.getFechaEnviado()));
                 } catch (Exception ex) {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
                 try {
+                    if (!proyecto.getSubDisciplinasCientificas().isEmpty()) {
+                        stringBuider.append(proyecto.getSubDisciplinasCientificas().get(0).getDisciplinaCientifica().toString());
+                    } else {
+                        stringBuider.append(" ");
+                    }
 
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(capituloLibro.getFechaAceptado()));
-                } catch (Exception ex) {
+                } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
                 stringBuider.append("|");
                 try {
 
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(capituloLibro.getFechaPublicado()));
+                    stringBuider.append(capituloLibro.getLugarPublicacion());
                 } catch (Exception ex) {
                     stringBuider.append(" ");
                 }
@@ -1280,7 +1280,6 @@ public class ProyectoFacade {
                 }
                 stringBuider.append("|");
                 lista.add(stringBuider.toString());
-
             }
         }
 
@@ -1291,9 +1290,10 @@ public class ProyectoFacade {
 
     public void exportarAExcelProyectosArticulosRevista() {
         //Datos a escribir
-
+        ParticipacionFacade participacionFacade = new ParticipacionFacade();
         List<String> lista = new ArrayList<>();
-        lista.add("CODIGO INCENTIVOS|NOMBRE PROYECTO|FECHA INICIO PROY|FECHA FINAL PROYECTO|PRORROGAS|TITULO ARTICULO|NOMBRE REVISTA|PAG. INICIAL|PAG. FINAL|ENVIADO|ACEPTADO|PUBLICADO|AÑO|ISBN");
+        lista.add("CODIGO INCENTIVOS|DIRECTOR|NOMBRE PROYECTO|UNIDAD ACADEMICA|TITULO ARTICULO|"
+                + "AUTORES|TITULO REVISTA|AREA DISCIPLINAR|VOLUMEN|PAGINA INIC|PAGINA FIN|AÑO PUBLICACION|CON REFERATO|ISBN");
         List<ArticuloRevista> articuloRevistas = PublicacionFacade.getInstance().getArticulosRevista();
         for (ArticuloRevista articuloRevista : articuloRevistas) {
             for (Proyecto proyecto : articuloRevista.getProyectos()) {
@@ -1305,7 +1305,93 @@ public class ProyectoFacade {
                 }
                 stringBuider.append("|");
                 try {
+                    stringBuider.append(participacionFacade.getDirector(proyecto).getInvestigador());
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
                     stringBuider.append(proyecto.getTitulo());
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(proyecto.getUnidadAcademica());
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(articuloRevista.getTitulo());
+
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    for (Investigador investigador : articuloRevista.getInvestigadores()) {
+                        stringBuider.append(investigador).append(",");
+                    }
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(articuloRevista.getNombreRevista());
+
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    if (!proyecto.getSubDisciplinasCientificas().isEmpty()) {
+                        stringBuider.append(proyecto.getSubDisciplinasCientificas().get(0).getDisciplinaCientifica().toString());
+                    } else {
+                        stringBuider.append(" ");
+                    }
+
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(articuloRevista.getVolumen());
+
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(articuloRevista.getPaginaInicial());
+
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(articuloRevista.getPaginaFinal());
+
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(articuloRevista.getAnioEdicion());
+
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(articuloRevista.getReferato());
+
+                } catch (java.lang.NullPointerException ex) {
+                    stringBuider.append(" ");
+                }
+                stringBuider.append("|");
+                try {
+                    stringBuider.append(articuloRevista.getISBN());
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
@@ -1328,14 +1414,8 @@ public class ProyectoFacade {
                     }
                 } catch (java.lang.NullPointerException ex) {
                 }
-                stringBuider.append(" |");
-                try {
-                    stringBuider.append(articuloRevista.getTitulo());
-
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
                 stringBuider.append("|");
+
                 try {
                     stringBuider.append(articuloRevista.getNombreRevista());
 
