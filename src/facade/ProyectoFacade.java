@@ -1377,8 +1377,11 @@ public class ProyectoFacade {
                 }
                 stringBuider.append("|");
                 try {
-                    stringBuider.append(articuloRevista.getAnioEdicion());
-
+                    if (articuloRevista.getAnioEdicion() != null) {
+                        stringBuider.append(articuloRevista.getAnioEdicion());
+                    } else {
+                        stringBuider.append(" ");
+                    }
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
@@ -1395,83 +1398,7 @@ public class ProyectoFacade {
                 } catch (java.lang.NullPointerException ex) {
                     stringBuider.append(" ");
                 }
-                stringBuider.append("|");
-                try {
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(proyecto.getFechaInicio()));
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(proyecto.getFechaFinalizacion()));
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-                    for (Prorroga prorroga : proyecto.getProrrogas()) {
-                        stringBuider.append(prorroga.toString()).append(" ");
-                    }
-                } catch (java.lang.NullPointerException ex) {
-                }
-                stringBuider.append("|");
-
-                try {
-                    stringBuider.append(articuloRevista.getNombreRevista());
-
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-
-                try {
-                    stringBuider.append(articuloRevista.getPaginaInicial());
-
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-                    stringBuider.append(articuloRevista.getPaginaFinal());
-
-                } catch (java.lang.NullPointerException ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(articuloRevista.getFechaEnviado()));
-                } catch (Exception ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(articuloRevista.getFechaAceptado()));
-                } catch (Exception ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-
-                    stringBuider.append(new SimpleDateFormat("dd/MM/yyyy").format(articuloRevista.getFechaPublicado()));
-                } catch (Exception ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-
-                    stringBuider.append(articuloRevista.getAnioEdicion());
-                } catch (Exception ex) {
-                    stringBuider.append(" ");
-                }
-                stringBuider.append("|");
-                try {
-
-                    stringBuider.append(articuloRevista.getISBN());
-                } catch (Exception ex) {
-                    stringBuider.append(" ");
-                }
+                
                 stringBuider.append("|");
                 lista.add(stringBuider.toString());
 
