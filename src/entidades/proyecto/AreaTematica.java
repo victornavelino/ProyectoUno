@@ -28,6 +28,8 @@ public class AreaTematica implements Serializable {
     private String descripcion;
     @OneToMany(mappedBy = "areaTematica")
     private List<DisciplinaCientifica> disciplinasCientificas;
+    @OneToMany(mappedBy = "areaTematica")
+    private List<LineaPrioritaria> lineaPrioritarias;
 
     public Long getId() {
         return id;
@@ -51,6 +53,14 @@ public class AreaTematica implements Serializable {
 
     public void setDisciplinasCientificas(List<DisciplinaCientifica> disciplinasCientificas) {
         this.disciplinasCientificas = disciplinasCientificas;
+    }
+
+    public List<LineaPrioritaria> getLineaPrioritarias() {
+        return lineaPrioritarias;
+    }
+
+    public void setLineaPrioritarias(List<LineaPrioritaria> lineaPrioritarias) {
+        this.lineaPrioritarias = lineaPrioritarias;
     }
 
     @Override

@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entidades.proyecto;
 
 import entidades.*;
@@ -11,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,13 +18,16 @@ import javax.persistence.Table;
  * @author Carlos
  */
 @Entity
-@Table(name="lineaprioritaria")
+@Table(name = "lineaprioritaria")
 public class LineaPrioritaria implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descripcion;
+    @ManyToOne
+    private AreaTematica areaTematica;
 
     public Long getId() {
         return id;
@@ -40,6 +43,14 @@ public class LineaPrioritaria implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public AreaTematica getAreaTematica() {
+        return areaTematica;
+    }
+
+    public void setAreaTematica(AreaTematica areaTematica) {
+        this.areaTematica = areaTematica;
     }
 
     @Override
