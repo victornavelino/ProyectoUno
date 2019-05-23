@@ -10,9 +10,12 @@
  */
 package vista;
 
+import entidades.proyecto.AreaTematica;
 import entidades.proyecto.LineaPrioritaria;
+import facade.AreaTematicaFacade;
 import facade.LineaPrioritariaFacade;
 import facade.TituloFacade;
+import includes.Comunes;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,12 +25,22 @@ import javax.swing.JOptionPane;
 public class diagLineaPrioritariaAlta extends javax.swing.JDialog {
 
     private final String tipoOperacion;
+    private LineaPrioritaria lineaPrioritaria;
 
     // Atributos
     /**
      * Creates new form diagLineaPrioritariaAlta
      */
-    public diagLineaPrioritariaAlta(java.awt.Frame parent, boolean modal, String tipoOperacion) {
+
+
+    public diagLineaPrioritariaAlta(java.awt.Frame parent, boolean modal, String tipoOperacion, LineaPrioritaria lineaPrioritaria) {
+        super(parent, modal);
+        initComponents();
+        this.lineaPrioritaria = lineaPrioritaria;
+        this.tipoOperacion = tipoOperacion;
+        inicializarComponentes();
+    }
+        public diagLineaPrioritariaAlta(java.awt.Frame parent, boolean modal, String tipoOperacion) {
         super(parent, modal);
         initComponents();
         this.tipoOperacion = tipoOperacion;
@@ -46,6 +59,8 @@ public class diagLineaPrioritariaAlta extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         tfDescripcion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cboAreasTematicas = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(diagLineaPrioritariaAlta.class, "diagLineaPrioritariaAlta.title")); // NOI18N
@@ -61,20 +76,27 @@ public class diagLineaPrioritariaAlta extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setText(org.openide.util.NbBundle.getMessage(diagLineaPrioritariaAlta.class, "diagLineaPrioritariaAlta.jLabel2.text")); // NOI18N
+
+        cboAreasTematicas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jButton1)))
+                    .addComponent(tfDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                    .addComponent(cboAreasTematicas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -82,11 +104,15 @@ public class diagLineaPrioritariaAlta extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cboAreasTematicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -103,7 +129,7 @@ public class diagLineaPrioritariaAlta extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                diagLineaPrioritariaAlta dialog = new diagLineaPrioritariaAlta(new javax.swing.JFrame(), true, new String());
+                diagLineaPrioritariaAlta dialog = new diagLineaPrioritariaAlta(new javax.swing.JFrame(), true, new String(),new LineaPrioritaria());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -115,8 +141,10 @@ public class diagLineaPrioritariaAlta extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cboAreasTematicas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField tfDescripcion;
     // End of variables declaration//GEN-END:variables
 
@@ -124,12 +152,29 @@ public class diagLineaPrioritariaAlta extends javax.swing.JDialog {
         if (tipoOperacion.equals("Alta")) {
             if (validar()) {
                 LineaPrioritaria lineaPrioritaria = new LineaPrioritaria();
+                lineaPrioritaria.setAreaTematica((AreaTematica) cboAreasTematicas.getSelectedItem());
                 lineaPrioritaria.setDescripcion(tfDescripcion.getText());
                 //lineaPrio
                 new LineaPrioritariaFacade().alta(lineaPrioritaria);
                 JOptionPane.showMessageDialog(null, "El LineaPrioritaria \""
                         + lineaPrioritaria.getDescripcion() + "\" ha sido guardado "
                         + "exitosamenta");
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese una descripción válida",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                inicializarComponentes();
+            }
+        }
+        if (tipoOperacion.equals("Modificación")) {
+            if (validar()) {
+                lineaPrioritaria.setAreaTematica((AreaTematica) cboAreasTematicas.getSelectedItem());
+                lineaPrioritaria.setDescripcion(tfDescripcion.getText());
+                //lineaPrio
+                new LineaPrioritariaFacade().modificar(lineaPrioritaria);
+                JOptionPane.showMessageDialog(null, "La LineaPrioritaria \""
+                        + lineaPrioritaria.getDescripcion() + "\" ha sido guardado "
+                        + "exitosamenta");
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Ingrese una descripción válida",
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -148,7 +193,12 @@ public class diagLineaPrioritariaAlta extends javax.swing.JDialog {
     }
 
     private void inicializarComponentes() {
+        Comunes.cargarJCombo(cboAreasTematicas, AreaTematicaFacade.getInstance().getTodas());
         tfDescripcion.requestFocus();
         tfDescripcion.selectAll();
+        if (tipoOperacion.equals("Modificación")) {
+            cboAreasTematicas.setSelectedItem(lineaPrioritaria.getAreaTematica());
+            tfDescripcion.setText(lineaPrioritaria.getDescripcion());
+        }
     }
 }

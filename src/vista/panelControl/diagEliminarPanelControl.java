@@ -239,7 +239,7 @@ public class diagEliminarPanelControl extends javax.swing.JDialog {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(diagEliminarPanelControl.class, "diagEliminarPanelControl.jPanel6.border.title"))); // NOI18N
 
-        cboEntidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Unidad Académica", "Línea de Investigacion", "Unidad Ejecutora", "Tipo Actividades", "Entidad Evaluadora", "Programa", "Objetivo Socioeconómico", "Subdisciplinas Científicas", "Disciplinas Científicas", "Areas Temáticas", "Departamento Docente", "Categoría Docente", "Dedicación Docente", "Modo de Obtencion del Cargo", "Cargo Conduccion", "Dedicacion Conduccion", "Especialidad Investigacion", "Especialidad Actividad Académica", "Tipo de duración de Asignatura", "Tipo Asignatura", "Carrera Asignatura", "Localidad", "Institucion Financiera" }));
+        cboEntidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Unidad Académica", "Línea de Investigacion", "Unidad Ejecutora", "Tipo Actividades", "Entidad Evaluadora", "Programa", "Objetivo Socioeconómico", "Subdisciplinas Científicas", "Disciplinas Científicas", "Areas Temáticas", "Departamento Docente", "Categoría Docente", "Dedicación Docente", "Modo de Obtencion del Cargo", "Cargo Conduccion", "Dedicacion Conduccion", "Especialidad Investigacion", "Especialidad Actividad Académica", "Tipo de duración de Asignatura", "Tipo Asignatura", "Carrera Asignatura", "Localidad", "Institucion Financiera", "Línea Prioritaria" }));
 
         btnBuscaEntidad.setText(org.openide.util.NbBundle.getMessage(diagEliminarPanelControl.class, "diagEliminarPanelControl.btnBuscaEntidad.text")); // NOI18N
         btnBuscaEntidad.addActionListener(new java.awt.event.ActionListener() {
@@ -667,7 +667,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     diagUnidadAcademica.setVisible(true);
                     cargarUnidadesAcademicas();
                     break;
-                case "Línea Prioritaria":
+                case "Línea de Investigacion":
                     LineaInvestigacion lineaInvestigacion = (LineaInvestigacion) jListTitulos.getSelectedValue();
                     diagLineaInvestigacion diagLineaIvestigacion = new diagLineaInvestigacion(null, true, "Modificación", lineaInvestigacion);
                     diagLineaIvestigacion.setLocation(Comunes.centrarDialog(diagLineaIvestigacion));
@@ -807,6 +807,13 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     diagLocalidad1.setLocation(Comunes.centrarDialog(diagLocalidad1));
                     diagLocalidad1.setVisible(true);
                     cargarLocalidad();
+                    break;
+                case "Líneas Prioritarias":
+                    LineaPrioritaria lineaPrioritaria = (LineaPrioritaria) jListTitulos.getSelectedValue();
+                    diagLineaPrioritariaAlta diagLineaPrioritaria = new diagLineaPrioritariaAlta(null, true, "Modificación", lineaPrioritaria);
+                    diagLineaPrioritaria.setLocation(Comunes.centrarDialog(diagLineaPrioritaria));
+                    diagLineaPrioritaria.setVisible(true);
+                    cargarLineasPrioritarias();
                     break;
             }
         }
@@ -959,7 +966,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         }
                     }
                     break;
-                case "Línea Prioritaria":
+                case "Línea de Investigacion":
                     LineaInvestigacion lineaInvestigacion = (LineaInvestigacion) jListTitulos.getSelectedValue();
                     try {
                         LineaInvestigacionFacade.getInstance().eliminar(lineaInvestigacion.getId());
@@ -1303,6 +1310,24 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         }
                     }
                     break;
+                case "Líneas Prioritarias":
+                    LineaPrioritaria lineaPrioritaria = (LineaPrioritaria) jListTitulos.getSelectedValue();
+                    try {
+
+                        new LineaPrioritariaFacade().eliminar(lineaPrioritaria.getId());
+                        cargarLineasPrioritarias();
+                    } catch (Exception ex) {
+                        int resolver = JOptionPane.showConfirmDialog(null, "El elemento escogido tiene investigadores asociados \n"
+                                + "desea resolver el conflicto?", "Error", JOptionPane.YES_NO_OPTION);
+                        if (resolver == JOptionPane.YES_OPTION) {
+                            diagInvestigadorPModificar diagInvestigadorMod = new diagInvestigadorPModificar(null, true, (Object) lineaPrioritaria);
+                            diagInvestigadorMod.setLocation(Comunes.centrarDialog(diagInvestigadorMod));
+                            diagInvestigadorMod.setVisible(true);
+                            cargarLineasPrioritarias();
+                        }
+                    }
+                    break;
+
             }
 
         }
@@ -1906,7 +1931,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 case "Localidad":
                     agregarLocalidad();
                     break;
-                case "Línea Prioritaria":
+                case "Líneas Prioritarias":
                     agregarLineaPrioritaria();
                     break;
             }
@@ -1934,7 +1959,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         diagLineaPrioritariaAlta nuevaLineaInv = new diagLineaPrioritariaAlta(null, true, "Alta");
         nuevaLineaInv.setLocation(Comunes.centrarDialog(nuevaLineaInv));
         nuevaLineaInv.setVisible(true);
-        cargarLineasInvestigacion();
+        cargarLineasPrioritarias();
     }
 
     private void agregarUnidadEjecutora() {
