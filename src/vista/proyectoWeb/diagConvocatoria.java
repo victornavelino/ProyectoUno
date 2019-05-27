@@ -92,6 +92,10 @@ public class diagConvocatoria extends SuperDialog {
         btQuitar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        fechaIniLabel1 = new javax.swing.JLabel();
+        fechaFinLabel1 = new javax.swing.JLabel();
+        dateFechaIniProyecto = new org.jdesktop.swingx.JXDatePicker();
+        dateFechaFinProyecto = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -242,6 +246,14 @@ public class diagConvocatoria extends SuperDialog {
             }
         });
 
+        fechaIniLabel1.setText(org.openide.util.NbBundle.getMessage(diagConvocatoria.class, "diagConvocatoria.fechaIniLabel1.text")); // NOI18N
+
+        fechaFinLabel1.setText(org.openide.util.NbBundle.getMessage(diagConvocatoria.class, "diagConvocatoria.fechaFinLabel1.text")); // NOI18N
+
+        dateFechaIniProyecto.setFormats("dd/MM/yyyy");
+
+        dateFechaFinProyecto.setFormats("dd/MM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -251,21 +263,33 @@ public class diagConvocatoria extends SuperDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descripcionLabel)
-                            .addComponent(fechaFinLabel)
-                            .addComponent(fechaIniLabel)
-                            .addComponent(monotoMaximoLabel)
-                            .addComponent(nombreLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(descripcionField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                            .addComponent(dateFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateFechaIni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombreField)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(montoMaximoField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(descripcionLabel)
+                                    .addComponent(fechaFinLabel)
+                                    .addComponent(fechaIniLabel)
+                                    .addComponent(monotoMaximoLabel)
+                                    .addComponent(nombreLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(dateFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateFechaIni, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nombreField, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(montoMaximoField, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1))
+                                    .addComponent(descripcionField)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(fechaFinLabel1))
+                                    .addComponent(fechaIniLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(dateFechaFinProyecto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dateFechaIniProyecto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(pnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -311,7 +335,15 @@ public class diagConvocatoria extends SuperDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(monotoMaximoLabel)
                             .addComponent(montoMaximoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fechaIniLabel1)
+                            .addComponent(dateFechaIniProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fechaFinLabel1)
+                            .addComponent(dateFechaFinProyecto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(pnCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -424,12 +456,16 @@ public class diagConvocatoria extends SuperDialog {
     private javax.swing.JButton btQuitar;
     private javax.swing.JButton btnAgregar;
     private org.jdesktop.swingx.JXDatePicker dateFechaFin;
+    private org.jdesktop.swingx.JXDatePicker dateFechaFinProyecto;
     private org.jdesktop.swingx.JXDatePicker dateFechaIni;
+    private org.jdesktop.swingx.JXDatePicker dateFechaIniProyecto;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField descripcionField;
     private javax.swing.JLabel descripcionLabel;
     private javax.swing.JLabel fechaFinLabel;
+    private javax.swing.JLabel fechaFinLabel1;
     private javax.swing.JLabel fechaIniLabel;
+    private javax.swing.JLabel fechaIniLabel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -471,6 +507,8 @@ public class diagConvocatoria extends SuperDialog {
         dateFechaIni.setEnabled(true);
         dateFechaFin.setEnabled(true);
         montoMaximoField.setEnabled(true);
+        dateFechaIniProyecto.setEnabled(true);
+        dateFechaFinProyecto.setEnabled(true);
 
     }
 
@@ -480,6 +518,8 @@ public class diagConvocatoria extends SuperDialog {
         dateFechaIni.setEnabled(false);
         dateFechaFin.setEnabled(false);
         montoMaximoField.setEnabled(false);
+        dateFechaIniProyecto.setEnabled(false);
+        dateFechaFinProyecto.setEnabled(false);
     }
 
     private void limpiarFields() {
@@ -488,6 +528,8 @@ public class diagConvocatoria extends SuperDialog {
         montoMaximoField.setText("");
         dateFechaIni.setDate(new Date());
         dateFechaFin.setDate(new Date());
+        dateFechaIniProyecto.setDate(new Date());
+        dateFechaFinProyecto.setDate(new Date());
     }
 
     private void cargarEncabezadosTabla(ModeloTablaNoEditable modeloTablaMensajes) {
@@ -498,6 +540,8 @@ public class diagConvocatoria extends SuperDialog {
         modeloTablaMensajes.addColumn("Fecha Fin");
         modeloTablaMensajes.addColumn("Monto Máximo");
         modeloTablaMensajes.addColumn("Categorias Permitidas");
+        modeloTablaMensajes.addColumn("Inicio Proyecto");
+        modeloTablaMensajes.addColumn("Fin Proyecto");
 
         masterTable.setModel(modeloTablaMensajes);
     }
@@ -519,7 +563,7 @@ public class diagConvocatoria extends SuperDialog {
     private Object[] cargarMensaje(Convocatoria c) {
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Object[] fila = new Object[7];
+        Object[] fila = new Object[9];
         fila[0] = c.getId();
         fila[1] = c.getNombre();
         fila[2] = c.getDescripcion();
@@ -541,6 +585,14 @@ public class diagConvocatoria extends SuperDialog {
                 fila6 += val + " - ";
             }
             fila[6] = fila6.substring(0, fila6.length() - 2);
+        }
+        try {
+            fila[7] = formato.format(c.getFechaInicioProyecto());
+        } catch (Exception ex) {
+        }
+        try {
+            fila[8] = formato.format(c.getFechaFinalizacionProyecto());
+        } catch (Exception ex) {
         }
         return fila;
 
@@ -571,6 +623,9 @@ public class diagConvocatoria extends SuperDialog {
         montoMaximoField.setText(convocatoriaSeleccionada.getMontoMaximo().toString());
         dateFechaIni.setDate(convocatoriaSeleccionada.getFechaIni());
         dateFechaFin.setDate(convocatoriaSeleccionada.getFechaFin());
+        dateFechaIniProyecto.setDate(convocatoriaSeleccionada.getFechaInicioProyecto());
+        dateFechaFinProyecto.setDate(convocatoriaSeleccionada.getFechaFinalizacionProyecto());
+
         cargarCategorias();
     }
 
@@ -584,6 +639,8 @@ public class diagConvocatoria extends SuperDialog {
                         c.setMontoMaximo(new BigDecimal(montoMaximoField.getText()));
                         c.setFechaIni(dateFechaIni.getDate());
                         c.setFechaFin(dateFechaFin.getDate());
+                        c.setFechaInicioProyecto(dateFechaIniProyecto.getDate());
+                        c.setFechaFinalizacionProyecto(dateFechaFinProyecto.getDate());
                         c.setCategorias(categorias);
                         if (convocatoriaSeleccionada.getId() != null) {
                             ProyectoWebFacade.getInstance().editar(c);
@@ -674,7 +731,7 @@ public class diagConvocatoria extends SuperDialog {
                 File folder = new File("C:\\" + convocatoriaSeleccionada.getNombre());
                 //System.err.println("PUEDE ESCRIBIR?: "+folder.canWrite());
                 folder.setWritable(true);
-                System.err.println("PUEDE ESCRIBIR?: "+folder.canWrite());
+                System.err.println("PUEDE ESCRIBIR?: " + folder.canWrite());
                 folder.mkdir();
                 try {
 

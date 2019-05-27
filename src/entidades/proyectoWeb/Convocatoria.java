@@ -16,6 +16,7 @@ import javax.persistence.Temporal;
 import java.util.List;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -45,6 +46,12 @@ public class Convocatoria implements Serializable {
 
     @OneToMany
     private List<ValorCategoria> categorias;
+        //2
+    @Temporal(TemporalType.DATE)
+    private Date fechaInicioProyecto;
+
+    @Temporal(TemporalType.DATE)
+    private Date fechaFinalizacionProyecto;
 
     public Long getId() {
         return id;
@@ -101,6 +108,23 @@ public class Convocatoria implements Serializable {
     public void setCategorias(List<ValorCategoria> categorias) {
         this.categorias = categorias;
     }
+
+    public Date getFechaInicioProyecto() {
+        return fechaInicioProyecto;
+    }
+
+    public void setFechaInicioProyecto(Date fechaInicioProyecto) {
+        this.fechaInicioProyecto = fechaInicioProyecto;
+    }
+
+    public Date getFechaFinalizacionProyecto() {
+        return fechaFinalizacionProyecto;
+    }
+
+    public void setFechaFinalizacionProyecto(Date fechaFinalizacionProyecto) {
+        this.fechaFinalizacionProyecto = fechaFinalizacionProyecto;
+    }
+
 
     @Override
     public int hashCode() {
