@@ -6,6 +6,7 @@
 package vista.proyectoWeb;
 
 import controladores.ConvocatoriaJpaController;
+import entidades.persona.CorreoElectronico;
 import entidades.proyecto.CampoAplicacion;
 import entidades.proyecto.Participacion;
 import entidades.proyecto.SubDisciplinaCientifica;
@@ -14,12 +15,14 @@ import entidades.proyectoWeb.Convocatoria;
 import entidades.proyectoWeb.ParticipacionWeb;
 import entidades.proyectoWeb.ProyectoWeb;
 import facade.ConexionFacade;
+import facade.ParticipacionWebFacade;
 import facade.ProyectoWebFacade;
 import includes.Comunes;
 import includes.ExportarExcel;
 import includes.ModeloTablaNoEditable;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -277,6 +280,7 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
         modeloTablaProyectosWeb.addColumn("SubDisciplina Cientifica");
         modeloTablaProyectosWeb.addColumn("Proyecto Orientado");
         modeloTablaProyectosWeb.addColumn("Finalizado");
+        modeloTablaProyectosWeb.addColumn("Correos Electronicos");
 
         tblProyectosWeb.setModel(modeloTablaProyectosWeb);
     }
@@ -284,7 +288,7 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
     private void cargarProyectoWeb(ProyectoWeb proyectoWeb) {
         // JOptionPane.showMessageDialog(null, "va "+va.getCantidadPeso());
         SimpleDateFormat formats = new SimpleDateFormat("dd/MM/yyyy");
-        Object[] fila = new Object[20];
+        Object[] fila = new Object[21];
         int n = 0;
         try {
             fila[n++] = proyectoWeb.getTitulo();
@@ -352,8 +356,8 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
             fila[n++] = "n/n";
         }
         try {
-            if (proyectoWeb.getLineaInvestigacion() != null) {
-                fila[n++] = proyectoWeb.getLineaInvestigacion();
+            if (proyectoWeb.getLineaPrioritaria() != null) {
+                fila[n++] = proyectoWeb.getLineaPrioritaria();
             } else {
                 fila[n++] = "n/n";
             }
@@ -431,7 +435,7 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
                 fila[n++] = "n/n";
             }
         } else {
-            System.err.println("ELSE SUBDISCIPLINA");
+            //System.err.println("ELSE SUBDISCIPLINA");
             fila[n++] = "n/n";
             fila[n++] = "n/n";
             fila[n++] = "n/n";
@@ -452,6 +456,16 @@ public class DiagListadoProyectosWeb extends javax.swing.JDialog {
             } else {
                 fila[n++] = "NO";
             }
+        } catch (Exception e) {
+            fila[n++] = "n/n";
+
+        }
+        try {
+            List<CorreoElectronico> correosElectronicos = new ArrayList<>();
+            correosElectronicos = ParticipacionWebFacade.getInstance().getDirector(proyectoWeb).getInvestigador().getPersona().getCorreosElectronicos();
+            
+                fila[n++] = correosElectronicos.get(0).getDireccion();
+            
         } catch (Exception e) {
             fila[n++] = "n/n";
 

@@ -13,6 +13,7 @@ public enum TipoFinanciamiento {
     
     SECyTUNCA("SECyT-UNCA"),
     Externo("Externo"),
+    Secyt_Y_Externo("SECyT y Externo"),
     No("No");
 
     private String name;

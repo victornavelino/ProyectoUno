@@ -16,6 +16,7 @@ import entidades.proyecto.EntidadEvaluadora;
 import entidades.proyecto.Especialidad;
 import entidades.proyecto.Evaluacion;
 import entidades.proyecto.LineaInvestigacion;
+import entidades.proyecto.LineaPrioritaria;
 import entidades.proyecto.ObjetivoSocioeconomico;
 import entidades.proyecto.Participacion;
 import entidades.proyecto.Programa;
@@ -79,16 +80,16 @@ public class ProyectoWeb implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date fechaFinalizacion;
-    
+
     //3
     private String codigoCarga;
-    
+
     private String codigoSecyt;
-    
+
     //4
     @Enumerated
     private TipoFinanciamiento tipoFinanciamiento;
-    
+
     //5
     private Boolean participaEnPrograma;
 
@@ -115,17 +116,18 @@ public class ProyectoWeb implements Serializable {
     private List<UnidadInvestigacion> localizaciones;
 
     private String localizacionOtra;
-    
+
     private double latitud;
-    
+
     private double longitud;
     //6. LINEA PRIORITARIA
     @OneToOne
     private LineaInvestigacion lineaInvestigacion;
-    
-    
+    @OneToOne
+    private LineaPrioritaria lineaPrioritaria;
+
     private SectorPrioritario sectorPrioritario;
-    
+
     private String sectorPrioritarioOtro;
 
     //7.CARACTERISTICAS
@@ -168,9 +170,6 @@ public class ProyectoWeb implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private ProyectoWebFGP proyectoWebFGP;
 
-    
-    
-
     //VI: Presupuesto
     @OneToOne(mappedBy = "proyectoWeb", cascade = CascadeType.ALL, orphanRemoval = true)
     private PresupuestoWeb presupuestoWeb;
@@ -202,6 +201,9 @@ public class ProyectoWeb implements Serializable {
 
     @Lob
     private String observaciones;
+    //INFRAESTRUCTURA
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ProyectoWebInfraestructura> listaProyectoWebInfraestructura;
 
     public Long getId() {
         return id;
@@ -218,7 +220,7 @@ public class ProyectoWeb implements Serializable {
     public void setSectorPrioritarioOtro(String sectorPrioritarioOtro) {
         this.sectorPrioritarioOtro = sectorPrioritarioOtro;
     }
-    
+
     public SectorPrioritario getSectorPrioritario() {
         return sectorPrioritario;
     }
@@ -227,7 +229,6 @@ public class ProyectoWeb implements Serializable {
         this.sectorPrioritario = sectorPrioritario;
     }
 
-    
     public String getCodigoCarga() {
         return codigoCarga;
     }
@@ -252,8 +253,6 @@ public class ProyectoWeb implements Serializable {
         this.tipoFinanciamiento = tipoFinanciamiento;
     }
 
-    
-
     public Boolean getParticipaEnPrograma() {
         return participaEnPrograma;
     }
@@ -277,7 +276,6 @@ public class ProyectoWeb implements Serializable {
     public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
-    
 
     public ProyectoWebFGP getProyectoWebFGP() {
         return proyectoWebFGP;
@@ -286,7 +284,7 @@ public class ProyectoWeb implements Serializable {
     public void setProyectoWebFGP(ProyectoWebFGP proyectoWebFGP) {
         this.proyectoWebFGP = proyectoWebFGP;
     }
-    
+
     public Date getFechaArchivo() {
         return fechaArchivo;
     }
@@ -349,8 +347,7 @@ public class ProyectoWeb implements Serializable {
 
     public void setPresupuestoWeb(PresupuestoWeb presupuestoWeb) {
         this.presupuestoWeb = presupuestoWeb;
-    } 
-    
+    }
 
     public Date getFechaInicio() {
         return fechaInicio;
@@ -567,7 +564,22 @@ public class ProyectoWeb implements Serializable {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
-    
+
+    public LineaPrioritaria getLineaPrioritaria() {
+        return lineaPrioritaria;
+    }
+
+    public void setLineaPrioritaria(LineaPrioritaria lineaPrioritaria) {
+        this.lineaPrioritaria = lineaPrioritaria;
+    }
+
+    public List<ProyectoWebInfraestructura> getListaProyectoWebInfraestructura() {
+        return listaProyectoWebInfraestructura;
+    }
+
+    public void setListaProyectoWebInfraestructura(List<ProyectoWebInfraestructura> listaProyectoWebInfraestructura) {
+        this.listaProyectoWebInfraestructura = listaProyectoWebInfraestructura;
+    }
 
     @Override
     public int hashCode() {

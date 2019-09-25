@@ -15,10 +15,10 @@ public class ConexionFacade {
 
     public static final Map PROPIEDADES = new HashMap<String, String>() {
         {
-            put("javax.persistence.jdbc.url", "jdbc:mysql://localhost:3306/secyt");
-            put("javax.persistence.jdbc.password","napo2009");
+            put("javax.persistence.jdbc.url", "jdbc:mysql://170.210.142.192:3306/secyt");
+            put("javax.persistence.jdbc.password","102030nose");
             put("javax.persistence.jdbc.driver", "com.mysql.jdbc.Driver");
-            put("javax.persistence.jdbc.user","root");
+            put("javax.persistence.jdbc.user","secyt");
         }
     };
 }

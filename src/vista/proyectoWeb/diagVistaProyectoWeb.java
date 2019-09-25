@@ -349,8 +349,8 @@ public class diagVistaProyectoWeb extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAprobar)
                     .addComponent(btnCancelar)
@@ -532,7 +532,7 @@ public class diagVistaProyectoWeb extends javax.swing.JDialog {
         } catch (Exception e) {
         }
         try {
-            tfLineaInvestigacion.setText(proyectoWeb.getLineaInvestigacion().toString());
+            tfLineaInvestigacion.setText(proyectoWeb.getLineaPrioritaria().getDescripcion());
         } catch (Exception e) {
             tfLineaInvestigacion.setText("");
         }
