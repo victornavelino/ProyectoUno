@@ -363,7 +363,7 @@ public class diagResolucionAlta extends javax.swing.JDialog {
                             }
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Archivo demasiado Grande, debe ser menor a 15 MegaBytes");
+                        JOptionPane.showMessageDialog(null, "Archivo demasiado Grande, debe ser menor a 40 MegaBytes");
                     }
                     break;
                 }
@@ -450,7 +450,7 @@ public class diagResolucionAlta extends javax.swing.JDialog {
         long fileSizeInKB = fileSizeInBytes / 1024;
         // Convert the KB to MegaBytes (1 MB = 1024 KBytes)
         long fileSizeInMB = fileSizeInKB / 1024;
-        return fileSizeInMB < 15;
+        return fileSizeInMB < 40;
 
     }
 }
